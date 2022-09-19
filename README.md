@@ -1,5 +1,9 @@
 ### Hi there 👋
 
+#### [Blog](https://sma2lbao.github.io/blog)
+
+#### [视频](https://sma2lbao.github.io/)
+
 <!--
 **sma2lbao/sma2lbao** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
