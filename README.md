@@ -1,4 +1,4 @@
-### Hi there 👋
+### 欢迎访问！ 👋
 
 #### [Blog](https://sma2lbao.github.io/blog)
 
