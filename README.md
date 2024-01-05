@@ -4,6 +4,8 @@
 
 #### [视频](https://sma2lbao.github.io/)
 
+持续更新中...
+
 <!--
 **sma2lbao/sma2lbao** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
