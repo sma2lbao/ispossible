@@ -5,10 +5,24 @@
   "main": "./dist/index.js",
   "exports": {
     ".": {
-      "import": "./dist/index.js"
+      "import": {
+        "default": "./dist/index.js",
+        "types": "./dist/index.d.js"
+      },
+      "require": {
+        "default": "./dist/index.js",
+        "types": "./dist/index.d.js"
+      }
     },
     "./vue3": {
-      "import": "./dist/vue3.config.js"
+      "import": {
+        "default": "./dist/vue3.config.js",
+        "types": "./dist/vue3.config.d.js"
+      },
+      "require": {
+        "default": "./dist/vue3.config.js",
+        "types": "./dist/vue3.config.d.js"
+      }
     }
   },
   "scripts": {

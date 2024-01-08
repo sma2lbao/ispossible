@@ -1,5 +1,5 @@
 import Vue3Config from "./vue3.config";
 
-export default {
+export = {
   Vue3Config,
 };
