@@ -11,15 +11,8 @@ export default defineConfig({
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["@typescript-eslint", "vue", "import", "prettier"],
-  extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:vue/vue3-recommended",
-    "plugin:import/typescript",
-    "prettier",
-  ],
+  plugins: ["@typescript-eslint", "vue", "import"],
+  extends: ["plugin:import/typescript"],
   rules: {
     "import/order": [
       "error",
@@ -40,11 +33,11 @@ export default defineConfig({
             group: "builtin",
             position: "before",
           },
-          {
-            pattern: "@/**",
-            group: "external",
-            position: "after",
-          },
+          // {
+          //   pattern: "@/**",
+          //   group: "external",
+          //   position: "after",
+          // },
           {
             pattern: "{.,..}/**/*.css",
             group: "type",
