@@ -5,6 +5,21 @@ importers:
   .:
     specifiers: {}
 
+  ../../design/design-core:
+    specifiers: {}
+
+  ../../design/design-icon-source:
+    specifiers: {}
+
+  ../../design/design-plus:
+    specifiers: {}
+
+  ../../design/design-pro:
+    specifiers: {}
+
+  ../../libs/react-hooks:
+    specifiers: {}
+
   ../../tools/eslint-config:
     specifiers:
       '@typescript-eslint/eslint-plugin': ^6.18.0

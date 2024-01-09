@@ -319,6 +319,41 @@
       "tags": [
         "tools"
       ]
+    },
+    {
+      "packageName": "@design/design-icon-source",
+      "projectFolder": "design/design-icon-source",
+      "tags": [
+        "design"
+      ]
+    },
+    {
+      "packageName": "@design/design-core",
+      "projectFolder": "design/design-core",
+      "tags": [
+        "design"
+      ]
+    },
+    {
+      "packageName": "@design/design-plus",
+      "projectFolder": "design/design-plus",
+      "tags": [
+        "design"
+      ]
+    },
+    {
+      "packageName": "@design/design-pro",
+      "projectFolder": "design/design-pro",
+      "tags": [
+        "design"
+      ]
+    },
+    {
+      "packageName": "@libs/react-hooks",
+      "projectFolder": "libs/react-hooks",
+      "tags": [
+        "libs"
+      ]
     }
     // {
     //   /**
