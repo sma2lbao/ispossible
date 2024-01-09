@@ -347,6 +347,13 @@
       "tags": [
         "design"
       ]
+    },
+    {
+      "packageName": "@libs/react-hooks",
+      "projectFolder": "libs/react-hooks",
+      "tags": [
+        "libs"
+      ]
     }
     // {
     //   /**
