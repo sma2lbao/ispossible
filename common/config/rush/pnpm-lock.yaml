@@ -36,6 +36,8 @@ importers:
       '@storybook/react': ^7.6.7
       '@storybook/react-vite': ^7.6.7
       '@storybook/test': ^7.6.7
+      '@tools/eslint-config': workspace:*
+      eslint: ~8.56.0
       react: ~18.2.0
       react-dom: ~18.2.0
       storybook: ^7.6.7
@@ -50,6 +52,8 @@ importers:
       '@storybook/react': 7.6.8_3lfo6mjrbe7gnpm2z32jgk7g6a
       '@storybook/react-vite': 7.6.8_6eo5xr3gtxqlme43sb356gb3ma
       '@storybook/test': 7.6.8
+      '@tools/eslint-config': link:../../tools/eslint-config
+      eslint: 8.56.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       storybook: 7.6.8

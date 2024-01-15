@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./components/**/*{js,ts,tsx} --fix",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -28,6 +29,8 @@
     "react-dom": "~18.2.0",
     "storybook": "^7.6.7",
     "typescript": "~5.3.3",
-    "vite": "~5.0.11"
+    "vite": "~5.0.11",
+    "@tools/eslint-config": "workspace:*",
+    "eslint": "~8.56.0"
   }
 }
