@@ -23,6 +23,16 @@
         "default": "./dist/vue3.config.js",
         "types": "./dist/vue3.config.d.js"
       }
+    },
+    "./react": {
+      "import": {
+        "default": "./dist/react.config.js",
+        "types": "./dist/react.config.d.js"
+      },
+      "require": {
+        "default": "./dist/react.config.js",
+        "types": "./dist/react.config.d.js"
+      }
     }
   },
   "scripts": {
