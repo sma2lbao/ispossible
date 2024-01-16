@@ -321,6 +321,13 @@
       ]
     },
     {
+      "packageName": "@services/music-service",
+      "projectFolder": "services/music-service",
+      "tags": [
+        "services"
+      ]
+    },
+    {
       "packageName": "@tools/eslint-config",
       "projectFolder": "tools/eslint-config",
       "tags": [
