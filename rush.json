@@ -328,6 +328,13 @@
       ]
     },
     {
+      "packageName": "@services/video-service",
+      "projectFolder": "services/video-service",
+      "tags": [
+        "services"
+      ]
+    },
+    {
       "packageName": "@tools/eslint-config",
       "projectFolder": "tools/eslint-config",
       "tags": [
