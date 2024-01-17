@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./components/**/*{js,ts,tsx} --fix",
+    "start:dev": "storybook dev -p 6006",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -31,6 +32,13 @@
     "typescript": "~5.3.3",
     "vite": "~5.0.11",
     "@tools/eslint-config": "workspace:*",
-    "eslint": "~8.56.0"
+    "eslint": "~8.56.0",
+    "@types/node": "~20.11.4",
+    "@types/react": "~18.2.48",
+    "@types/react-dom": "~18.2.18",
+    "@stylexjs/babel-plugin": "~0.4.1"
+  },
+  "dependencies": {
+    "@stylexjs/stylex": "~0.4.1"
   }
 }

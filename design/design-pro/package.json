@@ -3,10 +3,28 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./layout/**/*.{js,ts,tsx} --fix"
+  },
+  "exports": {
+    "./layout": {
+      "import": "./layout/index.ts"
+    }
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "~5.3.3",
+    "react": "~18.2.0",
+    "react-dom": "~18.2.0",
+    "@tools/eslint-config": "workspace:*",
+    "eslint": "~8.56.0"
+  },
+  "peerDependencies": {
+    "react-dom": "~18.2.0",
+    "react": "~18.2.0"
+  }
 }
