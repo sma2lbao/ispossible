@@ -24,19 +24,20 @@
     "@storybook/addon-onboarding": "^1.0.10",
     "@storybook/blocks": "^7.6.7",
     "@storybook/react": "^7.6.7",
-    "@storybook/react-vite": "^7.6.7",
     "@storybook/test": "^7.6.7",
     "react": "~18.2.0",
     "react-dom": "~18.2.0",
     "storybook": "^7.6.7",
     "typescript": "~5.3.3",
-    "vite": "~5.0.11",
     "@tools/eslint-config": "workspace:*",
     "eslint": "~8.56.0",
     "@types/node": "~20.11.4",
     "@types/react": "~18.2.48",
     "@types/react-dom": "~18.2.18",
-    "@stylexjs/babel-plugin": "~0.4.1"
+    "@stylexjs/webpack-plugin": "~0.4.1",
+    "@storybook/react-webpack5": "~7.6.9",
+    "@stylexjs/babel-plugin": "~0.4.1",
+    "@stylexjs/eslint-plugin": "~0.4.1"
   },
   "dependencies": {
     "@stylexjs/stylex": "~0.4.1"

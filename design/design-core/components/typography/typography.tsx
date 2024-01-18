@@ -1,5 +1,5 @@
 import React from "react";
-import "./typography.styles";
+import "./typography.stylex";
 import type { TypographyProps } from "./typography.types";
 
 const Typography: React.FC<TypographyProps> = (props) => {
