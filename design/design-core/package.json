@@ -1,11 +1,13 @@
 {
-  "name": "@design/design-core",
+  "name": "@design/core",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./components/index.ts",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./components/**/*{js,ts,tsx} --fix",
+    "start:dev": "storybook dev -p 6006",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -23,14 +25,21 @@
     "@storybook/addon-onboarding": "^1.0.10",
     "@storybook/blocks": "^7.6.7",
     "@storybook/react": "^7.6.7",
-    "@storybook/react-vite": "^7.6.7",
     "@storybook/test": "^7.6.7",
     "react": "~18.2.0",
     "react-dom": "~18.2.0",
     "storybook": "^7.6.7",
     "typescript": "~5.3.3",
-    "vite": "~5.0.11",
     "@tools/eslint-config": "workspace:*",
-    "eslint": "~8.56.0"
+    "eslint": "~8.56.0",
+    "@types/node": "~20.11.4",
+    "@types/react": "~18.2.48",
+    "@types/react-dom": "~18.2.18",
+    "vite-plugin-stylex-dev": "~0.2.4",
+    "vite": "~5.0.11",
+    "@storybook/react-vite": "~7.6.10"
+  },
+  "dependencies": {
+    "@stylexjs/stylex": "~0.5.0-alpha.4"
   }
 }

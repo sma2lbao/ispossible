@@ -342,28 +342,28 @@
       ]
     },
     {
-      "packageName": "@design/design-icon-source",
+      "packageName": "@design/icon-source",
       "projectFolder": "design/design-icon-source",
       "tags": [
         "design"
       ]
     },
     {
-      "packageName": "@design/design-core",
+      "packageName": "@design/core",
       "projectFolder": "design/design-core",
       "tags": [
         "design"
       ]
     },
     {
-      "packageName": "@design/design-plus",
+      "packageName": "@design/plus",
       "projectFolder": "design/design-plus",
       "tags": [
         "design"
       ]
     },
     {
-      "packageName": "@design/design-pro",
+      "packageName": "@design/pro",
       "projectFolder": "design/design-pro",
       "tags": [
         "design"
