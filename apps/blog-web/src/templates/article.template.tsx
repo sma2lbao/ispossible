@@ -2,6 +2,7 @@ import React from "react";
 import { Paper } from "@mui/material";
 import { graphql, PageProps } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
+import Document from "../layouts/document";
 
 interface QueryMDXPageData {
   mdx: {
@@ -28,9 +29,11 @@ const ArticleTemplate: React.FC<PageProps<QueryMDXPageData>> = (props) => {
     children,
   } = props;
   return (
-    <Paper>
-      <MDXProvider>{children}</MDXProvider>
-    </Paper>
+    <Document>
+      <Paper>
+        <MDXProvider>{children}</MDXProvider>
+      </Paper>
+    </Document>
   );
 };
 

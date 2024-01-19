@@ -7,6 +7,7 @@ importers:
 
   ../../apps/blog-web:
     specifiers:
+      '@design/pro': workspace:*
       '@emotion/react': ~11.11.3
       '@emotion/styled': ~11.11.0
       '@mdx-js/react': ~3.0.0
@@ -24,6 +25,7 @@ importers:
       react-dom: ^18.2.0
       typescript: ^5.3.3
     dependencies:
+      '@design/pro': link:../../design/design-pro
       '@emotion/react': 11.11.3_fmir3ej6t2wp2ucb2nexek7zda
       '@emotion/styled': 11.11.0_wlq2hq22z2cwwaau2ylhm62i24
       '@mdx-js/react': 3.0.0_fmir3ej6t2wp2ucb2nexek7zda
@@ -95,13 +97,22 @@ importers:
 
   ../../design/design-pro:
     specifiers:
+      '@design/core': workspace:*
       '@tools/eslint-config': workspace:*
+      '@types/node': ~20.11.4
+      '@types/react': ~18.2.48
+      '@types/react-dom': ~18.2.18
       eslint: ~8.56.0
       react: ~18.2.0
       react-dom: ~18.2.0
       typescript: ~5.3.3
+    dependencies:
+      '@design/core': link:../design-core
     devDependencies:
       '@tools/eslint-config': link:../../tools/eslint-config
+      '@types/node': 20.11.4
+      '@types/react': 18.2.48
+      '@types/react-dom': 18.2.18
       eslint: 8.56.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0

@@ -26,7 +26,8 @@
     "@emotion/styled": "~11.11.0",
     "@mui/material": "~5.15.4",
     "@mui/icons-material": "~5.15.4",
-    "gatsby-plugin-page-creator": "~5.13.0"
+    "gatsby-plugin-page-creator": "~5.13.0",
+    "@design/pro": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.10.6",
