@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Typography } from "../../components";
+import { Watermark } from "../../components";
 
 const meta = {
-  title: "Typography 排版",
-  component: Typography,
+  title: "Watermark 水印",
+  component: Watermark,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
   argTypes: {
-    type: { control: "text", description: "Overwritten type" },
+    // type: { control: "text", description: "Overwritten type" },
   },
-} satisfies Meta<typeof Typography>;
+} satisfies Meta<typeof Watermark>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -20,7 +20,6 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary: Story = {
   args: {
-    type: "primary",
-    children: "文案",
+    children: "测试",
   },
 };
