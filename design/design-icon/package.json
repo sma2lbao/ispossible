@@ -1,0 +1,24 @@
+{
+  "name": "@design/icon",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "./components/index.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "default": "./components/index.ts",
+        "types": "./react.d.ts"
+      }
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "~5.3.3"
+  }
+}

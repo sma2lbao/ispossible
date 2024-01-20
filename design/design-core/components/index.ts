@@ -1,3 +1,4 @@
+export * from "./button";
 export * from "./typography";
 export * from "./menu";
 export * from "./breadcrumb";

@@ -342,8 +342,8 @@
       ]
     },
     {
-      "packageName": "@design/icon-source",
-      "projectFolder": "design/design-icon-source",
+      "packageName": "@design/icon",
+      "projectFolder": "design/design-icon",
       "tags": [
         "design"
       ]

@@ -46,6 +46,7 @@ importers:
 
   ../../design/design-core:
     specifiers:
+      '@design/icon': workspace:*
       '@storybook/addon-essentials': ^7.6.7
       '@storybook/addon-interactions': ^7.6.7
       '@storybook/addon-links': ^7.6.7
@@ -69,6 +70,7 @@ importers:
       vite: ~5.0.11
       vite-plugin-stylex-dev: ~0.2.4
     dependencies:
+      '@design/icon': link:../design-icon
       '@stylexjs/stylex': 0.5.0-alpha.4
     devDependencies:
       '@storybook/addon-essentials': 7.6.8_zgwwugpnwb5kzp3fjmd337gy2u
@@ -93,8 +95,11 @@ importers:
       vite: 5.0.11_@types+node@20.11.4
       vite-plugin-stylex-dev: 0.2.4
 
-  ../../design/design-icon-source:
-    specifiers: {}
+  ../../design/design-icon:
+    specifiers:
+      typescript: ~5.3.3
+    devDependencies:
+      typescript: 5.3.3
 
   ../../design/design-plus:
     specifiers: {}
