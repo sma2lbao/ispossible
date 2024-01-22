@@ -1,3 +1,6 @@
+import stylexOrigin from "@stylexjs/stylex";
+
+export const stylex = stylexOrigin;
 export * from "./button";
 export * from "./typography";
 export * from "./menu";

@@ -19,4 +19,12 @@ export const colors = stylex.defineVars({
   success: "green",
   warning: "yellow",
   danger: "red",
+  text: "#333",
+  textInverse: "#fff",
+  background: {
+    default: "#f6f6f6",
+  },
+  backgroundInverse: {
+    default: "#000",
+  },
 });

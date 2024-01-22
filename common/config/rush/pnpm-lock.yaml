@@ -7,12 +7,16 @@ importers:
 
   ../../apps/blog-web:
     specifiers:
+      '@design/core': workspace:*
       '@design/pro': workspace:*
       '@emotion/react': ~11.11.3
       '@emotion/styled': ~11.11.0
       '@mdx-js/react': ~3.0.0
       '@mui/icons-material': ~5.15.4
       '@mui/material': ~5.15.4
+      '@stylexjs/babel-plugin': ~0.4.1
+      '@stylexjs/stylex': ~0.4.1
+      '@stylexjs/webpack-plugin': ~0.4.1
       '@types/node': ^20.10.6
       '@types/react': ^18.2.46
       '@types/react-dom': ^18.2.18
@@ -25,12 +29,14 @@ importers:
       react-dom: ^18.2.0
       typescript: ^5.3.3
     dependencies:
+      '@design/core': link:../../design/design-core
       '@design/pro': link:../../design/design-pro
       '@emotion/react': 11.11.3_fmir3ej6t2wp2ucb2nexek7zda
       '@emotion/styled': 11.11.0_wlq2hq22z2cwwaau2ylhm62i24
       '@mdx-js/react': 3.0.0_fmir3ej6t2wp2ucb2nexek7zda
       '@mui/icons-material': 5.15.4_2iljbyykcrl36xoeyqb3e3piiy
       '@mui/material': 5.15.4_aiev4omla2vddxxr6sagou5a2i
+      '@stylexjs/stylex': 0.4.1
       gatsby: 5.13.1_aiacmzptaiyyvjdqq4cdjjqyvu
       gatsby-plugin-mdx: 5.13.0_bfzfstxa56n5nqqafkvw4tu3ne
       gatsby-plugin-page-creator: 5.13.0_t324aqswikiayiyu3wo5gglmnm
@@ -38,6 +44,8 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     devDependencies:
+      '@stylexjs/babel-plugin': 0.4.1
+      '@stylexjs/webpack-plugin': 0.4.1
       '@types/node': 20.10.7
       '@types/react': 18.2.47
       '@types/react-dom': 18.2.18
@@ -107,6 +115,7 @@ importers:
   ../../design/design-pro:
     specifiers:
       '@design/core': workspace:*
+      '@design/icon': workspace:*
       '@tools/eslint-config': workspace:*
       '@types/node': ~20.11.4
       '@types/react': ~18.2.48
@@ -117,6 +126,7 @@ importers:
       typescript: ~5.3.3
     dependencies:
       '@design/core': link:../design-core
+      '@design/icon': link:../design-icon
     devDependencies:
       '@tools/eslint-config': link:../../tools/eslint-config
       '@types/node': 20.11.4
@@ -5736,7 +5746,6 @@ packages:
       invariant: 2.2.4
       styleq: 0.1.3
       utility-types: 3.10.0
-    dev: true
 
   /@stylexjs/stylex/0.5.0-alpha.4:
     resolution: {integrity: sha512-yDyAo0PJi/jJ9rcKJsW5lhsn1CaU6M6jnAcKg8/kLv+fP/tr6azTu9cLIW8w40MvZ4Y+2kCLrar3KSYEzeuF6w==}
@@ -5746,6 +5755,23 @@ packages:
       styleq: 0.1.3
       utility-types: 3.10.0
     dev: false
+
+  /@stylexjs/webpack-plugin/0.4.1:
+    resolution: {integrity: sha512-71nkdZ1w9zZcQYqKesuI8UmQrhE6D388WZIHl1nW/SQ9MEFSWl3XGcUpxXyMgwGYg+cMNxRMuEkT263mImG28g==}
+    dependencies:
+      '@babel/core': 7.23.7
+      '@babel/plugin-syntax-flow': 7.23.3_@babel+core@7.23.7
+      '@babel/plugin-syntax-jsx': 7.23.3_@babel+core@7.23.7
+      '@babel/plugin-syntax-typescript': 7.23.3_@babel+core@7.23.7
+      '@stylexjs/babel-plugin': 0.4.1
+      webpack: 5.89.0
+    transitivePeerDependencies:
+      - '@swc/core'
+      - esbuild
+      - supports-color
+      - uglify-js
+      - webpack-cli
+    dev: true
 
   /@swc/helpers/0.4.14:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
