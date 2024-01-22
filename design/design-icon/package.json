@@ -4,13 +4,10 @@
   "description": "",
   "type": "module",
   "main": "./components/index.ts",
+  "types": "./export.d.ts",
   "exports": {
-    ".": {
-      "import": {
-        "default": "./components/index.ts",
-        "types": "./react.d.ts"
-      }
-    }
+    ".": "./components/index.ts",
+    "./*": "./components/*.ts"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
