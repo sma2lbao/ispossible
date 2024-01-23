@@ -2,6 +2,7 @@ import React from "react";
 import stylex from "@stylexjs/stylex";
 import { colors, spacing } from "../theme/tokens.stylex";
 import "@design/icon/arrow-down";
+import { useTheme } from "../theme";
 
 export interface ButtonProps {
   type?: "primary" | "text" | "link";

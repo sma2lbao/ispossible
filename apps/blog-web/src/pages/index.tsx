@@ -4,7 +4,7 @@ import stylex from "@stylexjs/stylex";
 
 const styles = stylex.create({
   root: {
-    background: "blue",
+    background: "red",
   },
 });
 

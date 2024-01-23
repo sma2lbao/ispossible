@@ -1,1 +1,1 @@
-export * from "./tokens.stylex";
+export * from "./use-theme";

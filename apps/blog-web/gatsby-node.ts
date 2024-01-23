@@ -161,7 +161,7 @@ export const onCreateBabelConfig: GatsbyNode["onCreateBabelConfig"] = ({
       // Set this to true for snapshot testing
       // default: false
       test: false,
-      runtimeInjection: true,
+      runtimeInjection: false,
       // Required for CSS variable support
       unstable_moduleResolution: {
         // type: 'commonJS' | 'haste'

@@ -6,7 +6,7 @@
   "type": "module",
   "exports": {
     ".": "./components/index.ts",
-    "./theme": "./components/theme/index.ts"
+    "./*": "./components/*"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
