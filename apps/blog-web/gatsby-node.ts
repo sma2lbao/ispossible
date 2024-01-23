@@ -105,36 +105,51 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
   }
 };
 
-export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
-  actions,
-  getConfig,
-}) => {
-  const config = getConfig();
+// export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
+//   actions,
+//   loaders,
+//   getConfig,
+// }) => {
+//   const config = getConfig();
 
-  config.plugins.push(
-    // Ensure that the stylex plugin is used before Babel
-    new StylexPlugin({
-      filename: "styles.[contenthash].css",
-      // get webpack mode and set value for dev
-      dev: config.mode === "development",
-      // Use statically generated CSS files and not runtime injected CSS.
-      // Even in development.
-      // runtimeInjection: true,
-      // optional. default: 'x'
-      // classNamePrefix: "x",
-      // Required for CSS variable support
-      // unstable_moduleResolution: {
-      //   // type: 'commonJS' | 'haste'
-      //   // default: 'commonJS'
-      //   type: "commonJS",
-      //   // The absolute path to the root directory of your project
-      //   rootDir: __dirname,
-      // },
-    })
-  );
+//   config.module.rules = [
+//     // Omite la regla por defecto donde test === '\.jsx?$'
+//     ...config.module.rules.filter(
+//       (rule: any) => String(rule.test) !== String(/\.tsx?$/)
+//     ),
 
-  actions.replaceWebpackConfig(config);
-};
+//     {
+//       ...loaders.js(),
+//       test: /\.tsx?$/,
+//       exclude: (modulePath: string) =>
+//         /node_modules/.test(modulePath) &&
+//         !/node_modules\/(@design)/.test(modulePath),
+//     },
+//   ];
+
+//   config.plugins.push(
+//     // Ensure that the stylex plugin is used before Babel
+//     new StylexPlugin({
+//       filename: "styles.[contenthash].css",
+//       // get webpack mode and set value for dev
+//       dev: config.mode === "development",
+//       test: false,
+//       // Use statically generated CSS files and not runtime injected CSS.
+//       // Even in development.
+//       runtimeInjection: false,
+//       // Required for CSS variable support
+//       unstable_moduleResolution: {
+//         // type: 'commonJS' | 'haste'
+//         // default: 'commonJS'
+//         type: "commonJS",
+//         // The absolute path to the root directory of your project
+//         rootDir: __dirname,
+//       },
+//     })
+//   );
+
+//   actions.replaceWebpackConfig(config);
+// };
 
 export const onCreateBabelConfig: GatsbyNode["onCreateBabelConfig"] = ({
   actions,

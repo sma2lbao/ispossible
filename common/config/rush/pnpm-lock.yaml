@@ -116,6 +116,8 @@ importers:
     specifiers:
       '@design/core': workspace:*
       '@design/icon': workspace:*
+      '@stylexjs/babel-plugin': ~0.4.1
+      '@stylexjs/stylex': ~0.4.1
       '@tools/eslint-config': workspace:*
       '@types/node': ~20.11.4
       '@types/react': ~18.2.48
@@ -127,7 +129,9 @@ importers:
     dependencies:
       '@design/core': link:../design-core
       '@design/icon': link:../design-icon
+      '@stylexjs/stylex': 0.4.1
     devDependencies:
+      '@stylexjs/babel-plugin': 0.4.1
       '@tools/eslint-config': link:../../tools/eslint-config
       '@types/node': 20.11.4
       '@types/react': 18.2.48

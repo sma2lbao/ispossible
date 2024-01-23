@@ -1,5 +1,5 @@
 import React from "react";
-import { Footer } from "@design/pro/layout";
+import { Button } from "@design/core";
 
 export interface DocumentProps {
   children?: React.ReactNode;
@@ -10,7 +10,7 @@ const Document: React.FC<DocumentProps> = (props) => {
   return (
     <div>
       {children}
-      <Footer />
+      <Button>ceshi </Button>
     </div>
   );
 };
