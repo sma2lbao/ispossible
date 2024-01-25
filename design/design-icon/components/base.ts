@@ -22,12 +22,15 @@ export function createWebIcon(name: string, source: string) {
         styleElement.textContent = `
            .is-icon {
              display: inline-flex;
+             align-items: center;
              color: inherit;
              line-height: 0;
+             vertical-align: -.125em;
            }
-           .is-icon svg {
+           svg {
              display: inline-block;
              width: 1em;
+             height: 1em;
              fill: currentcolor;
            }
        `;
