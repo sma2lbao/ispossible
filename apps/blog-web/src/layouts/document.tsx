@@ -10,7 +10,7 @@ const Document: React.FC<DocumentProps> = (props) => {
   return (
     <div>
       {children}
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 };

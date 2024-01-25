@@ -1,10 +1,10 @@
 import { createWebIcon } from "./base";
 
 createWebIcon(
-  "is-arrow-down",
+  "is-left",
   `<?xml version="1.0" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 1024 1024">
-  <path d="M862 465.3h-81c-4.6 0-9 2-12.1 5.5L550 723.1V160c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v563.1L255.1 470.8c-3-3.5-7.4-5.5-12.1-5.5h-81c-6.8 0-10.5 8.1-6 13.2L487.9 861a31.96 31.96 0 0 0 48.3 0L868 478.5c4.5-5.2.8-13.2-6-13.2z"/>
+  <path d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 0 0 0 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"/>
 </svg>
 `
 );
@@ -12,7 +12,7 @@ createWebIcon(
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      "is-arrow-down": IsIcon;
+      "is-left": IsIcon;
     }
     interface IsIcon {}
   }

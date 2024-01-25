@@ -10,12 +10,14 @@
     "./*": "./components/*.ts"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "icongen": "tsc ./icongen.ts --outDir ./dist --module node16 && node ./dist/icongen.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^20.11.5",
     "typescript": "~5.3.3"
   }
 }
