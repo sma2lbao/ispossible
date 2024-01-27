@@ -7,3 +7,4 @@ export * from "./tag";
 export * from "./avatar";
 export * from "./watermark";
 export * from "./theme";
+export * from "./tooltip";

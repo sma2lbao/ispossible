@@ -1,28 +1,29 @@
 import React from "react";
 
-export type MenuItemType = {
-  disabled?: boolean;
-  icon?: React.ReactNode;
-  key: string;
-  label: React.ReactNode;
-  title?: string;
-};
-
-export type SubMenuType = {
-  children?: ItemType[];
-  disabled?: boolean;
-  icon?: React.ReactNode;
-  key: string;
-  label: string;
-};
-
-export type ItemType = MenuItemType | SubMenuType;
-
 export interface MenuProps {
-  items: ItemType[];
+  items: ItemProps[];
   mode?: "x" | "y" | "inline";
 }
 
-export function isSubMenuType(menuItem: ItemType): menuItem is SubMenuType {
+export interface SubMenuProps {
+  icon?: React.ReactNode;
+  label: React.ReactNode;
+  title?: string;
+  disabled?: boolean;
+  key: string;
+  children?: (SubMenuProps | MenuItemProps)[];
+}
+
+export interface MenuItemProps {
+  icon?: React.ReactNode;
+  label: React.ReactNode;
+  title?: string;
+  key: string;
+  disabled?: boolean;
+}
+
+export type ItemProps = MenuItemProps | SubMenuProps;
+
+export function isSubMenuProps(menuItem: ItemProps): menuItem is SubMenuProps {
   return "children" in menuItem;
 }
