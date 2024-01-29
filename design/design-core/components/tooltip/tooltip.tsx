@@ -30,6 +30,7 @@ const styles = stylex.create({
     padding: "8px 16px",
     fontSize: 14,
     lineHeight: 1.4,
+    display: "none",
     boxShadow:
       "0 6px 16px 0 rgb(0 0 0 / 8%), 0 3px 6px -4px rgb(0 0 0 / 12%), 0 9px 28px 8px rgb(0 0 0 / 5%)",
   },
@@ -101,7 +102,7 @@ const Tooltip: React.FC<TooltipProps> = (props) => {
         },
       };
       const style = insetConfig[align];
-      setStyle(style);
+      setStyle({ ...style, display: "block" });
     }
   };
 
@@ -116,9 +117,7 @@ const Tooltip: React.FC<TooltipProps> = (props) => {
 
   useEffect(() => {
     if (childRef.current && !resizeRef.current) {
-      resizeRef.current = new ResizeObserver(() => {
-        calcStyle();
-      });
+      resizeRef.current = new ResizeObserver(calcStyle);
 
       resizeRef.current.observe(document.body);
 
