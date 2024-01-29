@@ -1,4 +1,4 @@
-import React, { CSSProperties, useLayoutEffect, useRef, useState } from "react";
+import React, { CSSProperties, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import stylex from "@stylexjs/stylex";
 import { isFunction } from "../../shared";
@@ -39,12 +39,71 @@ const Tooltip: React.FC<TooltipProps> = (props) => {
   const { title, children, align = "leftBottom" } = props;
   const childRef = useRef<HTMLElement>();
   const [style, setStyle] = useState<CSSProperties>();
+  const resizeRef = useRef<ResizeObserver>();
 
   const child = React.isValidElement(children) ? (
     children
   ) : (
     <span>{children}</span>
   );
+
+  const calcStyle = () => {
+    const rect = childRef.current?.getBoundingClientRect();
+
+    if (rect) {
+      const { left, top, width, height } = rect;
+      const insetConfig: Record<TootipAlign, CSSProperties> = {
+        top: {
+          inset: `${top}px auto auto ${left + width / 2}px`,
+          transform: "translate(-50%, -100%)",
+        },
+        left: {
+          inset: `${top + height / 2}px auto auto ${left}px`,
+          transform: "translate(-100%, -50%)",
+        },
+        right: {
+          inset: `${top + height / 2}px auto auto ${left + width}px`,
+          transform: "translate(0, -50%)",
+        },
+        bottom: {
+          inset: `${top + height}px auto auto ${left + width / 2}px`,
+          transform: "translate(-50%, 0)",
+        },
+        topLeft: {
+          inset: `${top}px auto auto ${left}px`,
+          transform: "translate(0, -100%)",
+        },
+        topRight: {
+          inset: `${top}px auto auto ${left + width}px`,
+          transform: "translate(-100%, -100%)",
+        },
+        rightTop: {
+          inset: `${top}px auto auto ${left + width}px`,
+        },
+        rightBottom: {
+          inset: `${top + height}px auto auto ${left + width}px`,
+          transform: "translate(0, -100%)",
+        },
+        bottomLeft: {
+          inset: `${top + height}px auto auto ${left}px`,
+        },
+        bottomRight: {
+          inset: `${top + height}px auto auto ${left + width}px`,
+          transform: "translate(-100%, 0)",
+        },
+        leftTop: {
+          inset: `${top}px auto auto ${left}px`,
+          transform: "translate(-100%, 0)",
+        },
+        leftBottom: {
+          inset: `${top + height}px auto auto ${left}px`,
+          transform: "translate(-100%, -100%)",
+        },
+      };
+      const style = insetConfig[align];
+      setStyle(style);
+    }
+  };
 
   const renderContent = () => {
     return createPortal(
@@ -55,65 +114,17 @@ const Tooltip: React.FC<TooltipProps> = (props) => {
     );
   };
 
-  useLayoutEffect(() => {
-    if (childRef.current) {
-      setTimeout(() => {
-        const rect = childRef.current?.getBoundingClientRect();
+  useEffect(() => {
+    if (childRef.current && !resizeRef.current) {
+      resizeRef.current = new ResizeObserver(() => {
+        calcStyle();
+      });
 
-        if (rect) {
-          const { left, top, width, height } = rect;
-          const insetConfig: Record<TootipAlign, CSSProperties> = {
-            top: {
-              inset: `${top}px auto auto ${left + width / 2}px`,
-              transform: "translate(-50%, -100%)",
-            },
-            left: {
-              inset: `${top + height / 2}px auto auto ${left}px`,
-              transform: "translate(-100%, -50%)",
-            },
-            right: {
-              inset: `${top + height / 2}px auto auto ${left + width}px`,
-              transform: "translate(0, -50%)",
-            },
-            bottom: {
-              inset: `${top + height}px auto auto ${left + width / 2}px`,
-              transform: "translate(-50%, 0)",
-            },
-            topLeft: {
-              inset: `${top}px auto auto ${left}px`,
-              transform: "translate(0, -100%)",
-            },
-            topRight: {
-              inset: `${top}px auto auto ${left + width}px`,
-              transform: "translate(-100%, -100%)",
-            },
-            rightTop: {
-              inset: `${top}px auto auto ${left + width}px`,
-            },
-            rightBottom: {
-              inset: `${top + height}px auto auto ${left + width}px`,
-              transform: "translate(0, -100%)",
-            },
-            bottomLeft: {
-              inset: `${top + height}px auto auto ${left}px`,
-            },
-            bottomRight: {
-              inset: `${top + height}px auto auto ${left + width}px`,
-              transform: "translate(-100%, 0)",
-            },
-            leftTop: {
-              inset: `${top}px auto auto ${left}px`,
-              transform: "translate(-100%, 0)",
-            },
-            leftBottom: {
-              inset: `${top + height}px auto auto ${left}px`,
-              transform: "translate(-100%, -100%)",
-            },
-          };
-          const style = insetConfig[align];
-          setStyle(style);
-        }
-      }, 500);
+      resizeRef.current.observe(document.body);
+
+      return () => {
+        resizeRef.current?.disconnect();
+      };
     }
   }, []);
 
