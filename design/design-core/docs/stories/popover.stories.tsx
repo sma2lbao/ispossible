@@ -1,30 +1,29 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-
-import { Tooltip, Button } from "../../components";
+import { Popover, Button } from "../../components";
+import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
-  title: "Tooltip 文字提示",
-  component: Tooltip,
+  title: "Popover 气泡卡片",
+  component: Popover,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
   argTypes: {
-    title: {
+    content: {
       control: "text",
       description: "提示文字",
     },
   },
-} satisfies Meta<typeof Tooltip>;
+} satisfies Meta<typeof Popover>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Title: Story = {
+export const Content: Story = {
   args: {
-    title: () => "文案详细解释详细解释详细解释",
+    content: () => "文案详细解释详细解释详细解释",
     children: <Button>文案</Button>,
   },
 };

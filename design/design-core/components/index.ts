@@ -8,3 +8,4 @@ export * from "./avatar";
 export * from "./watermark";
 export * from "./theme";
 export * from "./tooltip";
+export * from "./popover";

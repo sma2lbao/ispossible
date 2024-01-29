@@ -31,11 +31,15 @@ const styles = stylex.create({
   link: {},
 });
 
-export const Button: React.FC<ButtonProps> = (props) => {
+const ButtonInternal: React.ForwardRefRenderFunction<
+  HTMLButtonElement,
+  ButtonProps
+> = (props, ref) => {
   const { children, type = "primary", disabled = false, icon, loading } = props;
 
   return (
     <button
+      ref={ref}
       {...stylex.props(styles.base, styles[type], disabled && styles.disabled)}
     >
       <is-arrow-down />
@@ -44,3 +48,5 @@ export const Button: React.FC<ButtonProps> = (props) => {
     </button>
   );
 };
+
+export const Button = React.forwardRef(ButtonInternal);
