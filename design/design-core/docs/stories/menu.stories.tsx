@@ -28,7 +28,15 @@ export const Primary: Story = {
         label: "菜单三",
         key: "label3",
         icon: <is-home />,
-        children: [{ label: "子菜单一", key: "label4" }],
+        children: [
+          { label: "子菜单一", key: "label4" },
+          { label: "子菜单二", key: "label5" },
+          {
+            label: "子菜单三",
+            key: "label6",
+            children: [{ label: "孙菜单", key: "label7" }],
+          },
+        ],
       },
     ],
   },

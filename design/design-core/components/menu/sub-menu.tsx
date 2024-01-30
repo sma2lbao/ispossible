@@ -3,6 +3,7 @@ import stylex from "@stylexjs/stylex";
 import { type SubMenuProps, isSubMenuProps } from "./menu.types";
 import { useTheme, type Theme } from "../theme";
 import MenuItem from "./menu-item";
+import { Popover } from "../popover";
 import "@design/icon/arrow-down";
 import "@design/icon/arrow-up";
 import "@design/icon/arrow-right";
@@ -40,10 +41,13 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
   };
 
   return (
-    <div {...stylex.props(styles.item, styles.active(theme))}>
-      {icon}
-      <span {...stylex.props(styles.itemContent(!!icon))}>{label}</span>
-    </div>
+    <Popover content={renderPopup}>
+      <div {...stylex.props(styles.item, styles.active(theme))}>
+        {icon}
+        <span {...stylex.props(styles.itemContent(!!icon))}>{label}</span>
+        -&gt;
+      </div>
+    </Popover>
   );
 };
 

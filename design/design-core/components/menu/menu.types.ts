@@ -25,5 +25,5 @@ export interface MenuItemProps {
 export type ItemProps = MenuItemProps | SubMenuProps;
 
 export function isSubMenuProps(menuItem: ItemProps): menuItem is SubMenuProps {
-  return "children" in menuItem;
+  return "children" in menuItem && !!menuItem.children?.length;
 }

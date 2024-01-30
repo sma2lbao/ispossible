@@ -39,7 +39,7 @@ const styles = stylex.create({
 });
 
 const Tooltip: React.FC<TooltipProps> = (props) => {
-  const { title, children, align = "leftBottom", visible = false } = props;
+  const { title, children, align = "right", visible = false } = props;
   const childRef = useRef<HTMLElement>();
   const [style, setStyle] = useState<CSSProperties>();
   const [visibleInner, setVisibleInner] = useState<boolean>(visible);

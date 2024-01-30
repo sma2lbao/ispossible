@@ -24,6 +24,6 @@ type Story = StoryObj<typeof meta>;
 export const Content: Story = {
   args: {
     content: () => "文案详细解释详细解释详细解释",
-    children: <Button>文案</Button>,
+    children: "文案",
   },
 };
