@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-
 import { Tooltip, Button } from "../../components";
+
+import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
   title: "Tooltip 文字提示",
@@ -24,7 +24,7 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Title: Story = {
   args: {
-    title: () => "文案详细解释详细解释详细解释",
-    children: <Button>文案</Button>,
+    title: "文案详细解释详细解释详细解释",
+    children: <Button>文案文本</Button>,
   },
 };

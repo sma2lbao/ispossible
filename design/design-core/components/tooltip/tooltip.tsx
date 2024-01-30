@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useRef, useState } from "react";
+import React, { CSSProperties, useRef, useState, useLayoutEffect } from "react";
 import { createPortal } from "react-dom";
 import stylex from "@stylexjs/stylex";
 import { isFunction } from "../../shared";
@@ -20,6 +20,8 @@ export interface TooltipProps {
   title: (() => React.ReactNode) | React.ReactNode;
   children: React.ReactNode;
   align?: TootipAlign;
+  visible?: boolean;
+  arrow?: boolean;
 }
 
 const styles = stylex.create({
@@ -37,9 +39,10 @@ const styles = stylex.create({
 });
 
 const Tooltip: React.FC<TooltipProps> = (props) => {
-  const { title, children, align = "leftBottom" } = props;
+  const { title, children, align = "leftBottom", visible = false } = props;
   const childRef = useRef<HTMLElement>();
   const [style, setStyle] = useState<CSSProperties>();
+  const [visibleInner, setVisibleInner] = useState<boolean>(visible);
   const resizeRef = useRef<ResizeObserver>();
 
   const child = React.isValidElement(children) ? (
@@ -107,15 +110,23 @@ const Tooltip: React.FC<TooltipProps> = (props) => {
   };
 
   const renderContent = () => {
+    if (!visibleInner) {
+      return null;
+    }
     return createPortal(
-      <div style={style} {...stylex.props(styles.root)}>
+      <div
+        onMouseEnter={() => setVisibleInner(true)}
+        onMouseLeave={() => setVisibleInner(false)}
+        style={style}
+        {...stylex.props(styles.root)}
+      >
         {isFunction(title) ? title() : title}
       </div>,
       document.body
     );
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (childRef.current && !resizeRef.current) {
       resizeRef.current = new ResizeObserver(calcStyle);
 
@@ -129,7 +140,11 @@ const Tooltip: React.FC<TooltipProps> = (props) => {
 
   return (
     <React.Fragment>
-      {React.cloneElement(child, { ref: childRef })}
+      {React.cloneElement(child, {
+        ref: childRef,
+        onMouseEnter: () => setVisibleInner(true),
+        onMouseLeave: () => setVisibleInner(false),
+      })}
       {renderContent()}
     </React.Fragment>
   );
