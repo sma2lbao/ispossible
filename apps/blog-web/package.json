@@ -27,13 +27,17 @@
     "@mui/material": "~5.15.4",
     "@mui/icons-material": "~5.15.4",
     "gatsby-plugin-page-creator": "~5.13.0",
-    "@design/pro": "workspace:*"
+    "@design/pro": "workspace:*",
+    "@design/core": "workspace:*",
+    "@stylexjs/stylex": "~0.4.1"
   },
   "devDependencies": {
     "@types/node": "^20.10.6",
     "@types/react": "^18.2.46",
     "@types/react-dom": "^18.2.18",
     "typescript": "^5.3.3",
-    "gatsby-plugin-pnpm-gatsby-5": "~1.2.11"
+    "gatsby-plugin-pnpm-gatsby-5": "~1.2.11",
+    "@stylexjs/babel-plugin": "~0.4.1",
+    "@stylexjs/webpack-plugin": "~0.4.1"
   }
 }

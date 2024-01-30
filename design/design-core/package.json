@@ -4,6 +4,10 @@
   "description": "",
   "main": "./components/index.ts",
   "type": "module",
+  "exports": {
+    ".": "./components/index.ts",
+    "./*": "./components/*"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./components/**/*{js,ts,tsx} --fix",
@@ -19,16 +23,16 @@
     "react-dom": "~18.2.0"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "^7.6.7",
-    "@storybook/addon-interactions": "^7.6.7",
-    "@storybook/addon-links": "^7.6.7",
+    "@storybook/addon-essentials": "^7.6.10",
+    "@storybook/addon-interactions": "^7.6.10",
+    "@storybook/addon-links": "^7.6.10",
     "@storybook/addon-onboarding": "^1.0.10",
-    "@storybook/blocks": "^7.6.7",
-    "@storybook/react": "^7.6.7",
-    "@storybook/test": "^7.6.7",
+    "@storybook/blocks": "^7.6.10",
+    "@storybook/react": "^7.6.10",
+    "@storybook/test": "^7.6.10",
     "react": "~18.2.0",
     "react-dom": "~18.2.0",
-    "storybook": "^7.6.7",
+    "storybook": "^7.6.10",
     "typescript": "~5.3.3",
     "@tools/eslint-config": "workspace:*",
     "eslint": "~8.56.0",
@@ -37,9 +41,12 @@
     "@types/react-dom": "~18.2.18",
     "vite-plugin-stylex-dev": "~0.2.4",
     "vite": "~5.0.11",
-    "@storybook/react-vite": "~7.6.10"
+    "@storybook/react-vite": "^7.6.10",
+    "@storybook/manager-api": "^7.6.10",
+    "@storybook/theming": "^7.6.10"
   },
   "dependencies": {
-    "@stylexjs/stylex": "~0.5.0-alpha.4"
+    "@stylexjs/stylex": "~0.5.0-alpha.4",
+    "@design/icon": "workspace:*"
   }
 }

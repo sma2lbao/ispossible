@@ -1,0 +1,23 @@
+{
+  "name": "@design/icon",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "./components/index.ts",
+  "types": "./export.d.ts",
+  "exports": {
+    ".": "./components/index.ts",
+    "./*": "./components/*.ts"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "icongen": "tsc ./icongen.ts --outDir ./dist --module node16 && node ./dist/icongen.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "typescript": "~5.3.3"
+  }
+}

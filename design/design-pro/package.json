@@ -2,16 +2,15 @@
   "name": "@design/pro",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./layout/**/*.{js,ts,tsx} --fix"
   },
   "exports": {
-    "./layout": {
-      "import": "./layout/index.ts"
-    }
+    ".": "./index.ts",
+    "./layout": "./layout/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -24,13 +23,16 @@
     "eslint": "~8.56.0",
     "@types/node": "~20.11.4",
     "@types/react": "~18.2.48",
-    "@types/react-dom": "~18.2.18"
+    "@types/react-dom": "~18.2.18",
+    "@stylexjs/babel-plugin": "~0.5.0-alpha.4"
   },
   "peerDependencies": {
     "react-dom": "~18.2.0",
     "react": "~18.2.0"
   },
   "dependencies": {
-    "@design/core": "workspace:*"
+    "@design/core": "workspace:*",
+    "@design/icon": "workspace:*",
+    "@stylexjs/stylex": "~0.5.0-alpha.4"
   }
 }
