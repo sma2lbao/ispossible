@@ -33,9 +33,11 @@ export interface TooltipProps {
   placement?: TootipPlacement;
   visible?: boolean;
   arrow?: boolean;
+  popupStyle?: React.CSSProperties;
+  popupClassName?: string;
 }
 
-const arrowSize = 18;
+const arrowSize = 16;
 
 const styles = stylex.create({
   root: {
@@ -43,7 +45,7 @@ const styles = stylex.create({
     backgroundColor: "#000",
     color: "#fff",
     borderRadius: "4px",
-    padding: "8px 16px",
+    padding: "6px 10px",
     fontSize: 14,
     lineHeight: 1.4,
     boxShadow:
@@ -115,7 +117,10 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     placement = "right",
     visible = false,
     arrow = true,
+    popupStyle = {},
+    popupClassName,
   } = props;
+
   const childRef = useRef<HTMLElement>();
   const [style, setStyle] = useState<CSSProperties>();
   const [visibleInner, setVisibleInner] = useState<boolean>(visible);
@@ -221,7 +226,8 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
       <div
         onMouseEnter={() => setVisibleInner(true)}
         onMouseLeave={() => setVisibleInner(false)}
-        style={style}
+        style={{ ...style, ...popupStyle }}
+        className={popupClassName}
         {...stylex.props(styles.root, !visibleInner && styles.hidden)}
       >
         {arrow && arrowConfig[placement]}
