@@ -53,6 +53,7 @@ const Menu: React.FC<MenuProps> = (props) => {
       value={{
         selectedIds: innerSelectedIds,
         updateSelectedIds: handleUpdateSelectedIds,
+        mode,
       }}
     >
       <div {...stylex.props(styles.root, mode === "x" && styles.horizontal)}>

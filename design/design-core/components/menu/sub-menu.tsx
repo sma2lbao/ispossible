@@ -1,9 +1,9 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import stylex from "@stylexjs/stylex";
 import { type SubMenuProps, isSubMenuProps } from "./menu.types";
 import MenuItem from "./menu-item";
 import { colors } from "../theme/tokens.stylex";
-import { Popover } from "../popover";
+import { Popover, PopoverProps } from "../popover";
 import "@design/icon/down";
 import "@design/icon/up";
 import "@design/icon/right";
@@ -43,6 +43,8 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
   const [visible, setVisible] = useState(true);
   const menuContext = React.useContext(MenuContext);
   const active = menuContext?.selectedIds?.includes(id);
+  const placement: PopoverProps["placement"] =
+    menuContext?.mode === "x" ? "bottomRight" : "rightTop";
 
   const renderPopup = () => {
     return (
@@ -58,12 +60,19 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
     );
   };
 
+  const renderArrowIcon = () => {
+    if (menuContext?.mode === "y") {
+      return <is-right {...stylex.attrs(styles.arrowIcon)} />;
+    }
+    return <is-down {...stylex.attrs(styles.arrowIcon)} />;
+  };
+
   return (
-    <Popover content={renderPopup}>
+    <Popover content={renderPopup} placement={placement}>
       <div key={id} {...stylex.props(styles.item, active && styles.active)}>
         {icon}
         <span {...stylex.props(styles.itemContent(!!icon))}>{label}</span>
-        <is-right {...stylex.attrs(styles.arrowIcon)} />
+        {renderArrowIcon()}
       </div>
     </Popover>
   );
