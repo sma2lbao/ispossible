@@ -2,6 +2,7 @@ import stylex from "@stylexjs/stylex";
 
 // 间隔
 export const spacing = stylex.defineVars({
+  basic: "8px",
   none: "0px",
   xsmall: "4px",
   small: "8px",
@@ -12,6 +13,16 @@ export const spacing = stylex.defineVars({
   xxxlarge: "96px",
 });
 
+// 尺寸
+export const fontSizes = stylex.defineVars({
+  basic: "14px",
+});
+
+// radius
+export const radiusSizes = stylex.defineVars({
+  basic: "6px",
+});
+
 // 配色
 export const colors = stylex.defineVars({
   primary: "blue",
@@ -19,6 +30,8 @@ export const colors = stylex.defineVars({
   success: "green",
   warning: "yellow",
   danger: "red",
+  error: "red",
+  link: "blue",
   text: "#333",
   textInverse: "#fff",
   background: {
@@ -27,4 +40,5 @@ export const colors = stylex.defineVars({
   backgroundInverse: {
     default: "#000",
   },
+  border: "#ddd",
 });

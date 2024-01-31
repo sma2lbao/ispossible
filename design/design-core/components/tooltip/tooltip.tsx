@@ -28,10 +28,10 @@ const styles = stylex.create({
   root: {
     position: "absolute",
     backgroundColor: "#fff",
-    borderRadius: "4px",
-    padding: "8px 16px",
-    fontSize: 14,
-    lineHeight: 1.4,
+    // borderRadius: "4px",
+    // padding: "8px 16px",
+    // fontSize: 14,
+    // lineHeight: 1.4,
     display: "none",
     boxShadow:
       "0 6px 16px 0 rgb(0 0 0 / 8%), 0 3px 6px -4px rgb(0 0 0 / 12%), 0 9px 28px 8px rgb(0 0 0 / 5%)",

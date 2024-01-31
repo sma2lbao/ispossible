@@ -23,18 +23,18 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     items: [
-      { label: "菜单一", key: "label1", icon: <is-home /> },
+      { label: "菜单一", id: "label1", icon: <is-home /> },
       {
         label: "菜单三",
-        key: "label3",
+        id: "label3",
         icon: <is-home />,
         children: [
-          { label: "子菜单一", key: "label4" },
-          { label: "子菜单二", key: "label5" },
+          { label: "子菜单一", id: "label4" },
+          { label: "子菜单二", id: "label5" },
           {
             label: "子菜单三",
-            key: "label6",
-            children: [{ label: "孙菜单", key: "label7" }],
+            id: "label6",
+            children: [{ label: "孙菜单", id: "label7" }],
           },
         ],
       },

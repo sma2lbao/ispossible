@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import stylex from "@stylexjs/stylex";
 import { type SubMenuProps, isSubMenuProps } from "./menu.types";
-import { useTheme, type Theme } from "../theme";
 import MenuItem from "./menu-item";
+import { colors } from "../theme/tokens.stylex";
 import { Popover } from "../popover";
-import "@design/icon/arrow-down";
-import "@design/icon/arrow-up";
-import "@design/icon/arrow-right";
-import "@design/icon/arrow-left";
+import "@design/icon/down";
+import "@design/icon/up";
+import "@design/icon/right";
+import "@design/icon/left";
+import { MenuContext } from "./context";
 
 const styles = stylex.create({
   item: {
@@ -16,25 +17,42 @@ const styles = stylex.create({
     alignItems: "center",
     justifyContent: "flex-start",
     cursor: "pointer",
+    padding: "0 34px 0 16px",
+    position: "relative",
+    backgroundColor: {
+      ":hover": colors.background,
+    },
   },
-  active: (theme: Theme) => ({
-    color: theme.colors.primary,
-  }),
+  active: {
+    color: colors.primary,
+  },
   itemContent: (hasIcon: boolean) => ({
     marginLeft: hasIcon ? 10 : 0,
   }),
+  arrowIcon: {
+    position: "absolute",
+    right: 12,
+    fontSize: 12,
+    transform: "translateY(-50%)",
+    top: "50%",
+  },
 });
 
 const SubMenu: React.FC<SubMenuProps> = (props) => {
-  const { icon, label, children } = props;
-  const theme = useTheme();
+  const { icon, label, children, id } = props;
   const [visible, setVisible] = useState(true);
+  const menuContext = React.useContext(MenuContext);
+  const active = menuContext?.selectedIds?.includes(id);
 
   const renderPopup = () => {
     return (
       <div>
         {children?.map((item) =>
-          isSubMenuProps(item) ? <SubMenu {...item} /> : <MenuItem {...item} />
+          isSubMenuProps(item) ? (
+            <SubMenu {...item} key={item.id} />
+          ) : (
+            <MenuItem {...item} key={item.id} />
+          )
         )}
       </div>
     );
@@ -42,10 +60,10 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
 
   return (
     <Popover content={renderPopup}>
-      <div {...stylex.props(styles.item, styles.active(theme))}>
+      <div key={id} {...stylex.props(styles.item, active && styles.active)}>
         {icon}
         <span {...stylex.props(styles.itemContent(!!icon))}>{label}</span>
-        -&gt;
+        <is-right {...stylex.attrs(styles.arrowIcon)} />
       </div>
     </Popover>
   );
