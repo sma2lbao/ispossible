@@ -14,8 +14,14 @@ export const spacing = stylex.defineVars({
 });
 
 // 尺寸
-export const fontSizes = stylex.defineVars({
+export const typography = stylex.defineVars({
   basic: "14px",
+  h1: "38px",
+  h2: "30px",
+  h3: "24px",
+  h4: "20px",
+  h5: "16px",
+  small: "12px",
 });
 
 // radius

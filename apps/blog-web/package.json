@@ -29,7 +29,8 @@
     "gatsby-plugin-page-creator": "~5.13.0",
     "@design/pro": "workspace:*",
     "@design/core": "workspace:*",
-    "@stylexjs/stylex": "~0.5.1"
+    "@stylexjs/stylex": "~0.5.1",
+    "normalize.css": "~8.0.1"
   },
   "devDependencies": {
     "@types/node": "^20.10.6",

@@ -1,0 +1,43 @@
+name: Blog Deploy
+
+on:
+  push:
+    branches: ["main"]
+    paths: ["apps/blog-web/**"]
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clean temp directory
+        run: |
+          rm -rf *
+
+      - name: Checkout
+        uses: actions/checkout@main
+
+      - name: Setup Node
+        uses: actions/setup-node@main
+        with:
+          node-version: "18.x"
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8
+
+      - name: Build
+        run: |
+          cd apps/blog-web
+          pnpm install
+          pnpm run build --verbose
+
+      - name: Github Pages Action
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          external_repository: sma2lbao/blog
+          deploy_key: ${{ secrets.BLOG_DEPLOY_KEY }}
+          publish_dir: ./apps/blog-web/public

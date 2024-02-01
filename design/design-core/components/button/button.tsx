@@ -5,10 +5,13 @@ import "@design/icon/arrow-down";
 
 export interface ButtonProps {
   type?: "primary" | "text" | "link";
-  children: React.ReactNode;
+  children?: React.ReactNode;
   disabled?: boolean;
   icon?: React.ReactNode;
   loading?: boolean;
+  ghost?: boolean;
+  href?: string;
+  onClick?: React.MouseEventHandler;
 }
 
 const styles = stylex.create({
@@ -18,13 +21,27 @@ const styles = stylex.create({
     alignItems: "center",
     cursor: "pointer",
     padding: spacing.small,
+    border: "none",
+  },
+  ghost: {
+    backgroundColor: "transparent",
   },
   disabled: {
     pointerEvents: "none",
     cursor: "not-allowed",
   },
+  onlyIcon: {
+    borderRadius: "50%",
+    fontSize: "24px",
+    backgroundColor: "transparent",
+    color: "#fff",
+  },
   primary: {
-    color: colors.primary,
+    color: "#fff",
+    backgroundColor: colors.primary,
+  },
+  default: {
+    color: colors.text,
   },
   text: {},
   link: {},
@@ -34,14 +51,40 @@ const ButtonInternal: React.ForwardRefRenderFunction<
   HTMLButtonElement,
   ButtonProps
 > = (props, ref) => {
-  const { children, type = "primary", disabled = false, icon, loading } = props;
+  const {
+    children,
+    type = "default",
+    disabled = false,
+    icon,
+    loading,
+    ghost,
+    href,
+    onClick,
+  } = props;
+
+  const onlyIcon = !!icon && !children;
+
+  const handleClick: React.MouseEventHandler<Element> = (
+    e: React.MouseEvent<Element, MouseEvent>
+  ) => {
+    if (href) {
+      window.open(href);
+    }
+    onClick?.(e);
+  };
 
   return (
     <button
       ref={ref}
-      {...stylex.props(styles.base, styles[type], disabled && styles.disabled)}
+      onClick={handleClick}
+      {...stylex.props(
+        styles.base,
+        styles[type],
+        disabled && styles.disabled,
+        ghost && styles.ghost,
+        onlyIcon && styles.onlyIcon
+      )}
     >
-      <is-arrow-down />
       {loading ? "..." : icon}
       {children}
     </button>

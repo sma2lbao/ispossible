@@ -25,6 +25,7 @@ importers:
       gatsby-plugin-page-creator: ~5.13.0
       gatsby-plugin-pnpm-gatsby-5: ~1.2.11
       gatsby-source-filesystem: ~5.13.0
+      normalize.css: ~8.0.1
       react: ^18.2.0
       react-dom: ^18.2.0
       typescript: ^5.3.3
@@ -41,6 +42,7 @@ importers:
       gatsby-plugin-mdx: 5.13.0_bfzfstxa56n5nqqafkvw4tu3ne
       gatsby-plugin-page-creator: 5.13.0_t324aqswikiayiyu3wo5gglmnm
       gatsby-source-filesystem: 5.13.0_gatsby@5.13.1
+      normalize.css: 8.0.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     devDependencies:
@@ -13491,6 +13493,10 @@ packages:
   /normalize-url/8.0.0:
     resolution: {integrity: sha512-uVFpKhj5MheNBJRTiMZ9pE/7hD1QTeEvugSJW/OmLzAp78PB5O6adfMNTvmfKhXBkvCzC+rqifWcVYpGFwTjnw==}
     engines: {node: '>=14.16'}
+
+  /normalize.css/8.0.1:
+    resolution: {integrity: sha512-qizSNPO93t1YUuUhP22btGOo3chcvDFqFaj2TRybP0DMxkHOCTYwp3n34fel4a31ORXy4m1Xq0Gyqpb5m33qIg==}
+    dev: false
 
   /not/0.1.0:
     resolution: {integrity: sha512-5PDmaAsVfnWUgTUbJ3ERwn7u79Z0dYxN9ErxCpVJJqe2RK0PJ3z+iFUxuqjwtlDDegXvtWoxD/3Fzxox7tFGWA==}
