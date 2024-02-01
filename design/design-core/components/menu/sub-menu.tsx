@@ -44,7 +44,7 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
   const menuContext = React.useContext(MenuContext);
   const active = menuContext?.selectedIds?.includes(id);
   const placement: PopoverProps["placement"] =
-    menuContext?.mode === "x" ? "bottomRight" : "rightTop";
+    menuContext?.mode === "x" ? "bottomLeft" : "rightTop";
 
   const renderPopup = () => {
     return (

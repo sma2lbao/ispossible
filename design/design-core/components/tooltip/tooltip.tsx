@@ -35,9 +35,12 @@ export interface TooltipProps {
   arrow?: boolean;
   popupStyle?: React.CSSProperties;
   popupClassName?: string;
+  backgroundColor?: string;
+  color?: string;
 }
 
 const arrowSize = 16;
+const delay = 180;
 
 const styles = stylex.create({
   root: {
@@ -119,6 +122,8 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     arrow = true,
     popupStyle = {},
     popupClassName,
+    backgroundColor = "#000",
+    color = "#fff",
   } = props;
 
   const childRef = useRef<HTMLElement>();
@@ -131,6 +136,18 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
   ) : (
     <span>{children}</span>
   );
+
+  const closePopup = () => {
+    setTimeout(() => {
+      setVisibleInner(false);
+    }, delay);
+  };
+
+  const openPopup = () => {
+    setTimeout(() => {
+      setVisibleInner(true);
+    }, delay);
+  };
 
   const calcStyle = () => {
     const rect = childRef.current?.getBoundingClientRect();
@@ -192,45 +209,39 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
   };
 
   const renderContent = () => {
+    if (!visibleInner) {
+      return null;
+    }
     const arrowConfig: Record<TootipPlacement, React.ReactNode> = {
-      top: <is-caret-bottom {...stylex.attrs(styles.arrow, styles.top)} />,
-      bottom: <is-caret-top {...stylex.attrs(styles.arrow, styles.bottom)} />,
-      left: <is-caret-right {...stylex.attrs(styles.arrow, styles.left)} />,
-      right: <is-caret-left {...stylex.attrs(styles.arrow, styles.right)} />,
-      topLeft: (
-        <is-caret-bottom {...stylex.attrs(styles.arrow, styles.topLeft)} />
-      ),
-      topRight: (
-        <is-caret-bottom {...stylex.attrs(styles.arrow, styles.topRight)} />
-      ),
-      bottomLeft: (
-        <is-caret-top {...stylex.attrs(styles.arrow, styles.bottomLeft)} />
-      ),
-      bottomRight: (
-        <is-caret-top {...stylex.attrs(styles.arrow, styles.bottomRight)} />
-      ),
-      leftTop: (
-        <is-caret-right {...stylex.attrs(styles.arrow, styles.leftTop)} />
-      ),
-      leftBottom: (
-        <is-caret-right {...stylex.attrs(styles.arrow, styles.leftBottom)} />
-      ),
-      rightTop: (
-        <is-caret-left {...stylex.attrs(styles.arrow, styles.rightTop)} />
-      ),
-      rightBottom: (
-        <is-caret-left {...stylex.attrs(styles.arrow, styles.rightBottom)} />
-      ),
+      top: <is-caret-bottom />,
+      bottom: <is-caret-top />,
+      left: <is-caret-right />,
+      right: <is-caret-left />,
+      topLeft: <is-caret-bottom />,
+      topRight: <is-caret-bottom />,
+      bottomLeft: <is-caret-top />,
+      bottomRight: <is-caret-top />,
+      leftTop: <is-caret-right />,
+      leftBottom: <is-caret-right />,
+      rightTop: <is-caret-left />,
+      rightBottom: <is-caret-left />,
     };
     return createPortal(
       <div
-        onMouseEnter={() => setVisibleInner(true)}
-        onMouseLeave={() => setVisibleInner(false)}
-        style={{ ...style, ...popupStyle }}
+        onMouseEnter={() => openPopup()}
+        onMouseLeave={() => closePopup()}
+        style={{ ...style, backgroundColor, color, ...popupStyle }}
         className={popupClassName}
         {...stylex.props(styles.root, !visibleInner && styles.hidden)}
       >
-        {arrow && arrowConfig[placement]}
+        {arrow && (
+          <span
+            {...stylex.props(styles.arrow, styles[placement])}
+            style={{ color: backgroundColor }}
+          >
+            {arrowConfig[placement]}
+          </span>
+        )}
         <div>{isFunction(title) ? title() : title}</div>
       </div>,
       document.body
@@ -240,18 +251,12 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
   useLayoutEffect(() => {
     if (childRef.current && !resizeRef.current) {
       resizeRef.current = new ResizeObserver(calcStyle);
-
       resizeRef.current.observe(document.body);
-
       return () => {
         resizeRef.current?.disconnect();
       };
     }
   }, []);
-
-  useEffect(() => {
-    calcStyle();
-  }, [placement]);
 
   useEffect(() => {
     if (visible) {
@@ -263,8 +268,8 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     <React.Fragment>
       {React.cloneElement(child, {
         ref: childRef,
-        onMouseEnter: () => setVisibleInner(true),
-        onMouseLeave: () => setVisibleInner(false),
+        onMouseEnter: () => openPopup(),
+        onMouseLeave: () => closePopup(),
       })}
       {renderContent()}
     </React.Fragment>

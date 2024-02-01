@@ -22,8 +22,10 @@ export const Popover: React.FC<PopoverProps> = (props) => {
     <Tooltip
       title={content}
       placement={placement}
-      arrow={false}
-      popupStyle={{ color: "#333", backgroundColor: "#fff", padding: 0 }}
+      arrow
+      color="#333"
+      backgroundColor="#fff"
+      popupStyle={{ padding: 4 }}
     >
       {children}
     </Tooltip>
