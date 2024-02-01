@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useMemo } from "react";
 import stylex from "@stylexjs/stylex";
-import { type Theme, useTheme } from "../theme";
+import { colors } from "../theme/tokens.stylex";
+import { MenuContext } from "./context";
 import { type MenuItemProps } from "./menu.types";
 
 const styles = stylex.create({
@@ -10,21 +11,34 @@ const styles = stylex.create({
     alignItems: "center",
     justifyContent: "flex-start",
     cursor: "pointer",
+    padding: "0 16px",
+    backgroundColor: {
+      ":hover": colors.background,
+    },
   },
-  active: (theme: Theme) => ({
-    color: theme.colors.primary,
-  }),
+  active: {
+    color: colors.primary,
+  },
   itemContent: (hasIcon: boolean) => ({
     marginLeft: hasIcon ? 10 : 0,
   }),
 });
 
 const MenuItem: React.FC<MenuItemProps> = (props) => {
-  const { icon, label } = props;
-  const theme = useTheme();
+  const { icon, label, id } = props;
+  const menuContext = React.useContext(MenuContext);
+  const active = menuContext?.selectedIds?.includes(id);
+
+  const handleClick = () => {
+    menuContext?.updateSelectedIds(id);
+  };
 
   return (
-    <div {...stylex.props(styles.item, styles.active(theme))}>
+    <div
+      key={id}
+      {...stylex.props(styles.item, active && styles.active)}
+      onClick={handleClick}
+    >
       {icon}
       <span {...stylex.props(styles.itemContent(!!icon))}>{label}</span>
     </div>

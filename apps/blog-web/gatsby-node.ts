@@ -136,7 +136,7 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
 //       test: false,
 //       // Use statically generated CSS files and not runtime injected CSS.
 //       // Even in development.
-//       runtimeInjection: false,
+//       runtimeInjection: true,
 //       // Required for CSS variable support
 //       unstable_moduleResolution: {
 //         // type: 'commonJS' | 'haste'
@@ -161,7 +161,7 @@ export const onCreateBabelConfig: GatsbyNode["onCreateBabelConfig"] = ({
       // Set this to true for snapshot testing
       // default: false
       test: false,
-      runtimeInjection: false,
+      runtimeInjection: true,
       // Required for CSS variable support
       unstable_moduleResolution: {
         // type: 'commonJS' | 'haste'

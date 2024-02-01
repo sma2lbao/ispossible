@@ -5,6 +5,10 @@ export function createWebIcon(name: string, source: string) {
   customElements.define(
     name,
     class extends HTMLElement {
+      static get observedAttributes() {
+        return ["classname"];
+      }
+
       constructor() {
         // 必须首先调用 super 方法
         super();
@@ -37,6 +41,15 @@ export function createWebIcon(name: string, source: string) {
         // 将创建好的元素附加到影子 DOM 上
         shadow.appendChild(icon);
         shadow.appendChild(styleElement);
+      }
+
+      attributeChangedCallback(name: string, oldValue: string, value: string) {
+        if (name === "classname") {
+          const icon = this.shadowRoot?.querySelector(".is-icon");
+          if (icon) {
+            icon.className = "is-icon" + " " + value;
+          }
+        }
       }
     }
   );

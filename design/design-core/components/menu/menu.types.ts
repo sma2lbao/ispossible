@@ -10,7 +10,7 @@ export interface SubMenuProps {
   label: React.ReactNode;
   title?: string;
   disabled?: boolean;
-  key: string;
+  id: string;
   children?: (SubMenuProps | MenuItemProps)[];
 }
 
@@ -18,12 +18,12 @@ export interface MenuItemProps {
   icon?: React.ReactNode;
   label: React.ReactNode;
   title?: string;
-  key: string;
+  id: string;
   disabled?: boolean;
 }
 
 export type ItemProps = MenuItemProps | SubMenuProps;
 
 export function isSubMenuProps(menuItem: ItemProps): menuItem is SubMenuProps {
-  return "children" in menuItem;
+  return "children" in menuItem && !!menuItem.children?.length;
 }

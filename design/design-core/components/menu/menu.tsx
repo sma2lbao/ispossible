@@ -1,33 +1,71 @@
 import React, { useState } from "react";
 import stylex from "@stylexjs/stylex";
-import { type Theme, useTheme } from "../theme";
 import MenuItem from "./menu-item";
 import SubMenu from "./sub-menu";
-import { type MenuProps, isSubMenuProps } from "./menu.types";
+import { MenuContext } from "./context";
+import { type MenuProps, type ItemProps, isSubMenuProps } from "./menu.types";
 
 const styles = stylex.create({
-  root: {},
+  root: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  horizontal: {
+    flexDirection: "row",
+  },
 });
 
 const Menu: React.FC<MenuProps> = (props) => {
   const { mode = "y", items = [] } = props;
-  const theme = useTheme();
-  const [innerSelectedKeys, setInnerSelectedKeys] = useState<string[]>();
+  const [innerSelectedIds, setInnerSelectedIds] = useState<string[]>();
 
-  const handleClickItem = (keys: string[]) => {
-    setInnerSelectedKeys(keys);
+  const findSelectedIds = (
+    items: ItemProps[],
+    id: string,
+    selectedIds: string[] = []
+  ): string[] => {
+    if (!items?.length) {
+      return selectedIds;
+    }
+    for (let item of items) {
+      if (item.id === id) {
+        selectedIds.unshift(item.id);
+        return selectedIds;
+      }
+      if (isSubMenuProps(item)) {
+        const subSelectedIds = findSelectedIds(item.children!, id, selectedIds);
+        if (subSelectedIds.length) {
+          selectedIds.unshift(item.id);
+          return selectedIds;
+        }
+      }
+    }
+    return selectedIds;
+  };
+
+  const handleUpdateSelectedIds = (id: string) => {
+    const selectedIds = findSelectedIds(items, id, []);
+    setInnerSelectedIds(selectedIds);
   };
 
   return (
-    <div {...stylex.props(styles.root)}>
-      {items.map((item) => {
-        return isSubMenuProps(item) ? (
-          <SubMenu {...item} />
-        ) : (
-          <MenuItem {...item} />
-        );
-      })}
-    </div>
+    <MenuContext.Provider
+      value={{
+        selectedIds: innerSelectedIds,
+        updateSelectedIds: handleUpdateSelectedIds,
+        mode,
+      }}
+    >
+      <div {...stylex.props(styles.root, mode === "x" && styles.horizontal)}>
+        {items.map((item) => {
+          return isSubMenuProps(item) ? (
+            <SubMenu {...item} key={item.id} />
+          ) : (
+            <MenuItem {...item} key={item.id} />
+          );
+        })}
+      </div>
+    </MenuContext.Provider>
   );
 };
 

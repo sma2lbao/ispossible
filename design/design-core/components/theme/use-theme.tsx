@@ -1,4 +1,4 @@
-import { colors, spacing } from "./tokens.stylex";
+import { colors, spacing, typography } from "./tokens.stylex";
 
 export type Colors = typeof colors;
 
@@ -10,5 +10,6 @@ export function useTheme() {
   return {
     colors,
     spacing,
+    typography,
   };
 }

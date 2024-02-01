@@ -1,34 +1,37 @@
 import React from "react";
 import stylex from "@stylexjs/stylex";
-import { Space } from "@design/core";
-import { useTheme } from "@design/core";
+import { Space, Button } from "@design/core";
+import { useTheme, type Theme } from "@design/core";
 import "@design/icon/github";
 import "@design/icon/copyright";
-
-import type { Colors, Spacing } from "@design/core";
 
 export interface FooterProps {}
 
 const styles = stylex.create({
-  root: (colors: Colors, spacing: Spacing) => ({
-    backgroundColor: colors.backgroundInverse,
-    color: colors.textInverse,
+  root: (theme: Theme) => ({
+    backgroundColor: theme.colors.backgroundInverse,
+    color: theme.colors.textInverse,
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    padding: spacing.xxlarge,
+    padding: theme.spacing.xxlarge,
+  }),
+  text: (theme: Theme) => ({
+    marginBottom: theme.spacing.large,
   }),
 });
 
 const Footer: React.FC<FooterProps> = () => {
-  const { colors, spacing } = useTheme();
+  const theme = useTheme();
 
   return (
-    <div {...stylex.props(styles.root(colors, spacing))}>
-      <div>made by sma2lbao | © sma2lbao.github.io 2024.</div>
+    <div {...stylex.props(styles.root(theme))}>
+      <div {...stylex.props(styles.text(theme))}>
+        made by sma2lbao | © sma2lbao 2024.
+      </div>
       <Space>
-        <is-github />
+        <Button icon={<is-github />} href="https://github.com/sma2lbao" />
       </Space>
     </div>
   );

@@ -46,7 +46,7 @@
     "@storybook/theming": "^7.6.10"
   },
   "dependencies": {
-    "@stylexjs/stylex": "~0.5.0-alpha.4",
+    "@stylexjs/stylex": "~0.5.1",
     "@design/icon": "workspace:*"
   }
 }
