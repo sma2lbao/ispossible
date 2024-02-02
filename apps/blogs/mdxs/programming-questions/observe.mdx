@@ -1,0 +1,100 @@
+---
+title: 观察者
+description: ""
+tags: ["编程"]
+poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+date: 2024/02/01
+---
+
+## 实现
+
+```typescript
+/**
+ * 观察者
+ */
+export abstract class Observer {
+  abstract update(...args: any): any;
+}
+
+/**
+ * 目标
+ */
+export class Subject {
+  private observers: Observer[] = [];
+
+  constructor() {}
+
+  // 增加观察对象
+  observe(observer: Observer) {
+    if (this.observers.find((item) => item === observer)) {
+      return;
+    }
+    this.observers.push(observer);
+  }
+
+  // 停止观察对象
+  disconnect(observer: Observer) {
+    const index = this.observers.findIndex((item) => item === observer);
+    if (index !== -1) {
+      this.observers.splice(index, 1);
+    }
+  }
+
+  // 通知
+  notify(context?: unknown) {
+    this.observers.forEach((ob) => {
+      ob.update(context);
+    });
+  }
+}
+```
+
+## 举例
+
+```typescript
+import { Subject, Observer } from "./observe";
+
+class Post extends Subject {
+  content: string = "";
+  constructor() {
+    super();
+  }
+
+  setContent(content: string) {
+    this.content = content;
+  }
+}
+
+class Student extends Observer {
+  name: string;
+
+  constructor(name: string) {
+    super();
+    this.name = name;
+  }
+
+  update(content: string) {
+    console.log(this.name, "接收到update", content);
+  }
+}
+
+const sub = new Post();
+
+sub.setContent("正文");
+
+sub.observe(new Student("小明"));
+const student = new Student("小微");
+sub.observe(student);
+sub.observe(student);
+sub.observe(new Student("小胖"));
+
+sub.notify(sub.content);
+```
+
+## 输出
+
+```
+小明 接收到update内容： 正文
+小微 接收到update内容： 正文
+小胖 接收到update内容： 正文
+```

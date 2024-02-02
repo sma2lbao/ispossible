@@ -1,0 +1,52 @@
+---
+title: call、apply 实现
+description: ""
+tags: ["编程"]
+poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+date: 2024/02/01
+---
+
+## call 实现
+
+call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。
+
+```typescript
+/**
+ * call() 方法使用一个指定的 this 值和单独给出的一个或多个参数来调用一个函数。
+ * @param source
+ * @param target
+ * @param args
+ */
+export function callLogic(source: Function, target: any, ...args: any) {
+  // 将 source 方法绑定为 target 内部方法。作用为执行 source 时上下为 target
+  let contextTarget = target;
+  contextTarget["__call_fn__"] = source;
+  let result = contextTarget.__call_fn__(...args);
+  // 执行完后将内部方法去除
+  delete contextTarget.__call_fn__;
+  return result;
+}
+```
+
+## apply 实现
+
+apply() 方法调用一个具有给定 this 值的函数，以及以一个数组（或一个类数组对象）的形式提供的参数。
+
+```typescript
+/**
+ * apply() 方法调用一个具有给定 this 值的函数，以及以一个数组（或一个类数组对象）的形式提供的参数。
+ * @param source
+ * @param target
+ * @param args
+ * @returns
+ */
+export function applyLogic(source: Function, target: any, args: any[]) {
+  return callLogic(source, target, ...args);
+}
+```
+
+## 参考
+
+[MDN call](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call)
+
+[MDN apply](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)

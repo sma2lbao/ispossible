@@ -1,0 +1,102 @@
+---
+title: 数组、树结构互转
+description: ""
+tags: ["编程"]
+poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+date: 2024/02/01
+---
+
+## 实现
+
+```typescript
+interface BaseTree<T> {
+  children?: BaseTree<T>[] | null;
+}
+
+interface BaseArray {
+  id: string | number;
+  parentId: string | number;
+}
+
+/**
+ * 树转换成数组
+ * @param tree
+ */
+export function tree2Array<T extends BaseTree<T>>(tree: T) {
+  let result: any[] = [];
+  const { children, ...rest } = tree;
+  result.push(rest);
+  if (tree.children) {
+    const covertChildren: any[] = [];
+    tree.children.forEach((item) => {
+      const array = tree2Array(item);
+      covertChildren.push(...array);
+    });
+    result.push(...covertChildren);
+  }
+  return result;
+}
+
+/**
+ * 数组转换成树
+ * @param array
+ */
+export function array2Tree<T extends BaseArray>(array: T[]) {
+  let arryCopy: any[] = [];
+  try {
+    arryCopy = JSON.parse(JSON.stringify(array));
+  } catch (error) {
+    console.error("JSON parse error: ", error);
+  }
+  let root;
+
+  // 通过 id 获取子元素
+  function getChildrenById(id: string | number): T[] | undefined {
+    return arryCopy.filter((item) => item.parentId === id);
+  }
+
+  // 通过parentId获取父元素
+  function getParentByParentId(parentId: string | number): T | undefined {
+    return arryCopy.find((item) => item.id === parentId);
+  }
+
+  arryCopy.forEach((item) => {
+    const { id, parentId } = item;
+    const children = getChildrenById(id);
+    Object.assign(item, {
+      children,
+    });
+    const parent = getParentByParentId(parentId);
+    if (!parent) {
+      root = item;
+    }
+  });
+
+  return root;
+}
+
+/**
+ * 简洁版
+ * @param array
+ * @param parentId
+ * @returns
+ */
+export function array2TreeReduce<T extends BaseArray>(
+  array: T[],
+  parentId: string | number
+) {
+  function loop(parentId: string | number) {
+    return array.reduce((previous: T[], current) => {
+      if (current.parentId === parentId) {
+        Object.assign(current, {
+          children: loop(current.id),
+        });
+        previous.push(current);
+      }
+      return previous;
+    }, []);
+  }
+
+  return loop(parentId);
+}
+```

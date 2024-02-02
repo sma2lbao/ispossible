@@ -1,0 +1,54 @@
+---
+title: 环形链表 II
+description: ""
+date: 2024/02/01
+tags: ["算法", "中等"]
+poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+---
+
+[142. 环形链表 II](https://leetcode.cn/problems/linked-list-cycle-ii/)
+
+给定一个链表的头节点 head ，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
+
+```typescript
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function detectCycle(head: ListNode | null): ListNode | null {
+  if (head?.next === null) {
+    return null;
+  }
+  // 快慢双指针
+  let slow = head;
+  let fast = head;
+  while (fast !== null) {
+    slow = slow.next;
+
+    // 需要先判断 fast.next;
+    if (fast.next === null) return null;
+    fast = fast.next.next;
+
+    // 有环
+    if (slow === fast) {
+      let begin = head;
+      // 需要推断 从起点到入环点 = slow相遇点到入环点
+      while (begin !== slow) {
+        begin = begin.next;
+        slow = slow.next;
+      }
+      return begin;
+    }
+  }
+  // 无环
+  return null;
+}
+```

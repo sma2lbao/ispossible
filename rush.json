@@ -314,8 +314,8 @@
    */
   "projects": [
     {
-      "packageName": "@apps/blog-web",
-      "projectFolder": "apps/blog-web",
+      "packageName": "@apps/blogs",
+      "projectFolder": "apps/blogs",
       "tags": [
         "apps"
       ]

@@ -1,0 +1,166 @@
+---
+title: Heap实现
+description: ""
+tags: ["编程"]
+poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+date: 2024/02/01
+---
+
+## 实现
+
+```typescript
+interface BaseHeapItem {
+  value: number;
+  [key: string]: any;
+}
+
+export enum HeapType {
+  MinHeap,
+  MaxHeap,
+}
+
+export interface IOptions {
+  type?: HeapType;
+}
+
+function isNumber(value: any) {
+  return typeof value === "number" ? true : false;
+}
+
+/**
+ * 堆
+ */
+export class Heap<T extends BaseHeapItem | number> {
+  // 满足以下：
+  // cache[i]： 左子节点 cache[2i + 1]  右子节点 cache[2i + 2]
+  // cache[i]:  父节点 cache[Math.floor((i - 1) / 2)]
+  private cache: T[] = [];
+
+  type: HeapType = HeapType.MinHeap;
+
+  constructor(options?: IOptions) {
+    this.type = options?.type || HeapType.MinHeap;
+  }
+
+  // 加入元素
+  push(value: T) {
+    this.cache.push(value);
+    let index = this.cache.length - 1;
+    this.swim(index);
+  }
+
+  // 弹出顶部元素
+  pop() {
+    if (this.cache.length === 1) {
+      return this.cache.pop();
+    }
+    // 1. 取出顶部最小（或大）值（不删除）
+    // 2. 与最后一个元素交换位置
+    // 3. 弹出最后一个元素
+    // 4. 从根部进行下沉操作
+    const result = this.top();
+    this.swap(0, this.cache.length - 1);
+    this.cache.pop();
+    this.sink(0);
+    return result;
+  }
+
+  // 上游
+  swim(index: number) {
+    let currentIndex = index;
+    while (currentIndex > 0) {
+      const parentIndex = Heap.getParentIndex(currentIndex);
+      // MinHeap: 如果当前值小于父节点的值则需要交换位置。
+      // MaxHeap: 如果当前值大于父节点的值则需要交换位置。
+      if (
+        (this.type === HeapType.MinHeap &&
+          this.getValue(currentIndex) < this.getValue(parentIndex)) ||
+        (this.type === HeapType.MaxHeap &&
+          this.getValue(currentIndex) > this.getValue(parentIndex))
+      ) {
+        this.swap(currentIndex, parentIndex);
+        currentIndex = parentIndex;
+      } else {
+        break;
+      }
+    }
+  }
+
+  // 下沉
+  sink(index: number) {
+    // 1. 比较根元素和它的左右子元素
+    // 2. 继续重复比较子元素，直至不能下移为止。
+    let currentIndex = index;
+    let size = this.cache.length;
+    while (Heap.getLeftChildIndex(currentIndex) < size) {
+      let lefeIndex = Heap.getLeftChildIndex(currentIndex);
+      let rightIndex = Heap.getRightChildIndex(currentIndex);
+      let compareIndex = lefeIndex;
+      // MinHeap 需要判断是否存在右节点且是否比左节点小。如果小需要交换两种中较小的元素。
+      // MaxHeap 需要判断是否存在右节点且是否比左节点大。如果大需要交换两种中较大的元素。
+      if (
+        rightIndex < size &&
+        ((this.type === HeapType.MinHeap &&
+          this.getValue(lefeIndex) > this.getValue(rightIndex)) ||
+          (this.type === HeapType.MaxHeap &&
+            this.getValue(lefeIndex) < this.getValue(rightIndex)))
+      ) {
+        compareIndex = rightIndex;
+      }
+      // MinHeap 用左右节点较小的值跟当前的值比较，如果小于当前父节点的值则需要交换值
+      // MaxHeap 用左右节点较大的值跟当前的值比较，如果大于当前父节点的值则需要交换值
+      if (
+        (this.type === HeapType.MinHeap &&
+          this.getValue(compareIndex) < this.getValue(currentIndex)) ||
+        (this.type === HeapType.MaxHeap &&
+          this.getValue(compareIndex) > this.getValue(currentIndex))
+      ) {
+        this.swap(currentIndex, compareIndex);
+      }
+      currentIndex = compareIndex;
+    }
+  }
+
+  top() {
+    return this.cache[0];
+  }
+
+  toArray() {
+    return this.cache;
+  }
+
+  // 交换两个元素位置
+  private swap(xIndex: number, yIndex: number) {
+    [this.cache[xIndex], this.cache[yIndex]] = [
+      this.cache[yIndex],
+      this.cache[xIndex],
+    ];
+  }
+
+  private static getParentIndex(index: number) {
+    return Math.floor((index - 1) / 2);
+  }
+
+  private static getLeftChildIndex(index: number) {
+    return 2 * index + 1;
+  }
+
+  private static getRightChildIndex(index: number) {
+    return 2 * index + 2;
+  }
+
+  private getValue(index: number) {
+    const current = this.cache[index];
+    if (current && !isNumber(current)) {
+      return (current as BaseHeapItem).value;
+    }
+    return current;
+  }
+}
+```
+
+## 参考
+
+[Binary Heap](https://www.geeksforgeeks.org/binary-heap/)
+
+[Shubo 的程式開發筆記](https://shubo.io/binary-heap/)

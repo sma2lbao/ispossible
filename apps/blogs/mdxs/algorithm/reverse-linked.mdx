@@ -1,0 +1,37 @@
+---
+title: 链表反转
+description: ""
+date: 2024/02/01
+tags: ["算法", "简单", "JavaScript"]
+poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+---
+
+[206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/)
+
+```typescript
+/**
+ * 反转链表
+ * @param head
+ * @returns
+ */
+export function reverseList(head: ListNode | null): ListNode | null {
+  if (head === null) {
+    return null;
+  }
+  let previous = null;
+  let current: ListNode | null = head;
+  while (current !== null) {
+    // 获取next引用
+    const next: ListNode | null = current.next;
+
+    // 断开next链接并指向上一个
+    current.next = previous;
+    previous = current;
+
+    // 下一个循环
+    current = next;
+  }
+
+  return previous;
+}
+```

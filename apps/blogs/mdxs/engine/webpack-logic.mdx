@@ -1,0 +1,129 @@
+---
+title: Webpack简单实现
+description: ""
+date: 2024/02/01
+tags: ["工程化"]
+poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+---
+
+##
+
+路径 /webpack/lib/webpack.js
+
+```TypeScript
+/**
+ *
+ * @param {WebpackOptions} rawOptions options object
+ * @returns {Compiler} a compiler
+ */
+const createCompiler = rawOptions => {
+	const options = getNormalizedWebpackOptions(rawOptions);
+	applyWebpackOptionsBaseDefaults(options);
+  // 实例化 compiler
+	const compiler = new Compiler(options.context, options);
+  // 内置插件
+	new NodeEnvironmentPlugin({
+		infrastructureLogging: options.infrastructureLogging
+	}).apply(compiler);
+  // 收集plugin, 回调存放在 compiler hooks 对应 hook（如： beforeCompile, afterCompile）的 tap中。用于在后续hook的触发再执行对应回调
+	if (Array.isArray(options.plugins)) {
+		for (const plugin of options.plugins) {
+			if (typeof plugin === "function") {
+				plugin.call(compiler, compiler);
+			} else {
+				plugin.apply(compiler);
+			}
+		}
+	}
+	applyWebpackOptionsDefaults(options);
+  // 触发 environment hook。会执行相对应的回调
+	compiler.hooks.environment.call();
+  // 触发 afterEnvironment hook。会执行相对应的回调
+	compiler.hooks.afterEnvironment.call();
+  // process 根据option注册不同的plugin，已经注册内置plugin
+	new WebpackOptionsApply().process(options, compiler);
+	compiler.hooks.initialize.call();
+	return compiler;
+};
+```
+
+路径 /webpack/lib/Compiler
+
+```typescript
+const run = () => {
+  // 调用 beforeRun的回调 这里主要功能是初始化input
+  // 该回调在 NodeEnvironmentPlugin 中注册；路径： /webpack/lib/node/NodeEvironmentPulgin.js
+  this.hooks.beforeRun.callAsync(this, (err) => {
+    if (err) return finalCallback(err);
+
+    // 接着调用 run 回调; 内部未注册对应hook的plugin
+    this.hooks.run.callAsync(this, (err) => {
+      if (err) return finalCallback(err);
+
+      this.readRecords((err) => {
+        if (err) return finalCallback(err);
+        // 执行 compile
+        this.compile(onCompiled);
+      });
+    });
+  });
+};
+```
+
+```typescript
+compile(callback) {
+  const params = this.newCompilationParams();
+  // 接着调用 beforeCompile 回调；
+  this.hooks.beforeCompile.callAsync(params, err => {
+    if (err) return callback(err);
+
+    // 调用 compile 回调
+    this.hooks.compile.call(params);
+
+    // 实例化 compilation
+    // 对象代表了一次资源版本构建。当运行 webpack 开发环境中间件时，
+    // 每当检测到一个文件变化，就会创建一个新的 compilation，从而生成一组新的编译资源。
+    // 一个 compilation 对象表现了当前的模块资源、编译生成资源、变化的文件、以及被跟踪依赖的状态信息。
+    // compilation 对象也提供了很多关键时机的回调，以供插件做自定义处理时选择使用
+    const compilation = this.newCompilation(params);
+
+    const logger = compilation.getLogger("webpack.Compiler");
+
+    logger.time("make hook");
+    // make 会触发 EntryPlugin 的回调 , 接着用合适的loader编译代码。
+    this.hooks.make.callAsync(compilation, err => {
+      logger.timeEnd("make hook");
+      if (err) return callback(err);
+
+      logger.time("finish make hook");
+      this.hooks.finishMake.callAsync(compilation, err => {
+        logger.timeEnd("finish make hook");
+        if (err) return callback(err);
+
+        process.nextTick(() => {
+          logger.time("finish compilation");
+          compilation.finish(err => {
+            logger.timeEnd("finish compilation");
+            if (err) return callback(err);
+
+            logger.time("seal compilation");
+            // 封装生成打包后的JS代码
+            compilation.seal(err => {
+              logger.timeEnd("seal compilation");
+              if (err) return callback(err);
+
+              logger.time("afterCompile hook");
+              this.hooks.afterCompile.callAsync(compilation, err => {
+                logger.timeEnd("afterCompile hook");
+                if (err) return callback(err);
+
+                return callback(null, compilation);
+              });
+            });
+          });
+        });
+      });
+    });
+  });
+}
+```

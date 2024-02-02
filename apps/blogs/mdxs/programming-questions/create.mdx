@@ -1,0 +1,39 @@
+---
+title: Object.create
+description: ""
+tags: ["编程"]
+poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+date: 2024/02/01
+---
+
+## 介绍
+
+Object.create() 方法用于创建一个新对象，使用现有的对象来作为新创建对象的原型（prototype）。
+
+## 实现
+
+```typescript
+/**
+ * 用于创建一个新的对象，使用现有的对象来作为新创建对象的原型
+ * @param object
+ */
+export function create(source: object | null) {
+  const result = {};
+  // source 为 null 代表需要创建空对象
+  if (!source) {
+    Object.setPrototypeOf(result, null);
+    return result;
+  }
+
+  // source对象值赋值给结果的原型
+  Object.setPrototypeOf(result, source);
+
+  return result;
+}
+
+export default create;
+```
+
+## 参考
+
+[MDN Object.create()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/create)

@@ -1,0 +1,33 @@
+---
+title: defineProperty与Proxy的差异对比
+description: ""
+tags: ["JavaScript"]
+poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+date: 2024/02/01
+---
+
+## 差异对比
+
+| 特性                       | defineProperty                              | Proxy                           |
+| -------------------------- | ------------------------------------------- | ------------------------------- |
+| 是否可监听数组变化         | 否（vue 中对数组的几种常用方法进行了 hack） | 是                              |
+| 是否可以劫持整个对象       | 否（只能通过遍历的方式）                    | 是                              |
+| 兼容性                     | 支持主流浏览器（IE8 及以上）                | 不支持 IE                       |
+| 操作时是否对原对象直接操作 | 是                                          | 否（需要对 Proxy 实例进行操作） |
+| 可劫持的操作               | get、set                                    | get、set、has、apply 等         |
+
+## Proxy 可拦截的操作
+
+> - get(target, key, receiver)：拦截对象属性的读取操作
+> - set(target, propKey, value, receiver)：拦截对象属性的设置操作
+> - has(target, propKey)：拦截判断属性是否存在的操作，如 propKey in proxy，返回一个布尔值
+> - deleteProperty(target, propKey)：拦截删除属性的操作，如 delete proxy[propKey]返回一个布尔值
+> - ownKeys(target)：拦截 Object.getOwnPropertyNames(proxy)、Object.getOwnPropertySymbols(proxy)、Object.keys(proxy)、for...in 循环，返回一个数组
+> - getOwnPropertyDescriptor(target, propKey)：拦截 Object.getOwnPropertyDescriptor(proxy, propKey)
+> - defineProperty(target, propKey, propDesc)：拦截 Object.defineProperty(proxy, propKey, propDesc）、Object.defineProperties(proxy, propDescs)
+> - preventExtensions(target)：拦截 Object.preventExtensions(proxy)
+> - getPrototypeOf(target)：拦截 Object.getPrototypeOf(proxy)
+> - isExtensible(target)：拦截 Object.isExtensible(proxy)
+> - setPrototypeOf(target, proto)：拦截 Object.setPrototypeOf(proxy, proto)
+> - apply(target, object, args)：拦截 Proxy 实例作为函数调用的操作，比如 proxy(...args)、proxy.call(object, ...args)、proxy.apply(...)
+> - construct(target, args)：拦截 Proxy 实例作为构造函数调用的操作，比如 new proxy(...args)
