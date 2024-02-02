@@ -1,0 +1,100 @@
+---
+title: LRU 缓存
+description: ""
+tags: ["编程"]
+poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+date: 2024/02/01
+---
+
+## 介绍
+
+LRU（Least recently used，最近最少使用）算法根据数据的历史访问记录来进行淘汰数据，其核心思想是“如果数据最近被访问过，那么将来被访问的几率也更高”。
+
+## 代码实现
+
+```typescript
+/**
+ * 最近最少使用缓存
+ * get 和 put 必须以 O(1) 的平均时间复杂度运行
+ */
+export default class LRUCache {
+  // 缓存容量
+  capacity: number;
+  // 缓存
+  cache = new Map<string | number, any>();
+  // 调用缓存 old -> new
+  timeQueue: (string | number)[] = [];
+
+  constructor(capacity: number) {
+    if (capacity <= 0) {
+      throw new Error("capactiy can't <=0");
+    }
+    this.capacity = capacity;
+  }
+
+  get(key: string | number): any {
+    if (this.cache.has(key)) {
+      // 存在时需要排列
+      const index = this.timeQueue.indexOf(key);
+      this.timeQueue.splice(index, 1);
+      this.timeQueue.push(key);
+      return this.cache.get(key);
+    }
+    return -1;
+  }
+
+  put(key: string | number, value: any): void {
+    // 如果不存在且缓存已满
+    if (!this.cache.has(key) && this.capacity <= this.cache.size) {
+      const key = this.timeQueue.shift();
+      this.cache.delete(key!);
+    }
+    if (this.cache.has(key)) {
+      // 存在时需要排列
+      const index = this.timeQueue.indexOf(key);
+      this.timeQueue.splice(index, 1);
+    }
+    this.timeQueue.push(key);
+    this.cache.set(key, value);
+  }
+}
+
+/**
+ * leetcode 大佬实现
+ * https://leetcode.cn/problems/lru-cache-lcci/solution/map-by-shetia/
+ */
+
+export class LRUCache_leetcode {
+  capacity: number;
+
+  // 利用keys()作为时间队列。最后一项为最近使用
+  cache = new Map<string | number, any>();
+
+  constructor(capacity: number) {
+    this.capacity = capacity;
+  }
+
+  get(key: number | string): any {
+    if (this.cache.has(key)) {
+      const value = this.cache.get(key);
+      // 将此次key作为最后一项
+      this.cache.delete(key);
+      this.cache.set(key, value);
+      return value;
+    }
+    return -1;
+  }
+
+  put(key: number | string, value: any) {
+    // 不存在且缓存满了
+    if (!this.cache.has(key) && this.capacity <= this.cache.size) {
+      // 删除第一项
+      this.cache.delete(this.cache.keys().next().value);
+    }
+    if (this.cache.has(key)) {
+      this.cache.delete(key);
+    }
+    this.cache.set(key, value);
+  }
+}
+```

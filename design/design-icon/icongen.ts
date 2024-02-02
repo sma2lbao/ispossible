@@ -37,7 +37,9 @@ function main() {
 }
 
 function returnContent(name: string, svgContent: string) {
-  return `import { createWebIcon } from "./base";
+  return `"use client";
+
+import { createWebIcon } from "./base";
 
 createWebIcon(
   "is-${name}",

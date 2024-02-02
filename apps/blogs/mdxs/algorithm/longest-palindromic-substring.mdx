@@ -1,0 +1,47 @@
+---
+title: 最长回文子串
+description: ""
+date: 2024/02/01
+tags: ["算法", "中等", "JavaScript"]
+poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+---
+
+[5. 最长回文子串](https://leetcode.cn/problems/longest-palindromic-substring/)
+
+给你一个字符串 s，找到 s 中最长的回文子串。
+
+```typescript
+function longestPalindrome(s: string): string {
+  if (s.length < 2) {
+    return s;
+  }
+  // 记录i->j是否为回文的结果
+  const dp: boolean[][] = [];
+  let max = 1;
+  let start = 0;
+  for (let i = 0; i < s.length; i++) {
+    dp[i] = [];
+    dp[i][i] = true;
+  }
+
+  for (let right = 1; right < s.length; right++) {
+    for (let left = 0; left < right; left++) {
+      if (s[right] !== s[left]) {
+        dp[left][right] = false;
+        continue;
+      }
+      // 如果字符相等。i->j中间只隔一个字符时可以确定为回文 否则需要判断子串
+      dp[left][right] = right - left < 3 ? true : dp[left + 1][right - 1];
+      if (dp[left][right]) {
+        const curMax = right - left + 1;
+        if (curMax > max) {
+          max = curMax;
+          start = left;
+        }
+      }
+    }
+  }
+
+  return s.substr(start, max);
+}
+```

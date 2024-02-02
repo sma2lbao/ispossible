@@ -1,0 +1,52 @@
+---
+title: EventEmitter
+description: ""
+tags: ["编程"]
+poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+date: 2024/02/01
+---
+
+## 实现
+
+```typescript
+type Callback = (...args: any) => void;
+
+export default class EventEmitter {
+  // 缓存回调函数
+  cacheMap: Map<string, Callback[] | null> = new Map();
+
+  constructor() {}
+
+  on(eventName: string, callback: Callback) {
+    const callbackArray = this.cacheMap.get(eventName) || [];
+    if (!callbackArray.includes(callback)) {
+      callbackArray.push(callback);
+      this.cacheMap.set(eventName, callbackArray);
+    }
+  }
+
+  off(eventName: string, callback: Callback) {
+    const callbackArray = this.cacheMap.get(eventName) || [];
+    if (callbackArray.includes(callback)) {
+      this.cacheMap.set(
+        eventName,
+        callbackArray.filter((item) => item !== callback)
+      );
+    }
+  }
+
+  once(eventName: string, callback: Callback) {
+    const handler = (...args: any) => {
+      callback(...args);
+      this.off(eventName, handler);
+    };
+    this.on(eventName, handler);
+  }
+
+  emit(eventName: string, ...args: any) {
+    this.cacheMap.get(eventName)?.forEach((callback) => {
+      callback(...args);
+    });
+  }
+}
+```

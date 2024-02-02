@@ -1,0 +1,236 @@
+---
+title: Promise
+description: ""
+tags: ["编程"]
+poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+date: 2024/02/01
+---
+
+## Promise 实现
+
+```typescript
+enum Status {
+  Pending = "pending",
+  Fulfilled = "fulfilled",
+  Rejected = "rejected",
+}
+
+type ResolveFunc = (value: any) => void;
+type RejectFunc = (reason?: any) => void;
+
+type FulfilledCallback = (value: any) => any;
+type RejectedCallback = (reason?: any) => any;
+
+type Executor = (resolve: ResolveFunc, reject: RejectFunc) => void;
+
+export default class PromiseLogic {
+  status: Status = Status.Pending;
+  value: any;
+  reason: any;
+
+  fulfilledCallbacks: FulfilledCallback[] = [];
+  rejectedCallbacks: RejectedCallback[] = [];
+
+  constructor(executor: Executor) {
+    // 状态一旦修改将不再修改
+    const resolve = (value: any) => {
+      if (this.status !== Status.Pending) return;
+      this.status = Status.Fulfilled;
+      this.value = value;
+      this.fulfilledCallbacks.forEach((callback) => {
+        callback(value);
+      });
+    };
+
+    const reject = (reason?: any) => {
+      if (this.status !== Status.Pending) return;
+      this.status = Status.Rejected;
+      this.reason = reason;
+      this.rejectedCallbacks.forEach((callback) => {
+        callback(reason);
+      });
+    };
+
+    try {
+      executor(resolve, reject);
+    } catch (error) {
+      reject(error);
+    }
+  }
+
+  /**
+   * 每一个 .then() 方法还会返回一个新生成的 promise 对象，这个对象可被用作链式调用
+   * @param onfulfilled 当 Promise 变成接受状态（fulfilled）时调用的函数。该函数有一个参数，即接受的最终结果（the fulfillment value）。如果该参数不是函数，则会在内部被替换为 (x) => x，即原样返回 promise 最终结果的函数
+   * @param onrejected 当 Promise 变成拒绝状态（rejected）时调用的函数。该函数有一个参数，即拒绝的原因（rejection reason）。如果该参数不是函数，则会在内部被替换为一个 "Thrower" 函数 (it throws an error it received as argument)。
+   * @returns
+   */
+  then(
+    onfulfilled?: FulfilledCallback | undefined | null,
+    onrejected?: RejectedCallback | undefined | null
+  ): PromiseLogic {
+    const current = this;
+    // 如果该参数不是函数，则会在内部被替换为 (x) => x，即原样返回
+    const _onfulfilled =
+      typeof onfulfilled === "function" ? onfulfilled : (value: any) => value;
+    // 如果该参数不是函数，则会在内部被替换为一个 "Thrower" 函数
+    const _onrejected =
+      typeof onrejected === "function"
+        ? onrejected
+        : (reason: any) => {
+            throw reason;
+          };
+
+    const nextPromise = new PromiseLogic(function (resolve, reject) {
+      if (current.status === Status.Pending) {
+        console.log("当前Promise Pending");
+        console.log("收集回调...");
+        // 如果当前阶段是pending状态时； 如 executor 函数存在异步任务时
+        // 需要收集回调
+        // 在回调函数执行后调用 resolve 或者 reject 来确定 nextPromise 的值
+        // 注意：then() 的回调在微任务队列中调用
+        // 注意：当结果是Promise时需要等结果的promise执行完后再执行
+        current.fulfilledCallbacks.push((value: any) => {
+          // 利用 setTimeout 模拟 微任务队列执行回调函数
+          setTimeout(() => {
+            try {
+              // 如果回调函数有返回值。将返回值作为 nextPromise 的值
+              let nextValue = _onfulfilled(value);
+              promiseRecursively(nextValue, resolve, reject);
+            } catch (error) {
+              reject(error);
+            }
+          });
+        });
+        current.rejectedCallbacks.push((reason?: any) => {
+          setTimeout(() => {
+            try {
+              const nextValue = _onrejected(reason);
+              promiseRecursively(nextValue, resolve, reject);
+            } catch (error) {
+              reject(error);
+            }
+          });
+        });
+      }
+
+      if (current.status === Status.Fulfilled) {
+        // 如果 status 为 fulfilled时，如 executor 直接同步调用了 resolve()
+        // 即当前没有收集回调，需要直接执行回调
+        setTimeout(() => {
+          try {
+            // 如果回调函数有返回值。将返回值作为 nextPromise 的值
+            const nextValue = _onfulfilled(current.value);
+            promiseRecursively(nextValue, resolve, reject);
+          } catch (error) {
+            reject(error);
+          }
+        });
+      }
+      if (current.status === Status.Rejected) {
+        // 如果 status 为 rejected时，如 executor 直接同步调用了 reject()
+        // 即当前没有收集回调，需要直接执行回调
+        setTimeout(() => {
+          try {
+            const nextValue = _onrejected(current.reason);
+            promiseRecursively(nextValue, resolve, reject);
+          } catch (error) {
+            reject(error);
+          }
+        });
+      }
+    });
+    return nextPromise;
+  }
+
+  catch(onrejected?: RejectedCallback | undefined | null) {
+    return this.then(null, onrejected);
+  }
+
+  static resolve(value: any) {
+    return new PromiseLogic((resolve) => {
+      resolve(value);
+    });
+  }
+
+  static reject(reason?: any) {
+    return new PromiseLogic((_, reject) => {
+      reject(reason);
+    });
+  }
+
+  // finally() 方法返回一个 Promise。在 promise 结束时，无论结果是 fulfilled 或者是 rejected，都会执行指定的回调函数。
+  // 注意：在 finally 回调中 throw（或返回被拒绝的 promise）将以 throw() 指定的原因拒绝新的 promise.
+  // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/finally
+  finally(onfinally?: (() => void) | undefined | null) {
+    return this.then(
+      (value) => PromiseLogic.resolve(onfinally?.()).then(() => value),
+      (reason) =>
+        PromiseLogic.resolve(onfinally?.()).then(() => {
+          throw reason;
+        })
+    );
+  }
+
+  static all(promiseLogics: any[]) {
+    return new PromiseLogic((resolve, reject) => {
+      const resultArray: any[] = [];
+      let count = 0;
+      promiseLogics.forEach((promiseOrObject, index) => {
+        if (
+          promiseOrObject instanceof PromiseLogic ||
+          promiseOrObject instanceof Promise
+        ) {
+          promiseOrObject
+            .then((value: any) => {
+              resultArray[index] = value;
+              count++;
+              if (count === promiseLogics.length) {
+                resolve(resultArray);
+              }
+            })
+            .catch((reason?: any) => {
+              reject(reason);
+            });
+        } else {
+          resultArray[index] = promiseOrObject;
+          count++;
+          if (count === promiseLogics.length) {
+            resolve(resultArray);
+          }
+        }
+      });
+    });
+  }
+
+  static allSettled() {}
+}
+
+/**
+ * 处理返回值是Promise的情况
+ * @param nextValue
+ * @param resolve
+ * @param reject
+ */
+function promiseRecursively(
+  nextValue: any,
+  resolve: ResolveFunc,
+  reject: RejectFunc
+) {
+  if (nextValue instanceof Promise || nextValue instanceof PromiseLogic) {
+    nextValue.then(
+      (value) => {
+        promiseRecursively(value, resolve, reject);
+      },
+      (reason) => {
+        reject(reason);
+      }
+    );
+  } else {
+    resolve(nextValue);
+  }
+}
+```
+
+## 参考
+
+[MDN promise](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise)

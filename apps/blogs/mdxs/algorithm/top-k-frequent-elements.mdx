@@ -1,0 +1,46 @@
+---
+title: 前 K 个高频元素
+description: ""
+date: 2024/02/01
+tags: ["算法", "中等", "JavaScript"]
+poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+---
+
+[347. 前 K 个高频元素](https://leetcode.cn/problems/top-k-frequent-elements/)
+
+给你一个整数数组 nums 和一个整数 k ，请你返回其中出现频率前 k 高的元素。你可以按 任意顺序 返回答案。
+
+```typescript
+function topKFrequent(nums: number[], k: number): number[] {
+  // 用来存储 key: 元素 value: 元素数量
+  const cache = new Map<number, number>();
+  let answer: number[] = [];
+
+  // 遍历数组，将元素及元素出现频率存储
+  for (let i = 0; i < nums.length; i++) {
+    cache.has(nums[i])
+      ? cache.set(nums[i], cache.get(nums[i]) + 1)
+      : cache.set(nums[i], 1);
+  }
+
+  // 用来存放 数量 及 对应数量的元素数组
+  const count2KeyArray: number[][] = [];
+  cache.forEach((count, key) => {
+    if (!count2KeyArray[count]) {
+      count2KeyArray[count] = [key];
+    } else {
+      count2KeyArray[count].push(key);
+    }
+  });
+
+  // 倒序排列找到最多频率的元素
+  for (let i = count2KeyArray.length - 1; i > 0; i--) {
+    if (!count2KeyArray[i]) {
+      continue;
+    }
+    answer = [...answer, ...count2KeyArray[i]];
+  }
+
+  return answer.slice(0, k);
+}
+```

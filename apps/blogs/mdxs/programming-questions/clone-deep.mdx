@@ -1,0 +1,71 @@
+---
+title: 深拷贝
+description: ""
+tags: ["编程"]
+poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+date: 2024/02/01
+---
+
+## 深拷贝
+
+```typescript
+/**
+ * 简易版实现，未实现包装类型（如 Date, Set, Map, Number等）
+ * @param value
+ * @returns
+ */
+export function cloneDeep<T>(value: T): T {
+  // 用于缓存，防止循环引用 key: old; value: cloneValue
+  const cache = new WeakMap();
+  // 针对数组处理
+  if (Array.isArray(value)) {
+    return value.map((item) => {
+      if (cache.has(item)) {
+        return cache.get(item);
+      }
+      let cloneValue = cloneDeep(item);
+      cache.set(item, cloneValue);
+      return cloneValue;
+    }) as T;
+  }
+
+  // 针对函数处理
+  if (typeof value === "function") {
+    return (value as Function).bind(null);
+  }
+
+  // 针对Object处理
+  if (isObject(value)) {
+    const result = Object.create(null);
+    // 针对对象处理
+    for (let key in value) {
+      let originValue = value[key] as Object;
+      let cloneValue;
+      if (cache.has(originValue)) {
+        cloneValue = cache.get(originValue);
+      } else {
+        cloneValue = cloneDeep(originValue);
+        cache.set(originValue, cloneValue);
+      }
+      result[key] = cloneValue;
+    }
+    return result;
+  }
+
+  return value;
+}
+
+function getClassType(value: any): string {
+  return Object.prototype.toString.call(value);
+}
+
+function isObject(value: any): boolean {
+  return getClassType(value) === "[object Object]";
+}
+```
+
+## 使用方式
+
+比较简单的深拷贝可以使用 JSON.stringfy()实现。
+
+正式环境中推荐使用 lodash.cloneDeep

@@ -1,0 +1,50 @@
+---
+title: 电话号码的字母组合
+description: ""
+date: 2024/02/01
+tags: ["算法", "中等"]
+poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+---
+
+[17. 电话号码的字母组合](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/)
+
+给定一个仅包含数字  2-9  的字符串，返回所有它能表示的字母组合。答案可以按 任意顺序 返回。
+
+给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。
+
+```typescript
+const map = new Map<number, string[]>();
+
+function letterCombinations(digits: string): string[] {
+  if (!digits.length) return [];
+  const answer: string[] = [];
+  map.set(2, ['a', 'b', 'c']);
+  map.set(3, ['d', 'e', 'f']);
+  map.set(4, ['g', 'h', 'i']);
+  map.set(5, ['j', 'k', 'l']);
+  map.set(6, ['m', 'n', 'o']);
+  map.set(7, ['p', 'q', 'r', 's']);
+  map.set(8, ['t', 'u', 'v']);
+  map.set(9, ['w', 'x', 'y', 'z']);
+  backtrack(digits, answer, '', 0);
+  return answer;
+}
+
+function backtrack(
+  digits: string,
+  answer: string[],
+  str: string,
+  leave: number
+) {
+  if (leave === digits.length) {
+    answer.push(str);
+    return;
+  }
+  const currentDigit = Number(digits[leave]);
+  const letters = map.get(currentDigit);
+  for (let i = 0; i < letters.length; i++) {
+    backtrack(digits, answer, str + letters[i], leave + 1);
+  }
+  return;
+}
+```

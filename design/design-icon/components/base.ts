@@ -1,4 +1,5 @@
 export function createWebIcon(name: string, source: string) {
+  if (!customElements) return;
   if (customElements.get(name)) {
     return;
   }

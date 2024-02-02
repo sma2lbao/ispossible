@@ -1,0 +1,62 @@
+---
+title: 防抖和节流
+description: ""
+tags: ["编程"]
+poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+date: 2024/02/01
+---
+
+## 防抖
+
+触发高频事件后 n 秒内函数只会执行一次，如果 n 秒内高频事件再次被触发，则重新计算时间
+
+### 应用场景
+
+- 登录、发短信等按钮避免用户点击太快，以致于发送了多次请求
+- 搜索框搜索输入。只需用户最后一次输入完，再发送请求
+- 手机号、邮箱验证输入检测(change、input、blur、keyup 等事件触发，每次键入都会触发)
+- 窗口大小 Resize。只需窗口调整完成后，计算窗口大小。防止重复渲染。
+- 鼠标的 mousemove、mouseover
+- 导航条上，用户不停的在导航区域滑动相当于
+
+```typescript
+type Callback = (...args: unknown[]) => unknown;
+
+function debounce(callback: Callback, delay: number): Callback {
+  let timer: NodeJS.Timeout;
+  return function (...args: unknown[]) {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      callback(args);
+    }, delay);
+  };
+}
+```
+
+## 节流
+
+高频事件触发，但在 n 秒内只会执行一次，所以节流会稀释函数的执行频率
+
+### 应用场景
+
+- 滚动加载，加载更多或滚到底部监听，window.onscroll 和滑到底部自动加载更多
+- 谷歌搜索框，搜索联想功能
+- 高频点击提交，表单重复提交
+
+```typescript
+type Callback = (...args: unknown[]) => unknown;
+
+function throttle(fn: Callback, wait: number) {
+  let timer: NodeJS.Timeout;
+  return function (...args: unknown[]) {
+    if (!timer) {
+      timer = setTimeout(function () {
+        clearTimeout(timer);
+        callback(args);
+      }, delay);
+    }
+  };
+}
+```

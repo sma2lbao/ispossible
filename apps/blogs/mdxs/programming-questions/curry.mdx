@@ -1,0 +1,37 @@
+---
+title: 柯里化
+description: ""
+tags: ["编程"]
+poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+date: 2024/02/01
+---
+
+## 柯里化
+
+```typescript
+export default function curry<T extends Function>(fn: T) {
+  function curried(...nextArgs: any): any {
+    console.log(nextArgs);
+    // 1. 判断 args 长度是否 符合 fn 的执行标准
+    // 是则立即执行并返回
+    if (nextArgs.length >= fn.length) {
+      return fn(...nextArgs);
+    }
+    // 否则需要返回函数用来收集参数
+    return curried.bind(null, ...nextArgs);
+  }
+  return curried;
+}
+```
+
+## 柯里化是什么
+
+柯里化是一种转换，将 f(a, b, c)转换为可以被以 f(a)(b)(c)的形式进行调用。JavaScript 实现通常都保持该函数可以被正常调用，并且如果参数数量不足，则返回偏函数。
+
+柯里化让我们能够更容易地获取偏函数。普通函数在被柯里化之后，当我们调用它的时候传入一个参数或两个参数时仍然不满足条件时，它会返回偏函数。
+
+#### 偏函数
+
+指固定一个函数的一些参数，然后产生另一个更小元的函数。
+
+元是指函数参数的个数，比如一个带有两个参数的函数被称为二元函数。

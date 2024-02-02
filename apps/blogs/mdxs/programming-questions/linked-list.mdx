@@ -1,0 +1,141 @@
+---
+title: 链表实现
+description: ""
+tags: ["编程"]
+poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+date: 2024/02/01
+---
+
+## 实现
+
+```typescript
+export default class LinkedList<T> {
+  // 第一个节点
+  private head: LinkedNode<T> | null = null;
+  // 最后一个节点
+  private tail: LinkedNode<T> | null = null;
+
+  // 当前链表存储的节点数量
+  size: number = 0;
+
+  constructor() {}
+
+  getNode(index: number): LinkedNode<T> | null {
+    let node = this.head;
+    let count = 0;
+    while (node !== null) {
+      if (index === count) {
+        return node;
+      }
+      node = node.next;
+      count++;
+    }
+    return null;
+  }
+
+  get(index: number): T | null {
+    const node = this.getNode(index);
+    if (node) {
+      return node.value;
+    }
+    return null;
+  }
+
+  addAtHead(value: T): void {
+    const node = new LinkedNode(value);
+    node.next = this.head;
+    if (this.head) {
+      this.head.previous = node;
+    }
+    this.head = node;
+    // 初始化tail节点
+    if (!this.tail) {
+      this.tail = this.head;
+    }
+    // 新加入节点需要计算size
+    this.size++;
+  }
+
+  addAtTail(value: T): void {
+    const node = new LinkedNode(value);
+    if (this.tail) {
+      this.tail.next = node;
+    }
+    node.previous = this.tail;
+    this.tail = node;
+
+    // 初始化head节点
+    if (!this.head) {
+      this.head = this.tail;
+    }
+    // 新加入节点需要计算size
+    this.size++;
+  }
+
+  addAtIndex(index: number, value: T): void {
+    let node = this.getNode(index);
+    if (node === null) {
+      throw new Error("not found value at index");
+    }
+    let previosNode = node.previous;
+    const newNode = new LinkedNode(value);
+    // 新node需要建立next及previous链接
+    newNode.next = node;
+    newNode.previous = previosNode;
+    // 重新建立原 node 的链接
+    node.previous = newNode;
+    previosNode && (previosNode.next = newNode);
+
+    // 新加入节点需要计算size
+    this.size++;
+  }
+
+  deleteAtIndex(index: number): void {
+    let node = this.getNode(index);
+    if (node === null) {
+      throw new Error("not found value at index");
+    }
+    let previosNode = node.previous;
+    let nextNode = node.next;
+    previosNode && (previosNode.next = nextNode);
+    nextNode && (nextNode.previous = previosNode);
+
+    // 删除节点需要计算size
+    this.size--;
+  }
+
+  // 反转链表
+  reverse() {
+    let node = this.head;
+    while (node !== null) {
+      let nextNode = node.next;
+      let previousNode = node.previous;
+
+      node.next = previousNode;
+      node.previous = nextNode;
+
+      node = nextNode;
+    }
+    this.head = this.tail;
+    this.tail = this.head;
+  }
+
+  *[Symbol.iterator]() {
+    let node = this.head;
+    while (node !== null) {
+      yield node.value;
+      node = node.next;
+    }
+  }
+}
+
+class LinkedNode<T> {
+  value: T | null = null;
+  next: LinkedNode<T> | null = null;
+  previous: LinkedNode<T> | null = null;
+
+  constructor(value: T | null) {
+    this.value = value;
+  }
+}
+```
