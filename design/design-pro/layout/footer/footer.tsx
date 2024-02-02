@@ -1,8 +1,7 @@
 import React from "react";
 import stylex from "@stylexjs/stylex";
-import { useTheme, type Theme } from "@design/core";
-// import "@design/icon/github";
-// import "@design/icon/copyright";
+import { useTheme, type Theme, Button, Space } from "@design/core";
+import "@design/icon/github";
 
 export interface FooterProps {}
 
@@ -29,9 +28,9 @@ const Footer: React.FC<FooterProps> = () => {
       <div {...stylex.props(styles.text(theme))}>
         made by sma2lbao | © sma2lbao 2024.
       </div>
-      {/* <Space>
+      <Space>
         <Button icon={<is-github />} href="https://github.com/sma2lbao" />
-      </Space> */}
+      </Space>
     </div>
   );
 };

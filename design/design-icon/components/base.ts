@@ -1,5 +1,8 @@
+const isServer =
+  typeof window === "undefined" || typeof window.customElements === "undefined";
+
 export function createWebIcon(name: string, source: string) {
-  if (!customElements) return;
+  if (isServer) return;
   if (customElements.get(name)) {
     return;
   }
