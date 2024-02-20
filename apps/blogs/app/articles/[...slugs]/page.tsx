@@ -13,6 +13,7 @@ import {
   parseHeadings,
   type HeadingTreeNode,
 } from "../../../shared/parse-headings";
+import stylex from "@stylexjs/stylex";
 
 interface ArticleMetaProps {
   title: string;
@@ -21,6 +22,12 @@ interface ArticleMetaProps {
   poster?: string;
   tags?: string[];
 }
+
+const styles = stylex.create({
+  image: {
+    maxWidth: "100%",
+  },
+});
 
 export default function ArticlePage({
   params,
@@ -47,6 +54,14 @@ export default function ArticlePage({
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeHighlight, rehypeSlug]}
         children={source.content}
+        components={{
+          img(props) {
+            const src = props.src as string;
+            const alt = props.alt || "";
+            if (!src) return null;
+            return <img src={src} alt={alt} {...stylex.props(styles.image)} />;
+          },
+        }}
       ></ReactMarkdown>
     </Document>
   );
