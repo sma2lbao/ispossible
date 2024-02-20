@@ -1,1 +1,3 @@
-export * from "./tree";
+"use client";
+
+export { Tree } from "./tree";

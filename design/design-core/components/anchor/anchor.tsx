@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useLayoutEffect, useMemo, useState } from "react";
 import stylex from "@stylexjs/stylex";
 import { AnchorNode, type AnchorNodeProps } from "./anchor-node";
