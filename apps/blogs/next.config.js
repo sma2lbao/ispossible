@@ -1,5 +1,4 @@
 // @ts-check
-const path = require('path');
 const stylexPlugin = require('@stylexjs/nextjs-plugin');
 
 const babelrc = require('./.babelrc.js');

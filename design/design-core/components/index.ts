@@ -9,3 +9,8 @@ export { Watermark } from "./watermark";
 export { useTheme, type Theme } from "./theme";
 export { Tooltip } from "./tooltip";
 export { Popover } from "./popover";
+export { Collapse } from "./collapse";
+export { Tree } from "./tree";
+export { Input } from "./input";
+export { Anchor } from "./anchor";
+export { NoSsr } from "./no-ssr";

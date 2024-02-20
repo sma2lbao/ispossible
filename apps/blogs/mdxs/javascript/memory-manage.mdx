@@ -14,15 +14,15 @@ date: 2024/02/01
 
 1. 栈内存：所有原始数据类型都存储在栈内存中，如果删除一个栈原始数据，遵循先进后出；如下图：a 最先进栈，最后出栈。
 
-![](./images/memory-1.png)
+![](/images/mdxs/javascript/memory-1.png)
 
 2. 堆内存：引用数据类型会在堆内存中开辟一个空间，并且会有一个十六进制的内存地址，在栈内存中声明的变量的值就是十六进制的内存地址。
 
-![](./images/memory-2.png)
+![](/images/mdxs/javascript/memory-2.png)
 
 函数也是引用数据类型，我们定一个函数的时候，会在堆内存中开辟空间，会以字符串的形式存储到堆内存中去，如下图：
 
-![](./images/memory-3.png)
+![](/images/mdxs/javascript/memory-3.png)
 
 ```JS
 function fn() {
@@ -125,7 +125,7 @@ foo()  //执行完毕，a 和 b 被标记离开执行环境，内存被回收
 
 from 和 to 组成一个 Semispace（半空间）当我们分配对象时，先在 from 对象中进行分配，当垃圾回收运行时先检查 from 中的对象，当 obj2 需要回收时将其留在 from 空间，而 ob1 分配到 to 空间，然后进行反转，将 from 空间和 to 空间进行互换，进行垃圾 回收时，将 to 空间的内存进行释放，简而言之 from 空间存放不被释放的对象，to 空间存放被释放的对象，当垃圾回收时将 to 空间的对象全部进行回收
 
-![](./images/memory-4.jpg)
+![](/images/mdxs/javascript/memory-4.jpg)
 
 ### 新生代对象的晋升（新生代中用来存放，生命较短的对象，老生代存放生命较长的对象）
 
@@ -137,12 +137,12 @@ from 和 to 组成一个 Semispace（半空间）当我们分配对象时，先�
 
 老生代内存空间是一个连续的结构
 
-![](./images/memory-5.jpg)
+![](/images/mdxs/javascript/memory-5.jpg)
 
 标记清除（Mark Sweep） Mark Sweep 是将需要被回收的对象进行标记，在垃圾回收运行时直接释放相应的地址空间,红色的区域就是需要被回收的
 
-![](./images/memory-6.jpg)
+![](/images/mdxs/javascript/memory-6.jpg)
 
 标记合并（Mark Compact） Mark Compact 将存活的对象移动到一边，将需要被回收的对象移动到另一边，然后对需要被回收的对象区域进行整体的垃圾回收
 
-![](./images/memory-7.jpg)
+![](/images/mdxs/javascript/memory-7.jpg)

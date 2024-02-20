@@ -20,7 +20,7 @@ qiankun 框架为了实现 js 隔离，提供了三种不同场景使用的沙�
 
 > 激活沙箱时，将 window 的快照信息存到 windowSnapshot 中， 如果 modifyPropsMap 有值，还需要还原上次的状态；激活期间，可能修改了 window 的数据；退出沙箱时，将修改过的信息存到 modifyPropsMap 里面，并且把 window 还原成初始进入的状态。
 
-![](./images/qiankun-1.jpg)
+![](/images/mdxs/frame/qiankun-1.jpg)
 
 ### snapshotSandbox 源码
 
@@ -157,7 +157,7 @@ const sandbox = new SnapshotSandbox();
 
 打开浏览器，可以看到成功实现了一个快照沙箱隔离。
 
-![](./images/qiankun-2.jpg)
+![](/images/mdxs/frame/qiankun-2.jpg)
 
 ## ProxySandbox(代理沙箱)
 
@@ -171,7 +171,7 @@ qiankun 基于 es6 的 Proxy 实现了两种应用场景不同的沙箱，一种
 
 流程图
 
-![](./images/qiankun-3.jpg)
+![](/images/mdxs/frame/qiankun-3.jpg)
 
 LegacySandbox 源码
 
@@ -410,7 +410,7 @@ let LegacySandbox = new Legacy();
 
 打开控制台，可以看到，在激活沙箱前，我们在 window 上设置的 sex='男'这个属性，再开启沙箱后，又修改了 sex，成功的记录到了 modifiedPropsOriginalValueMapInSandbox 里面。激活期间，修改的 age 和 sex 两个属性也记录到了 currentUpdatedPropsValueMap 里面，同时，window 上新增的属性 age 也记录到了 addedPropsMapInSandbox 里面，与预期结果一样。
 
-![](./images/qiankun-4.jpg)
+![](/images/mdxs/frame/qiankun-4.jpg)
 
 补充完整测试代码
 
@@ -425,7 +425,7 @@ let LegacySandbox = new Legacy();
 
 打开浏览器，可以看到最新的运行结果
 
-![](./images/qiankun-5.jpg)
+![](/images/mdxs/frame/qiankun-5.jpg)
 
 ## ProxySandbox(多例沙箱)
 
@@ -433,7 +433,7 @@ let LegacySandbox = new Legacy();
 
 > 激活沙箱后，每次对 window 取值的时候，先从自己沙箱环境的 fakeWindow 里面找，如果不存在，就从 rawWindow(外部的 window)里去找；当对沙箱内部的 window 对象赋值的时候，会直接操作 fakeWindow，而不会影响到 rawWindow。
 
-![](./images/qiankun-6.jpg)
+![](/images/mdxs/frame/qiankun-6.jpg)
 
 ### ProxySandbox 源码
 
@@ -724,6 +724,6 @@ console.log("外部window.sex=>2", window.sex);
 
 浏览器打印结果
 
-![](./images/qiankun-7.jpg)
+![](/images/mdxs/frame/qiankun-7.jpg)
 
 可以看到，只有 proxySandbox 才是对 window 进行了一个真正的无污染环境。

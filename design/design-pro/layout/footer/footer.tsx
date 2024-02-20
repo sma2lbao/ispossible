@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import stylex from "@stylexjs/stylex";
 import { useTheme, type Theme, Button, Space } from "@design/core";
