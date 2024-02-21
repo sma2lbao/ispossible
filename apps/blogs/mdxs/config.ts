@@ -1,6 +1,6 @@
 export interface MenuItem {
   id: string;
-  title: string;
+  label: string;
   dirname: string;
   icon?: string;
   order?: number;
@@ -10,51 +10,51 @@ export const menus: MenuItem[] = [
   {
     id: "algorithm",
     dirname: "algorithm",
-    title: "算法",
+    label: "算法",
   },
   {
     id: "browser",
     dirname: "browser",
-    title: "浏览器",
+    label: "浏览器",
   },
   {
     id: "css",
     dirname: "css",
-    title: "样式",
+    label: "样式",
   },
   {
     id: "engine",
     dirname: "engine",
-    title: "工程化",
+    label: "工程化",
   },
   {
     id: "frame",
     dirname: "frame",
-    title: "框架",
+    label: "框架",
   },
   {
     id: "http",
     dirname: "http",
-    title: "Http协议",
+    label: "Http协议",
   },
   {
     id: "javascript",
     dirname: "javascript",
-    title: "Javascript",
+    label: "Javascript",
   },
   {
     id: "network",
     dirname: "network",
-    title: "网络",
+    label: "网络",
   },
   {
     id: "programming-questions",
     dirname: "programming-questions",
-    title: "编程题",
+    label: "编程题",
   },
   {
     id: "typescript",
     dirname: "typescript",
-    title: "Typescript",
+    label: "Typescript",
   },
 ];

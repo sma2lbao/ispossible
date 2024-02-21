@@ -13,7 +13,7 @@ module.exports = {
         },
         unstable_moduleResolution: {
           type: 'commonJS',
-          rootDir: path.join(__dirname, '../..'),
+          rootDir: __dirname,
         },
       },
     ],

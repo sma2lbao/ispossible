@@ -5,13 +5,10 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
+import { parseHeadings, type HeadingTreeNode } from "@/shared/parse-headings";
+import { existFile, readContent } from "@/shared/parse-article";
 import Document from "../../_layouts/document";
 import Toc from "../../_layouts/toc";
-import {
-  parseHeadings,
-  type HeadingTreeNode,
-} from "../../../shared/parse-headings";
-import { existFile, readContent } from "../../../shared/parse-article";
 
 const styles = stylex.create({
   image: {
@@ -27,7 +24,7 @@ export default function ArticlePage({
   const { slugs } = params;
   const exist = existFile(slugs);
   if (!exist) {
-    notFound();
+    return notFound();
   }
   const fileContent = readContent(slugs);
   const source = matter(fileContent);
