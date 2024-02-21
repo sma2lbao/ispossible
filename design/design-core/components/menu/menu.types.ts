@@ -3,6 +3,7 @@ import React from "react";
 export interface MenuProps {
   items: ItemProps[];
   mode?: "x" | "y" | "inline";
+  onSelect?: (id: string[]) => void;
 }
 
 export interface SubMenuProps {

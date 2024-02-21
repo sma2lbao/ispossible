@@ -1,27 +1,17 @@
-import matter from "gray-matter";
 import { notFound } from "next/navigation";
-import { join, sep } from "path";
-import { existsSync, readFileSync } from "fs";
+import stylex from "@stylexjs/stylex";
+import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
-import { MDX_DIRNAME, MDX_SUFFIX } from "../../../configs";
 import Document from "../../_layouts/document";
 import Toc from "../../_layouts/toc";
 import {
   parseHeadings,
   type HeadingTreeNode,
 } from "../../../shared/parse-headings";
-import stylex from "@stylexjs/stylex";
-
-interface ArticleMetaProps {
-  title: string;
-  description?: string;
-  date?: string;
-  poster?: string;
-  tags?: string[];
-}
+import { existFile, readContent } from "../../../shared/parse-article";
 
 const styles = stylex.create({
   image: {
@@ -35,14 +25,11 @@ export default function ArticlePage({
   params: { slugs: string[] };
 }) {
   const { slugs } = params;
-  const filePath = join(MDX_DIRNAME, `${slugs.join(sep)}${MDX_SUFFIX}`);
-  const exist = existsSync(filePath);
+  const exist = existFile(slugs);
   if (!exist) {
     notFound();
   }
-  const fileContent = readFileSync(filePath, {
-    encoding: "utf-8",
-  });
+  const fileContent = readContent(slugs);
   const source = matter(fileContent);
 
   let headings: HeadingTreeNode[] = parseHeadings(source.content);
