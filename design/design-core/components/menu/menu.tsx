@@ -18,7 +18,7 @@ const styles = stylex.create({
 });
 
 const Menu: React.FC<MenuProps> = (props) => {
-  const { mode = "y", items = [] } = props;
+  const { mode = "y", items = [], onSelect } = props;
   const [innerSelectedIds, setInnerSelectedIds] = useState<string[]>();
 
   const findSelectedIds = (
@@ -47,6 +47,7 @@ const Menu: React.FC<MenuProps> = (props) => {
 
   const handleUpdateSelectedIds = (id: string) => {
     const selectedIds = findSelectedIds(items, id, []);
+    onSelect?.(selectedIds);
     setInnerSelectedIds(selectedIds);
   };
 
