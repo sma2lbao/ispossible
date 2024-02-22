@@ -1,1 +1,3 @@
-export { Collapse, type CollapseProps } from "./collapse";
+"use client";
+
+export * from "./collapse";

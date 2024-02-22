@@ -1,0 +1,63 @@
+import { Story, ArgsTable, Canvas, Unstyled } from "@storybook/blocks";
+import { Button } from "../../components";
+import * as ButtonStories from "../stories/button.stories";
+
+# Button
+
+[Source code](https://github.com/carbon-design-system/carbon/tree/main/packages/react/src/components/Button)
+&nbsp;|&nbsp;
+[Usage guidelines](https://www.carbondesignsystem.com/components/button/usage)
+&nbsp;|&nbsp;
+[Accessibility](https://www.carbondesignsystem.com/components/button/accessibility)
+
+## Overview
+
+Buttons are clickable elements that are used to trigger actions. They
+communicate calls to action to the user and allow users to interact with pages
+in a variety of ways. `Button` labels express what action will occur when the
+user interacts with it.
+
+<Canvas>
+  <Story of={ButtonStories.Primary} />
+  <Story of={ButtonStories.Primary} />
+</Canvas>
+
+## Component API
+
+<ArgsTable />
+
+Additional props passed into `Button` will be forwarded along to the underlying
+button element.
+
+### Button `as`
+
+This prop allows you to specify a different element to be rendered as a
+`Button`. You may also need to add a [role](#button-role) for accessibility if
+an element other than a `button` is rendered.
+
+```jsx
+<Button type="text">I'm a div tag</Button>
+```
+
+### Button `size`
+
+This prop specifies which size the `Button` should be rendered at. Valid values
+are `sm`, `md`, `lg`, `xl`, and `2xl`. If no `size` is specified, it renders as
+`lg`.
+
+<Button>Submit</Button> <Button type="primary">Submit</Button> <Button type="text">
+  Submit
+</Button> <Button type="link">Submit</Button>
+
+```jsx
+<Button>Submit</Button>
+<Button type="primary">Submit</Button>
+<Button type="text">Submit</Button>
+<Button type="link">Submit</Button>
+```
+
+### Unstyled
+
+<Unstyled>
+  <Button type="primary">Submit</Button>
+</Unstyled>

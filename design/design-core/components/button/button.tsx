@@ -4,10 +4,16 @@ import { colors, spacing } from "../theme/tokens.stylex";
 
 export interface ButtonProps {
   type?: "primary" | "text" | "link";
+  /**
+   * Specify the content of your Button
+   */
   children?: React.ReactNode;
   disabled?: boolean;
   icon?: React.ReactNode;
   loading?: boolean;
+  /**
+   * Specify the content of your Button
+   */
   ghost?: boolean;
   href?: string;
   onClick?: React.MouseEventHandler;

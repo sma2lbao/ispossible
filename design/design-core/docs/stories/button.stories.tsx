@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import page from "../pages/button.mdx";
 
 import { Button } from "../../components";
 
@@ -7,13 +8,29 @@ const meta = {
   component: Button,
   parameters: {
     layout: "centered",
+    docs: {
+      page,
+    },
   },
   tags: ["autodocs"],
   argTypes: {
     type: {
-      // control: "text",
-      description: "Overwritten type",
+      control: "inline-radio",
+      description: "设置按钮类型",
       defaultValue: "primary",
+    },
+    disabled: {
+      control: "boolean",
+      description: "设置按钮失效状态",
+      defaultValue: false,
+    },
+    ghost: {
+      control: "boolean",
+      description: "幽灵属性，使按钮背景透明",
+      defaultValue: false,
+    },
+    children: {
+      control: false,
     },
   },
 } satisfies Meta<typeof Button>;
@@ -25,14 +42,6 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     type: "primary",
-    children: "文案",
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    type: "primary",
-    disabled: true,
-    children: "按钮",
+    children: "Primary Button",
   },
 };

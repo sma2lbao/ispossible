@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState } from "react";
 import { TreeNode, TreeNodeProps } from "./tree-node";
 import { TreeContext } from "./context";

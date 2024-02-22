@@ -8,7 +8,7 @@ export interface TreeNodeProps {
   id: string;
   label: string;
   parentId?: string;
-  deep: number;
+  deep?: number;
   className?: string;
   children?: TreeNodeProps[];
 }
@@ -22,7 +22,7 @@ const styles = stylex.create({
 
 export const TreeNode: React.FC<TreeNodeProps> = (props) => {
   const context = React.useContext(TreeContext);
-  const { id, label, children, deep, className } = props;
+  const { id, label, children, deep = 0, className } = props;
 
   const handleNodeClick = () => {
     if (!children?.length) return;

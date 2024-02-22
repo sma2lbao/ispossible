@@ -1,3 +1,3 @@
 "use client";
 
-export { Tooltip } from "./tooltip";
+export * from "./tooltip";

@@ -1,5 +1,4 @@
-import React from "react";
-import { Tooltip, Button } from "../../components";
+import { Tooltip } from "../../components";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
