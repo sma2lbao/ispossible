@@ -9,39 +9,7 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    title: {
-      control: "text",
-      description: "提示文字",
-    },
-    arrow: {
-      description: "是否带箭头",
-      control: "boolean",
-    },
-    visible: {
-      description: "控制显隐",
-      control: "boolean",
-    },
-    placement: {
-      description: "放置位置",
-      defaultValue: "right",
-      control: "select",
-      options: [
-        "top",
-        "left",
-        "right",
-        "bottom",
-        "topLeft",
-        "topRight",
-        "bottomLeft",
-        "bottomRight",
-        "leftTop",
-        "leftBottom",
-        "rightTop",
-        "rightBottom",
-      ],
-    },
-  },
+  argTypes: {},
 } satisfies Meta<typeof Tooltip>;
 
 export default meta;

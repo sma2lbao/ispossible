@@ -15,7 +15,6 @@ const config: StorybookConfig = {
   ],
   addons: [
     getAbsolutePath("@storybook/addon-links"),
-    getAbsolutePath("@storybook/addon-onboarding"),
     getAbsolutePath("@storybook/addon-essentials"),
     getAbsolutePath("@storybook/addon-interactions"),
   ],
@@ -25,6 +24,11 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: "tag",
+  },
+  typescript: {
+    reactDocgen: "react-docgen",
+    skipBabel: true,
+    check: false,
   },
 };
 export default config;

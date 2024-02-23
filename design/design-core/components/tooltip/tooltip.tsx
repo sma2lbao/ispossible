@@ -30,12 +30,33 @@ export type TootipPlacement =
 export interface TooltipProps {
   title: (() => React.ReactNode) | React.ReactNode;
   children: React.ReactNode;
+  /**
+   * 气泡框位置
+   */
   placement?: TootipPlacement;
+  /**
+   * 用于手动控制浮层显隐
+   */
   visible?: boolean;
+  /**
+   * 是否显示箭头
+   */
   arrow?: boolean;
+  /**
+   * 卡片样式
+   */
   popupStyle?: React.CSSProperties;
+  /**
+   * 卡片类名
+   */
   popupClassName?: string;
+  /**
+   * 背景颜色
+   */
   backgroundColor?: string;
+  /**
+   * 字体颜色
+   */
   color?: string;
 }
 

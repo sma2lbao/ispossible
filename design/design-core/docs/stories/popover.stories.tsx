@@ -9,12 +9,7 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    content: {
-      control: "text",
-      description: "提示文字",
-    },
-  },
+  argTypes: {},
 } satisfies Meta<typeof Popover>;
 
 export default meta;

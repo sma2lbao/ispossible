@@ -26,10 +26,12 @@
     "@storybook/addon-essentials": "^7.6.17",
     "@storybook/addon-interactions": "^7.6.17",
     "@storybook/addon-links": "^7.6.17",
-    "@storybook/addon-onboarding": "^1.0.10",
     "@storybook/blocks": "^7.6.17",
     "@storybook/react": "^7.6.17",
     "@storybook/test": "^7.6.17",
+    "@storybook/react-vite": "^7.6.17",
+    "@storybook/manager-api": "^7.6.17",
+    "@storybook/theming": "^7.6.17",
     "react": "~18.2.0",
     "react-dom": "~18.2.0",
     "storybook": "^7.6.17",
@@ -41,9 +43,6 @@
     "@types/react-dom": "~18.2.18",
     "vite-plugin-stylex-dev": "~0.2.4",
     "vite": "~5.0.11",
-    "@storybook/react-vite": "^7.6.17",
-    "@storybook/manager-api": "^7.6.17",
-    "@storybook/theming": "^7.6.17",
     "@types/mdx": "~2.0.11"
   },
   "dependencies": {

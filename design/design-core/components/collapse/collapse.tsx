@@ -8,6 +8,9 @@ type ItemType = {
 };
 
 export interface CollapseProps {
+  /**
+   * 折叠项目内容
+   */
   items: ItemType[];
 }
 

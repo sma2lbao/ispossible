@@ -11,9 +11,7 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    items: { control: "text", description: "Overwritten type" },
-  },
+  argTypes: {},
 } satisfies Meta<typeof Menu>;
 
 export default meta;

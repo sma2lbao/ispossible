@@ -1,18 +1,23 @@
 import React, { useLayoutEffect, useMemo, useState } from "react";
 import stylex from "@stylexjs/stylex";
-import { AnchorNode, type AnchorNodeProps } from "./anchor-node";
+import { AnchorNode, type AnchorNodeBaseProps } from "./anchor-node";
 import { AnchorContext } from "./context";
 
 export interface AnchorProps {
-  items: Omit<AnchorNodeProps, "parentId" | "deep">[];
+  /**
+   * 数据化配置选项内容
+   */
+  items: AnchorNodeBaseProps[];
+  /**
+   * 距离窗口顶部达到指定偏移量后触发
+   * @default 0
+   */
   offsetTop?: number;
+  /**
+   * 指定滚动的容器
+   */
   container?: HTMLElement;
 }
-
-export type AnchorNodeEventProps = Pick<
-  AnchorNodeProps,
-  "id" | "href" | "target" | "replace"
->;
 
 type FlatItem = {
   id: string;
@@ -48,7 +53,7 @@ export const Anchor: React.FC<AnchorProps> = (props) => {
     return ids;
   }, [items]);
 
-  const handleClickNode = (node: AnchorNodeEventProps) => {
+  const handleClickNode = (node: AnchorNodeBaseProps) => {
     if (activeNodeId === node.id) return;
     setActiveNodeId(node.id);
     const nextEleId = flatItems.find((item) => item.id === node.id)?.eleId;

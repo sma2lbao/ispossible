@@ -32,8 +32,19 @@ export interface TabItemProps {
 }
 
 export interface TabsProps {
+  /**
+   * 当前激活 tab 面板的 key
+   */
   activeId?: string;
+  /**
+   * 配置选项卡内容
+   */
   items: TabItemProps[];
+  /**
+   * 切换面板的回调
+   * @param activeId
+   * @returns
+   */
   onChange?: (activeId: string) => void;
 }
 

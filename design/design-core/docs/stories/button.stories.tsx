@@ -8,31 +8,12 @@ const meta = {
   component: Button,
   parameters: {
     layout: "centered",
-    docs: {
-      page,
-    },
+    // docs: {
+    //   page,
+    // },
   },
   tags: ["autodocs"],
-  argTypes: {
-    type: {
-      control: "inline-radio",
-      description: "设置按钮类型",
-      defaultValue: "primary",
-    },
-    disabled: {
-      control: "boolean",
-      description: "设置按钮失效状态",
-      defaultValue: false,
-    },
-    ghost: {
-      control: "boolean",
-      description: "幽灵属性，使按钮背景透明",
-      defaultValue: false,
-    },
-    children: {
-      control: false,
-    },
-  },
+  argTypes: {},
 } satisfies Meta<typeof Button>;
 
 export default meta;

@@ -9,13 +9,7 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    size: {
-      // control: "text",
-      description: "Overwritten type",
-      defaultValue: undefined,
-    },
-  },
+  argTypes: {},
 } satisfies Meta<typeof Space>;
 
 export default meta;

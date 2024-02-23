@@ -6,6 +6,13 @@ export interface BreadCrumbItem {
 }
 
 export interface BreadCrumbProps {
+  /**
+   * 分隔符自定义
+   */
   separator?: React.ReactNode;
+
+  /**
+   * 路由栈信息
+   */
   items: BreadCrumbItem[];
 }

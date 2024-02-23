@@ -9,13 +9,7 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    items: {
-      // control: "text",
-      description: "Overwritten type",
-      defaultValue: [],
-    },
-  },
+  argTypes: {},
 } satisfies Meta<typeof Collapse>;
 
 export default meta;

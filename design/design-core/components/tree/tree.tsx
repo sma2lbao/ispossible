@@ -3,6 +3,9 @@ import { TreeNode, TreeNodeProps } from "./tree-node";
 import { TreeContext } from "./context";
 
 export interface TreeProps {
+  /**
+   * treeNodes 数据
+   */
   items: Omit<TreeNodeProps, "parentId" | "deep" | "className">[];
 }
 
