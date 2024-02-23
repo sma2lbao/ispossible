@@ -11,7 +11,7 @@ interface TagProps {
 const styles = stylex.create({
   base: (color: string) => ({
     color,
-    lineHeight: 1.2,
+    lineHeight: 1.25,
     padding: "0 5px",
   }),
   bordered: (borderColor: string) => ({

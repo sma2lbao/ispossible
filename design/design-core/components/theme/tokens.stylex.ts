@@ -3,7 +3,6 @@ import stylex from "@stylexjs/stylex";
 // 间隔
 export const spacing = stylex.defineVars({
   basic: "8px",
-  none: "0px",
   xsmall: "4px",
   small: "8px",
   medium: "12px",
@@ -22,11 +21,22 @@ export const typography = stylex.defineVars({
   h4: "20px",
   h5: "16px",
   small: "12px",
+  medium: "16px",
+  large: "20px",
+  xlarge: "32px",
+  xxlarge: "48px",
+  xxxlarge: "96px",
 });
 
 // radius
 export const radiusSizes = stylex.defineVars({
   basic: "6px",
+  small: "12px",
+  medium: "16px",
+  large: "20px",
+  xlarge: "32px",
+  xxlarge: "48px",
+  xxxlarge: "96px",
 });
 
 // 配色

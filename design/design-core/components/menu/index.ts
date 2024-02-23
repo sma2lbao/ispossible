@@ -1,1 +1,3 @@
-export { default as Menu } from "./menu";
+"use client";
+
+export * from "./menu";

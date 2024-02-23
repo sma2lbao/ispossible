@@ -8,13 +8,7 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    shape: {
-      // control: "text",
-      description: "Overwritten type",
-      defaultValue: "square",
-    },
-  },
+  argTypes: {},
 } satisfies Meta<typeof Avatar>;
 
 export default meta;

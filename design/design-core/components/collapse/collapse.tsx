@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState } from "react";
 import stylex from "@stylexjs/stylex";
 
@@ -10,6 +8,9 @@ type ItemType = {
 };
 
 export interface CollapseProps {
+  /**
+   * 折叠项目内容
+   */
   items: ItemType[];
 }
 

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
 
 import { Space } from "../../components";
 
@@ -10,13 +9,7 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    size: {
-      // control: "text",
-      description: "Overwritten type",
-      defaultValue: undefined,
-    },
-  },
+  argTypes: {},
 } satisfies Meta<typeof Space>;
 
 export default meta;

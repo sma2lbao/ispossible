@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState } from "react";
 import stylex from "@stylexjs/stylex";
 import MenuItem from "./menu-item";
@@ -17,7 +15,7 @@ const styles = stylex.create({
   },
 });
 
-const Menu: React.FC<MenuProps> = (props) => {
+export const Menu: React.FC<MenuProps> = (props) => {
   const { mode = "y", items = [], onSelect } = props;
   const [innerSelectedIds, setInnerSelectedIds] = useState<string[]>();
 
@@ -71,5 +69,3 @@ const Menu: React.FC<MenuProps> = (props) => {
     </MenuContext.Provider>
   );
 };
-
-export default Menu;

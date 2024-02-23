@@ -1,3 +1,3 @@
 "use client";
 
-export { NoSsr } from "./no-ssr";
+export * from "./no-ssr";

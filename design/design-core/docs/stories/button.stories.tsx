@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { Button } from "../../components";
 
 const meta = {
@@ -9,13 +8,7 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    type: {
-      // control: "text",
-      description: "Overwritten type",
-      defaultValue: "primary",
-    },
-  },
+  argTypes: {},
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -25,14 +18,6 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     type: "primary",
-    children: "文案",
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    type: "primary",
-    disabled: true,
-    children: "按钮",
+    children: "Primary Button",
   },
 };

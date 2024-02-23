@@ -1,1 +1,3 @@
-export { Anchor } from "./anchor";
+"use client";
+
+export * from "./anchor";

@@ -3,17 +3,20 @@ import { AnchorContext } from "./context";
 import stylex from "@stylexjs/stylex";
 import { colors } from "../theme/tokens.stylex";
 
-export interface AnchorNodeProps {
+export interface AnchorNodeBaseProps {
   id: string;
   href: string;
   target?: string;
   label: string;
-  children?: AnchorNodeProps[];
+  children?: AnchorNodeBaseProps[];
   replace?: boolean;
+}
 
+export interface AnchorNodeProps extends AnchorNodeBaseProps {
   // 辅助属性
   parentId?: string;
   deep?: number;
+  children?: AnchorNodeProps[];
 }
 
 const styles = stylex.create({

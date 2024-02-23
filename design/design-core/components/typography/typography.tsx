@@ -9,11 +9,9 @@ const styles = stylex.create({
   }),
 });
 
-const Typography: React.FC<TypographyProps> = (props) => {
+export const Typography: React.FC<TypographyProps> = (props) => {
   const { children, tagName, type } = props;
   const Tag = tagName ?? "span";
 
   return <Tag {...stylex.props(styles.root(type))}>{children}</Tag>;
 };
-
-export default Typography;

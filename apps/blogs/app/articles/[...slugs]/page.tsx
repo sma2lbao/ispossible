@@ -33,7 +33,7 @@ export default function ArticlePage({
 
   return (
     <Document>
-      {headings.length && <Toc headings={headings!} />}
+      {headings.length > 0 && <Toc headings={headings!} />}
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeHighlight, rehypeSlug]}

@@ -9,9 +9,7 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    type: { control: "text", description: "Overwritten type" },
-  },
+  argTypes: {},
 } satisfies Meta<typeof Typography>;
 
 export default meta;
