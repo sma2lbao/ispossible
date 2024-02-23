@@ -1,5 +1,4 @@
-import React from "react";
-import { Popover, Button } from "../../components";
+import { Popover } from "../../components";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {

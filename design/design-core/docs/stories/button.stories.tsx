@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import page from "../pages/button.mdx";
-
 import { Button } from "../../components";
 
 const meta = {
@@ -8,9 +6,6 @@ const meta = {
   component: Button,
   parameters: {
     layout: "centered",
-    // docs: {
-    //   page,
-    // },
   },
   tags: ["autodocs"],
   argTypes: {},

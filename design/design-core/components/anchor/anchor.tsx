@@ -11,6 +11,7 @@ export interface AnchorProps {
   /**
    * 距离窗口顶部达到指定偏移量后触发
    * @default 0
+   * @type number
    */
   offsetTop?: number;
   /**

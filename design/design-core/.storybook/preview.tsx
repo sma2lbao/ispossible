@@ -7,11 +7,12 @@ import {
   Description,
   Primary,
   ArgTypes,
-  Controls,
   Stories,
 } from "@storybook/blocks";
 
 const preview: Preview = {
+  globals: {},
+  globalTypes: {},
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
@@ -27,9 +28,10 @@ const preview: Preview = {
           <Title />
           <Subtitle />
           <Description />
+          <Primary />
           <Stories />
           <h3>API</h3>
-          <ArgTypes />
+          <ArgTypes exclude={["children"]} />
         </>
       ),
     },

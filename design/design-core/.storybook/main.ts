@@ -26,8 +26,7 @@ const config: StorybookConfig = {
     autodocs: "tag",
   },
   typescript: {
-    reactDocgen: "react-docgen",
-    skipBabel: true,
+    reactDocgen: "react-docgen-typescript",
     check: false,
   },
 };
