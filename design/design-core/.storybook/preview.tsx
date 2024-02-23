@@ -5,7 +5,6 @@ import {
   Title,
   Subtitle,
   Description,
-  Primary,
   ArgTypes,
   Stories,
 } from "@storybook/blocks";
@@ -28,9 +27,7 @@ const preview: Preview = {
           <Title />
           <Subtitle />
           <Description />
-          <Primary />
           <Stories />
-          <h3>API</h3>
           <ArgTypes exclude={["children"]} />
         </>
       ),
