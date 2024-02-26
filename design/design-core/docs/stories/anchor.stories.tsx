@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Anchor } from "../../components";
 
 /**
- * These stories showcase the button
+ * 用于跳转到页面指定位置。
  */
 const meta = {
   title: "Anchor 锚点",
@@ -19,18 +19,16 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-
 const items = [
   {
     id: "1",
     href: "#storybook-docs",
-    label: "storybook-docs",
+    label: "Basic",
   },
   {
     id: "2",
     href: "#anchor--anchor-锚点--demo",
-    label: "锚点--demo",
+    label: "Demo",
   },
   {
     id: "3",
@@ -46,22 +44,15 @@ const items = [
         id: "5",
         href: "#link-props",
         label: "Link Props",
-        children: [
-          {
-            id: "6",
-            href: "#测试",
-            label: "测试啊",
-          },
-        ],
       },
     ],
   },
 ];
 
 /**
- * This is the primary button
+ * 最简单的用法。
  */
-export const Primary: Story = {
+export const 代码演示: Story = {
   args: {
     items,
   },

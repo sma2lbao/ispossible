@@ -4,6 +4,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import stylex from "@stylexjs/stylex";
 import { ArticleMeta } from "../../../shared/parse-article";
+import { Space, Tag } from "@design/core";
 
 export interface ArticleCardProps {
   article: ArticleMeta;
@@ -49,7 +50,11 @@ const ArticleCard: React.FC<ArticleCardProps> = (props) => {
         <div>{article.title}</div>
         <div>{article.description}</div>
         <div>{article.date}</div>
-        <div>{article.tags}</div>
+        <Space size={8}>
+          {article.tags?.map((text) => (
+            <Tag>{text}</Tag>
+          ))}
+        </Space>
       </div>
       <img {...stylex.props(styles.image)} src={article.poster} />
     </div>

@@ -13,6 +13,7 @@ export interface ButtonProps {
   children?: React.ReactNode;
   /**
    * 设置按钮失效状态
+   * @default false
    */
   disabled?: boolean;
   /**
@@ -62,8 +63,12 @@ const styles = stylex.create({
   default: {
     color: colors.text,
   },
-  text: {},
-  link: {},
+  text: {
+    color: colors.text,
+  },
+  link: {
+    color: colors.link,
+  },
 });
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(

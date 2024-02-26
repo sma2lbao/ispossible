@@ -4,8 +4,11 @@ import { Menu } from "../../components";
 import "@design/icon/home";
 import "@design/icon/menu";
 
+/**
+ * 为页面和功能提供导航的菜单列表。
+ */
 const meta = {
-  title: "Menu 排版",
+  title: "Menu 导航菜单",
   component: Menu,
   parameters: {
     layout: "centered",
@@ -17,8 +20,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const YMenu: Story = {
+/**
+ * 垂直菜单，子菜单是弹出的形式。
+ */
+export const 垂直菜单: Story = {
   args: {
     items: [
       { label: "菜单一", id: "label1", icon: <is-home /> },
@@ -41,7 +46,10 @@ export const YMenu: Story = {
   },
 };
 
-export const XMenu: Story = {
+/**
+ * 水平的顶部导航菜单。
+ */
+export const 水平菜单: Story = {
   args: {
     mode: "x",
     items: [

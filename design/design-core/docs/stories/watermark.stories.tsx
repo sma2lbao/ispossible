@@ -16,7 +16,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const 代码演示: Story = {
   args: {
     children: <div style={{ height: 200 }}>Primary</div>,
     content: "水印",
