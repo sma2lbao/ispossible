@@ -24,7 +24,7 @@ jobs:
 
       - name: Build
         run: |
-          node common/scripts/install-run-rush.js install
+          node common/scripts/install-run-rush.js install --bypass-policy
           node common/scripts/install-run-rush.js build -o @apps/blogs --verbose
           node common/scripts/install-run-rush.js deploy -p @apps/blogs
 
