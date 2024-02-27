@@ -29,6 +29,15 @@ export interface ButtonProps {
    */
   ghost?: boolean;
   /**
+   * 点击跳转的地址，指定此属性 button 的行为和 a 链接一致
+   */
+  href?: string;
+  /**
+   * 相当于 a 链接的 target 属性，href 存在时生效
+   * @default _blank
+   */
+  target?: string;
+  /**
    * 点击按钮时的回调
    */
   onClick?: (e: React.MouseEvent<Element, MouseEvent>) => void;
@@ -54,7 +63,7 @@ const styles = stylex.create({
     borderRadius: "50%",
     fontSize: "24px",
     backgroundColor: "transparent",
-    color: "#fff",
+    color: "inherit",
   },
   primary: {
     color: "#fff",
@@ -80,6 +89,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       icon,
       loading,
       ghost,
+      href,
+      target = "_blank",
       onClick,
     } = props;
 
@@ -88,6 +99,11 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const handleClick: React.MouseEventHandler<Element> = (
       e: React.MouseEvent<Element, MouseEvent>
     ) => {
+      if (href) {
+        e.preventDefault();
+        window.open(href, target);
+        return;
+      }
       onClick?.(e);
     };
 

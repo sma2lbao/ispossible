@@ -3,7 +3,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import stylex from "@stylexjs/stylex";
-import { ArticleMeta } from "../../../shared/parse-article";
+import { ArticleMeta } from "@/shared/parse-article";
 import { Space, Tag } from "@design/core";
 
 export interface ArticleCardProps {
@@ -52,7 +52,7 @@ const ArticleCard: React.FC<ArticleCardProps> = (props) => {
         <div>{article.date}</div>
         <Space size={8}>
           {article.tags?.map((text) => (
-            <Tag>{text}</Tag>
+            <Tag key={text}>{text}</Tag>
           ))}
         </Space>
       </div>

@@ -39,6 +39,7 @@ export const AnchorNode: React.FC<AnchorNodeProps> = (props) => {
       href,
       target,
       replace,
+      label,
     });
   };
 

@@ -3,7 +3,7 @@ import { Footer, Topbar } from "@design/pro";
 import stylex from "@stylexjs/stylex";
 import { useTheme, Theme } from "@design/core";
 import "normalize.css";
-import "highlight.js/styles/atom-one-dark.min.css";
+import Logo from "./logo";
 
 export interface DocumentProps {
   children?: React.ReactNode;
@@ -27,7 +27,7 @@ const Document: React.FC<DocumentProps> = (props) => {
   const theme = useTheme();
   return (
     <div {...stylex.props(styles.root(theme))}>
-      <Topbar />
+      <Topbar logo={<Logo />} />
       <div {...stylex.props(styles.article)}>{children}</div>
       <Footer />
     </div>

@@ -44,9 +44,9 @@ export const Space: React.FC<SpaceProps> = (props) => {
     <div
       {...stylex.props(styles.root(size), direction === "y" && styles.vertical)}
     >
-      {children.map((child) => {
-        return <div>{child}</div>;
-      })}
+      {React.Children.map(children, (child, index) => (
+        <div key={index}>{child}</div>
+      ))}
     </div>
   );
 };

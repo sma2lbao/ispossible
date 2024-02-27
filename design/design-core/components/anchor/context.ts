@@ -1,9 +1,9 @@
 import React from "react";
-import { AnchorNodeEventProps } from "./anchor";
+import { AnchorNodeBaseProps } from "./anchor-node";
 
 export interface AnchorContextProps {
   activeNodeId?: string;
-  handleClickNode?: (node: AnchorNodeEventProps) => void;
+  handleClickNode?: (node: AnchorNodeBaseProps) => void;
 }
 
 export const AnchorContext = React.createContext<AnchorContextProps | null>(

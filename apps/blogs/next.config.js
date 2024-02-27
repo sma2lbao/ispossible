@@ -10,9 +10,10 @@ module.exports = stylexPlugin({
   rootDir: __dirname,
 })({
   transpilePackages: ['@stylexjs/open-props'],
-   // Configure `pageExtensions` to include MDX files
-   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+  // Configure `pageExtensions` to include MDX files
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
    // Optionally, add any other Next.js config below
+  // output: "export"
 });
 
 

@@ -3,7 +3,7 @@ name: Blog Deploy
 on:
   push:
     branches: ["main"]
-    paths: ["apps/blog-web/**"]
+    paths: ["apps/blogs/**"]
 
 jobs:
   build-deploy:
@@ -30,7 +30,7 @@ jobs:
 
       - name: Build
         run: |
-          cd apps/blog-web
+          cd apps/blogs
           pnpm install
           pnpm run build --verbose
 
@@ -40,4 +40,4 @@ jobs:
         with:
           external_repository: sma2lbao/blog
           deploy_key: ${{ secrets.BLOG_DEPLOY_KEY }}
-          publish_dir: ./apps/blog-web/public
+          publish_dir: ./apps/blogs/public
