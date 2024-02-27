@@ -3,6 +3,8 @@
 import React from "react";
 import stylex from "@stylexjs/stylex";
 import { TreeContext } from "./context";
+import "@design/icon/caret-right";
+import "@design/icon/caret-bottom";
 
 export interface TreeNodeProps {
   id: string;
@@ -23,6 +25,7 @@ const styles = stylex.create({
 export const TreeNode: React.FC<TreeNodeProps> = (props) => {
   const context = React.useContext(TreeContext);
   const { id, label, children, deep = 0, className } = props;
+  const hasChildren = !!children?.length;
 
   const handleNodeClick = () => {
     if (!children?.length) return;
@@ -31,7 +34,18 @@ export const TreeNode: React.FC<TreeNodeProps> = (props) => {
 
   return (
     <div className={className} {...stylex.props(styles.root)}>
-      <div onClick={handleNodeClick}>{label}</div>
+      <div onClick={handleNodeClick}>
+        {hasChildren && (
+          <>
+            {context?.foldIds.includes(id) ? (
+              <is-caret-right />
+            ) : (
+              <is-caret-bottom />
+            )}
+          </>
+        )}
+        {label}
+      </div>
       {children?.map((item) => (
         <TreeNode
           {...stylex.props(context?.foldIds.includes(id) && styles.hidden)}

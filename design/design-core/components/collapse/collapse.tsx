@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import stylex from "@stylexjs/stylex";
+import "@design/icon/caret-right";
+import "@design/icon/caret-bottom";
 
 type ItemType = {
+  /**
+   * 唯一id
+   */
   id: string;
+  /**
+   * 面板头内容
+   */
   label: string;
   children: React.ReactNode;
 };
@@ -48,7 +56,14 @@ export const Collapse: React.FC<CollapseProps> = (props) => {
             {...stylex.props(styles.item)}
             onClick={() => handleItemClick(item.id)}
           >
-            <div>{item.label}</div>
+            <div>
+              {activeIds.includes(item.id) ? (
+                <is-caret-bottom />
+              ) : (
+                <is-caret-right />
+              )}{" "}
+              {item.label}
+            </div>
             <div
               {...stylex.props(
                 activeIds.includes(item.id) ? undefined : styles.hidden

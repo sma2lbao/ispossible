@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Tabs } from "@design/core";
 import { menus } from "@/mdxs/config";
 import ArticleList from "./_components/article-list";
+import Document from "./_layouts/document";
 
 export default function Home() {
   const [category, setCategory] = useState<string>("algorithm");
@@ -14,15 +15,17 @@ export default function Home() {
 
   return (
     <main>
-      <Tabs
-        activeId={category}
-        items={menus.map((item) => ({
-          id: item.dirname,
-          label: item.label,
-          children: <ArticleList category={category} />,
-        }))}
-        onChange={handleTabChange}
-      />
+      <Document>
+        <Tabs
+          activeId={category}
+          items={menus.map((item) => ({
+            id: item.dirname,
+            label: item.label,
+            children: <ArticleList key={item.dirname} category={category} />,
+          }))}
+          onChange={handleTabChange}
+        />
+      </Document>
     </main>
   );
 }

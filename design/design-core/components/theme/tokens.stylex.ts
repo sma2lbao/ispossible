@@ -14,18 +14,36 @@ export const spacing = stylex.defineVars({
 
 // 尺寸
 export const typography = stylex.defineVars({
-  basic: "14px",
   h1: "38px",
   h2: "30px",
   h3: "24px",
   h4: "20px",
   h5: "16px",
+  h6: "14px",
+  basic: "14px",
   small: "12px",
   medium: "16px",
   large: "20px",
+  xlarge: "24px",
+  xxlarge: "30px",
+  xxxlarge: "38px",
+});
+
+// 行高
+export const lineHeight = stylex.defineVars({
+  h1: "46px",
+  h2: "38px",
+  h3: "32px",
+  h4: "28px",
+  h5: "24px",
+  h6: "22px",
+  basic: "22px",
+  small: "20px",
+  medium: "24px",
+  large: "28px",
   xlarge: "32px",
-  xxlarge: "48px",
-  xxxlarge: "96px",
+  xxlarge: "38px",
+  xxxlarge: "46px",
 });
 
 // radius

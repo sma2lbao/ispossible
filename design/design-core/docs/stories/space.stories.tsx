@@ -2,6 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Space } from "../../components";
 
+/**
+ * 设置组件之间的间距。
+ */
 const meta = {
   title: "Space 间距",
   component: Space,
@@ -15,10 +18,22 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Demo: Story = {
+/**
+ * 相邻组件垂直间距。
+ */
+export const 垂直间距: Story = {
   args: {
     direction: "y",
+    children: ["测试0", "测试1", "测试2"],
+  },
+};
+
+/**
+ * 相邻组件水平间距。
+ */
+export const 水平间距: Story = {
+  args: {
+    direction: "x",
     children: ["测试0", "测试1", "测试2"],
   },
 };

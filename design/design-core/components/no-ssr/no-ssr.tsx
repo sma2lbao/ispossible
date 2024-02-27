@@ -3,15 +3,15 @@ import React from "react";
 
 export interface NoSsrProps {
   /**
-   *
+   * 子组件
    */
   children: React.ReactNode;
   /**
-   *
+   * 是否延迟 @default false
    */
   defer?: boolean;
   /**
-   *
+   * 占位内容 @default null
    */
   fallback?: React.ReactNode;
 }
