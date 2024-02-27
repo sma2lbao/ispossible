@@ -34,4 +34,4 @@ jobs:
         with:
           external_repository: sma2lbao/blog
           deploy_key: ${{ secrets.BLOG_DEPLOY_KEY }}
-          publish_dir: ./apps/blogs/.next
+          publish_dir: common/deploy

@@ -37,5 +37,12 @@
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "@types/unist": "~3.0.2"
-  }
+  },
+  "files": [
+    ".next",
+    "public",
+    "next.config.js",
+    "actions",
+    "mdxs"
+  ]
 }
