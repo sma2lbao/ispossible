@@ -46,18 +46,20 @@ const ArticleMdx: React.FC<ArticleMdxProps> = (props) => {
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeHighlight, rehypeSlug]}
-          children={source.content}
           components={{
             img(props) {
               const src = props.src as string;
               const alt = props.alt || "";
               if (!src) return null;
               return (
+                // eslint-disable-next-line @next/next/no-img-element
                 <img src={src} alt={alt} {...stylex.props(styles.image)} />
               );
             },
           }}
-        ></ReactMarkdown>
+        >
+          {source.content}
+        </ReactMarkdown>
       </div>
     </div>
   );

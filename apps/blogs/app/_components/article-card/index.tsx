@@ -56,7 +56,8 @@ const ArticleCard: React.FC<ArticleCardProps> = (props) => {
           ))}
         </Space>
       </div>
-      <img {...stylex.props(styles.image)} src={article.poster} />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img {...stylex.props(styles.image)} src={article.poster} alt="poster" />
     </div>
   );
 };
