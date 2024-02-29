@@ -25,6 +25,13 @@ export const readContent = (slugs: string[]) => {
 
 // 是否存在该mdx
 export const existFile = (slugs: string[]) => {
+  console.log(
+    "cwd: ",
+    readdirSync(join(process.cwd(), "."), {
+      recursive: false,
+      encoding: "utf-8",
+    })
+  );
   const filePath = join(
     process.cwd(),
     MDX_DIRNAME,
@@ -41,6 +48,13 @@ export interface ArticleMeta extends ArticleMatterProps {
 // 通过单个目录名获取该目录下的所有mdx文件的基础信息
 export const findArticleMetas = (dirname: string): ArticleMeta[] => {
   const result: ArticleMeta[] = [];
+  console.log(
+    "cwd1: ",
+    readdirSync(join(process.cwd(), "."), {
+      recursive: false,
+      encoding: "utf-8",
+    })
+  );
   const files = readdirSync(join(process.cwd(), MDX_DIRNAME, dirname), {
     recursive: false,
     encoding: "utf-8",
