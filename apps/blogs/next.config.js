@@ -9,11 +9,6 @@ const config = {
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
    // Optionally, add any other Next.js config below
   //  output: 'standalone',
-   experimental: {
-    outputFileTracingIncludes: {
-      '/articles': ['./mdxs/**/*']
-    }
-   }
 }
 
 module.exports = stylexPlugin({

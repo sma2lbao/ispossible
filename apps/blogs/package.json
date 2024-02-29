@@ -41,8 +41,6 @@
   "files": [
     ".next",
     "public",
-    "next.config.js",
-    "actions",
-    "mdxs"
+    "next.config.js"
   ]
 }

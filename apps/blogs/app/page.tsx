@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Tabs } from "@design/core";
-import { menus } from "@/mdxs/config";
+import { menus } from "@/static/config";
 import ArticleList from "./_components/article-list";
 import Document from "./_layouts/document";
 
