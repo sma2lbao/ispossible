@@ -43,6 +43,9 @@ export const findArticleMetas = (dirname: string): ArticleMeta[] => {
   const result: ArticleMeta[] = [];
   const dirnamePath = join(process.cwd(), MDX_DIRNAME, dirname);
   console.log("dirnamePath: ", dirnamePath);
+  console.log(
+    readdirSync(process.cwd(), { recursive: false, encoding: "utf-8" })
+  );
   if (!existsSync(dirnamePath)) {
     return result;
   }
