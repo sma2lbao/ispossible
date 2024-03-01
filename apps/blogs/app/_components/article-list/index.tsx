@@ -10,7 +10,7 @@ const ArticleList: React.FC<ArticleListPorps> = (props) => {
   const { category } = props;
   const [articles, setArticles] = useState<ArticleMeta[]>([]);
 
-  const findArticle = async () => {
+  useEffect(() => {
     fetch(`/api/articles?category=${category}`, {
       method: "GET",
       headers: {},
@@ -19,10 +19,6 @@ const ArticleList: React.FC<ArticleListPorps> = (props) => {
       .then((res) => {
         setArticles(res.data || []);
       });
-  };
-
-  useEffect(() => {
-    findArticle();
   }, [category]);
 
   return (
