@@ -13,11 +13,7 @@ export interface ArticleMatterProps {
 
 // 通过 slugs 获取原始内容
 export const readContent = (slugs: string[]) => {
-  const filePath = join(
-    process.cwd(),
-    MDX_DIRNAME,
-    `${slugs.join(sep)}${MDX_SUFFIX}`
-  );
+  const filePath = join(MDX_DIRNAME, `${slugs.join(sep)}${MDX_SUFFIX}`);
   return readFileSync(filePath, {
     encoding: "utf-8",
   });
@@ -25,18 +21,7 @@ export const readContent = (slugs: string[]) => {
 
 // 是否存在该mdx
 export const existFile = (slugs: string[]) => {
-  console.log(
-    "cwd: ",
-    readdirSync(join(process.cwd(), "."), {
-      recursive: false,
-      encoding: "utf-8",
-    })
-  );
-  const filePath = join(
-    process.cwd(),
-    MDX_DIRNAME,
-    `${slugs.join(sep)}${MDX_SUFFIX}`
-  );
+  const filePath = join(MDX_DIRNAME, `${slugs.join(sep)}${MDX_SUFFIX}`);
   return existsSync(filePath);
 };
 
@@ -48,20 +33,13 @@ export interface ArticleMeta extends ArticleMatterProps {
 // 通过单个目录名获取该目录下的所有mdx文件的基础信息
 export const findArticleMetas = (dirname: string): ArticleMeta[] => {
   const result: ArticleMeta[] = [];
-  console.log(
-    "cwd1: ",
-    readdirSync(join(process.cwd(), "."), {
-      recursive: false,
-      encoding: "utf-8",
-    })
-  );
-  const files = readdirSync(join(process.cwd(), MDX_DIRNAME, dirname), {
+  const files = readdirSync(join(MDX_DIRNAME, dirname), {
     recursive: false,
     encoding: "utf-8",
   }).filter((file) => file.endsWith(MDX_SUFFIX));
 
   files.forEach((file) => {
-    const filePath = join(process.cwd(), MDX_DIRNAME, dirname, file);
+    const filePath = join(MDX_DIRNAME, dirname, file);
     let fileName = basename(file, MDX_SUFFIX);
     const slug = `/articles/${dirname}/${fileName}`;
     const fileContent = readFileSync(filePath, {
