@@ -30,6 +30,7 @@ export const existFile = (slugs: string[]) => {
     MDX_DIRNAME,
     `${slugs.join(sep)}${MDX_SUFFIX}`
   );
+  console.log("filePath: ", filePath);
   return existsSync(filePath);
 };
 
