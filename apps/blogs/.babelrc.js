@@ -8,7 +8,7 @@ module.exports = {
         dev: process.env.NODE_ENV === 'development',
         runtimeInjection: false,
         genConditionalClasses: true,
-        treeshakeCompensation: false,
+        treeshakeCompensation: true,
         aliases: {
           '@/*': [path.join(__dirname, '*')],
         },
