@@ -9,8 +9,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="zh-CN">
-      <body>{children}</body>
+    <html lang="zh-CN" style={{ height: "100%" }}>
+      <body style={{ height: "100%" }}>{children}</body>
     </html>
   );
 }

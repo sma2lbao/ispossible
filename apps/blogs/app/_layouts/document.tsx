@@ -12,7 +12,13 @@ export interface DocumentProps {
 const styles = stylex.create({
   root: (theme: Theme) => ({
     backgroundColor: theme.colors.background,
+    minHeight: "100%",
+    display: "flex",
+    flexDirection: "column",
   }),
+  body: {
+    flex: 1,
+  },
   article: {
     backgroundColor: "#fff",
     maxWidth: 900,
@@ -26,11 +32,13 @@ const Document: React.FC<DocumentProps> = (props) => {
   const { children } = props;
   const theme = useTheme();
   return (
-    <div {...stylex.props(styles.root(theme))}>
+    <main {...stylex.props(styles.root(theme))}>
       <Topbar logo={<Logo />} />
-      <div {...stylex.props(styles.article)}>{children}</div>
+      <div {...stylex.props(styles.body)}>
+        <div {...stylex.props(styles.article)}>{children}</div>
+      </div>
       <Footer />
-    </div>
+    </main>
   );
 };
 
