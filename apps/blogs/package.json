@@ -27,7 +27,8 @@
     "mdast-util-to-string": "~4.0.0",
     "github-slugger": "~2.0.0",
     "@stylexjs/nextjs-plugin": "~0.5.1",
-    "@stylexjs/babel-plugin": "~0.5.1"
+    "@stylexjs/babel-plugin": "~0.5.1",
+    "@stylexjs/eslint-plugin": "~0.5.1"
   },
   "devDependencies": {
     "typescript": "^5",

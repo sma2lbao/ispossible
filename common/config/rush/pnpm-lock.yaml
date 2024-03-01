@@ -11,6 +11,7 @@ importers:
       '@design/icon': workspace:*
       '@design/pro': workspace:*
       '@stylexjs/babel-plugin': ~0.5.1
+      '@stylexjs/eslint-plugin': ~0.5.1
       '@stylexjs/nextjs-plugin': ~0.5.1
       '@stylexjs/stylex': ~0.5.1
       '@types/node': ^20
@@ -38,6 +39,7 @@ importers:
       '@design/icon': link:../../design/design-icon
       '@design/pro': link:../../design/design-pro
       '@stylexjs/babel-plugin': 0.5.1
+      '@stylexjs/eslint-plugin': 0.5.1
       '@stylexjs/nextjs-plugin': 0.5.1_next@14.1.1
       '@stylexjs/stylex': 0.5.1
       github-slugger: 2.0.0
@@ -4274,6 +4276,12 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
+  /@stylexjs/eslint-plugin/0.5.1:
+    resolution: {integrity: sha512-bt5lZZAgOqscmF09wXyNNV7K2dkLgqY8mTabezf0NMkPmm4BvYuKij+aMo41Z56AdA2WX4NyCb6GaVUwihvmRQ==}
+    dependencies:
+      micromatch: 4.0.5
+    dev: false
+
   /@stylexjs/nextjs-plugin/0.5.1_next@14.1.1:
     resolution: {integrity: sha512-94fV3OmI5ZZUCiyJiPh8/03uujQBowzNtNTanGI0bPYI1TXueBCRXrsKjv9YwDedItVu66UWA1ynydC8IYot/g==}
     peerDependencies:
@@ -5664,7 +5672,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       fill-range: 7.0.1
-    dev: true
 
   /browser-assert/1.2.1:
     resolution: {integrity: sha512-nfulgvOR6S4gt9UKCeGJOuSGBPGiFT6oQ/2UBnvTY/5aQ1PnksW72fhZkM30DzoRRv2WpwZf1vHHEr3mtuXIWQ==}
@@ -7228,7 +7235,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       to-regex-range: 5.0.1
-    dev: true
 
   /finalhandler/1.2.0:
     resolution: {integrity: sha512-5uXcUVftlQMFnWC9qu/svkWv3GTd2PfUhK/3PLkYNAe7FbqJMt3515HaxE6eRL74GdsriiwujiawdaB1BpEISg==}
@@ -8117,7 +8123,6 @@ packages:
   /is-number/7.0.0:
     resolution: {integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==}
     engines: {node: '>=0.12.0'}
-    dev: true
 
   /is-path-cwd/2.2.0:
     resolution: {integrity: sha512-w942bTcih8fdJPJmQHFzkS76NEP8Kzzvmw92cXsazb8intwLqPibPPdXf4ANdKV3rYMuuQYGIWtvz9JilB3NFQ==}
@@ -9579,7 +9584,6 @@ packages:
     dependencies:
       braces: 3.0.2
       picomatch: 2.3.1
-    dev: true
 
   /mime-db/1.52.0:
     resolution: {integrity: sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==}
@@ -10175,7 +10179,6 @@ packages:
   /picomatch/2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
-    dev: true
 
   /picomatch/3.0.1:
     resolution: {integrity: sha512-I3EurrIQMlRc9IaAZnqRR044Phh2DXY+55o7uJ0V+hYZAcQYSuFWsc9q5PvyDHUSCe1Qxn/iBz+78s86zWnGag==}
@@ -11666,7 +11669,6 @@ packages:
     engines: {node: '>=8.0'}
     dependencies:
       is-number: 7.0.0
-    dev: true
 
   /tocbot/4.25.0:
     resolution: {integrity: sha512-kE5wyCQJ40hqUaRVkyQ4z5+4juzYsv/eK+aqD97N62YH0TxFhzJvo22RUQQZdO3YnXAk42ZOfOpjVdy+Z0YokA==}
