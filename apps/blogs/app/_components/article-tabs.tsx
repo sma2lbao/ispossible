@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import { Tabs } from "@design/core";
 import { menus } from "@/config/articles";
-import ArticleList from "../article-list";
+import ArticleList from "./article-list";
+import { useCategory } from "./category-context";
 
 const ArticleTabs = () => {
-  const [category, setCategory] = useState<string>("algorithm");
+  const [category, setCategory] = useCategory();
   const handleTabChange = (dirname: string) => {
     setCategory(dirname);
   };

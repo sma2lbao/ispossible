@@ -1,6 +1,6 @@
 import { ArticleMeta } from "@/shared/parse-article";
 import React, { useEffect, useState } from "react";
-import ArticleCard from "../article-card";
+import ArticleCard from "./article-card";
 
 export interface ArticleListPorps {
   category: string;

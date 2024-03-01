@@ -1,4 +1,5 @@
 import "normalize.css";
+import { CategoryProvider } from "./_components/category-context";
 
 export const metadata = {
   title: "Blog",
@@ -12,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN" style={{ height: "100%" }}>
-      <body style={{ height: "100%" }}>{children}</body>
+      <body style={{ height: "100%" }}>
+        <CategoryProvider>{children}</CategoryProvider>
+      </body>
     </html>
   );
 }
