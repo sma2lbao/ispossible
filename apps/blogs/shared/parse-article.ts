@@ -41,7 +41,12 @@ export interface ArticleMeta extends ArticleMatterProps {
 // 通过单个目录名获取该目录下的所有mdx文件的基础信息
 export const findArticleMetas = (dirname: string): ArticleMeta[] => {
   const result: ArticleMeta[] = [];
-  const files = readdirSync(join(process.cwd(), MDX_DIRNAME, dirname), {
+  const dirnamePath = join(process.cwd(), MDX_DIRNAME, dirname);
+  console.log("dirnamePath: ", dirnamePath);
+  if (!existsSync(dirnamePath)) {
+    return result;
+  }
+  const files = readdirSync(dirnamePath, {
     recursive: false,
     encoding: "utf-8",
   }).filter((file) => file.endsWith(MDX_SUFFIX));
