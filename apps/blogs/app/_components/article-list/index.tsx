@@ -1,4 +1,3 @@
-import findArticle from "@/actions/find-articles";
 import { ArticleMeta } from "@/shared/parse-article";
 import React, { useEffect, useState } from "react";
 import ArticleCard from "../article-card";
@@ -11,10 +10,19 @@ const ArticleList: React.FC<ArticleListPorps> = (props) => {
   const { category } = props;
   const [articles, setArticles] = useState<ArticleMeta[]>([]);
 
+  const findArticle = async () => {
+    fetch(`/api/articles?category=${category}`, {
+      method: "GET",
+      headers: {},
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setArticles(res.data || []);
+      });
+  };
+
   useEffect(() => {
-    findArticle(category).then((result) => {
-      setArticles(result);
-    });
+    findArticle();
   }, [category]);
 
   return (

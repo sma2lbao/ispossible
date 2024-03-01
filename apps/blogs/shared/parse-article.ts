@@ -30,13 +30,6 @@ export const existFile = (slugs: string[]) => {
     MDX_DIRNAME,
     `${slugs.join(sep)}${MDX_SUFFIX}`
   );
-  console.log("filePath: ", filePath);
-  console.log(
-    readdirSync(process.cwd(), {
-      recursive: false,
-      encoding: "utf-8",
-    })
-  );
   return existsSync(filePath);
 };
 
@@ -49,13 +42,6 @@ export interface ArticleMeta extends ArticleMatterProps {
 export const findArticleMetas = (dirname: string): ArticleMeta[] => {
   const result: ArticleMeta[] = [];
   const dirnamePath = join(process.cwd(), MDX_DIRNAME, dirname);
-  console.log("dirnamePath: ", dirnamePath);
-  console.log(
-    readdirSync(process.cwd(), {
-      recursive: false,
-      encoding: "utf-8",
-    })
-  );
   if (!existsSync(dirnamePath)) {
     return result;
   }

@@ -42,6 +42,7 @@
   "files": [
     ".next",
     "public",
+    "articles",
     "next.config.js"
   ]
 }
