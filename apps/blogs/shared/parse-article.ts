@@ -1,4 +1,4 @@
-import { basename, join, sep } from "path";
+import { basename, join, sep, resolve } from "path";
 import { MDX_DIRNAME, MDX_SUFFIX } from "../constants";
 import { existsSync, readFileSync, readdirSync } from "fs";
 import matter from "gray-matter";
@@ -42,11 +42,8 @@ export interface ArticleMeta extends ArticleMatterProps {
 // 通过单个目录名获取该目录下的所有mdx文件的基础信息
 export const findArticleMetas = (dirname: string): ArticleMeta[] => {
   const result: ArticleMeta[] = [];
-  const dirnamePath = join(process.cwd(), MDX_DIRNAME, dirname);
+  const dirnamePath = resolve(process.cwd(), MDX_DIRNAME, dirname);
   console.log("dirnamePath: ", dirnamePath);
-  console.log(
-    readdirSync(process.cwd(), { recursive: false, encoding: "utf-8" })
-  );
   if (!existsSync(dirnamePath)) {
     return result;
   }
