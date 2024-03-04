@@ -22,10 +22,9 @@ type Story = StoryObj<typeof meta>;
 /**
  * 基本标签的用法
  */
-export const 有边框: Story = {
+export const 基本: Story = {
   args: {
     children: "标签",
-    bordered: true,
     icon: <is-home />,
   },
 };

@@ -1,10 +1,17 @@
-import { ArticleMeta } from "@/shared/parse-article";
+import { type ArticleMeta } from "@/shared/parse-article";
 import React, { useEffect, useState } from "react";
+import stylex from "@stylexjs/stylex";
 import ArticleCard from "./article-card";
 
 export interface ArticleListPorps {
   category: string;
 }
+
+const styles = stylex.create({
+  card: {
+    marginBottom: 0,
+  },
+});
 
 const ArticleList: React.FC<ArticleListPorps> = (props) => {
   const { category } = props;
@@ -24,7 +31,9 @@ const ArticleList: React.FC<ArticleListPorps> = (props) => {
   return (
     <div>
       {articles.map((item) => {
-        return <ArticleCard article={item} key={item.slug} />;
+        return (
+          <ArticleCard article={item} key={item.slug} style={styles.card} />
+        );
       })}
     </div>
   );

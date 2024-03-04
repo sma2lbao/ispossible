@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AnchorContext } from "./context";
 import stylex from "@stylexjs/stylex";
-import { colors } from "../theme/tokens.stylex";
+import { colors, lineHeight, typography } from "../theme/tokens.stylex";
 
 export interface AnchorNodeBaseProps {
   id: string;
@@ -20,9 +20,17 @@ export interface AnchorNodeProps extends AnchorNodeBaseProps {
 }
 
 const styles = stylex.create({
-  root: {},
+  root: {
+    paddingLeft: 8,
+    fontSize: typography.basic,
+    lineHeight: lineHeight.basic,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+  },
   a: {
     color: colors.text,
+    textDecoration: "none",
   },
   active: {
     color: colors.primary,
@@ -44,7 +52,7 @@ export const AnchorNode: React.FC<AnchorNodeProps> = (props) => {
   };
 
   return (
-    <div>
+    <div {...stylex.props(styles.root)}>
       <a
         href={href}
         title={label}

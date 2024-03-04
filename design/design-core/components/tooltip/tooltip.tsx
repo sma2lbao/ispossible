@@ -6,7 +6,7 @@ import React, {
   useEffect,
 } from "react";
 import { createPortal } from "react-dom";
-import stylex from "@stylexjs/stylex";
+import stylex, { StyleXStyles } from "@stylexjs/stylex";
 import { isFunction } from "../../shared";
 import "@design/icon/caret-left";
 import "@design/icon/caret-right";
@@ -43,13 +43,9 @@ export interface TooltipProps {
    */
   arrow?: boolean;
   /**
-   * 卡片样式
+   * 卡片样式 (使用StyleX)
    */
-  popupStyle?: React.CSSProperties;
-  /**
-   * 卡片类名
-   */
-  popupClassName?: string;
+  popupStyle?: StyleXStyles;
   /**
    * 背景颜色
    */
@@ -141,8 +137,7 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     placement = "right",
     visible = false,
     arrow = true,
-    popupStyle = {},
-    popupClassName,
+    popupStyle,
     backgroundColor = "#000",
     color = "#fff",
   } = props;
@@ -251,9 +246,12 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
       <div
         onMouseEnter={() => openPopup()}
         onMouseLeave={() => closePopup()}
-        style={{ ...style, backgroundColor, color, ...popupStyle }}
-        className={popupClassName}
-        {...stylex.props(styles.root, !visibleInner && styles.hidden)}
+        style={{ ...style, backgroundColor, color }}
+        {...stylex.props(
+          styles.root,
+          !visibleInner && styles.hidden,
+          popupStyle
+        )}
       >
         {arrow && (
           <span

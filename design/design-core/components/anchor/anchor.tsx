@@ -1,7 +1,8 @@
-import React, { useLayoutEffect, useMemo, useState } from "react";
-import stylex from "@stylexjs/stylex";
+import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
+import stylex, { type StyleXStyles } from "@stylexjs/stylex";
 import { AnchorNode, type AnchorNodeBaseProps } from "./anchor-node";
 import { AnchorContext } from "./context";
+import { radiusSizes, spacing } from "../theme/tokens.stylex";
 
 export interface AnchorProps {
   /**
@@ -18,6 +19,11 @@ export interface AnchorProps {
    * 指定滚动的容器
    */
   container?: HTMLElement;
+
+  /**
+   * 锚点样式（StyleXStyles）
+   */
+  style?: StyleXStyles;
 }
 
 type FlatItem = {
@@ -26,14 +32,19 @@ type FlatItem = {
 };
 
 const styles = stylex.create({
-  root: {},
+  root: {
+    backgroundColor: "#fff",
+    padding: spacing.basic,
+    borderRadius: radiusSizes.basic,
+  },
 });
 
 const idMatcherRegex = /#([\S]+)$/;
 
 export const Anchor: React.FC<AnchorProps> = (props) => {
-  const { items, offsetTop = 0, container = window } = props;
+  const { items, offsetTop = 0, container = window, style } = props;
   const [activeNodeId, setActiveNodeId] = useState<string>();
+  const scroolByEventFlag = useRef<boolean>(false);
 
   function toIds(items: AnchorProps["items"]): FlatItem[] {
     return items.reduce<FlatItem[]>((previous, current) => {
@@ -56,6 +67,7 @@ export const Anchor: React.FC<AnchorProps> = (props) => {
 
   const handleClickNode = (node: AnchorNodeBaseProps) => {
     if (activeNodeId === node.id) return;
+    scroolByEventFlag.current = true;
     setActiveNodeId(node.id);
     const nextEleId = flatItems.find((item) => item.id === node.id)?.eleId;
     if (!nextEleId) return;
@@ -67,16 +79,20 @@ export const Anchor: React.FC<AnchorProps> = (props) => {
     }
   };
 
-  const handleScroll = () => {
+  const handleScroll: EventListenerOrEventListenerObject = () => {
+    if (scroolByEventFlag.current) {
+      scroolByEventFlag.current = false;
+      return;
+    }
     let closestTop: number | undefined;
     let closestId: string | undefined;
     flatItems.forEach(({ id, eleId }) => {
       const element = document.getElementById(eleId);
       const rect = element?.getBoundingClientRect();
-      if (rect?.top != null && offsetTop >= rect?.top) {
+      if (rect?.top != null && offsetTop <= rect?.top) {
         // 满足达到offset条件的(即top已经在窗口上方)
-        // 找到最靠近阈值的（top值越大越接近）
-        if (closestTop === undefined || rect.top > closestTop) {
+        // 找到最靠近阈值的（top值越小越接近）
+        if (closestTop === undefined || rect.top < closestTop) {
           closestId = id;
           closestTop = rect.top;
         }
@@ -95,7 +111,7 @@ export const Anchor: React.FC<AnchorProps> = (props) => {
   }, []);
 
   return (
-    <div {...stylex.props(styles.root)}>
+    <div {...stylex.props(styles.root, style)}>
       <AnchorContext.Provider value={{ activeNodeId, handleClickNode }}>
         {items.map((item) => {
           return <AnchorNode key={item.id} {...item} deep={0} />;
