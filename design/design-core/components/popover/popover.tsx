@@ -4,8 +4,7 @@ import { Tooltip, type TootipPlacement } from "../tooltip";
 
 const styles = stylex.create({
   custom: {
-    color: "#333",
-    backgroundColor: "#fff",
+    padding: 4,
   },
 });
 
@@ -25,7 +24,7 @@ export const Popover: React.FC<PopoverProps> = (props) => {
       arrow
       color="#333"
       backgroundColor="#fff"
-      popupStyle={{ padding: 4 }}
+      popupStyle={styles.custom}
     >
       {children}
     </Tooltip>
