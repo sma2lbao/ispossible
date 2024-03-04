@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import stylex from "@stylexjs/stylex";
+import stylex, { type StyleXStyles } from "@stylexjs/stylex";
 import { TreeContext } from "./context";
 import "@design/icon/caret-right";
 import "@design/icon/caret-bottom";
@@ -11,7 +11,7 @@ export interface TreeNodeProps {
   label: string;
   parentId?: string;
   deep?: number;
-  className?: string;
+  style?: StyleXStyles;
   children?: TreeNodeProps[];
 }
 
@@ -24,7 +24,7 @@ const styles = stylex.create({
 
 export const TreeNode: React.FC<TreeNodeProps> = (props) => {
   const context = React.useContext(TreeContext);
-  const { id, label, children, deep = 0, className } = props;
+  const { id, label, children, deep = 0, style } = props;
   const hasChildren = !!children?.length;
 
   const handleNodeClick = () => {
@@ -33,7 +33,7 @@ export const TreeNode: React.FC<TreeNodeProps> = (props) => {
   };
 
   return (
-    <div className={className} {...stylex.props(styles.root)}>
+    <div {...stylex.props(styles.root, style)}>
       <div onClick={handleNodeClick}>
         {hasChildren && (
           <>

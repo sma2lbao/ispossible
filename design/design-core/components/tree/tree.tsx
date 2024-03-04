@@ -6,7 +6,7 @@ export interface TreeProps {
   /**
    * treeNodes 数据
    */
-  items: Omit<TreeNodeProps, "parentId" | "deep" | "className">[];
+  items: Omit<TreeNodeProps, "parentId" | "deep">[];
 }
 
 export const Tree: React.FC<TreeProps> = (props) => {

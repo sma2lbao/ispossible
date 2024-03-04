@@ -24,10 +24,10 @@ interface TagProps {
 }
 
 const styles = stylex.create({
-  base: (color: string) => ({
+  base: (color?: string) => ({
     fontSize: typography.basic,
     color: colors.textInverse,
-    backgroundColor: color,
+    backgroundColor: color ?? colors.text3rd,
     borderColor: color,
     borderWidth: 1,
     borderStyle: "solid",
@@ -37,10 +37,12 @@ const styles = stylex.create({
     paddingLeft: spacing.basic,
     paddingRight: spacing.basic,
     borderRadius: radiusSizes.small,
+    overflow: "hidden",
+    display: "inline-flex",
   }),
-  bordered: (borderColor: string) => ({
-    color: borderColor,
-    borderColor: borderColor,
+  bordered: (borderColor?: string) => ({
+    color: borderColor ?? colors.text3rd,
+    borderColor: borderColor ?? colors.text3rd,
     backgroundColor: "transparent",
   }),
   icon: {
@@ -52,7 +54,7 @@ const styles = stylex.create({
 });
 
 export const Tag: React.FC<TagProps> = (props) => {
-  const { children, color = "red", bordered, icon } = props;
+  const { children, color, bordered = true, icon } = props;
 
   const isOnlyIcon = !!icon && !children;
 

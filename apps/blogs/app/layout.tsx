@@ -1,5 +1,6 @@
-import "normalize.css";
 import { CategoryProvider } from "./_components/category-context";
+import "normalize.css";
+import "./_styles/global.css";
 
 export const metadata = {
   title: "Blog",
@@ -12,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="zh-CN" style={{ height: "100%" }}>
-      <body style={{ height: "100%" }}>
+    <html lang="zh-CN">
+      <body>
         <CategoryProvider>{children}</CategoryProvider>
       </body>
     </html>

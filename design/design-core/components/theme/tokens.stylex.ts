@@ -10,7 +10,7 @@ export const spacing = stylex.defineVars({
   xlarge: "32px",
   xxlarge: "48px",
   xxxlarge: "96px",
-});
+} as const);
 
 // 尺寸
 export const typography = stylex.defineVars({
@@ -27,7 +27,7 @@ export const typography = stylex.defineVars({
   xlarge: "24px",
   xxlarge: "30px",
   xxxlarge: "38px",
-});
+} as const);
 
 // 行高
 export const lineHeight = stylex.defineVars({
@@ -44,7 +44,7 @@ export const lineHeight = stylex.defineVars({
   xlarge: "32px",
   xxlarge: "38px",
   xxxlarge: "46px",
-});
+} as const);
 
 // radius
 export const radiusSizes = stylex.defineVars({
@@ -55,7 +55,7 @@ export const radiusSizes = stylex.defineVars({
   xlarge: "10px",
   xxlarge: "16px",
   xxxlarge: "20px",
-});
+} as const);
 
 // 配色
 export const colors = stylex.defineVars({
@@ -68,6 +68,8 @@ export const colors = stylex.defineVars({
   link: "blue",
   text: "#333",
   textInverse: "#fff",
+  text2nd: "#666",
+  text3rd: "#999",
   background: {
     default: "#f6f6f6",
   },
@@ -75,4 +77,4 @@ export const colors = stylex.defineVars({
     default: "#000",
   },
   border: "#ddd",
-});
+} as const);

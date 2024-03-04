@@ -1,5 +1,5 @@
 import React from "react";
-import stylex from "@stylexjs/stylex";
+import stylex, { type StyleXStyles } from "@stylexjs/stylex";
 
 export interface SpaceProps {
   children: React.ReactNode;
@@ -15,6 +15,8 @@ export interface SpaceProps {
    * 间距方向
    */
   direction?: "x" | "y";
+
+  style?: StyleXStyles;
 }
 
 const styles = stylex.create({
@@ -32,17 +34,21 @@ const styles = stylex.create({
 });
 
 export const Space: React.FC<SpaceProps> = (props) => {
-  const { children, separator = "|", size = 8, direction = "x" } = props;
+  const { children, style, separator = "|", size = 8, direction = "x" } = props;
 
   const isArray = Array.isArray(children);
 
   if (!isArray) {
-    return <>{children}</>;
+    return children;
   }
 
   return (
     <div
-      {...stylex.props(styles.root(size), direction === "y" && styles.vertical)}
+      {...stylex.props(
+        styles.root(size),
+        direction === "y" && styles.vertical,
+        style
+      )}
     >
       {React.Children.map(children, (child, index) => (
         <div key={index}>{child}</div>

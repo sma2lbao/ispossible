@@ -1,22 +1,18 @@
 import React from "react";
-import stylex from "@stylexjs/stylex";
+import stylex, { type StyleXStyles } from "@stylexjs/stylex";
 import { colors, lineHeight, typography } from "../theme/tokens.stylex";
 
 export interface TypographyProps {
   children?: React.ReactNode;
   /**
    * 原生标签
-   * @default span
+   * @default "div"
    */
   tagName?: React.ElementType;
   /**
-   * class 名称
-   */
-  className?: string;
-  /**
    * 样式
    */
-  style?: React.CSSProperties;
+  style?: StyleXStyles;
   /**
    * 文本类型
    */
@@ -36,6 +32,7 @@ const styles = stylex.create({
     color: colors[type || "text"],
     fontSize: typography.basic,
     lineHeight: lineHeight.basic,
+    margin: 0,
   }),
   link: {
     cursor: "pointer",
@@ -68,20 +65,19 @@ const styles = stylex.create({
 });
 
 export const Typography: React.FC<TypographyProps> = (props) => {
-  const { children, tagName, type, style, className, link = false } = props;
-  const Tag = tagName ?? "span";
+  const { children, tagName, type, style, link = false } = props;
+  const Tag = tagName ?? "div";
   const headings = ["h1", "h2", "h3", "h4", "h5", "h6"];
   const tagValue = Tag.toString();
   const isHeadings = headings.includes(tagValue);
 
   return (
     <Tag
-      className={className}
-      style={style}
       {...stylex.props(
         styles.root(type),
         isHeadings && styles[tagValue as HeadingType],
-        link && styles.link
+        link && styles.link,
+        style
       )}
     >
       {children}
