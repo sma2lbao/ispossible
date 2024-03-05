@@ -370,6 +370,13 @@
       ]
     },
     {
+      "packageName": "@design/docs",
+      "projectFolder": "design/design-docs",
+      "tags": [
+        "design"
+      ]
+    },
+    {
       "packageName": "@libs/react-hooks",
       "projectFolder": "libs/react-hooks",
       "tags": [
