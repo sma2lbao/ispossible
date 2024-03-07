@@ -17,7 +17,8 @@ export interface DividerProps {
 }
 
 const styles = stylex.create({
-  root: {
+  base: {},
+  horizontal: {
     display: "flex",
     clear: "both",
     width: "100%",
@@ -30,5 +31,15 @@ const styles = stylex.create({
 export const Divider: React.FC<DividerProps> = (props) => {
   const { direction = "x", children } = props;
 
-  return <div {...stylex.props(styles.root)}>{children}</div>;
+  return (
+    <div
+      {...stylex.props(
+        styles.base,
+        direction === "x" && styles.horizontal,
+        direction === "y" && styles.vertical
+      )}
+    >
+      {children}
+    </div>
+  );
 };
