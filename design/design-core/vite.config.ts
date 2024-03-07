@@ -12,6 +12,7 @@ export default defineConfig({
       ],
     ]),
   ],
+  logLevel: "silent",
 });
 // bug: https://github.com/vitejs/vite/issues/15012
 function muteWarningsPlugin(warningsToIgnore: string[][]): Plugin {
@@ -47,10 +48,10 @@ function muteWarningsPlugin(warningsToIgnore: string[][]): Plugin {
     closeBundle() {
       const diff = warningsToIgnore.filter((x) => !mutedMessages.has(x.join()));
       if (diff.length > 0) {
-        this.warn(
+        this.debug(
           "Some of your muted warnings never appeared during the build process:"
         );
-        diff.forEach((m) => this.warn(`- ${m.join(": ")}`));
+        diff.forEach((m) => this.debug(`- ${m.join(": ")}`));
       }
     },
   };
