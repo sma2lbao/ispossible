@@ -6,12 +6,12 @@ export interface DividerProps {
    * 水平还是垂直类型
    * @default "x"
    */
-  direction: "x" | "y";
+  direction?: "x" | "y";
 
   /**
    * 分割线样式对象
    */
-  style: StyleXStyles;
+  style?: StyleXStyles;
 
   children?: React.ReactNode;
 }
