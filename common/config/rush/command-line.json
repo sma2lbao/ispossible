@@ -27,7 +27,8 @@
       "name": "build-storybook",
       "summary": "build storybook",
       "description": "build storybook",
-      "enableParallelism": true
+      "enableParallelism": true,
+      "allowWarningsInSuccessfulBuild": true
     },
     {
       "name": "commitlint",
