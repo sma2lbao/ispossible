@@ -11,6 +11,18 @@
    */
   "commands": [
     {
+      //this command is to override the existing build command to allow warnings in the build
+      "commandKind": "bulk",
+      "name": "build",
+      "summary": "Build",
+      "description": "This command will build projects",
+      "safeForSimultaneousRushProcesses": false,
+      "enableParallelism": true,
+      "ignoreDependencyOrder": false,
+      "ignoreMissingScript": true,
+      "allowWarningsInSuccessfulBuild": true
+    },
+    {
       "commandKind": "bulk",
       "name": "build-storybook",
       "summary": "build storybook",
