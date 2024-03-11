@@ -35,7 +35,7 @@ const config: StorybookConfig = {
     return mergeConfig(config, {
       // bug: https://github.com/rollup/rollup/issues/4699
       build: {
-        chunkSizeWarningLimit: 100,
+        chunkSizeWarningLimit: 1000,
         rollupOptions: {
           onwarn(warning, warn) {
             if (warning.code === "MODULE_LEVEL_DIRECTIVE") {
