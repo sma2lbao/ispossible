@@ -1,7 +1,7 @@
 import Document from "@/app/_layouts/document";
 import StoryContainer from "@/app/_components/story-container";
-import findStories from "@/actions/find-stories";
 import { notFound } from "next/navigation";
+import { stories } from "@/config";
 
 export default async function ArticlePage({
   params,
@@ -9,7 +9,6 @@ export default async function ArticlePage({
   params: { slug: string };
 }) {
   const { slug } = params;
-  const stories = await findStories();
 
   if (!stories.find((item) => item.id === decodeURIComponent(slug))) {
     return notFound();

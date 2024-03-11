@@ -3,13 +3,15 @@
 import React from "react";
 import stylex from "@stylexjs/stylex";
 import { useRouter } from "next/navigation";
-import { type StoriesDocument } from "@/actions/find-stories";
 import { Menu } from "@design/core";
 import { STORYBOOK_IFRAME_URL } from "@/constants";
 
 export interface StoryContainerProps {
   slug: string;
-  stories: StoriesDocument[];
+  stories: {
+    id: string;
+    title: string;
+  }[];
 }
 
 const styles = stylex.create({
@@ -25,10 +27,14 @@ const styles = stylex.create({
     width: 280,
     borderRight: "1px solid #eee",
   },
-  iframe: {
+  wrap: {
     flex: 1,
     height: "100%",
+  },
+  iframe: {
+    height: "100%",
     border: 0,
+    width: "100%",
   },
 });
 
@@ -45,15 +51,17 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
     <div {...stylex.props(styles.root)}>
       <div {...stylex.props(styles.nav)}>
         <Menu
-          items={stories.map((item) => ({ id: item.id, label: item.kind }))}
+          items={stories.map((item) => ({ id: item.id, label: item.title }))}
           onSelect={handleSelect}
         />
       </div>
-      <iframe
-        {...stylex.props(styles.iframe)}
-        title="Packages Document"
-        src={`${STORYBOOK_IFRAME_URL}?id=${slug}`}
-      />
+      <div {...stylex.props(styles.wrap)}>
+        <iframe
+          {...stylex.props(styles.iframe)}
+          title="Packages Document"
+          src={`${STORYBOOK_IFRAME_URL}?viewMode=docs&id=${slug}`}
+        />
+      </div>
     </div>
   );
 };

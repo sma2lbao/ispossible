@@ -40,7 +40,7 @@ const Document: React.FC<DocumentProps> = (props) => {
     {
       label: "组件",
       id: "packages",
-      path: "/packages/主页--docs",
+      path: "/packages/button-按钮--docs",
     },
   ];
 

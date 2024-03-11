@@ -1,0 +1,18 @@
+export const stories = [
+  { id: "button-按钮--docs", title: "Button 按钮" },
+  { id: "affix-固钉--docs", title: "Affix 固钉" },
+  { id: "anchor-锚点--docs", title: "Anchor 锚点" },
+  { id: "avatar-头像--docs", title: "Avatar 头像" },
+  { id: "collapse-折叠面板--docs", title: "Collapse 折叠面板" },
+  { id: "divider-分隔线--docs", title: "Divider 分隔线" },
+  { id: "link-链接--docs", title: "Link 链接" },
+  { id: "menu-导航菜单--docs", title: "Menu 导航菜单" },
+  { id: "popover-气泡卡片--docs", title: "Popover 气泡卡片" },
+  { id: "space-间距--docs", title: "Space 间距" },
+  { id: "tabs-标签页--docs", title: "Tabs 标签页" },
+  { id: "tag-标签--docs", title: "Tag 标签" },
+  { id: "tooltip-文字提示--docs", title: "Tooltip 文字提示" },
+  { id: "tree-树形控件--docs", title: "Tree 树形控件" },
+  { id: "typography-排版--docs", title: "Typography 排版" },
+  { id: "watermark-水印--docs", title: "Watermark 水印" },
+];
