@@ -23,6 +23,11 @@ export interface TypographyProps {
    * @default false
    */
   link?: boolean;
+
+  /**
+   * 链接地址时有效
+   */
+  href?: string;
 }
 
 type HeadingType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
@@ -65,8 +70,8 @@ const styles = stylex.create({
 });
 
 export const Typography: React.FC<TypographyProps> = (props) => {
-  const { children, tagName, type, style, link = false } = props;
-  const Tag = tagName ?? "div";
+  const { children, tagName, type, style, link = false, href } = props;
+  const Tag = link ? "a" : tagName ?? "div";
   const headings = ["h1", "h2", "h3", "h4", "h5", "h6"];
   const tagValue = Tag.toString();
   const isHeadings = headings.includes(tagValue);
@@ -79,6 +84,7 @@ export const Typography: React.FC<TypographyProps> = (props) => {
         link && styles.link,
         style
       )}
+      href={href}
     >
       {children}
     </Tag>
