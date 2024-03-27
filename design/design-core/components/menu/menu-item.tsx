@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import stylex from "@stylexjs/stylex";
 import { colors } from "../theme/tokens.stylex";
 import { MenuContext } from "./context";

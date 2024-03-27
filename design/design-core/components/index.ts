@@ -17,3 +17,6 @@ export { Tabs } from "./tabs";
 export { Link } from "./link";
 export { Affix } from "./affix";
 export { Divider } from "./divider";
+export { Input, Textarea } from "./input";
+export { Switch } from "./switch";
+export { Checkbox } from "./checkbox";

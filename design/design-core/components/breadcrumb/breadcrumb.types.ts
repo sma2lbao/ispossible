@@ -1,8 +1,16 @@
 export interface BreadCrumbItem {
-  title: string;
+  /**
+   * 文本
+   */
+  title: string | React.ReactNode;
+  /**
+   * 跳转路径
+   */
   path?: string;
+  /**
+   * 跳转路径
+   */
   href?: string;
-  onClick?: (e: MouseEvent) => void;
 }
 
 export interface BreadCrumbProps {

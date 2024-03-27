@@ -1,11 +1,6 @@
 import React from "react";
 import stylex from "@stylexjs/stylex";
-import {
-  colors,
-  radiusSizes,
-  spacing,
-  typography,
-} from "../theme/tokens.stylex";
+import { colors, radius, spacing, sizes } from "../theme/tokens.stylex";
 
 interface TagProps {
   children: React.ReactNode;
@@ -25,28 +20,28 @@ interface TagProps {
 
 const styles = stylex.create({
   base: (color?: string) => ({
-    fontSize: typography.basic,
-    color: colors.textInverse,
-    backgroundColor: color ?? colors.text3rd,
+    fontSize: sizes.basic,
+    color: colors.white,
+    backgroundColor: color ?? colors.basic,
     borderColor: color,
     borderWidth: 1,
     borderStyle: "solid",
     lineHeight: 1.25,
-    paddingTop: spacing.xsmall,
-    paddingBottom: spacing.xsmall,
+    paddingTop: spacing.basic,
+    paddingBottom: spacing.basic,
     paddingLeft: spacing.basic,
     paddingRight: spacing.basic,
-    borderRadius: radiusSizes.small,
+    borderRadius: radius.basic,
     overflow: "hidden",
     display: "inline-flex",
   }),
   bordered: (borderColor?: string) => ({
-    color: borderColor ?? colors.text3rd,
-    borderColor: borderColor ?? colors.text3rd,
+    color: borderColor ?? colors.border,
+    borderColor: borderColor ?? colors.border,
     backgroundColor: "transparent",
   }),
   icon: {
-    marginRight: spacing.xsmall,
+    marginRight: spacing.basic,
   },
   onlyIcon: {
     maskRepeat: 0,

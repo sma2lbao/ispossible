@@ -9,17 +9,17 @@ export interface FooterProps {}
 
 const styles = stylex.create({
   root: (theme: Theme) => ({
-    backgroundColor: theme.colors.backgroundInverse,
-    color: theme.colors.textInverse,
+    backgroundColor: theme.colors.black,
+    color: theme.colors.white,
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    padding: theme.spacing.large,
-    fontSize: theme.typography.basic,
+    padding: 24,
+    fontSize: theme.sizes.basic,
   }),
   text: (theme: Theme) => ({
-    marginBottom: theme.spacing.medium,
+    marginBottom: theme.spacing.basic,
   }),
 });
 

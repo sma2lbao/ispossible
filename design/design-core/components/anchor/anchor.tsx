@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
 import stylex, { type StyleXStyles } from "@stylexjs/stylex";
 import { AnchorNode, type AnchorNodeBaseProps } from "./anchor-node";
 import { AnchorContext } from "./context";
-import { radiusSizes, spacing } from "../theme/tokens.stylex";
+import { radius, spacing } from "../theme/tokens.stylex";
 
 export interface AnchorProps {
   /**
@@ -35,7 +35,7 @@ const styles = stylex.create({
   root: {
     backgroundColor: "#fff",
     padding: spacing.basic,
-    borderRadius: radiusSizes.basic,
+    borderRadius: radius.basic,
   },
 });
 

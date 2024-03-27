@@ -16,11 +16,36 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /**
- * 按钮有：主按钮、次按钮、文本按钮和链接按钮
+ * 默认为水平分割线，可在中间加入文字。
  */
-export const 按钮类型 = () => (
-  <Space>
-    <Divider />
+export const 基本用法 = () => (
+  <div style={{ width: 300 }}>
     <Divider>到底了</Divider>
-  </Space>
+
+    <div style={{ display: "flex", height: 20, alignItems: "center" }}>
+      <div>文字</div>
+      <Divider direction="y" />
+      <div>文字</div>
+      <Divider direction="y" />
+      <div>文字</div>
+    </div>
+  </div>
+);
+
+export const Y方向有文字 = () => (
+  <div style={{ height: 100, width: 400, overflow: "hidden" }}>
+    <Divider direction="y">分隔线</Divider>
+  </div>
+);
+
+export const X方向无文字 = () => (
+  <div style={{ width: 300, overflow: "hidden" }}>
+    <Divider />
+  </div>
+);
+
+export const Y方向无文字 = () => (
+  <div style={{ height: 100, width: 300, overflow: "hidden" }}>
+    <Divider direction="y" />
+  </div>
 );

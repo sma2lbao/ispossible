@@ -1,6 +1,6 @@
 import React from "react";
 import stylex from "@stylexjs/stylex";
-import { colors, radiusSizes } from "../theme/tokens.stylex";
+import { colors, radius } from "../theme/tokens.stylex";
 
 export interface AvatarProps {
   /**
@@ -33,9 +33,9 @@ const styles = stylex.create({
     width: size,
     height: size,
     backgroundColor: colors.secondary,
-    color: colors.textInverse,
+    color: colors.white,
     fontSize: size * 0.8 < 12 ? 12 : size * 0.6,
-    borderRadius: radiusSizes.basic,
+    borderRadius: radius.basic,
     overflow: "hidden",
   }),
   border: {

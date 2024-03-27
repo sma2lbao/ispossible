@@ -49,7 +49,7 @@ const styles = stylex.create({
     justifyContent: "center",
     alignItems: "center",
     cursor: "pointer",
-    padding: spacing.small,
+    padding: spacing.basic,
     border: "none",
   },
   ghost: {
@@ -70,10 +70,10 @@ const styles = stylex.create({
     backgroundColor: colors.primary,
   },
   default: {
-    color: colors.text,
+    color: colors.basic,
   },
   text: {
-    color: colors.text,
+    color: colors.basic,
   },
   link: {
     color: colors.link,
