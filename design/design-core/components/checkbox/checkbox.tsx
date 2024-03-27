@@ -36,7 +36,7 @@ const styles = stylex.create({
     alignItems: "center",
     justifyContent: "center",
     fontSize: 12,
-    color: colors.textInverse,
+    color: colors.white,
     backgroundColor: colors.primary,
   },
 });

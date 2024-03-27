@@ -1,6 +1,6 @@
 import React from "react";
 import stylex, { type StyleXStyles } from "@stylexjs/stylex";
-import { colors, lineHeight, typography } from "../theme/tokens.stylex";
+import { colors, lineHeight, sizes } from "../theme/tokens.stylex";
 
 export interface TypographyProps {
   children?: React.ReactNode;
@@ -16,7 +16,7 @@ export interface TypographyProps {
   /**
    * 文本类型
    */
-  type?: "primary" | "secondary" | "success" | "warning" | "danger";
+  type?: "primary" | "secondary" | "success" | "warning" | "error";
 
   /**
    * 是否链接
@@ -34,8 +34,8 @@ type HeadingType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 const styles = stylex.create({
   root: (type: TypographyProps["type"]) => ({
-    color: colors[type || "text"],
-    fontSize: typography.basic,
+    color: colors[type || "basic"],
+    fontSize: sizes.basic,
     lineHeight: lineHeight.basic,
     margin: 0,
   }),
@@ -44,28 +44,22 @@ const styles = stylex.create({
     color: colors.link,
   },
   h1: {
-    fontSize: typography.h1,
-    lineHeight: lineHeight.h1,
+    fontSize: sizes.basic,
   },
   h2: {
-    fontSize: typography.h2,
-    lineHeight: lineHeight.h2,
+    fontSize: sizes.basic,
   },
   h3: {
-    fontSize: typography.h3,
-    lineHeight: lineHeight.h3,
+    fontSize: sizes.basic,
   },
   h4: {
-    fontSize: typography.h4,
-    lineHeight: lineHeight.h4,
+    fontSize: sizes.basic,
   },
   h5: {
-    fontSize: typography.h5,
-    lineHeight: lineHeight.h5,
+    fontSize: sizes.basic,
   },
   h6: {
-    fontSize: typography.h6,
-    lineHeight: lineHeight.h6,
+    fontSize: sizes.basic,
   },
 });
 

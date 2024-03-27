@@ -1,8 +1,23 @@
-import { colors, spacing, typography } from "./tokens.stylex";
+import {
+  colors,
+  sizes,
+  spacing,
+  shadow,
+  radius,
+  lineHeight,
+} from "./tokens.stylex";
 
 export type Colors = typeof colors;
 
+export type Sizes = typeof sizes;
+
 export type Spacing = typeof spacing;
+
+export type Shadow = typeof shadow;
+
+export type Radius = typeof radius;
+
+export type LineHeight = typeof lineHeight;
 
 export type Theme = ReturnType<typeof useTheme>;
 
@@ -10,6 +25,9 @@ export function useTheme() {
   return {
     colors,
     spacing,
-    typography,
+    sizes,
+    shadow,
+    radius,
+    lineHeight,
   };
 }

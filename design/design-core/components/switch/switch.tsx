@@ -35,7 +35,7 @@ const styles = stylex.create({
     height: 18,
     width: 18,
     borderRadius: 3,
-    backgroundColor: colors.textInverse,
+    backgroundColor: colors.white,
   },
 });
 

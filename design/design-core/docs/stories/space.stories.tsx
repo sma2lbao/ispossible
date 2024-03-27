@@ -34,6 +34,7 @@ export const 垂直间距: Story = {
 export const 水平间距: Story = {
   args: {
     direction: "x",
+    separator: "|",
     children: ["测试0", "测试1", "测试2"],
   },
 };
