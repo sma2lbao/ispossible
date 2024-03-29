@@ -1,4 +1,5 @@
 import { Tooltip } from "../../components";
+import React from "react";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -20,7 +21,11 @@ type Story = StoryObj<typeof meta>;
 export const TopLeft: Story = {
   args: {
     title: "文案详细解释详细解释详细解释",
-    children: "文案文本",
+    children: (
+      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
+        文案文本
+      </div>
+    ),
     placement: "topLeft",
   },
 };
@@ -28,7 +33,11 @@ export const TopLeft: Story = {
 export const Top: Story = {
   args: {
     title: "文案详细解释详细解释详细解释",
-    children: "文案文本",
+    children: (
+      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
+        文案文本
+      </div>
+    ),
     placement: "top",
   },
 };
@@ -36,7 +45,11 @@ export const Top: Story = {
 export const TopRight: Story = {
   args: {
     title: "文案详细解释详细解释详细解释",
-    children: "文案文本",
+    children: (
+      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
+        文案文本
+      </div>
+    ),
     placement: "topRight",
   },
 };
@@ -44,7 +57,11 @@ export const TopRight: Story = {
 export const RightTop: Story = {
   args: {
     title: "文案详细解释详细解释详细解释",
-    children: "文案文本",
+    children: (
+      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
+        文案文本
+      </div>
+    ),
     placement: "rightTop",
   },
 };
@@ -52,7 +69,11 @@ export const RightTop: Story = {
 export const Right: Story = {
   args: {
     title: "文案详细解释详细解释详细解释",
-    children: "文案文本",
+    children: (
+      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
+        文案文本
+      </div>
+    ),
     placement: "right",
   },
 };
@@ -60,7 +81,11 @@ export const Right: Story = {
 export const RightBottom: Story = {
   args: {
     title: "文案详细解释详细解释详细解释",
-    children: "文案文本",
+    children: (
+      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
+        文案文本
+      </div>
+    ),
     placement: "rightBottom",
   },
 };
@@ -68,7 +93,11 @@ export const RightBottom: Story = {
 export const BottomRight: Story = {
   args: {
     title: "文案详细解释详细解释详细解释",
-    children: "文案文本",
+    children: (
+      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
+        文案文本
+      </div>
+    ),
     placement: "bottomRight",
   },
 };
@@ -76,7 +105,11 @@ export const BottomRight: Story = {
 export const Bottom: Story = {
   args: {
     title: "文案详细解释详细解释详细解释",
-    children: "文案文本",
+    children: (
+      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
+        文案文本
+      </div>
+    ),
     placement: "bottom",
   },
 };
@@ -84,7 +117,11 @@ export const Bottom: Story = {
 export const BottomLeft: Story = {
   args: {
     title: "文案详细解释详细解释详细解释",
-    children: "文案文本",
+    children: (
+      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
+        文案文本
+      </div>
+    ),
     placement: "bottomLeft",
   },
 };
@@ -92,7 +129,11 @@ export const BottomLeft: Story = {
 export const LeftBottom: Story = {
   args: {
     title: "文案详细解释详细解释详细解释",
-    children: "文案文本",
+    children: (
+      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
+        文案文本
+      </div>
+    ),
     placement: "leftBottom",
   },
 };
@@ -100,7 +141,11 @@ export const LeftBottom: Story = {
 export const Left: Story = {
   args: {
     title: "文案详细解释详细解释详细解释",
-    children: "文案文本",
+    children: (
+      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
+        文案文本
+      </div>
+    ),
     placement: "left",
   },
 };
@@ -108,7 +153,11 @@ export const Left: Story = {
 export const LeftTop: Story = {
   args: {
     title: "文案详细解释详细解释详细解释",
-    children: "文案文本",
+    children: (
+      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
+        文案文本
+      </div>
+    ),
     placement: "leftTop",
   },
 };

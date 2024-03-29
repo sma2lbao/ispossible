@@ -38,3 +38,13 @@ export const lineHeight = stylex.defineVars({
   none: "0",
   basic: "1.4em",
 });
+
+const spin = stylex.keyframes({
+  to: {
+    transform: "rotate(1turn)",
+  },
+});
+
+export const animation = stylex.defineVars({
+  spin: spin,
+});

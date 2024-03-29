@@ -27,14 +27,15 @@ const styles = stylex.create({
     justifyContent: "center",
     padding: 0,
     overflow: "hidden",
+    backgroundColor: "transparent",
+    margin: 0,
   },
-
   thumb: {
     flex: 1,
-    height: "100%",
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
+    alignSelf: "stretch",
     fontSize: 12,
     color: colors.white,
     backgroundColor: colors.primary,

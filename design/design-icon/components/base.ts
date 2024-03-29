@@ -28,19 +28,23 @@ export function createWebIcon(name: string, source: string) {
 
         const styleElement = document.createElement("style");
         styleElement.textContent = `
-           .is-icon {
-             display: inline-flex;
-             align-items: center;
-             color: inherit;
-             line-height: 0;
-             vertical-align: -.125em;
-           }
-           svg {
-             display: inline-block;
-             width: 1em;
-             height: 1em;
-             fill: currentcolor;
-           }
+          :host {
+            display: inline-flex;
+            align-items: center;
+          }
+          .is-icon {
+            display: inline-flex;
+            align-items: center;
+            color: inherit;
+            line-height: 0;
+            vertical-align: -.125em;
+          }
+          svg {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            fill: currentcolor;
+          }
        `;
         // 将创建好的元素附加到影子 DOM 上
         shadow.appendChild(icon);

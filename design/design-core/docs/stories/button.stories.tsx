@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import { Button, Space } from "../../components";
+import "@design/icon/user";
 
 /**
  * 按钮用于开始一个即时操作。
@@ -45,5 +46,19 @@ export const 幽灵按钮 = () => (
     <Button ghost type="link">
       Link Button
     </Button>
+  </Space>
+);
+
+/**
+ * 带图标按钮
+ */
+export const 图标按钮 = () => (
+  <Space>
+    <Button>
+      <is-user />
+    </Button>
+
+    <Button icon={<is-user />}>用户</Button>
+    <Button loading>加载中</Button>
   </Space>
 );
