@@ -16,8 +16,11 @@ const styles = stylex.create({
 });
 
 export const Menu: React.FC<MenuProps> = (props) => {
-  const { mode = "y", items = [], onSelect } = props;
-  const [innerSelectedIds, setInnerSelectedIds] = useState<string[]>();
+  const { mode = "y", items = [], onSelect, initialSelectedIds } = props;
+
+  const [innerSelectedIds, setInnerSelectedIds] = useState<string[]>(
+    initialSelectedIds || []
+  );
 
   const findSelectedIds = (
     items: ItemProps[],

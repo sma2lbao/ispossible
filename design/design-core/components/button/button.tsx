@@ -1,6 +1,7 @@
 import React from "react";
 import stylex from "@stylexjs/stylex";
-import { colors, spacing } from "../theme/tokens.stylex";
+import { colors, radius, spacing, animation } from "../theme/tokens.stylex";
+import "@design/icon/loading";
 
 export interface ButtonProps {
   /**
@@ -51,6 +52,7 @@ const styles = stylex.create({
     cursor: "pointer",
     padding: spacing.basic,
     border: "none",
+    borderRadius: radius.basic,
   },
   ghost: {
     backgroundColor: "transparent",
@@ -66,17 +68,38 @@ const styles = stylex.create({
     color: "inherit",
   },
   primary: {
-    color: "#fff",
+    color: colors.white,
     backgroundColor: colors.primary,
   },
   default: {
     color: colors.basic,
+    backgroundColor: colors.background,
   },
   text: {
     color: colors.basic,
+    backgroundColor: "transparent",
+    ":hover": {
+      backgroundColor: colors.background,
+    },
   },
   link: {
     color: colors.link,
+    backgroundColor: "transparent",
+
+    ":hover": {
+      textDecoration: "underline",
+    },
+  },
+  iconContainer: {
+    marginRight: 4,
+    display: "inline-flex",
+    alignItems: "center",
+  },
+  loading: {
+    animationName: animation.spin,
+    animationDuration: "1s",
+    animationTimingFunction: "linear",
+    animationIterationCount: "infinite",
   },
 });
 
@@ -95,6 +118,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     } = props;
 
     const onlyIcon = !!icon && !children;
+    const hasIcon = !!icon || loading;
 
     const handleClick: React.MouseEventHandler<Element> = (
       e: React.MouseEvent<Element, MouseEvent>
@@ -114,12 +138,16 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...stylex.props(
           styles.base,
           styles[type],
-          disabled && styles.disabled,
           ghost && styles.ghost,
-          onlyIcon && styles.onlyIcon
+          onlyIcon && styles.onlyIcon,
+          (disabled || loading) && styles.disabled
         )}
       >
-        {loading ? "..." : icon}
+        {hasIcon && (
+          <span {...stylex.props(styles.iconContainer)}>
+            {loading ? <is-loading {...stylex.attrs(styles.loading)} /> : icon}
+          </span>
+        )}
         {children}
       </button>
     );

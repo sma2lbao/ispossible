@@ -18,6 +18,8 @@ const styles = stylex.create({
   separator: {
     margin: "0 4px",
     fontSize: 12,
+    display: "inline-flex",
+    alignItems: "center",
   },
 });
 

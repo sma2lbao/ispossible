@@ -30,8 +30,7 @@ const styles = stylex.create({
     display: "inline-flex",
     alignItems: "center",
     fontSize: 14,
-    lineHeight: "20px",
-    padding: "4px 8px",
+    padding: 8,
     borderRadius: 4,
   },
   input: {
@@ -47,14 +46,14 @@ export const Input: React.FC<InputProps> = (props) => {
 
   return (
     <div {...stylex.props(styles.root, style)}>
-      {!!prefix && <span>{prefix}</span>}
+      {prefix}
       <input
         placeholder={placeholder}
         value={value}
         onChange={onChange}
         {...stylex.props(styles.input)}
       />
-      {!!suffix && <span>{suffix}</span>}
+      {suffix}
     </div>
   );
 };

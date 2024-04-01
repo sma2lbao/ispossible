@@ -9,7 +9,7 @@ const meta = {
   title: "Collapse 折叠面板",
   component: Collapse,
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
   },
   tags: ["autodocs"],
   argTypes: {},

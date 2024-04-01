@@ -5,16 +5,21 @@ export interface MenuProps {
    * 菜单内容
    */
   items: ItemProps[];
+
+  /**
+   * 初始状态选中
+   */
+  initialSelectedIds?: string[];
   /**
    * 菜单类型，现在支持垂直、水平、和内嵌模式三种
    */
   mode?: "x" | "y" | "inline";
   /**
    * 被选中时调用
-   * @param id string[]
+   * @param ids string[]
    * @returns
    */
-  onSelect?: (id: string[]) => void;
+  onSelect?: (ids: string[]) => void;
 }
 
 export interface SubMenuProps {

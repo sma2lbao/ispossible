@@ -1,6 +1,6 @@
 import React from "react";
 import stylex from "@stylexjs/stylex";
-import { Tooltip, type TootipPlacement } from "../tooltip";
+import { Tooltip, type Placement } from "../tooltip";
 
 const styles = stylex.create({
   custom: {
@@ -11,7 +11,7 @@ const styles = stylex.create({
 export interface PopoverProps {
   children: React.ReactNode;
   content: () => React.ReactNode | React.ReactNode;
-  placement?: TootipPlacement;
+  placement?: Placement;
 }
 
 export const Popover: React.FC<PopoverProps> = (props) => {
