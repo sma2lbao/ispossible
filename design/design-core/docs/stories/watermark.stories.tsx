@@ -19,7 +19,16 @@ type Story = StoryObj<typeof meta>;
 export const 代码演示: Story = {
   args: {
     children: (
-      <div style={{ height: 300, width: 400, border: "1px solid #ddd" }}>
+      <div
+        style={{
+          height: 300,
+          width: 400,
+          border: "1px solid #ddd",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         怒髮衝冠，憑闌處，瀟瀟雨歇。
         <br />
         抬望眼，仰天長嘯，壯懷激烈。
@@ -37,7 +46,7 @@ export const 代码演示: Story = {
         待從頭，收拾舊山河，朝天闕。
       </div>
     ),
-    content: "满江红",
+    content: "岳飞",
   },
 };
 
