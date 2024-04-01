@@ -43,6 +43,7 @@ export const 垂直菜单: Story = {
         ],
       },
     ],
+    initialSelectedIds: ["label1"],
   },
 };
 

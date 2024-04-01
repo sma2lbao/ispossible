@@ -27,21 +27,21 @@ const styles = stylex.create({
     borderWidth: 1,
     borderStyle: "solid",
     lineHeight: 1.25,
-    paddingTop: spacing.basic,
-    paddingBottom: spacing.basic,
-    paddingLeft: spacing.basic,
-    paddingRight: spacing.basic,
+    padding: "1px 8px",
     borderRadius: radius.basic,
     overflow: "hidden",
     display: "inline-flex",
+    boxSizing: "border-box",
   }),
   bordered: (borderColor?: string) => ({
-    color: borderColor ?? colors.border,
-    borderColor: borderColor ?? colors.border,
+    color: borderColor ?? "#3a3a3a",
+    borderColor: borderColor ?? "#3a3a3a",
     backgroundColor: "transparent",
   }),
   icon: {
-    marginRight: spacing.basic,
+    marginRight: 4,
+    display: "inline-flex",
+    alignItems: "center",
   },
   onlyIcon: {
     maskRepeat: 0,
@@ -57,9 +57,12 @@ export const Tag: React.FC<TagProps> = (props) => {
     <span
       {...stylex.props(styles.base(color), bordered && styles.bordered(color))}
     >
-      <i {...stylex.props(styles.icon, isOnlyIcon && styles.onlyIcon)}>
-        {icon}
-      </i>
+      {!!icon && (
+        <i {...stylex.props(styles.icon, isOnlyIcon && styles.onlyIcon)}>
+          {icon}
+        </i>
+      )}
+
       {children}
     </span>
   );

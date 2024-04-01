@@ -7,7 +7,7 @@ const meta = {
   title: "Watermark 水印",
   component: Watermark,
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
   },
   tags: ["autodocs"],
   argTypes: {},
@@ -21,12 +21,13 @@ export const 代码演示: Story = {
     children: (
       <div
         style={{
-          height: 300,
-          width: 400,
+          height: 500,
           border: "1px solid #ddd",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          fontSize: 20,
+          lineHeight: 1.4,
         }}
       >
         怒髮衝冠，憑闌處，瀟瀟雨歇。
@@ -46,7 +47,10 @@ export const 代码演示: Story = {
         待從頭，收拾舊山河，朝天闕。
       </div>
     ),
-    content: "岳飞",
+    content: "满江红",
+    font: {
+      fontSize: 12,
+    },
   },
 };
 

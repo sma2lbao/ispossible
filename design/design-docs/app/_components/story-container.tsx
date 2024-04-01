@@ -46,11 +46,13 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
     if (ids[0] == null) return;
     router.push(`/packages/${ids[0]}`);
   };
+  if (!slug) return;
 
   return (
     <div {...stylex.props(styles.root)}>
       <div {...stylex.props(styles.nav)}>
         <Menu
+          initialSelectedIds={[decodeURIComponent(slug)]}
           items={stories.map((item) => ({ id: item.id, label: item.title }))}
           onSelect={handleSelect}
         />

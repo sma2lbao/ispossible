@@ -18,11 +18,13 @@ interface FontProps {
 interface WatermarkProps {
   /**
    * 水印之间的间距
+   * @default [100, 100]
    */
   gap?: [number, number];
 
   /**
    * 水印绘制时，旋转的角度，单位 °
+   * @default -45
    */
   rotate?: number;
 
