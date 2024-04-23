@@ -54,6 +54,9 @@ const ArticleMdx: React.FC<ArticleMdxProps> = (props) => {
                 <img src={src} alt={alt} {...stylex.props(styles.image)} />
               );
             },
+            table(props) {
+              return <table {...props} />;
+            },
           }}
         >
           {content}

@@ -9,6 +9,11 @@ p {
   box-sizing: border-box;
 }
 
+table {
+  width: 100%;
+  line-height: 36px;
+}
+
 /* 滚动槽 */
 ::-webkit-scrollbar {
   width: 6px;

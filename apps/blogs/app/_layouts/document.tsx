@@ -26,7 +26,7 @@ const styles = stylex.create({
   },
   article: {
     backgroundColor: "#fff",
-    width: 900,
+    width: 1100,
     overflow: "auto",
     padding: 24,
   },
