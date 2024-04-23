@@ -1,5 +1,5 @@
 import React from "react";
-import stylex from "@stylexjs/stylex";
+import stylex, { StyleXStyles } from "@stylexjs/stylex";
 import { colors, radius, spacing, animation } from "../theme/tokens.stylex";
 import "@design/icon/loading";
 
@@ -38,6 +38,9 @@ export interface ButtonProps {
    * @default _blank
    */
   target?: string;
+
+  style?: StyleXStyles;
+
   /**
    * 点击按钮时的回调
    */
@@ -115,6 +118,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       href,
       target = "_blank",
       onClick,
+      style,
     } = props;
 
     const onlyIcon = !!icon && !children;
@@ -140,7 +144,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           styles[type],
           ghost && styles.ghost,
           onlyIcon && styles.onlyIcon,
-          (disabled || loading) && styles.disabled
+          (disabled || loading) && styles.disabled,
+          style
         )}
       >
         {hasIcon && (

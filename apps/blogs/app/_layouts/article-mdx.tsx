@@ -40,7 +40,6 @@ const ArticleMdx: React.FC<ArticleMdxProps> = (props) => {
         <span>{meta.date}</span>
       </Space>
       <div>
-        {/* {headings.length > 0 && <Toc headings={headings!} />} */}
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeHighlight, rehypeSlug]}

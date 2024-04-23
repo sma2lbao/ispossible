@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import matter from "gray-matter";
-import { Affix, Anchor, NoSsr } from "@design/core";
+import { Anchor, NoSsr } from "@design/core";
 import stylex from "@stylexjs/stylex";
 import { HeadingTreeNode, parseHeadings } from "@/shared/parse-headings";
 import {
