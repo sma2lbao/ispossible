@@ -56,6 +56,7 @@ export const AnchorNode: React.FC<AnchorNodeProps> = (props) => {
       <a
         href={href}
         title={label}
+        data-id={id}
         onClick={handClickAELement}
         {...stylex.props(
           styles.a,

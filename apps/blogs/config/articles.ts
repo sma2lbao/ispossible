@@ -57,4 +57,9 @@ export const menus: MenuItem[] = [
     dirname: "typescript",
     label: "Typescript",
   },
+  {
+    id: "sql",
+    dirname: "sql",
+    label: "SQL",
+  },
 ];

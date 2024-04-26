@@ -7,10 +7,12 @@ const styles = stylex.create({
   top: {
     display: "flex",
     alignItems: "center",
+    overflowX: "auto",
   },
   item: {
     cursor: "pointer",
     padding: "8px 16px",
+    whiteSpace: "nowrap",
   },
   disabled: {
     pointerEvents: "none",

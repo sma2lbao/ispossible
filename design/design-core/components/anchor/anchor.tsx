@@ -1,4 +1,10 @@
-import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import stylex, { type StyleXStyles } from "@stylexjs/stylex";
 import { AnchorNode, type AnchorNodeBaseProps } from "./anchor-node";
 import { AnchorContext } from "./context";
@@ -45,6 +51,7 @@ export const Anchor: React.FC<AnchorProps> = (props) => {
   const { items, offsetTop = 0, container = window, style } = props;
   const [activeNodeId, setActiveNodeId] = useState<string>();
   const scroolByEventFlag = useRef<boolean>(false);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   function toIds(items: AnchorProps["items"]): FlatItem[] {
     return items.reduce<FlatItem[]>((previous, current) => {
@@ -103,6 +110,18 @@ export const Anchor: React.FC<AnchorProps> = (props) => {
     }
   };
 
+  useEffect(() => {
+    if (rootRef?.current) {
+      const aDom = rootRef?.current.querySelector<HTMLElement>(
+        `a[data-id="${activeNodeId}"]`
+      );
+      if (!aDom) return;
+      rootRef?.current.scrollTo({
+        top: aDom.offsetTop - 10,
+      });
+    }
+  }, [activeNodeId]);
+
   useLayoutEffect(() => {
     container?.addEventListener("scroll", handleScroll);
     return () => {
@@ -111,7 +130,7 @@ export const Anchor: React.FC<AnchorProps> = (props) => {
   }, []);
 
   return (
-    <div {...stylex.props(styles.root, style)}>
+    <div {...stylex.props(styles.root, style)} ref={rootRef}>
       <AnchorContext.Provider value={{ activeNodeId, handleClickNode }}>
         {items.map((item) => {
           return <AnchorNode key={item.id} {...item} deep={0} />;

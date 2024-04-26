@@ -40,7 +40,6 @@ const ArticleMdx: React.FC<ArticleMdxProps> = (props) => {
         <span>{meta.date}</span>
       </Space>
       <div>
-        {/* {headings.length > 0 && <Toc headings={headings!} />} */}
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeHighlight, rehypeSlug]}
@@ -53,6 +52,9 @@ const ArticleMdx: React.FC<ArticleMdxProps> = (props) => {
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={src} alt={alt} {...stylex.props(styles.image)} />
               );
+            },
+            table(props) {
+              return <table {...props} />;
             },
           }}
         >

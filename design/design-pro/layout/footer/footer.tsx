@@ -21,6 +21,9 @@ const styles = stylex.create({
   text: (theme: Theme) => ({
     marginBottom: theme.spacing.basic,
   }),
+  button: (theme: Theme) => ({
+    color: theme.colors.white,
+  }),
 });
 
 const Footer: React.FC<FooterProps> = () => {
@@ -39,6 +42,22 @@ const Footer: React.FC<FooterProps> = () => {
         </Link>{" "}
         2024.
       </div>
+      <Space>
+        <Button
+          href="https://design-docs-eta.vercel.app/"
+          type="link"
+          style={styles.button(theme)}
+        >
+          基础组件文档
+        </Button>
+        <Button
+          href="https://blogs-orcin.vercel.app/"
+          type="link"
+          style={styles.button(theme)}
+        >
+          博客
+        </Button>
+      </Space>
       <Space>
         <Button icon={<is-github />} href="https://github.com/sma2lbao" />
       </Space>

@@ -38,20 +38,21 @@ export const buildTree = (
   return [nodes, index];
 };
 
-const slugs = new GithubSlugger();
-
 export const parseHeadings = (source: string) => {
+  const slugs = new GithubSlugger();
   const headingLines = source.split("\n").filter((line) => line.match(/^#+\s/));
 
   const initialHeadings = headingLines.map((raw: string) => {
     const label = raw.replace(/^#+\s/, "");
     const level = raw.match(/^#+/)?.[0].length || 0;
+    const id = slugs.slug(label);
+    const href = "#" + id;
 
     return {
       label,
       level,
-      href: "#" + slugs.slug(label),
-      id: label,
+      href,
+      id,
     };
   });
 
