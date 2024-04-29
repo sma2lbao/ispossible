@@ -1,5 +1,5 @@
 {
-  "name": "@design/docs",
+  "name": "@apps/music",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,14 +12,14 @@
     "react": "^18",
     "react-dom": "^18",
     "next": "14.2.3",
-    "normalize.css": "~8.0.1",
     "@design/core": "workspace:*",
     "@design/pro": "workspace:*",
     "@design/icon": "workspace:*",
     "@stylexjs/stylex": "~0.6.1",
     "@stylexjs/nextjs-plugin": "~0.6.1",
     "@stylexjs/babel-plugin": "~0.6.1",
-    "@stylexjs/eslint-plugin": "~0.6.0"
+    "@stylexjs/eslint-plugin": "~0.6.0",
+    "normalize.css": "~8.0.1"
   },
   "devDependencies": {
     "typescript": "^5",

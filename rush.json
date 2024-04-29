@@ -321,6 +321,13 @@
       ]
     },
     {
+      "packageName": "@apps/music",
+      "projectFolder": "apps/music",
+      "tags": [
+        "apps"
+      ]
+    },
+    {
       "packageName": "@services/music-service",
       "projectFolder": "services/music-service",
       "tags": [
