@@ -27,7 +27,6 @@ const ArticleList: React.FC<ArticleListPorps> = (props) => {
         setArticles(res.data || []);
       });
   }, [category]);
-
   return (
     <div>
       {articles.map((item) => {
