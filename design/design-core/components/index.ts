@@ -20,3 +20,5 @@ export { Divider } from "./divider";
 export { Input, Textarea } from "./input";
 export { Switch } from "./switch";
 export { Checkbox } from "./checkbox";
+export { Skeleton } from "./skeleton";
+export { Alert } from "./alert";

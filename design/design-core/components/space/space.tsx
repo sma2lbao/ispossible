@@ -29,8 +29,11 @@ const styles = stylex.create({
   vertical: {
     flexDirection: "column",
     alignItems: "flex-start",
+    width: "100%",
   },
-  item: {},
+  item: {
+    width: "100%",
+  },
 });
 
 export const Space: React.FC<SpaceProps> = (props) => {
@@ -54,7 +57,9 @@ export const Space: React.FC<SpaceProps> = (props) => {
         const isLast = React.Children.count(children) - 1 === index;
         return (
           <>
-            <div key={index}>{child}</div>
+            <div key={index} {...stylex.props(styles.item)}>
+              {child}
+            </div>
             {!isLast && separator}
           </>
         );
