@@ -19,10 +19,10 @@ const styles = stylex.create({
 });
 
 export const Skeleton: React.FC<SkeletonProps> = (props) => {
-  const { nodes = ["title", "paragraph", "image"], children } = props;
+  const { nodes = ["title", "paragraph", "image"], children, style } = props;
 
   return (
-    <div {...stylex.props(styles.root)}>
+    <div {...stylex.props(styles.root, style)}>
       {nodes.map((item, index) => {
         const nodeConfig: Record<SkeletonNode, React.ReactNode> = {
           title: <SkeletonTitle key={index} />,

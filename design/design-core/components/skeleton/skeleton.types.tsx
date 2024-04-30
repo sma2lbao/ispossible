@@ -1,3 +1,5 @@
+import { StyleXStyles } from "@stylexjs/stylex";
+
 export type SkeletonNode =
   | "title"
   | "paragraph"
@@ -8,6 +10,7 @@ export type SkeletonNode =
 export interface SkeletonProps {
   nodes?: SkeletonNode[];
   children?: React.ReactNode;
+  style?: StyleXStyles;
 }
 
 export interface SkeletonTitleProps {
