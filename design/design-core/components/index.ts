@@ -22,3 +22,6 @@ export { Switch } from "./switch";
 export { Checkbox } from "./checkbox";
 export { Skeleton } from "./skeleton";
 export { Alert } from "./alert";
+export { Snackbar, useSnackbar } from "./snackbar";
+export { Dialog, useDialog } from "./dialog";
+export { Table } from "./table";

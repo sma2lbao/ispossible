@@ -32,7 +32,7 @@ const Footer: React.FC<FooterProps> = () => {
   return (
     <div {...stylex.props(styles.root(theme))}>
       <div {...stylex.props(styles.text(theme))}>
-        made by sma2lbao | copyright ©{" "}
+        power by sma2lbao | copyright ©{" "}
         <Link
           color="inherit"
           href="https://sma2lbao.github.io/"
