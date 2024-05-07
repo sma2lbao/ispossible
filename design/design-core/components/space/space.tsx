@@ -52,6 +52,8 @@ export const Space: React.FC<SpaceProps> = (props) => {
     >
       {React.Children.map(children, (child, index) => {
         const isLast = React.Children.count(children) - 1 === index;
+
+        if (!child) return;
         return (
           <>
             <div key={index}>{child}</div>

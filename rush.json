@@ -358,6 +358,7 @@
     {
       "packageName": "@design/core",
       "projectFolder": "design/design-core",
+      "shouldPublish": true,
       "tags": [
         "design"
       ]

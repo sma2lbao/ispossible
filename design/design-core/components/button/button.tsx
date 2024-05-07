@@ -56,27 +56,37 @@ const styles = stylex.create({
     padding: spacing.basic,
     border: "none",
     borderRadius: radius.basic,
+    boxSizing: "border-box",
+    minWidth: 32,
+    minHeight: 32,
   },
   ghost: {
     backgroundColor: "transparent",
   },
   disabled: {
-    pointerEvents: "none",
+    color: colors.secondary,
     cursor: "not-allowed",
+    backgroundColor: "transparent",
+    ":hover": {
+      backgroundColor: "transparent",
+    },
   },
   onlyIcon: {
     borderRadius: "50%",
     fontSize: "24px",
     backgroundColor: "transparent",
     color: "inherit",
+    ":hover": {},
   },
   primary: {
     color: colors.white,
     backgroundColor: colors.primary,
+    ":hover": {},
   },
   default: {
     color: colors.basic,
     backgroundColor: colors.background,
+    ":hover": {},
   },
   text: {
     color: colors.basic,
@@ -127,6 +137,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const handleClick: React.MouseEventHandler<Element> = (
       e: React.MouseEvent<Element, MouseEvent>
     ) => {
+      if (disabled) {
+        e.preventDefault();
+        return;
+      }
       if (href) {
         e.preventDefault();
         window.open(href, target);
