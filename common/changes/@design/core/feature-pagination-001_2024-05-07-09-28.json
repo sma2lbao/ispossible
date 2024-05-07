@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@design/core",
+      "comment": "增加分页组件",
+      "type": "minor"
+    }
+  ],
+  "packageName": "@design/core"
+}
