@@ -19,9 +19,6 @@ importers:
       '@design/pro':
         specifier: workspace:*
         version: link:../../design/design-pro
-      '@stylexjs/babel-plugin':
-        specifier: ~0.7.5
-        version: 0.7.5
       '@stylexjs/eslint-plugin':
         specifier: ~0.7.5
         version: 0.7.5
@@ -71,6 +68,9 @@ importers:
         specifier: ~5.0.0
         version: 5.0.0
     devDependencies:
+      '@stylexjs/babel-plugin':
+        specifier: ~0.7.5
+        version: 0.7.5
       '@types/node':
         specifier: ^20
         version: 20.11.14
@@ -135,6 +135,9 @@ importers:
       '@storybook/theming':
         specifier: ^8.3.0
         version: 8.3.0(storybook@8.3.0)
+      '@stylexjs/rollup-plugin':
+        specifier: ~0.7.5
+        version: 0.7.5
       '@tools/eslint-config':
         specifier: workspace:*
         version: link:../../tools/eslint-config
@@ -162,9 +165,6 @@ importers:
       vite:
         specifier: ~4.5.2
         version: 4.5.2(@types/node@20.11.14)
-      vite-plugin-stylex-dev:
-        specifier: ~0.2.4
-        version: 0.2.5
 
   ../../design/design-docs:
     dependencies:
@@ -1380,19 +1380,6 @@ packages:
       storybook: 8.3.0
     dev: true
 
-  /@stylexjs/babel-plugin@0.4.1:
-    resolution: {integrity: sha512-usG7HFvq04ELD44BAukQlTzKwmw3B0isOgsYzO97iGTkHMi7CJN4hniag7Fj96hrTob8Kq6MBbbQkLeKzbjqIg==}
-    dependencies:
-      '@babel/core': 7.23.9
-      '@babel/helper-module-imports': 7.22.15
-      '@babel/traverse': 7.23.9
-      '@babel/types': 7.23.9
-      '@stylexjs/shared': 0.4.1
-      '@stylexjs/stylex': 0.4.1
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@stylexjs/babel-plugin@0.7.5:
     resolution: {integrity: sha512-KirLQIaOVHpuSZT37qV19Pw8x4te5x6hZ90+2VsrJ4NzwyYFpovlMNsTeT+eE9mcdp84VksIi7QnrNpMvqBJMQ==}
     dependencies:
@@ -1426,25 +1413,22 @@ packages:
       - supports-color
     dev: false
 
-  /@stylexjs/shared@0.4.1:
-    resolution: {integrity: sha512-4h1rVuwE9iPN0yor0kvtHhMo7XjWrG3DdPYWZI9c6V4AquAbh53KxN6v6X9woM2HKUbt0GzjyCsEjc6Ci6Lo4w==}
+  /@stylexjs/rollup-plugin@0.7.5:
+    resolution: {integrity: sha512-/2Ly04W/b3LQhGj3K4rgcoRKgL9LDc3Yig+vdNZFKjJ1oyGt0yt91AwKhZjE+fyWsvcWQXCreYLt8IO8g4UCcw==}
     dependencies:
-      postcss-value-parser: 4.2.0
+      '@babel/core': 7.23.9
+      '@babel/plugin-syntax-flow': 7.23.3(@babel/core@7.23.9)
+      '@babel/plugin-syntax-jsx': 7.23.3(@babel/core@7.23.9)
+      '@babel/plugin-syntax-typescript': 7.23.3(@babel/core@7.23.9)
+      '@stylexjs/babel-plugin': 0.7.5
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /@stylexjs/shared@0.7.5:
     resolution: {integrity: sha512-B357xldr9Dh3tP646P0JKNnarxy5ei4mkZh1qQmuhgGewbaVcrD8jiEWH3WjEzRrBKfmJtcTxBC3xp507u7O4A==}
     dependencies:
       postcss-value-parser: 4.2.0
-
-  /@stylexjs/stylex@0.4.1:
-    resolution: {integrity: sha512-xc3hjEtqpluoZ1RcJZ1c59bdMITMHPh0FmCNi/01amaPhEw040WqgR/KGFHIqxIer9wt5mOeED3iM9tSrljeaQ==}
-    dependencies:
-      css-mediaquery: 0.1.2
-      invariant: 2.2.4
-      styleq: 0.1.3
-      utility-types: 3.11.0
-    dev: true
 
   /@stylexjs/stylex@0.7.5:
     resolution: {integrity: sha512-e4bryU2AoKBeAlloea7sJZrYrjiqJYViw8AWL6eanTVdk7qJ0CduNoiRQxtCP1dOhqGAPG74kaWT7slLzZnqKg==}
@@ -2649,10 +2633,6 @@ packages:
       internal-slot: 1.0.6
       iterator.prototype: 1.1.2
       safe-array-concat: 1.1.0
-    dev: true
-
-  /es-module-lexer@1.4.1:
-    resolution: {integrity: sha512-cXLGjP0c4T3flZJKQSuziYoq7MlT+rnvfZjfp7h+I7K9BNX54kP9nyWvdbwjQ4u1iWbOL4u96fgeZLToQlZC7w==}
     dev: true
 
   /es-module-lexer@1.5.4:
@@ -5772,11 +5752,6 @@ packages:
       which-typed-array: 1.1.13
     dev: true
 
-  /utility-types@3.11.0:
-    resolution: {integrity: sha512-6Z7Ma2aVEWisaL6TvBCy7P8rm2LQoPv6dJ7ecIaIixHcwfbJ0x7mWdbcwlIM5IGQxPZSFYeqRCqlOOeKoJYMkw==}
-    engines: {node: '>= 4'}
-    dev: true
-
   /utils-merge@1.0.1:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
@@ -5806,20 +5781,6 @@ packages:
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
     dev: false
-
-  /vite-plugin-stylex-dev@0.2.5:
-    resolution: {integrity: sha512-FGx4HZSjIenZIpJOmvule1sS3OcXmaVOv9E5nNK/0sXunsAqQuAiJ7UJQwb+FI53FtEgGpuum5rpDn6v2LpNnQ==}
-    dependencies:
-      '@babel/core': 7.23.9
-      '@babel/plugin-syntax-flow': 7.23.3(@babel/core@7.23.9)
-      '@babel/plugin-syntax-jsx': 7.23.3(@babel/core@7.23.9)
-      '@babel/plugin-syntax-typescript': 7.23.3(@babel/core@7.23.9)
-      '@stylexjs/babel-plugin': 0.4.1
-      es-module-lexer: 1.4.1
-      magic-string: 0.30.6
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
 
   /vite@4.5.2(@types/node@20.11.14):
     resolution: {integrity: sha512-tBCZBNSBbHQkaGyhGCDUGqeo2ph8Fstyp6FMSvTtsXeZSPpSMGlviAOav2hxVTqFcx8Hj/twtWKsMJXNY0xI8w==}
