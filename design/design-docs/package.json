@@ -16,10 +16,7 @@
     "@design/core": "workspace:*",
     "@design/pro": "workspace:*",
     "@design/icon": "workspace:*",
-    "@stylexjs/stylex": "~0.7.5",
-    "@stylexjs/nextjs-plugin": "~0.7.5",
-    "@stylexjs/babel-plugin": "~0.7.5",
-    "@stylexjs/eslint-plugin": "~0.7.5"
+    "@stylexjs/stylex": "~0.7.5"
   },
   "devDependencies": {
     "typescript": "^5",
@@ -27,6 +24,9 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "14.2.3"
+    "eslint-config-next": "14.2.3",
+    "@stylexjs/babel-plugin": "~0.7.5",
+    "@stylexjs/eslint-plugin": "~0.7.5",
+    "@stylexjs/nextjs-plugin": "~0.7.5"
   }
 }

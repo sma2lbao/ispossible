@@ -1,6 +1,10 @@
 import { defineConfig } from "vite";
-import { stylexPlugin } from "vite-plugin-stylex-dev";
+import stylexPlugin from "@stylexjs/rollup-plugin";
 
 export default defineConfig({
-  plugins: [stylexPlugin()],
+  plugins: [
+    stylexPlugin({
+      fileName: "stylex-bundle.css",
+    }),
+  ],
 });

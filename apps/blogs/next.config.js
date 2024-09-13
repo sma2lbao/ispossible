@@ -1,21 +1,16 @@
 // @ts-check
-const stylexPlugin = require('@stylexjs/nextjs-plugin');
-const path = require('path');
+const stylexPlugin = require("@stylexjs/nextjs-plugin");
 
 /** @type {import('next').NextConfig} */
-const config = {
-  transpilePackages: ['@stylexjs/open-props'],
+const nextConfig = {
   // Configure `pageExtensions` to include MDX files
-  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
-   // Optionally, add any other Next.js config below
+  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+  // Optionally, add any other Next.js config below
   //  output: 'standalone',
-}
+};
 
 module.exports = stylexPlugin({
-  aliases: {
-    '@/*': [path.join(__dirname, '*')],
-  },
+  filename: "stylex-bundle.css",
   rootDir: __dirname,
-})(config);
-
-
+  useCSSLayers: true,
+})(nextConfig);

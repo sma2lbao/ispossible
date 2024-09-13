@@ -19,7 +19,7 @@ const styles = stylex.create({
   },
 });
 
-export default function ArticlePage({
+export default async function ArticlePage({
   params,
 }: {
   params: { slugs: string[] };
