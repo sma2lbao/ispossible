@@ -11,7 +11,7 @@
   "dependencies": {
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.3",
+    "next": "14.2.11",
     "@design/core": "workspace:*",
     "@design/pro": "workspace:*",
     "@design/icon": "workspace:*",
@@ -25,10 +25,10 @@
     "unist-util-visit": "~5.0.0",
     "mdast-util-to-string": "~4.0.0",
     "github-slugger": "~2.0.0",
-    "@stylexjs/stylex": "~0.6.1",
-    "@stylexjs/nextjs-plugin": "~0.6.1",
-    "@stylexjs/babel-plugin": "~0.6.1",
-    "@stylexjs/eslint-plugin": "~0.6.0"
+    "@stylexjs/stylex": "~0.7.5",
+    "@stylexjs/nextjs-plugin": "~0.7.5",
+    "@stylexjs/babel-plugin": "~0.7.5",
+    "@stylexjs/eslint-plugin": "~0.7.5"
   },
   "devDependencies": {
     "typescript": "^5",
