@@ -11,7 +11,21 @@ import {
 
 const preview: Preview = {
   globals: {},
-  globalTypes: {},
+  globalTypes: {
+    locale: {
+      description: "国际化语言环境",
+      toolbar: {
+        icon: "globe",
+        items: [
+          { value: "zh", right: "🇨🇳", title: "中文" },
+          { value: "en", right: "🇺🇸", title: "English" },
+        ],
+      },
+    },
+  },
+  initialGlobals: {
+    locale: "zh",
+  },
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
