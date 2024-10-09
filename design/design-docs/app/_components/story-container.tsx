@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import stylex from "@stylexjs/stylex";
 import { useRouter } from "next/navigation";
 import { Menu } from "@design/core";
@@ -29,39 +29,50 @@ const styles = stylex.create({
   },
   wrap: {
     flex: 1,
-    height: "100%",
+    fontSize: 0,
   },
   iframe: {
-    height: "100%",
-    border: 0,
     width: "100%",
+    border: 0,
   },
 });
 
 const StoryContainer: React.FC<StoryContainerProps> = (props) => {
   const { slug, stories } = props;
   const router = useRouter();
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const handleSelect = (ids: string[]) => {
     if (ids[0] == null) return;
     router.push(`/packages/${ids[0]}`);
   };
+
+  const handleIFrameLoad = () => {
+    console.log("join");
+    const height = iframeRef.current?.ownerDocument.body.scrollHeight;
+    if (iframeRef.current) {
+      iframeRef.current.style.height = height + "px";
+    }
+  };
+
   if (!slug) return;
 
   return (
     <div {...stylex.props(styles.root)}>
-      <div {...stylex.props(styles.nav)}>
+      {/* <div {...stylex.props(styles.nav)}>
         <Menu
           initialSelectedIds={[decodeURIComponent(slug)]}
           items={stories.map((item) => ({ id: item.id, label: item.title }))}
           onSelect={handleSelect}
         />
-      </div>
+      </div> */}
       <div {...stylex.props(styles.wrap)}>
         <iframe
+          ref={iframeRef}
           {...stylex.props(styles.iframe)}
           title="Packages Document"
           src={`${STORYBOOK_IFRAME_URL}?viewMode=docs&id=${slug}`}
+          onLoadCapture={handleIFrameLoad}
         />
       </div>
     </div>

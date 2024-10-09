@@ -6,27 +6,43 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build --output-dir public/storybook"
   },
   "dependencies": {
-    "react": "^18",
-    "react-dom": "^18",
+    "@design/core": "workspace:*",
+    "@design/icon": "workspace:*",
+    "@design/pro": "workspace:*",
+    "@stylexjs/stylex": "~0.7.5",
     "next": "14.2.11",
     "normalize.css": "~8.0.1",
-    "@design/core": "workspace:*",
-    "@design/pro": "workspace:*",
-    "@design/icon": "workspace:*",
-    "@stylexjs/stylex": "~0.7.5"
+    "react": "^18",
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@storybook/addon-essentials": "^8.3.4",
+    "@storybook/addon-docs": "~8.3.4",
+    "@storybook/addon-interactions": "^8.3.4",
+    "@storybook/addon-links": "^8.3.4",
+    "@storybook/blocks": "^8.3.4",
+    "@storybook/react": "^8.3.4",
+    "@storybook/test": "^8.3.4",
+    "@storybook/react-vite": "^8.3.4",
+    "@storybook/manager-api": "^8.3.4",
+    "@storybook/theming": "^8.3.4",
+    "@stylexjs/babel-plugin": "~0.7.5",
+    "@stylexjs/eslint-plugin": "~0.7.5",
+    "@stylexjs/nextjs-plugin": "~0.7.5",
+    "@stylexjs/rollup-plugin": "~0.7.5",
     "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
-    "@stylexjs/babel-plugin": "~0.7.5",
-    "@stylexjs/eslint-plugin": "~0.7.5",
-    "@stylexjs/nextjs-plugin": "~0.7.5"
+    "eslint-plugin-storybook": "^0.9.0",
+    "storybook": "^8.3.4",
+    "vite": "~4.5.2",
+    "typescript": "^5"
   }
 }
