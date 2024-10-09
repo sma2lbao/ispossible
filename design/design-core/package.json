@@ -38,7 +38,7 @@
     "typescript": "^5",
     "@tools/eslint-config": "workspace:*",
     "eslint": "^8",
-    "@types/node": "~22.7.4",
+    "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "vite": "~4.5.2",

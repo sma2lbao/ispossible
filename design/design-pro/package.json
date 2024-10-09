@@ -20,7 +20,7 @@
     "typescript": "^5",
     "@tools/eslint-config": "workspace:*",
     "eslint": "^8",
-    "@types/node": "^20",
+    "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@stylexjs/babel-plugin": "~0.7.5"
