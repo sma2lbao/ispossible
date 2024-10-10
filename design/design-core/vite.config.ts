@@ -7,4 +7,9 @@ export default defineConfig({
       fileName: "stylex-bundle.css",
     }),
   ],
+  server: {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+  },
 });

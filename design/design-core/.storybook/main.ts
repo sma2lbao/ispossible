@@ -30,6 +30,15 @@ const config: StorybookConfig = {
     reactDocgen: "react-docgen-typescript",
     check: false,
   },
+  core: {
+    enableCrashReports: false,
+    builder: {
+      name: "@storybook/builder-vite",
+      options: {
+        viteConfigPath: join(__dirname, "../vite.config.ts"),
+      },
+    },
+  },
   async viteFinal(config) {
     // Merge custom configuration into the default config
     return mergeConfig(config, {

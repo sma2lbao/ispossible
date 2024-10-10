@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useLayoutEffect, useState } from "react";
+import microApp from "@micro-zoe/micro-app";
 import stylex from "@stylexjs/stylex";
 import { useRouter } from "next/navigation";
 import { Menu } from "@design/core";
@@ -18,10 +19,7 @@ const styles = stylex.create({
   root: {
     flex: "1",
     backgroundColor: "#fff",
-    alignSelf: "stretch",
     display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
   },
   nav: {
     width: 280,
@@ -29,51 +27,44 @@ const styles = stylex.create({
   },
   wrap: {
     flex: 1,
-    fontSize: 0,
-  },
-  iframe: {
-    width: "100%",
-    border: 0,
   },
 });
 
 const StoryContainer: React.FC<StoryContainerProps> = (props) => {
   const { slug, stories } = props;
   const router = useRouter();
-  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isClient, setIsClient] = useState(false);
 
   const handleSelect = (ids: string[]) => {
     if (ids[0] == null) return;
-    router.push(`/packages/${ids[0]}`);
+    const slug = ids[0];
+    router.push(`/packages/${slug}`);
   };
 
-  const handleIFrameLoad = () => {
-    console.log("join");
-    const height = iframeRef.current?.ownerDocument.body.scrollHeight;
-    if (iframeRef.current) {
-      iframeRef.current.style.height = height + "px";
+  useLayoutEffect(() => {
+    setIsClient(true);
+    if (!window.__MICRO_APP_BASE_APPLICATION__) {
+      microApp.start();
     }
-  };
-
-  if (!slug) return;
+  }, []);
 
   return (
     <div {...stylex.props(styles.root)}>
-      {/* <div {...stylex.props(styles.nav)}>
+      <div {...stylex.props(styles.nav)}>
         <Menu
           initialSelectedIds={[decodeURIComponent(slug)]}
           items={stories.map((item) => ({ id: item.id, label: item.title }))}
           onSelect={handleSelect}
         />
-      </div> */}
+      </div>
       <div {...stylex.props(styles.wrap)}>
-        <iframe
-          ref={iframeRef}
-          {...stylex.props(styles.iframe)}
-          title="Packages Document"
-          src={`${STORYBOOK_IFRAME_URL}?viewMode=docs&id=${slug}`}
-          onLoadCapture={handleIFrameLoad}
-        />
+        {isClient && (
+          <micro-app
+            name="stories"
+            ssr
+            url={`${STORYBOOK_IFRAME_URL}?viewMode=docs&id=${slug}`}
+          />
+        )}
       </div>
     </div>
   );

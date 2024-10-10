@@ -18,19 +18,10 @@
     "next": "14.2.11",
     "normalize.css": "~8.0.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "@micro-zoe/micro-app": "~1.0.0-rc.12"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "^8.3.4",
-    "@storybook/addon-docs": "~8.3.4",
-    "@storybook/addon-interactions": "^8.3.4",
-    "@storybook/addon-links": "^8.3.4",
-    "@storybook/blocks": "^8.3.4",
-    "@storybook/react": "^8.3.4",
-    "@storybook/test": "^8.3.4",
-    "@storybook/react-vite": "^8.3.4",
-    "@storybook/manager-api": "^8.3.4",
-    "@storybook/theming": "^8.3.4",
     "@stylexjs/babel-plugin": "~0.7.5",
     "@stylexjs/eslint-plugin": "~0.7.5",
     "@stylexjs/nextjs-plugin": "~0.7.5",
@@ -41,8 +32,6 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "eslint-plugin-storybook": "^0.9.0",
-    "storybook": "^8.3.4",
-    "vite": "~4.5.2",
     "typescript": "^5"
   }
 }
