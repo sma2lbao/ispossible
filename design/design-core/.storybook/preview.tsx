@@ -1,5 +1,6 @@
 import type { Preview } from "@storybook/react";
 import React from "react";
+import { MessageContainer } from "./blocks/message-container";
 
 import {
   Title,
@@ -11,7 +12,21 @@ import {
 
 const preview: Preview = {
   globals: {},
-  globalTypes: {},
+  globalTypes: {
+    locale: {
+      description: "国际化语言环境",
+      toolbar: {
+        icon: "globe",
+        items: [
+          { value: "zh", right: "🇨🇳", title: "中文" },
+          { value: "en", right: "🇺🇸", title: "English" },
+        ],
+      },
+    },
+  },
+  initialGlobals: {
+    locale: "zh",
+  },
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
@@ -21,7 +36,15 @@ const preview: Preview = {
       },
     },
     docs: {
-      toc: false,
+      toc: {
+        headingSelector: "h1, h2, h3",
+        ignoreSelector: "#primary",
+        title: "目录",
+        disable: false,
+        unsafeTocbotOptions: {
+          orderedList: false,
+        },
+      },
       page: () => (
         <>
           <Title />
@@ -29,6 +52,7 @@ const preview: Preview = {
           <Description />
           <Stories />
           <ArgTypes exclude={["children"]} />
+          <MessageContainer />
         </>
       ),
     },

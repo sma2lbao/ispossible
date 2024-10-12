@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import stylex from "@stylexjs/stylex";
 import { useRouter } from "next/navigation";
 import { Menu } from "@design/core";
@@ -18,10 +18,7 @@ const styles = stylex.create({
   root: {
     flex: "1",
     backgroundColor: "#fff",
-    alignSelf: "stretch",
     display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
   },
   nav: {
     width: 280,
@@ -29,24 +26,36 @@ const styles = stylex.create({
   },
   wrap: {
     flex: 1,
-    height: "100%",
+    fontSize: 0,
   },
   iframe: {
-    height: "100%",
-    border: 0,
     width: "100%",
+    minHeight: "100%",
+    border: 0,
+    padding: 0,
+    margin: 0,
   },
 });
 
 const StoryContainer: React.FC<StoryContainerProps> = (props) => {
   const { slug, stories } = props;
   const router = useRouter();
+  const iFrameRef = useRef<HTMLIFrameElement>(null);
 
   const handleSelect = (ids: string[]) => {
     if (ids[0] == null) return;
-    router.push(`/packages/${ids[0]}`);
+    const slug = ids[0];
+    router.push(`/packages/${slug}`);
   };
-  if (!slug) return;
+
+  useLayoutEffect(() => {
+    window.addEventListener("message", (event) => {
+      const data = event.data;
+      if (data?.type === "document" && iFrameRef.current) {
+        iFrameRef.current.style.height = data.args.height + "px";
+      }
+    });
+  }, []);
 
   return (
     <div {...stylex.props(styles.root)}>
@@ -60,7 +69,7 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
       <div {...stylex.props(styles.wrap)}>
         <iframe
           {...stylex.props(styles.iframe)}
-          title="Packages Document"
+          ref={iFrameRef}
           src={`${STORYBOOK_IFRAME_URL}?viewMode=docs&id=${slug}`}
         />
       </div>

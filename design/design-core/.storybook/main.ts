@@ -6,17 +6,17 @@ import { mergeConfig } from "vite";
  * This function is used to resolve the absolute path of a package.
  * It is needed in projects that use Yarn PnP or are set up within a monorepo.
  */
-function getAbsolutePath(value: string): any {
+function getAbsolutePath(value: string) {
   return dirname(require.resolve(join(value, "package.json")));
 }
 const config: StorybookConfig = {
-  stories: [
-    "../docs/stories/**/*.mdx",
-    "../docs/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-  ],
+  stories: ["../docs/pages/**/*.mdx", "../docs/**/*.stories.@(ts|tsx)"],
   addons: [
+    // 用于在 Storybook 中创建链接
     getAbsolutePath("@storybook/addon-links"),
+    // 提供一系列常用的功能，如文档、控制台、视角调整等。
     getAbsolutePath("@storybook/addon-essentials"),
+    // 支持测试组件的交互行为。
     getAbsolutePath("@storybook/addon-interactions"),
   ],
   framework: {
@@ -29,6 +29,15 @@ const config: StorybookConfig = {
   typescript: {
     reactDocgen: "react-docgen-typescript",
     check: false,
+  },
+  core: {
+    enableCrashReports: false,
+    builder: {
+      name: "@storybook/builder-vite",
+      options: {
+        viteConfigPath: join(__dirname, "../vite.config.ts"),
+      },
+    },
   },
   async viteFinal(config) {
     // Merge custom configuration into the default config
