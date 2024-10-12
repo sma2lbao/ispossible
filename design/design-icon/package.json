@@ -10,8 +10,6 @@
     "./*": "./components/*.ts"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo \"Error: no build\" && exit 1",
     "icongen": "tsc ./icongen.ts --outDir ./dist --module node16 && node ./dist/icongen.js"
   },
   "keywords": [],
