@@ -1,5 +1,6 @@
 import type { Preview } from "@storybook/react";
 import React from "react";
+import { MessageContainer } from "./blocks/message-container";
 
 import {
   Title,
@@ -35,7 +36,15 @@ const preview: Preview = {
       },
     },
     docs: {
-      toc: false,
+      toc: {
+        headingSelector: "h1, h2, h3",
+        ignoreSelector: "#primary",
+        title: "目录",
+        disable: false,
+        unsafeTocbotOptions: {
+          orderedList: false,
+        },
+      },
       page: () => (
         <>
           <Title />
@@ -43,6 +52,7 @@ const preview: Preview = {
           <Description />
           <Stories />
           <ArgTypes exclude={["children"]} />
+          <MessageContainer />
         </>
       ),
     },

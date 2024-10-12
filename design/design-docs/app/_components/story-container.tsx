@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useLayoutEffect, useState } from "react";
-import microApp from "@micro-zoe/micro-app";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import stylex from "@stylexjs/stylex";
 import { useRouter } from "next/navigation";
 import { Menu } from "@design/core";
@@ -27,13 +26,21 @@ const styles = stylex.create({
   },
   wrap: {
     flex: 1,
+    fontSize: 0,
+  },
+  iframe: {
+    width: "100%",
+    minHeight: "100%",
+    border: 0,
+    padding: 0,
+    margin: 0,
   },
 });
 
 const StoryContainer: React.FC<StoryContainerProps> = (props) => {
   const { slug, stories } = props;
   const router = useRouter();
-  const [isClient, setIsClient] = useState(false);
+  const iFrameRef = useRef<HTMLIFrameElement>(null);
 
   const handleSelect = (ids: string[]) => {
     if (ids[0] == null) return;
@@ -42,10 +49,12 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
   };
 
   useLayoutEffect(() => {
-    setIsClient(true);
-    if (!window.__MICRO_APP_BASE_APPLICATION__) {
-      microApp.start();
-    }
+    window.addEventListener("message", (event) => {
+      const data = event.data;
+      if (data?.type === "document" && iFrameRef.current) {
+        iFrameRef.current.style.height = data.args.height + "px";
+      }
+    });
   }, []);
 
   return (
@@ -58,13 +67,11 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
         />
       </div>
       <div {...stylex.props(styles.wrap)}>
-        {isClient && (
-          <micro-app
-            name="stories"
-            ssr
-            url={`${STORYBOOK_IFRAME_URL}?viewMode=docs&id=${slug}`}
-          />
-        )}
+        <iframe
+          {...stylex.props(styles.iframe)}
+          ref={iFrameRef}
+          src={`${STORYBOOK_IFRAME_URL}?viewMode=docs&id=${slug}`}
+        />
       </div>
     </div>
   );
