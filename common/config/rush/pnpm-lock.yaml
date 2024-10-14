@@ -180,9 +180,6 @@ importers:
       '@design/pro':
         specifier: workspace:*
         version: link:../design-pro
-      '@micro-zoe/micro-app':
-        specifier: ~1.0.0-rc.12
-        version: 1.0.0-rc.12
       '@stylexjs/stylex':
         specifier: ~0.7.5
         version: 0.7.5
@@ -1045,10 +1042,6 @@ packages:
       '@types/react': 18.3.11
       react: 18.3.1
     dev: true
-
-  /@micro-zoe/micro-app@1.0.0-rc.12:
-    resolution: {integrity: sha512-i1kaNA4jcIFF8weAnS6fjDrj6NLokYg2/GwBvwKid0hZQk15jOCyOJQrtMb6J5AQHdNKFpW4BBl8uyAFbMA5Tw==}
-    dev: false
 
   /@next/env@14.2.11:
     resolution: {integrity: sha512-HYsQRSIXwiNqvzzYThrBwq6RhXo3E0n8j8nQnAs8i4fCEo2Zf/3eS0IiRA8XnRg9Ha0YnpkyJZIZg1qEwemrHw==}

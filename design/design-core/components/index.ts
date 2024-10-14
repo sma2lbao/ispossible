@@ -14,7 +14,7 @@ export { Tree } from "./tree";
 export { Anchor } from "./anchor";
 export { NoSsr } from "./no-ssr";
 export { Tabs } from "./tabs";
-export { Link } from "./link";
+export { BaseLink as Link } from "./link";
 export { Affix } from "./affix";
 export { Divider } from "./divider";
 export { Input, Textarea } from "./input";

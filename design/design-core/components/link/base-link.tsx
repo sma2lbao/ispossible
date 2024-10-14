@@ -2,7 +2,7 @@ import React from "react";
 import stylex from "@stylexjs/stylex";
 import { colors } from "../theme/tokens.stylex";
 
-export interface LinkProps {
+export interface BaseLinkProps {
   children?: React.ReactNode;
   /**
    * 字体颜色
@@ -25,7 +25,7 @@ const styles = stylex.create({
   }),
 });
 
-export const Link: React.FC<LinkProps> = (props) => {
+export const BaseLink: React.FC<BaseLinkProps> = (props) => {
   const { href, target = "_blank", children, color } = props;
   return (
     <a target={target} href={href} {...stylex.props(styles.root(color))}>
