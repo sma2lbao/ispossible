@@ -40,12 +40,12 @@
     "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "vite": "~4.5.2",
+    "vite": "^5",
     "@types/mdx": "~2.0.11",
-    "@stylexjs/rollup-plugin": "~0.7.5"
+    "vite-plugin-stylex": "~0.12.0"
   },
   "dependencies": {
-    "@stylexjs/stylex": "~0.7.5",
+    "@stylexjs/stylex": "~0.8.0",
     "@design/icon": "workspace:*"
   },
   "files": [

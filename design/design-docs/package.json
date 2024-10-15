@@ -12,23 +12,22 @@
     "@design/core": "workspace:*",
     "@design/icon": "workspace:*",
     "@design/pro": "workspace:*",
-    "@stylexjs/stylex": "~0.7.5",
-    "next": "14.2.11",
+    "@stylexjs/stylex": "~0.8.0",
+    "next": "14.2.15",
     "normalize.css": "~8.0.1",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
-    "@stylexjs/babel-plugin": "~0.7.5",
-    "@stylexjs/eslint-plugin": "~0.7.5",
-    "@stylexjs/nextjs-plugin": "~0.7.5",
-    "@stylexjs/rollup-plugin": "~0.7.5",
+    "@stylexjs/babel-plugin": "~0.8.0",
+    "@stylexjs/eslint-plugin": "~0.8.0",
+    "@stylexjs/nextjs-plugin": "~0.8.0",
+    "@stylexjs/rollup-plugin": "~0.8.0",
     "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "14.2.3",
-    "eslint-plugin-storybook": "^0.9.0",
+    "eslint-config-next": "14.2.15",
     "typescript": "^5"
   }
 }
