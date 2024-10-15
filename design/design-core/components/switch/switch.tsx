@@ -25,6 +25,7 @@ const styles = stylex.create({
     alignItems: "center",
     justifyContent: "flex-start",
     padding: 1,
+    cursor: "pointer",
   },
   active: {
     backgroundColor: colors.primary,

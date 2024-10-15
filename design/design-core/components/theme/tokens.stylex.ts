@@ -19,6 +19,9 @@ export const shadow = stylex.defineVars({
   basic: "",
 } as const);
 
+// TODO 颜色细分
+// primary  primary-hover primary-active  primary-disabled  link-visited
+
 export const colors = stylex.defineVars({
   basic: "#3a3a3a",
   primary: "blue",
