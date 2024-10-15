@@ -1,5 +1,9 @@
 import stylex from "@stylexjs/stylex";
 
+export const topbar = stylex.defineVars({
+  height: "52px",
+} as const);
+
 export const radius = stylex.defineVars({
   none: "0",
   basic: "4px",

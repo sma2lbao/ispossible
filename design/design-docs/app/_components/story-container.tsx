@@ -1,17 +1,14 @@
 "use client";
 
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import stylex from "@stylexjs/stylex";
 import { useRouter } from "next/navigation";
 import { Menu } from "@design/core";
 import { STORYBOOK_IFRAME_URL } from "@/constants";
+import { stories } from "@/config";
 
 export interface StoryContainerProps {
   slug: string;
-  stories: {
-    id: string;
-    title: string;
-  }[];
 }
 
 const styles = stylex.create({
@@ -38,14 +35,15 @@ const styles = stylex.create({
 });
 
 const StoryContainer: React.FC<StoryContainerProps> = (props) => {
-  const { slug, stories } = props;
+  const { slug } = props;
+  const path = stories.find((item) => item.id === slug)?.path || "";
   const router = useRouter();
   const iFrameRef = useRef<HTMLIFrameElement>(null);
 
   const handleSelect = (ids: string[]) => {
     if (ids[0] == null) return;
     const slug = ids[0];
-    router.push(`/packages/${slug}`);
+    router.push(`/components/${slug}`);
   };
 
   useLayoutEffect(() => {
@@ -62,7 +60,10 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
       <div {...stylex.props(styles.nav)}>
         <Menu
           initialSelectedIds={[decodeURIComponent(slug)]}
-          items={stories.map((item) => ({ id: item.id, label: item.title }))}
+          items={stories.map((item) => ({
+            id: item.id,
+            label: item.title,
+          }))}
           onSelect={handleSelect}
         />
       </div>
@@ -70,7 +71,7 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
         <iframe
           {...stylex.props(styles.iframe)}
           ref={iFrameRef}
-          src={`${STORYBOOK_IFRAME_URL}?viewMode=docs&id=${slug}`}
+          src={`${STORYBOOK_IFRAME_URL}?viewMode=docs&id=${path}`}
         />
       </div>
     </div>

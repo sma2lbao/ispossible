@@ -1,6 +1,5 @@
 import Document from "@/app/_layouts/document";
 import StoryContainer from "@/app/_components/story-container";
-import { stories } from "@/config";
 
 export default async function ArticlePage({
   params,
@@ -11,7 +10,7 @@ export default async function ArticlePage({
 
   return (
     <Document>
-      <StoryContainer slug={slug} stories={stories} />
+      <StoryContainer slug={slug} />
     </Document>
   );
 }

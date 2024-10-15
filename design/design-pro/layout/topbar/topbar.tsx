@@ -9,6 +9,9 @@ const styles = stylex.create({
   root: {
     backgroundColor: "#fff",
     padding: "8px 24px",
+    height: 52,
+    display: "flex",
+    alignItems: "center",
   },
   main: (width: number) => ({
     width,

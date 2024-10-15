@@ -5,6 +5,7 @@ import {
   shadow,
   radius,
   lineHeight,
+  topbar,
 } from "./tokens.stylex";
 
 export type Colors = typeof colors;
@@ -19,6 +20,8 @@ export type Radius = typeof radius;
 
 export type LineHeight = typeof lineHeight;
 
+export type Topbar = typeof topbar;
+
 export type Theme = ReturnType<typeof useTheme>;
 
 export function useTheme() {
@@ -29,5 +32,6 @@ export function useTheme() {
     shadow,
     radius,
     lineHeight,
+    topbar,
   };
 }
