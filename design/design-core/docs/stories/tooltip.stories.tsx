@@ -1,4 +1,4 @@
-import { Tooltip } from "../../components";
+import { Button, Divider, Space, Tooltip } from "../../components";
 import React from "react";
 
 import type { Meta, StoryObj } from "@storybook/react";
@@ -18,146 +18,86 @@ type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 
-export const TopLeft: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
+export const 基本使用 = () => {
+  const title = "基本使用";
+  const style: React.CSSProperties = {
+    width: 80,
+    height: 80,
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    border: "1px solid #eee",
+  };
+  return (
+    <div>
+      <div>
+        <Space>
+          <Tooltip title={title} direction="top-left">
+            <span style={style}>top-left</span>
+          </Tooltip>
+          <Tooltip title={title} direction="top" arrow={false} visible>
+            <span style={style}>top</span>
+          </Tooltip>
+          <Tooltip title={title} direction="top-right">
+            <span style={style}>top-right</span>
+          </Tooltip>
+        </Space>
       </div>
-    ),
-    placement: "topLeft",
-  },
-};
 
-export const Top: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
-      </div>
-    ),
-    placement: "top",
-  },
-};
+      <Divider />
 
-export const TopRight: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
+      <div>
+        <Space>
+          <Tooltip title={title} direction="left-top">
+            <span style={style}>left-top</span>
+          </Tooltip>
+          <Tooltip title={title} direction="right-top">
+            <span style={style}>right-top</span>
+          </Tooltip>
+        </Space>
       </div>
-    ),
-    placement: "topRight",
-  },
-};
 
-export const RightTop: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
-      </div>
-    ),
-    placement: "rightTop",
-  },
-};
+      <Divider />
 
-export const Right: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
+      <div>
+        <Space>
+          <Tooltip title={title} direction="left">
+            <span style={style}>left</span>
+          </Tooltip>
+          <Tooltip title={title} direction="right">
+            <span style={style}>right</span>
+          </Tooltip>
+        </Space>
       </div>
-    ),
-    placement: "right",
-  },
-};
 
-export const RightBottom: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
-      </div>
-    ),
-    placement: "rightBottom",
-  },
-};
+      <Divider />
 
-export const BottomRight: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
+      <div>
+        <Space>
+          <Tooltip title={title} direction="left-bottom">
+            <span style={style}>left-bottom</span>
+          </Tooltip>
+          <Tooltip title={title} direction="right-bottom">
+            <span style={style}>right-bottom</span>
+          </Tooltip>
+        </Space>
       </div>
-    ),
-    placement: "bottomRight",
-  },
-};
 
-export const Bottom: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
-      </div>
-    ),
-    placement: "bottom",
-  },
-};
+      <Divider />
 
-export const BottomLeft: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
+      <div>
+        <Space>
+          <Tooltip title={title} direction="bottom-left">
+            <span style={style}>bottom-left</span>
+          </Tooltip>
+          <Tooltip title={title} direction="bottom">
+            <span style={style}>bottom</span>
+          </Tooltip>
+          <Tooltip title={title} direction="bottom-right">
+            <span style={style}>bottom-right</span>
+          </Tooltip>
+        </Space>
       </div>
-    ),
-    placement: "bottomLeft",
-  },
-};
-
-export const LeftBottom: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
-      </div>
-    ),
-    placement: "leftBottom",
-  },
-};
-
-export const Left: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
-      </div>
-    ),
-    placement: "left",
-  },
-};
-
-export const LeftTop: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
-      </div>
-    ),
-    placement: "leftTop",
-  },
+    </div>
+  );
 };
