@@ -59,6 +59,8 @@ export interface SubNavProps extends BaseItemProps {
    */
   isCollapsed?: boolean;
 
+  expandIcon?: ReactNode;
+
   children?: ReactNode;
 
   items?: (SubNavProps | NavItemProps)[];
@@ -68,9 +70,9 @@ export interface SubNavProps extends BaseItemProps {
  */
 export interface NavItemProps extends BaseItemProps {
   /**
-   * 切换后图标
+   * 图标
    */
-  toggleIcon?: React.ReactNode;
+  toggleIcon?: ReactNode;
 }
 
 export function isSubNavProps(config: ItemType): config is SubNavProps {
