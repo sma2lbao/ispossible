@@ -1,85 +1,83 @@
-import type { Placement } from "./types";
+import type { Direction } from "./tooltip.types";
 
-export interface CalcStyleProps {
-  placement: Placement;
-  gap?: number;
-  trigger: Element;
-  hasPosition?: boolean;
-  scrollX?: number;
-  scrollY?: number;
-}
-
-export const calcPositionStyle = (
-  props: CalcStyleProps
-): React.CSSProperties => {
+// 计算 Tooltip 位置的函数
+export const calculatePosition = (
+  triggerRect: DOMRect,
+  tooltipRect: DOMRect,
+  direction: Direction,
+  scrollX: number,
+  scrollY: number
+) => {
+  const spacing = 8; // 设置触发元素和 Tooltip 之间的距离
   const {
-    placement,
-    gap = 0,
-    scrollX = 0,
-    scrollY = 0,
-    trigger,
-    hasPosition = false,
-  } = props;
-  const [primary, secondary] = splitCamelCase(placement);
-  const rect = trigger.getBoundingClientRect();
+    top: triggerTop,
+    left: triggerLeft,
+    right: triggerRight,
+    bottom: triggerBottom,
+    width: triggerWidth,
+    height: triggerHeight,
+  } = triggerRect;
+  const { width: tooltipWidth, height: tooltipHeight } = tooltipRect;
 
-  const { left, top, width, height } = rect;
-  let transformX = -50; // X轴 左移 - ； 右移 +
-  let transformY = -50; // Y轴 上移 - ；下移 +
-  let moveX = hasPosition ? width / 2 : left + width / 2; // X轴 左移 - ； 右移 +
-  let moveY = hasPosition ? height / 2 : top + height / 2; // Y轴 上移 - ；下移 +
-  const moveYUnit = height / 2;
-  const moveXUnit = width / 2;
-  const transformUnit = 50;
+  // 基本位置计算
+  const baseTop = triggerTop + scrollY;
+  const baseLeft = triggerLeft + scrollX;
 
-  if (primary === "top") {
-    transformY -= transformUnit;
-    moveY -= moveYUnit;
-    moveY -= gap;
-  }
-  if (primary === "bottom") {
-    transformY += transformUnit;
-    moveY += moveYUnit;
-    moveY += gap;
-  }
-  if (primary === "right") {
-    transformX += transformUnit;
-    moveX += moveXUnit;
-    moveX += gap;
-  }
-  if (primary === "left") {
-    transformX -= transformUnit;
-    moveX -= moveXUnit;
-    moveX -= gap;
+  let top = 0;
+  let left = 0;
+
+  switch (direction) {
+    case "top":
+      top = triggerTop - tooltipHeight - spacing + scrollY;
+      left = baseLeft + triggerWidth / 2 - tooltipWidth / 2;
+      break;
+    case "bottom":
+      top = triggerBottom + spacing + scrollY;
+      left = baseLeft + triggerWidth / 2 - tooltipWidth / 2;
+      break;
+    case "left":
+      top = baseTop + triggerHeight / 2 - tooltipHeight / 2;
+      left = triggerLeft - tooltipWidth - spacing + scrollX;
+      break;
+    case "right":
+      top = baseTop + triggerHeight / 2 - tooltipHeight / 2;
+      left = triggerRight + spacing + scrollX;
+      break;
+    case "top-left":
+      top = triggerTop - tooltipHeight - spacing + scrollY;
+      left = baseLeft;
+      break;
+    case "top-right":
+      top = triggerTop - tooltipHeight - spacing + scrollY;
+      left = triggerRight - tooltipWidth + scrollX;
+      break;
+    case "bottom-left":
+      top = triggerBottom + spacing + scrollY;
+      left = baseLeft;
+      break;
+    case "bottom-right":
+      top = triggerBottom + spacing + scrollY;
+      left = triggerRight - tooltipWidth + scrollX;
+      break;
+    case "left-top":
+      top = baseTop;
+      left = triggerLeft - tooltipWidth - spacing + scrollX;
+      break;
+    case "left-bottom":
+      top = triggerBottom + scrollY - tooltipHeight;
+      left = triggerLeft - tooltipWidth - spacing + scrollX;
+      break;
+    case "right-top":
+      top = baseTop;
+      left = triggerRight + spacing + scrollX;
+      break;
+    case "right-bottom":
+      top = triggerBottom + scrollY - tooltipHeight;
+      left = triggerRight + spacing + scrollX;
+      break;
+    default:
+      break;
   }
 
-  if (secondary === "top") {
-    moveY -= moveYUnit;
-    transformY += transformUnit;
-  }
-  if (secondary === "bottom") {
-    moveY += moveYUnit;
-    transformY -= transformUnit;
-  }
-  if (secondary === "right") {
-    moveX += moveXUnit;
-    transformX -= transformUnit;
-  }
-  if (secondary === "left") {
-    transformX += transformUnit;
-    moveX -= moveXUnit;
-  }
-
-  return {
-    transform: `translate(calc(${moveX + scrollX}px + ${transformX}%), calc(${
-      moveY + scrollY
-    }px + ${transformY}%))`,
-  };
-};
-
-const splitCamelCase = (input: string): string[] => {
-  return input
-    .replace(/([a-z])([A-Z])/g, "$1 $2")
-    .toLowerCase()
-    .split(" ");
+  return { top, left };
 };

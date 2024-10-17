@@ -3,7 +3,11 @@ import stylex, { StyleXStyles } from "@stylexjs/stylex";
 import { colors, radius, spacing, animation } from "../theme/tokens.stylex";
 import "@design/icon/loading";
 
-export interface ButtonProps {
+type HostHTMLButtonProps = Omit<
+  React.ButtonHTMLAttributes<HTMLElement>,
+  "type" | "style"
+>;
+export interface ButtonProps extends HostHTMLButtonProps {
   /**
    * 设置按钮类型
    */
@@ -129,6 +133,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       target = "_blank",
       onClick,
       style,
+      ...rest
     } = props;
 
     const onlyIcon = !!icon && !children;
@@ -161,6 +166,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           (disabled || loading) && styles.disabled,
           style
         )}
+        {...rest}
       >
         {hasIcon && (
           <span {...stylex.props(styles.iconContainer)}>

@@ -1,181 +1,159 @@
 import React, {
-  CSSProperties,
   useRef,
   useState,
   useLayoutEffect,
+  useCallback,
   useEffect,
 } from "react";
 import { createPortal } from "react-dom";
 import stylex from "@stylexjs/stylex";
-import { isFunction } from "../../shared";
-import { arrowConfig, arrowPlacement, arrowSize, delay } from "./config";
-import { calcPositionStyle } from "./utils";
-import { type TooltipProps } from "./types";
-
-const styles = stylex.create({
-  root: (color: string, backgroundColor: string) => ({
-    position: "absolute",
-    color: color || "#fff",
-    backgroundColor: backgroundColor || "#000",
-    borderRadius: "4px",
-    padding: "6px 10px",
-    inset: "0 auto auto 0",
-    fontSize: 14,
-    lineHeight: 1.4,
-    boxShadow:
-      "0 6px 16px 0 rgb(0 0 0 / 8%), 0 3px 6px -4px rgb(0 0 0 / 12%), 0 9px 28px 8px rgb(0 0 0 / 5%)",
-  }),
-
-  arrow: (color: string, size: number) => ({
-    position: "absolute",
-    inset: "0 auto auto 0",
-    color: color || "#000",
-    lineHeight: 1,
-    fontSize: size || 16,
-  }),
-});
+import { isFunction, mergeEvents, mergeRefs, noop } from "../../shared";
+import { useClickOutside } from "../../hooks/use-click-outside";
+import type { TooltipProps } from "./tooltip.types";
+import { calculatePosition } from "./utils";
+import { styles, light } from "./tooltip.stylex";
 
 export const Tooltip: React.FC<TooltipProps> = (props) => {
   const {
     title,
     children,
-    placement = "top",
+    direction = "top",
+    trigger = "hover",
+    enterDelay = 50,
+    leaveDelay = 50,
     visible = false,
     arrow = true,
+    theme = "dark",
+    popupStylex,
     popupStyle,
-    backgroundColor = "#000",
-    color = "#fff",
   } = props;
 
-  const gap = arrow ? Math.round(arrowSize * 0.5) + 2 : 4;
-  const childRef = useRef<HTMLElement>();
-  const panelRef = useRef<HTMLDivElement>(null);
-  const delayRef = useRef<NodeJS.Timeout>();
-  const [positionStyle, setPositionStyle] = useState<CSSProperties>();
-  const [arrowPositionStyle, setArrowPositionStyle] = useState<CSSProperties>();
-  const [visibleInner, setVisibleInner] = useState<boolean>(visible);
+  const triggerRef = useRef<HTMLElement>(null);
+  const tooltipRef = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState<{ top: number; left: number }>();
+  const [visibleInner, setVisibleInner] = useState<boolean>(false);
+  const [inPopover, setInPopover] = useState(false);
 
-  const child = React.isValidElement(children) ? (
+  const child: React.ReactElement = React.isValidElement(children) ? (
     children
   ) : (
-    <span>{children}</span>
+    <React.Fragment>{children}</React.Fragment>
   );
 
-  const closePopup: React.MouseEventHandler<HTMLDivElement> = (e) => {
-    if (delayRef.current) {
-      clearTimeout(delayRef.current);
-    }
-    delayRef.current = setTimeout(() => {
+  const handleOpenPopover = () => {
+    setTimeout(() => {
+      setVisibleInner(true);
+    }, enterDelay);
+  };
+
+  const handleClosePopover = () => {
+    setTimeout(() => {
       setVisibleInner(false);
-    }, delay);
+    }, leaveDelay);
   };
 
-  const openPopup = () => {
-    if (delayRef.current) {
-      clearTimeout(delayRef.current);
+  // 鼠标移入弹窗
+  const handleEnterPopover = () => {
+    setInPopover(true);
+  };
+
+  // 鼠标移出弹窗
+  const handleLeavePopover = () => {
+    setInPopover(false);
+  };
+
+  const handleOutside = useCallback((event: MouseEvent) => {
+    if (trigger !== "click") return;
+    handleClosePopover();
+  }, []);
+
+  // 更新位置
+  const updatePosition = () => {
+    const triggerRect = triggerRef.current?.getBoundingClientRect();
+    if (tooltipRef.current && triggerRect) {
+      const tooltipRect = tooltipRef.current.getBoundingClientRect();
+      // 获取当前的滚动位置
+      const scrollY = window.scrollY;
+      const scrollX = window.scrollX;
+      setPosition(
+        calculatePosition(triggerRect, tooltipRect, direction, scrollX, scrollY)
+      );
     }
-    setVisibleInner(true);
   };
 
-  /**
-   * 计算样式
-   */
-  const calcStyle = () => {
-    if (childRef.current) {
-      const style = calcPositionStyle({
-        placement,
-        gap,
-        trigger: childRef.current,
-        scrollX: window.scrollX,
-        scrollY: window.scrollY,
-      });
-
-      setPositionStyle({ ...style });
+  // 当大小变化时更新位置
+  const handleResize = () => {
+    if (visibleInner) {
+      updatePosition();
     }
   };
+
+  // 点击外面时
+  useClickOutside([triggerRef, tooltipRef], handleOutside);
+
+  useLayoutEffect(() => {
+    const resizeObserver = new ResizeObserver(handleResize);
+    if (triggerRef.current) {
+      resizeObserver.observe(triggerRef.current);
+    }
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [visibleInner]);
+
+  useLayoutEffect(() => {
+    if (visibleInner) {
+      updatePosition();
+    }
+  }, [visibleInner]);
+
+  useEffect(() => {
+    if (trigger === "custom") {
+      setVisibleInner(visible);
+    }
+  }, [visible]);
 
   const renderContent = () => {
-    if (!visibleInner) {
+    if (!visibleInner && !inPopover) {
       return null;
     }
-
     return createPortal(
       <div
-        onMouseEnter={openPopup}
-        onMouseLeave={closePopup}
-        ref={panelRef}
+        ref={tooltipRef}
+        {...stylex.props(theme === "light" && light, styles.root, popupStylex)}
         style={{
-          ...positionStyle,
-          ...stylex.props(styles.root(color, backgroundColor), popupStyle)
-            .style,
+          top: `${position?.top}px`,
+          left: `${position?.left}px`,
+          ...popupStyle,
         }}
-        className={
-          stylex.props(styles.root(color, backgroundColor), popupStyle)
-            .className
-        }
+        onMouseEnter={handleEnterPopover}
+        onMouseLeave={handleLeavePopover}
       >
-        {arrow && (
-          <span
-            style={{
-              ...arrowPositionStyle,
-              ...stylex.props(styles.arrow(backgroundColor, arrowSize)).style,
-            }}
-            className={
-              stylex.props(styles.arrow(backgroundColor, arrowSize)).className
-            }
-          >
-            {arrowConfig[placement]}
-          </span>
-        )}
         <div>{isFunction(title) ? title() : title}</div>
+        {arrow ? (
+          <div {...stylex.props(styles.arrow, styles[direction])}></div>
+        ) : null}
       </div>,
       document.body
     );
   };
 
-  useLayoutEffect(() => {
-    if (childRef.current) {
-      const resizeObserver = new ResizeObserver(calcStyle);
-      resizeObserver.observe(document.body);
-      return () => {
-        resizeObserver.disconnect();
-      };
-    }
-  }, []);
-
-  useEffect(() => {
-    if (visibleInner) {
-      calcStyle();
-    }
-  }, [visibleInner]);
-
-  useEffect(() => {
-    if (panelRef.current) {
-      const arrowPositonStyle = calcPositionStyle({
-        trigger: panelRef.current!,
-        placement: arrowPlacement[placement],
-        hasPosition: true,
-        gap: -gap / 2 - 2,
-      });
-
-      setArrowPositionStyle(arrowPositonStyle);
-    }
-  }, [panelRef.current]);
-
-  useEffect(() => {
-    return () => {
-      if (delayRef.current) {
-        clearTimeout(delayRef.current);
-      }
-    };
-  }, []);
-
   return (
     <React.Fragment>
       {React.cloneElement(child, {
-        ref: childRef,
-        onMouseEnter: openPopup,
-        onMouseLeave: closePopup,
+        ref: mergeRefs(child.props?.ref, triggerRef),
+        onMouseEnter: mergeEvents(
+          child.props?.onMouseEnter,
+          trigger === "hover" ? handleOpenPopover : noop
+        ),
+        onMouseLeave: mergeEvents(
+          child.props?.onMouseLeave,
+          trigger === "hover" ? handleClosePopover : noop
+        ),
+        onClick: mergeEvents(
+          child.props?.onClick,
+          trigger === "click" ? handleOpenPopover : noop
+        ),
       })}
       {renderContent()}
     </React.Fragment>

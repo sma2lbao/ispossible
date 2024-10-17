@@ -1,5 +1,5 @@
-import { Tooltip } from "../../components";
-import React from "react";
+import { Button, Divider, Space, Switch, Tooltip } from "../../components";
+import React, { useState } from "react";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -18,146 +18,119 @@ type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 
-export const TopLeft: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
+export const 基本使用 = () => {
+  const title = "基本使用";
+  const container: React.CSSProperties = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  };
+  const style: React.CSSProperties = {
+    width: 80,
+    height: 80,
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    border: "1px solid #eee",
+  };
+  return (
+    <div>
+      <div>
+        <Space>
+          <Tooltip title={title} direction="top-left">
+            <span style={style}>top-left</span>
+          </Tooltip>
+          <Tooltip title={title} direction="top">
+            <span style={style}>top</span>
+          </Tooltip>
+          <Tooltip title={title} direction="top-right">
+            <span style={style}>top-right</span>
+          </Tooltip>
+        </Space>
       </div>
-    ),
-    placement: "topLeft",
-  },
+
+      <Divider />
+
+      <div style={container}>
+        <Tooltip title={title} direction="left-top">
+          <span style={style}>left-top</span>
+        </Tooltip>
+        <Tooltip title={title} direction="right-top">
+          <span style={style}>right-top</span>
+        </Tooltip>
+      </div>
+
+      <Divider />
+
+      <div style={container}>
+        <Tooltip title={title} direction="left">
+          <span style={style}>left</span>
+        </Tooltip>
+        <Tooltip title={title} direction="right">
+          <span style={style}>right</span>
+        </Tooltip>
+      </div>
+
+      <Divider />
+
+      <div style={container}>
+        <Tooltip title={title} direction="left-bottom">
+          <span style={style}>left-bottom</span>
+        </Tooltip>
+        <Tooltip title={title} direction="right-bottom">
+          <span style={style}>right-bottom</span>
+        </Tooltip>
+      </div>
+
+      <Divider />
+
+      <div>
+        <Space>
+          <Tooltip title={title} direction="bottom-left">
+            <span style={style}>bottom-left</span>
+          </Tooltip>
+          <Tooltip title={title} direction="bottom">
+            <span style={style}>bottom</span>
+          </Tooltip>
+          <Tooltip title={title} direction="bottom-right">
+            <span style={style}>bottom-right</span>
+          </Tooltip>
+        </Space>
+      </div>
+    </div>
+  );
 };
 
-export const Top: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
-      </div>
-    ),
-    placement: "top",
-  },
-};
+export const 触发时机 = () => {
+  const [toggle, setToggle] = useState(false);
 
-export const TopRight: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
+  return (
+    <>
+      <div>
+        <Tooltip title="hello, world!">
+          <Button>悬停显示</Button>
+        </Tooltip>
       </div>
-    ),
-    placement: "topRight",
-  },
-};
-
-export const RightTop: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
+      <Divider />
+      <div>
+        <Tooltip title="hello, world!" trigger="click">
+          <Button>点击显示</Button>
+        </Tooltip>
       </div>
-    ),
-    placement: "rightTop",
-  },
-};
-
-export const Right: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
+      <Divider />
+      <div>
+        <div>
+          <Switch value={toggle} onChange={() => setToggle(!toggle)} />
+        </div>
+        <Tooltip
+          title="hello, world!"
+          trigger="custom"
+          visible={toggle}
+          direction="bottom"
+        >
+          <Button>受控显示</Button>
+        </Tooltip>
       </div>
-    ),
-    placement: "right",
-  },
-};
-
-export const RightBottom: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
-      </div>
-    ),
-    placement: "rightBottom",
-  },
-};
-
-export const BottomRight: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
-      </div>
-    ),
-    placement: "bottomRight",
-  },
-};
-
-export const Bottom: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
-      </div>
-    ),
-    placement: "bottom",
-  },
-};
-
-export const BottomLeft: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
-      </div>
-    ),
-    placement: "bottomLeft",
-  },
-};
-
-export const LeftBottom: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
-      </div>
-    ),
-    placement: "leftBottom",
-  },
-};
-
-export const Left: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
-      </div>
-    ),
-    placement: "left",
-  },
-};
-
-export const LeftTop: Story = {
-  args: {
-    title: "文案详细解释详细解释详细解释",
-    children: (
-      <div style={{ width: 300, height: 200, border: "1px solid #ddd" }}>
-        文案文本
-      </div>
-    ),
-    placement: "leftTop",
-  },
+    </>
+  );
 };
