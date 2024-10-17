@@ -1,5 +1,5 @@
-import { Button, Divider, Space, Tooltip } from "../../components";
-import React from "react";
+import { Button, Divider, Space, Switch, Tooltip } from "../../components";
+import React, { useState } from "react";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -20,6 +20,11 @@ type Story = StoryObj<typeof meta>;
 
 export const 基本使用 = () => {
   const title = "基本使用";
+  const container: React.CSSProperties = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  };
   const style: React.CSSProperties = {
     width: 80,
     height: 80,
@@ -35,7 +40,7 @@ export const 基本使用 = () => {
           <Tooltip title={title} direction="top-left">
             <span style={style}>top-left</span>
           </Tooltip>
-          <Tooltip title={title} direction="top" arrow={false} visible>
+          <Tooltip title={title} direction="top">
             <span style={style}>top</span>
           </Tooltip>
           <Tooltip title={title} direction="top-right">
@@ -46,41 +51,35 @@ export const 基本使用 = () => {
 
       <Divider />
 
-      <div>
-        <Space>
-          <Tooltip title={title} direction="left-top">
-            <span style={style}>left-top</span>
-          </Tooltip>
-          <Tooltip title={title} direction="right-top">
-            <span style={style}>right-top</span>
-          </Tooltip>
-        </Space>
+      <div style={container}>
+        <Tooltip title={title} direction="left-top">
+          <span style={style}>left-top</span>
+        </Tooltip>
+        <Tooltip title={title} direction="right-top">
+          <span style={style}>right-top</span>
+        </Tooltip>
       </div>
 
       <Divider />
 
-      <div>
-        <Space>
-          <Tooltip title={title} direction="left">
-            <span style={style}>left</span>
-          </Tooltip>
-          <Tooltip title={title} direction="right">
-            <span style={style}>right</span>
-          </Tooltip>
-        </Space>
+      <div style={container}>
+        <Tooltip title={title} direction="left">
+          <span style={style}>left</span>
+        </Tooltip>
+        <Tooltip title={title} direction="right">
+          <span style={style}>right</span>
+        </Tooltip>
       </div>
 
       <Divider />
 
-      <div>
-        <Space>
-          <Tooltip title={title} direction="left-bottom">
-            <span style={style}>left-bottom</span>
-          </Tooltip>
-          <Tooltip title={title} direction="right-bottom">
-            <span style={style}>right-bottom</span>
-          </Tooltip>
-        </Space>
+      <div style={container}>
+        <Tooltip title={title} direction="left-bottom">
+          <span style={style}>left-bottom</span>
+        </Tooltip>
+        <Tooltip title={title} direction="right-bottom">
+          <span style={style}>right-bottom</span>
+        </Tooltip>
       </div>
 
       <Divider />
@@ -99,5 +98,39 @@ export const 基本使用 = () => {
         </Space>
       </div>
     </div>
+  );
+};
+
+export const 触发时机 = () => {
+  const [toggle, setToggle] = useState(false);
+
+  return (
+    <>
+      <div>
+        <Tooltip title="hello, world!">
+          <Button>悬停显示</Button>
+        </Tooltip>
+      </div>
+      <Divider />
+      <div>
+        <Tooltip title="hello, world!" trigger="click">
+          <Button>点击显示</Button>
+        </Tooltip>
+      </div>
+      <Divider />
+      <div>
+        <div>
+          <Switch value={toggle} onChange={() => setToggle(!toggle)} />
+        </div>
+        <Tooltip
+          title="hello, world!"
+          trigger="custom"
+          visible={toggle}
+          direction="bottom"
+        >
+          <Button>受控显示</Button>
+        </Tooltip>
+      </div>
+    </>
   );
 };

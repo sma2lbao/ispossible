@@ -1,30 +1,29 @@
 import React from "react";
 import stylex from "@stylexjs/stylex";
-import { Tooltip, type Placement } from "../tooltip";
+import { Tooltip, type Direction } from "../tooltip";
 
 const styles = stylex.create({
   custom: {
-    padding: 4,
+    padding: 10,
   },
 });
 
 export interface PopoverProps {
   children: React.ReactNode;
   content: () => React.ReactNode | React.ReactNode;
-  placement?: Placement;
+  direction?: Direction;
 }
 
 export const Popover: React.FC<PopoverProps> = (props) => {
-  const { children, content, placement = "bottom" } = props;
+  const { children, content, direction = "bottom" } = props;
 
   return (
     <Tooltip
       title={content}
-      placement={placement}
-      arrow
-      color="#333"
-      backgroundColor="#fff"
-      popupStyle={styles.custom}
+      direction={direction}
+      arrow={false}
+      popupStylex={styles.custom}
+      theme="light"
     >
       {children}
     </Tooltip>

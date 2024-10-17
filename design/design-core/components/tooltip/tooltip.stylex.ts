@@ -1,10 +1,16 @@
 import stylex from "@stylexjs/stylex";
 
 export const tokens = stylex.defineVars({
-  color: "#fff",
-  bgColor: "rgba(0, 0, 0, 1)",
+  color: "#ffffff",
+  bgColor: "#000000",
   borderWidth: "6px",
-} as const);
+});
+
+export const light = stylex.createTheme(tokens, {
+  color: "#000000",
+  bgColor: "#ffffff",
+  borderWidth: "6px",
+});
 
 export const styles = stylex.create({
   root: {

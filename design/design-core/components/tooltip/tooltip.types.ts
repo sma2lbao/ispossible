@@ -22,7 +22,20 @@ export interface TooltipProps {
    */
   direction?: Direction;
 
-  trigger?: "hover";
+  /**
+   * 触发展示的时机
+   */
+  trigger?: "hover" | "click" | "custom";
+
+  /**
+   * 鼠标移入后，延迟显示的时间，单位毫秒
+   */
+  enterDelay?: number;
+
+  /**
+   * 鼠标移出后，延迟消失的时间，单位毫秒
+   */
+  leaveDelay?: number;
 
   /**
    * 用于手动控制浮层显隐
@@ -33,8 +46,16 @@ export interface TooltipProps {
    * @default true
    */
   arrow?: boolean;
+
+  /**
+   * 背景主题
+   * @default dark
+   */
+  theme?: "dark" | "light";
   /**
    * 卡片样式 (使用StyleX)
    */
-  popupStyle?: StyleXStyles;
+  popupStylex?: StyleXStyles;
+
+  popupStyle?: React.CSSProperties;
 }

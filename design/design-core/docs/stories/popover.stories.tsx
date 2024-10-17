@@ -1,3 +1,4 @@
+import React from "react";
 import { Popover } from "../../components";
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -18,6 +19,6 @@ type Story = StoryObj<typeof meta>;
 export const 代码演示: Story = {
   args: {
     content: () => "文案详细解释详细解释详细解释",
-    children: "文案",
+    children: <span>文案</span>,
   },
 };

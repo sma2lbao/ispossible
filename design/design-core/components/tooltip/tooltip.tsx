@@ -1,25 +1,38 @@
-import React, { useRef, useState, useLayoutEffect } from "react";
+import React, {
+  useRef,
+  useState,
+  useLayoutEffect,
+  useCallback,
+  useEffect,
+} from "react";
 import { createPortal } from "react-dom";
 import stylex from "@stylexjs/stylex";
-import { isFunction, mergeEvents, mergeRefs } from "../../shared";
+import { isFunction, mergeEvents, mergeRefs, noop } from "../../shared";
+import { useClickOutside } from "../../hooks/use-click-outside";
 import type { TooltipProps } from "./tooltip.types";
 import { calculatePosition } from "./utils";
-import { styles } from "./tooltip.stylex";
+import { styles, light } from "./tooltip.stylex";
 
 export const Tooltip: React.FC<TooltipProps> = (props) => {
   const {
     title,
     children,
     direction = "top",
-    arrow = true,
+    trigger = "hover",
+    enterDelay = 50,
+    leaveDelay = 50,
     visible = false,
+    arrow = true,
+    theme = "dark",
+    popupStylex,
     popupStyle,
   } = props;
 
   const triggerRef = useRef<HTMLElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState<{ top: number; left: number }>();
-  const [visibleInner, setVisibleInner] = useState<boolean>(visible);
+  const [visibleInner, setVisibleInner] = useState<boolean>(false);
+  const [inPopover, setInPopover] = useState(false);
 
   const child: React.ReactElement = React.isValidElement(children) ? (
     children
@@ -28,13 +41,33 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
   );
 
   const handleOpenPopover = () => {
-    setVisibleInner(true);
+    setTimeout(() => {
+      setVisibleInner(true);
+    }, enterDelay);
   };
 
   const handleClosePopover = () => {
-    setVisibleInner(false);
+    setTimeout(() => {
+      setVisibleInner(false);
+    }, leaveDelay);
   };
 
+  // 鼠标移入弹窗
+  const handleEnterPopover = () => {
+    setInPopover(true);
+  };
+
+  // 鼠标移出弹窗
+  const handleLeavePopover = () => {
+    setInPopover(false);
+  };
+
+  const handleOutside = useCallback((event: MouseEvent) => {
+    if (trigger !== "click") return;
+    handleClosePopover();
+  }, []);
+
+  // 更新位置
   const updatePosition = () => {
     const triggerRect = triggerRef.current?.getBoundingClientRect();
     if (tooltipRef.current && triggerRect) {
@@ -55,13 +88,16 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     }
   };
 
+  // 点击外面时
+  useClickOutside([triggerRef, tooltipRef], handleOutside);
+
   useLayoutEffect(() => {
     const resizeObserver = new ResizeObserver(handleResize);
     if (triggerRef.current) {
       resizeObserver.observe(triggerRef.current);
     }
     return () => {
-      resizeObserver.disconnect(); // 清理观察者
+      resizeObserver.disconnect();
     };
   }, [visibleInner]);
 
@@ -71,16 +107,27 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     }
   }, [visibleInner]);
 
+  useEffect(() => {
+    if (trigger === "custom") {
+      setVisibleInner(visible);
+    }
+  }, [visible]);
+
   const renderContent = () => {
-    if (!visibleInner) {
+    if (!visibleInner && !inPopover) {
       return null;
     }
-
     return createPortal(
       <div
         ref={tooltipRef}
-        {...stylex.props(styles.root, popupStyle)}
-        style={{ top: `${position?.top}px`, left: `${position?.left}px` }}
+        {...stylex.props(theme === "light" && light, styles.root, popupStylex)}
+        style={{
+          top: `${position?.top}px`,
+          left: `${position?.left}px`,
+          ...popupStyle,
+        }}
+        onMouseEnter={handleEnterPopover}
+        onMouseLeave={handleLeavePopover}
       >
         <div>{isFunction(title) ? title() : title}</div>
         {arrow ? (
@@ -95,10 +142,17 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     <React.Fragment>
       {React.cloneElement(child, {
         ref: mergeRefs(child.props?.ref, triggerRef),
-        onMouseEnter: mergeEvents(child.props?.onMouseEnter, handleOpenPopover),
+        onMouseEnter: mergeEvents(
+          child.props?.onMouseEnter,
+          trigger === "hover" ? handleOpenPopover : noop
+        ),
         onMouseLeave: mergeEvents(
           child.props?.onMouseLeave,
-          handleClosePopover
+          trigger === "hover" ? handleClosePopover : noop
+        ),
+        onClick: mergeEvents(
+          child.props?.onClick,
+          trigger === "click" ? handleOpenPopover : noop
         ),
       })}
       {renderContent()}
