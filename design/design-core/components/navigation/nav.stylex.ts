@@ -1,12 +1,14 @@
 import stylex from "@stylexjs/stylex";
+import { colors } from "../theme/tokens.stylex";
 
 export const styles = stylex.create({
   root: {
-    width: 240,
+    width: "240px",
     display: "inline-flex",
     borderRight: "1px solid rgba(28,31,35,.08)",
     fontSize: "14px",
     boxSizing: "border-box",
+    padding: "20px",
   },
   inner: {
     width: "100%",
@@ -14,6 +16,30 @@ export const styles = stylex.create({
     display: "flex",
     justifyContent: "space-between",
     flexDirection: "column",
+  },
+  active: {
+    color: colors.primary,
+    backgroundColor: "rgb(230, 244, 255)",
+  },
+  selected: {
+    color: colors.primary,
+  },
+  item: {
+    height: "36px",
+    cursor: "pointer",
+    display: "flex",
+    padding: "8px 12px",
+    fontSize: "14px",
+    lineHeight: "20px",
+    alignItems: "center",
+    boxSizing: "border-box",
+    marginBottom: "8px",
+    ":hover": {
+      backgroundColor: colors.background,
+    },
+  },
+  firstLevel: {
+    fontWeight: 600,
   },
   subRoot: {},
   subTitle: {
@@ -26,6 +52,9 @@ export const styles = stylex.create({
     boxSizing: "border-box",
     marginBottom: "8px",
     cursor: "pointer",
+    ":hover": {
+      backgroundColor: colors.background,
+    },
   },
   collapsibleWrap: {},
   icon: {
@@ -35,21 +64,18 @@ export const styles = stylex.create({
     justifyContent: "center",
     marginRight: "14px",
   },
+  text: {
+    overflow: "hidden",
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
+  },
   toggleIcon: {
     marginLeft: "auto",
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
   },
-  item: {
-    height: "36px",
-    cursor: "pointer",
-    display: "flex",
-    padding: "8px 12px",
-    fontSize: "14px",
-    lineHeight: "20px",
-    alignItems: "center",
-    boxSizing: "border-box",
-    marginBottom: "8px",
+  reverse: {
+    transform: "rotate(180deg)",
   },
 });

@@ -29,6 +29,11 @@ export interface OnSelectData {
   selectedKeys: any[];
 }
 
+export interface OnNavItemClickData {
+  itemKey: ItemKey;
+  domEvent: React.MouseEvent<HTMLElement>;
+}
+
 /**
  * 子菜单和菜单项共用
  */
