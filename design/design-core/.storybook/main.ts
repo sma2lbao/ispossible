@@ -10,7 +10,11 @@ function getAbsolutePath(value: string) {
   return dirname(require.resolve(join(value, "package.json")));
 }
 const config: StorybookConfig = {
-  stories: ["../docs/pages/**/*.mdx", "../docs/**/*.stories.@(ts|tsx)"],
+  stories: [
+    "../docs/pages/**/*.mdx",
+    "../docs/**/*.stories.@(ts|tsx)",
+    "../components/**/*.stories.@(ts|tsx)",
+  ],
   addons: [
     // 用于在 Storybook 中创建链接
     getAbsolutePath("@storybook/addon-links"),

@@ -43,8 +43,8 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
   const [visible, setVisible] = useState(true);
   const menuContext = React.useContext(MenuContext);
   const active = menuContext?.selectedIds?.includes(id);
-  const placement: PopoverProps["placement"] =
-    menuContext?.mode === "x" ? "bottomLeft" : "rightTop";
+  const direction: PopoverProps["direction"] =
+    menuContext?.mode === "x" ? "bottom-left" : "right-top";
 
   const renderPopup = () => {
     return (
@@ -68,7 +68,7 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
   };
 
   return (
-    <Popover content={renderPopup} placement={placement}>
+    <Popover content={renderPopup} direction={direction}>
       <div key={id} {...stylex.props(styles.item, active && styles.active)}>
         {icon}
         <span {...stylex.props(styles.itemContent(!!icon))}>{label}</span>

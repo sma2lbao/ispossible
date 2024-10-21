@@ -1,14 +1,25 @@
 import type { Direction } from "./tooltip.types";
 
+type CalculatePositionProps = {
+  triggerRect: DOMRect;
+  tooltipRect: DOMRect;
+  direction: Direction;
+  scrollX: number;
+  scrollY: number;
+  gap?: number;
+};
+
 // 计算 Tooltip 位置的函数
-export const calculatePosition = (
-  triggerRect: DOMRect,
-  tooltipRect: DOMRect,
-  direction: Direction,
-  scrollX: number,
-  scrollY: number
-) => {
-  const spacing = 8; // 设置触发元素和 Tooltip 之间的距离
+export const calculatePosition = (props: CalculatePositionProps) => {
+  const {
+    triggerRect,
+    tooltipRect,
+    direction,
+    scrollX = 0,
+    scrollY = 0,
+    gap = 0,
+  } = props;
+  const spacing = 8 + gap; // 设置触发元素和 Tooltip 之间的距离
   const {
     top: triggerTop,
     left: triggerLeft,
