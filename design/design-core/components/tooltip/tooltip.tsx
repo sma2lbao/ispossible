@@ -23,6 +23,7 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     leaveDelay = 50,
     visible = false,
     arrow = true,
+    gap = 0,
     theme = "dark",
     popupStylex,
     popupStyle,
@@ -30,9 +31,10 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
 
   const triggerRef = useRef<HTMLElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
+  const openTimer = useRef<NodeJS.Timeout | null>(null);
+  const closeTimer = useRef<NodeJS.Timeout | null>(null);
   const [position, setPosition] = useState<{ top: number; left: number }>();
   const [visibleInner, setVisibleInner] = useState<boolean>(false);
-  const [inPopover, setInPopover] = useState(false);
 
   const child: React.ReactElement = React.isValidElement(children) ? (
     children
@@ -41,25 +43,31 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
   );
 
   const handleOpenPopover = () => {
-    setTimeout(() => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+    }
+    openTimer.current = setTimeout(() => {
       setVisibleInner(true);
     }, enterDelay);
   };
 
   const handleClosePopover = () => {
-    setTimeout(() => {
+    closeTimer.current = setTimeout(() => {
       setVisibleInner(false);
     }, leaveDelay);
   };
 
   // 鼠标移入弹窗
   const handleEnterPopover = () => {
-    setInPopover(true);
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+    }
+    setVisibleInner(true);
   };
 
   // 鼠标移出弹窗
   const handleLeavePopover = () => {
-    setInPopover(false);
+    handleClosePopover();
   };
 
   const handleOutside = useCallback((event: MouseEvent) => {
@@ -76,7 +84,14 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
       const scrollY = window.scrollY;
       const scrollX = window.scrollX;
       setPosition(
-        calculatePosition(triggerRect, tooltipRect, direction, scrollX, scrollY)
+        calculatePosition({
+          triggerRect,
+          tooltipRect,
+          direction,
+          scrollX,
+          scrollY,
+          gap,
+        })
       );
     }
   };
@@ -114,7 +129,7 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
   }, [visible]);
 
   const renderContent = () => {
-    if (!visibleInner && !inPopover) {
+    if (!visibleInner) {
       return null;
     }
     return createPortal(

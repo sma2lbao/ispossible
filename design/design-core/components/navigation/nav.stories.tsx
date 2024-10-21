@@ -24,7 +24,6 @@ type Story = StoryObj<typeof meta>;
 export const 代码演示 = () => {
   const items = [
     { itemKey: "user", text: "用户管理", icon: <is-user /> },
-    { itemKey: "union", text: "活动管理", icon: <is-menu /> },
     {
       itemKey: "union-management",
       text: "任务管理",
@@ -35,6 +34,7 @@ export const 代码演示 = () => {
         { itemKey: "union-management-insert", text: "信息录入" },
       ],
     },
+    { itemKey: "union", text: "活动管理", icon: <is-menu /> },
     {
       itemKey: "job",
       text: "公告管理",
@@ -42,10 +42,34 @@ export const 代码演示 = () => {
       items: [
         { itemKey: "job-pull", text: "推送管理" },
         { itemKey: "job-query", text: "任务查询" },
+        {
+          itemKey: "job-types",
+          text: "任务分类",
+          items: [
+            {
+              itemKey: "job-student",
+              text: "学生任务",
+            },
+            {
+              itemKey: "job-teacher",
+              text: "老师任务",
+            },
+          ],
+        },
       ],
     },
   ];
-  return <Nav items={items} />;
+  return (
+    <div>
+      <div>
+        <Nav items={items} mode="x" />
+      </div>
+      <div>
+        <Nav items={items} />
+        <Nav items={items} mode="y" />
+      </div>
+    </div>
+  );
 };
 
 // export const 使用组件 = () => {

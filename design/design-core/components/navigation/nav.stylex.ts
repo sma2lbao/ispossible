@@ -10,12 +10,22 @@ export const styles = stylex.create({
     boxSizing: "border-box",
     padding: "20px",
   },
-  inner: {
+  horizontal: {
+    width: "100%",
+    display: "flex",
+  },
+  yInner: {
     width: "100%",
     height: "100%",
     display: "flex",
     justifyContent: "space-between",
     flexDirection: "column",
+    gap: "8px",
+  },
+  xInner: {
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
   },
   active: {
     color: colors.primary,
@@ -33,7 +43,6 @@ export const styles = stylex.create({
     lineHeight: "20px",
     alignItems: "center",
     boxSizing: "border-box",
-    marginBottom: "8px",
     ":hover": {
       backgroundColor: colors.background,
     },
@@ -50,26 +59,33 @@ export const styles = stylex.create({
     alignItems: "center",
     padding: "8px 12px",
     boxSizing: "border-box",
-    marginBottom: "8px",
     cursor: "pointer",
     ":hover": {
       backgroundColor: colors.background,
     },
   },
-  collapsibleWrap: {},
+  collapsibleWrap: {
+    gap: "8px",
+    display: "flex",
+    flexDirection: "column",
+  },
+  inlineCollapsibleWrap: {
+    paddingTop: "8px",
+  },
   icon: {
     minWidth: "20px",
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    marginRight: "14px",
+    marginRight: "10px",
   },
   text: {
     overflow: "hidden",
     whiteSpace: "nowrap",
     textOverflow: "ellipsis",
+    marginRight: "8px",
   },
-  toggleIcon: {
+  expandIcon: {
     marginLeft: "auto",
     display: "inline-flex",
     alignItems: "center",

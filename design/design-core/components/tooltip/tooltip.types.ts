@@ -48,6 +48,12 @@ export interface TooltipProps {
   arrow?: boolean;
 
   /**
+   * 和弹窗的距离
+   * @default 0
+   */
+  gap?: number;
+
+  /**
    * 背景主题
    * @default dark
    */

@@ -24,6 +24,9 @@ export const Nav: React.FC<NavProps> = (props) => {
   } = props;
   const [selectedKeys, setSelectedKeys] = useState<ItemKey[]>([]);
   const { register, isSelectedSubNav } = usePathRecords();
+  const isHorizontal = mode === "x";
+  const isVertical = mode === "y" || mode === "inline";
+  const isInline = mode === "inline";
 
   const handleNavItemClick = (data: OnNavItemClickData) => {
     const { itemKey } = data;
@@ -44,6 +47,7 @@ export const Nav: React.FC<NavProps> = (props) => {
     isCollapsed,
     selectedKeys,
     firstLevel: true,
+    level: 0,
     onNavItemClick: handleNavItemClick,
   };
 
@@ -55,8 +59,13 @@ export const Nav: React.FC<NavProps> = (props) => {
           isSelectedSubNav,
         }}
       >
-        <div {...stylex.props(styles.root)}>
-          <div {...stylex.props(styles.inner)}>
+        <div {...stylex.props(styles.root, isHorizontal && styles.horizontal)}>
+          <div
+            {...stylex.props(
+              isVertical && styles.yInner,
+              isHorizontal && styles.xInner
+            )}
+          >
             {items?.length
               ? items.map((item) =>
                   isSubNavProps(item) ? (

@@ -7,11 +7,13 @@ export interface NavContextType {
   mode?: NavProps["mode"];
   selectedKeys: ItemKey[];
   firstLevel?: boolean;
+  level: number;
   onNavItemClick: (data: OnNavItemClickData) => void;
 }
 
 export const NavContext = React.createContext<NavContextType>({
   isCollapsed: false,
   selectedKeys: [],
+  level: 0,
   onNavItemClick: noop,
 });

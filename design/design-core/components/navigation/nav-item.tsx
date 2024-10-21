@@ -40,7 +40,7 @@ export const NavItem: React.FC<NavItemProps> = (props) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <i {...stylex.props(styles.icon)}>{icon}</i>
+      {!!icon ? <i {...stylex.props(styles.icon)}>{icon}</i> : null}
       <span {...stylex.props(styles.text)}>{text}</span>
     </div>
   );

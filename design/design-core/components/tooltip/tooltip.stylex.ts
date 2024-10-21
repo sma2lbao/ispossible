@@ -18,7 +18,7 @@ export const styles = stylex.create({
     color: tokens.color,
     backgroundColor: tokens.bgColor,
     borderRadius: "4px",
-    padding: "6px 10px",
+    padding: "8px",
     inset: "0 auto auto 0",
     fontSize: 14,
     lineHeight: 1.4,
