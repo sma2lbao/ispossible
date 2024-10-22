@@ -29,6 +29,12 @@ export const 代码演示: Story = {
       {
         href: "#代码演示",
         label: "代码演示",
+        items: [
+          {
+            href: "#代码演示1",
+            label: "1.1 代码演示",
+          },
+        ],
       },
       {
         href: "#使用组件",
@@ -44,7 +50,10 @@ export const 使用组件 = () => {
       <Anchor.Link href="#组件" label="组件" />
       <Anchor.Link href="#设计语言" label="设计语言" />
       <Anchor.Link href="#物料平台" label="物料平台" />
-      <Anchor.Link href="#主题商店" label="主题商店" />
+      <Anchor.Link href="#主题商店" label="主题商店">
+        <Anchor.Link href="#物料平台1" label="1.1 物料平台" />
+        <Anchor.Link href="#物料平台2" label="1.2 物料平台" />
+      </Anchor.Link>
       <Anchor.Link href="#代码演示" label="代码演示" />
     </Anchor>
   );

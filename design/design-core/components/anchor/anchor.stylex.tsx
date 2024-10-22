@@ -10,29 +10,29 @@ import {
 export const styles = stylex.create({
   root: {
     backgroundColor: "#fff",
-    padding: spacing.basic,
     borderRadius: radius.basic,
     fontSize: sizes.basic,
     lineHeight: "20px",
     overflowX: "hidden",
     overflowY: "auto",
-  },
-  slide: {
-    position: "absolute",
-    left: 0,
-    top: 0,
+    position: "relative",
     "::before": {
       position: "absolute",
+      top: 0,
+      left: 0,
       display: "block",
       width: "2px",
       height: "100%",
       backgroundColor: "#eee",
       borderRadius: "1px",
-      content: " ",
+      content: "",
     },
   },
+
   linkRoot: {
-    paddingLeft: "8px",
+    paddingLeft: "16px",
+    paddingTop: "4px",
+    paddingBottom: "4px",
     fontSize: sizes.basic,
     lineHeight: lineHeight.basic,
     overflow: "hidden",
@@ -44,13 +44,23 @@ export const styles = stylex.create({
     color: colors.basic,
     textDecoration: "none",
     cursor: "pointer",
-    paddingTop: "4px",
-    paddingBottom: "4px",
     overflow: "hidden",
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
   },
+  linkGap: {
+    marginBottom: "4px",
+  },
   active: {
     color: colors.primary,
+  },
+  activeBar: {
+    position: "absolute",
+    display: "inline-flex",
+    left: 0,
+    width: "2px",
+    borderRadius: "1px",
+    backgroundColor: colors.primary,
+    transform: "translateY(-50%)",
   },
 });

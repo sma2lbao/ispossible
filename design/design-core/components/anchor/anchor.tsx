@@ -17,6 +17,7 @@ export const Anchor: React.FC<AnchorProps> = (props) => {
   const [records, setRecords] = useState<string[]>([]);
   const scroolByEventFlag = useRef<boolean>(false);
   const rootRef = useRef<HTMLDivElement>(null);
+  const activeBarRef = useRef<HTMLSpanElement>(null);
 
   const register = (anchor: string) => {
     if (!records.includes(anchor)) {
@@ -63,13 +64,19 @@ export const Anchor: React.FC<AnchorProps> = (props) => {
   // 自身滚动
   useEffect(() => {
     if (rootRef?.current) {
-      const aDom = rootRef?.current.querySelector<HTMLElement>(
+      const linkNode = rootRef?.current.querySelector<HTMLElement>(
         `a[data-anchor="${activeAnchor}"]`
       );
-      if (!aDom) return;
-      rootRef?.current.scrollTo({
-        top: aDom.offsetTop - 10,
+      if (!linkNode) return;
+      rootRef.current?.scrollTo({
+        top: linkNode.offsetTop - 10,
       });
+      const top = linkNode.offsetTop + linkNode.clientHeight / 2;
+      activeBarRef.current?.style.setProperty("top", top + "px");
+      activeBarRef.current?.style.setProperty(
+        "height",
+        linkNode.clientHeight + "px"
+      );
     }
   }, [activeAnchor]);
 
@@ -82,7 +89,7 @@ export const Anchor: React.FC<AnchorProps> = (props) => {
 
   return (
     <div {...stylex.props(styles.root, customStylex)} ref={rootRef}>
-      <div {...stylex.props(styles.slide)}></div>
+      <span ref={activeBarRef} {...stylex.props(styles.activeBar)}></span>
       <AnchorContext.Provider
         value={{
           level: 0,

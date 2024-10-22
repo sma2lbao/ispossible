@@ -33,18 +33,17 @@ export const AnchorLink: React.FC<AnchorLinkProps> = (props) => {
           onClick={handClickAELement}
           {...stylex.props(
             styles.link,
-            context?.activeAnchor === href && styles.active
+            context?.activeAnchor === href && styles.active,
+            (!!items?.length || !!children) && styles.linkGap
           )}
         >
           {label}
         </a>
-        <div>
-          {items?.length
-            ? items?.map((item, index) => (
-                <AnchorLink key={item.label + index} {...item} />
-              ))
-            : children}
-        </div>
+        {items?.length
+          ? items?.map((item, index) => (
+              <AnchorLink key={item.label + index} {...item} />
+            ))
+          : children}
       </div>
     </AnchorContext.Provider>
   );
