@@ -82,6 +82,7 @@ export const Anchor: React.FC<AnchorProps> = (props) => {
 
   return (
     <div {...stylex.props(styles.root, customStylex)} ref={rootRef}>
+      <div {...stylex.props(styles.slide)}></div>
       <AnchorContext.Provider
         value={{
           level: 0,

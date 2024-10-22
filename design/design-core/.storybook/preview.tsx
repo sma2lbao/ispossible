@@ -1,6 +1,7 @@
 import type { Preview } from "@storybook/react";
 import React from "react";
 import { MessageContainer } from "./blocks/message-container";
+import { DocsContainer } from "./docs/docs-container";
 import "./global.css";
 
 import {
@@ -37,25 +38,26 @@ const preview: Preview = {
       },
     },
     docs: {
-      toc: {
-        headingSelector: "h1, h2, h3",
-        ignoreSelector: "#primary",
-        title: "目录",
-        disable: false,
-        unsafeTocbotOptions: {
-          orderedList: false,
-        },
-      },
-      page: () => (
-        <>
-          <Title />
-          <Subtitle />
-          <Description />
-          <Stories />
-          <ArgTypes exclude={["children"]} />
-          <MessageContainer />
-        </>
-      ),
+      // toc: {
+      //   // headingSelector: "h1, h2, h3",
+      //   // ignoreSelector: "#primary",
+      //   title: "目录",
+      //   // disable: false,
+      //   // unsafeTocbotOptions: {
+      //   //   orderedList: false,
+      //   // },
+      // },
+      // page: () => (
+      //   <>
+      //     <Title />
+      //     <Subtitle />
+      //     <Description />
+      //     <Stories />
+      //     <ArgTypes exclude={["children"]} />
+      //     <MessageContainer />
+      //   </>
+      // ),
+      page: DocsContainer,
     },
   },
 };
