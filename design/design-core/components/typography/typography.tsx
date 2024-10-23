@@ -1,86 +1,61 @@
+import stylex from "@stylexjs/stylex";
+import type { TypographyProps, ISize, IVariant } from "./typography.types";
+
+import { styles } from "./typography.stylex";
 import React from "react";
-import stylex, { type StyleXStyles } from "@stylexjs/stylex";
-import { colors, lineHeight, sizes } from "../theme/tokens.stylex";
+import { commonStyles } from "../../themes/common-styles";
 
-export interface TypographyProps {
-  children?: React.ReactNode;
-  /**
-   * 原生标签
-   * @default "div"
-   */
-  tagName?: React.ElementType;
-  /**
-   * 样式
-   */
-  style?: StyleXStyles;
-  /**
-   * 文本类型
-   */
-  type?: "primary" | "secondary" | "success" | "warning" | "error";
-
-  /**
-   * 是否链接
-   * @default false
-   */
-  link?: boolean;
-
-  /**
-   * 链接地址时有效
-   */
-  href?: string;
-}
-
-type HeadingType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-
-const styles = stylex.create({
-  root: (type: TypographyProps["type"]) => ({
-    color: colors[type || "basic"],
-    fontSize: sizes.basic,
-    lineHeight: lineHeight.basic,
-    margin: 0,
-  }),
-  link: {
-    cursor: "pointer",
-    color: colors.link,
-  },
-  h1: {
-    fontSize: sizes.basic,
-  },
-  h2: {
-    fontSize: sizes.basic,
-  },
-  h3: {
-    fontSize: sizes.basic,
-  },
-  h4: {
-    fontSize: sizes.basic,
-  },
-  h5: {
-    fontSize: sizes.basic,
-  },
-  h6: {
-    fontSize: sizes.basic,
-  },
-});
-
-export const Typography: React.FC<TypographyProps> = (props) => {
-  const { children, tagName, type, style, link = false, href } = props;
-  const Tag = link ? "a" : tagName ?? "div";
-  const headings = ["h1", "h2", "h3", "h4", "h5", "h6"];
-  const tagValue = Tag.toString();
-  const isHeadings = headings.includes(tagValue);
-
-  return (
-    <Tag
-      {...stylex.props(
-        styles.root(type),
-        isHeadings && styles[tagValue as HeadingType],
-        link && styles.link,
-        style
-      )}
-      href={href}
-    >
-      {children}
-    </Tag>
-  );
+export const asTagMap: Record<`${IVariant}$${ISize}`, React.ElementType> = {
+  display$lg: "span",
+  display$md: "span",
+  display$sm: "span",
+  headline$lg: "h1",
+  headline$md: "h2",
+  headline$sm: "h3",
+  title$lg: "h4",
+  title$md: "h5",
+  title$sm: "h6",
+  body$lg: "p",
+  body$md: "p",
+  body$sm: "p",
+  label$lg: "span",
+  label$md: "span",
+  label$sm: "span",
 };
+
+export const Typography = React.forwardRef<HTMLDivElement, TypographyProps>(
+  (props, ref) => {
+    const {
+      as,
+      stylex: customStylex,
+      variant = "body",
+      size = "md",
+      children,
+      gutterBottom,
+      dimmed,
+      truncate,
+      truncateLines,
+    } = props;
+
+    const Component = as ?? asTagMap[`${variant}$${size}`];
+
+    return (
+      <Component
+        {...stylex.props(
+          customStylex,
+          styles.host,
+          dimmed && styles["host$dimmed"],
+          truncate && commonStyles.truncate,
+          !!truncateLines &&
+            truncateLines > 0 &&
+            commonStyles.truncateLines(truncateLines),
+          gutterBottom && styles["host$gutterBottom"],
+          styles[`${variant}$${size}`]
+        )}
+        ref={ref}
+      >
+        {children}
+      </Component>
+    );
+  }
+);
