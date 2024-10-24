@@ -1,0 +1,30 @@
+export interface ToastProps {
+  /**
+   * 自定义 ToastId
+   */
+  id?: string | number;
+
+  /**
+   * 提示类型
+   */
+  type?: "info" | "error" | "warning" | "success";
+
+  /**
+   * 提示内容
+   */
+  content: React.ReactNode;
+  /**
+   * 自定义图标
+   */
+  icon?: React.ReactNode;
+
+  /**
+   * 自定义图标颜色
+   */
+  iconColor?: string;
+
+  /**
+   * toast 关闭的回调函数
+   */
+  onClose?: () => void;
+}
