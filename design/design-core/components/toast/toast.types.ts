@@ -2,7 +2,7 @@ export interface ToastProps {
   /**
    * 自定义 ToastId
    */
-  id?: string | number;
+  id?: string;
 
   /**
    * 提示类型
@@ -24,7 +24,28 @@ export interface ToastProps {
   iconColor?: string;
 
   /**
+   * 是否展示关闭按钮
+   */
+  showClose?: boolean;
+
+  /**
+   *
+   */
+  onClickClose?: () => void;
+
+  /**
    * toast 关闭的回调函数
    */
   onClose?: () => void;
 }
+
+export type ToastBuildFunc = (
+  type: ToastProps["type"],
+  message: string,
+  options?: Omit<ToastProps, "type">
+) => string;
+
+export type ToastBuiltInFunc = (
+  message: string,
+  options?: Omit<ToastProps, "type">
+) => string;
