@@ -3,6 +3,7 @@ import stylex from "@stylexjs/stylex";
 import { Button } from "../button";
 import { styles } from "./notification.stylex";
 import type { NotificationProps } from "./notification.types";
+import "@design/icon/close";
 import "@design/icon/info-circle-filled";
 import "@design/icon/check-circle-filled";
 import "@design/icon/close-circle-filled";

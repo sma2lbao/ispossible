@@ -3,6 +3,7 @@ import { styles } from "./toast.stylex";
 import stylex from "@stylexjs/stylex";
 import { ToastProps } from "./toast.types";
 import { Button } from "../button";
+import "@design/icon/close";
 import "@design/icon/info-circle-filled";
 import "@design/icon/check-circle-filled";
 import "@design/icon/close-circle-filled";
