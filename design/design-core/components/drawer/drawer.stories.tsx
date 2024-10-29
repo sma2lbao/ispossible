@@ -20,7 +20,7 @@ export const 基本使用 = () => {
   return (
     <>
       <Button onClick={() => setVisivle(true)}>打开侧边栏</Button>
-      <Drawer visible={visible}>
+      <Drawer visible={visible} title={"标题"}>
         <p>测试测试</p>
       </Drawer>
     </>
