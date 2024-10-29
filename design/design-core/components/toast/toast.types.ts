@@ -31,7 +31,7 @@ export interface ToastProps {
   /**
    *
    */
-  onClickClose?: () => void;
+  onClickClose?: (id?: string) => void;
 
   /**
    * toast 关闭的回调函数
@@ -42,10 +42,12 @@ export interface ToastProps {
 export type ToastBuildFunc = (
   type: ToastProps["type"],
   message: string,
-  options?: Omit<ToastProps, "type">
+  options?: Omit<ToastProps, "type" | "content">
 ) => string;
 
 export type ToastBuiltInFunc = (
   message: string,
-  options?: Omit<ToastProps, "type">
+  options?: Omit<ToastProps, "type" | "content"> & {
+    duration?: number;
+  }
 ) => string;

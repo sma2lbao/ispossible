@@ -1,7 +1,7 @@
-import type { Meta } from "@storybook/react";
 import React from "react";
-import { Toast as ToastComponent } from "./toast";
-import { Toast } from "./";
+import type { Meta } from "@storybook/react";
+import { Notification as NotificationComponent } from "./notification";
+import { Notification } from "./";
 import { Space } from "../space";
 import { Button } from "../button";
 
@@ -9,15 +9,15 @@ import { Button } from "../button";
  * 将页面元素钉在可视范围。
  */
 const meta = {
-  title: "Toast 提示",
-  component: ToastComponent,
+  title: "Notification 消息通知",
+  component: NotificationComponent,
   parameters: {
     layout: "centered",
     doc: {},
   },
   tags: ["autodocs"],
   argTypes: {},
-} satisfies Meta<typeof ToastComponent>;
+} satisfies Meta<typeof NotificationComponent>;
 
 export default meta;
 
@@ -27,25 +27,37 @@ export default meta;
 export const 代码演示 = () => {
   const handleClick = (type: "info" | "error" | "warning" | "success") => {
     if (type === "info") {
-      Toast.info("测试");
+      Notification.info({
+        title: "标题",
+        content: "提示",
+      });
       return;
     }
     if (type === "success") {
-      Toast.success("成功");
+      Notification.success({
+        title: "标题",
+        content: "成功",
+      });
       return;
     }
     if (type === "error") {
-      Toast.error("错误");
+      Notification.error({
+        title: "标题",
+        content: "错误",
+      });
       return;
     }
     if (type === "warning") {
-      Toast.warning("警告");
+      Notification.warning({
+        title: "标题",
+        content: "警告",
+      });
       return;
     }
   };
 
   const handleClose = () => {
-    Toast.destroyAll();
+    Notification.destroyAll();
   };
 
   return (

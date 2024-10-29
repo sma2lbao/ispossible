@@ -4,7 +4,11 @@ import { Root, createRoot } from "react-dom/client";
 import stylex from "@stylexjs/stylex";
 import { Toast } from "./toast";
 import { styles } from "./toast.stylex";
-import type { ToastBuildFunc, ToastBuiltInFunc } from "./toast.types";
+import type {
+  ToastBuildFunc,
+  ToastBuiltInFunc,
+  ToastProps,
+} from "./toast.types";
 
 type CacheItem = {
   element: HTMLDivElement;
@@ -12,6 +16,7 @@ type CacheItem = {
 };
 
 const toastCache = new Map<string, CacheItem>();
+const duration = 2000;
 
 const buildToast: ToastBuildFunc = (type, message, options) => {
   const { id, onClose, ...rest } = options || {};
@@ -21,7 +26,7 @@ const buildToast: ToastBuildFunc = (type, message, options) => {
   const container = createRoot(containerElement);
   container.render(
     <div {...stylex.props(styles.toast$wrap)}>
-      <Toast type={type} content={message} {...rest} />
+      <Toast type={type} content={message} {...rest} id={toastID} />
     </div>
   );
   toastCache.set(toastID, {
@@ -31,36 +36,79 @@ const buildToast: ToastBuildFunc = (type, message, options) => {
   return toastID;
 };
 
+/**
+ * 点击关闭按钮回调
+ * @param id
+ * @param onClickClose
+ */
+const handleClickClose = (
+  id?: string,
+  onClickClose?: ToastProps["onClickClose"]
+) => {
+  onClickClose?.(id);
+  if (id) {
+    close(id);
+  }
+};
+
 export const info: ToastBuiltInFunc = (message, options) => {
-  const toastId = buildToast("info", message, options);
-  setTimeout(() => {
-    close(toastId);
-  }, 2000);
-  return toastId;
+  const { duration = 2000, onClickClose, ...rest } = options || {};
+
+  const toastID = buildToast("info", message, {
+    onClickClose: handleClickClose,
+    ...rest,
+  });
+  if (duration > 0) {
+    setTimeout(() => {
+      close(toastID);
+    }, duration);
+  }
+  return toastID;
 };
 
 export const success: ToastBuiltInFunc = (message, options) => {
-  const toastId = buildToast("success", message, options);
-  setTimeout(() => {
-    close(toastId);
-  }, 2000);
-  return toastId;
+  const { duration = 2000, onClickClose, ...rest } = options || {};
+
+  const toastID = buildToast("success", message, {
+    onClickClose: handleClickClose,
+    ...rest,
+  });
+  if (duration > 0) {
+    setTimeout(() => {
+      close(toastID);
+    }, duration);
+  }
+  return toastID;
 };
 
 export const warning: ToastBuiltInFunc = (message, options) => {
-  const toastId = buildToast("warning", message, options);
-  setTimeout(() => {
-    close(toastId);
-  }, 2000);
-  return toastId;
+  const { duration = 2000, onClickClose, ...rest } = options || {};
+
+  const toastID = buildToast("warning", message, {
+    onClickClose: handleClickClose,
+    ...rest,
+  });
+  if (duration > 0) {
+    setTimeout(() => {
+      close(toastID);
+    }, duration);
+  }
+  return toastID;
 };
 
 export const error: ToastBuiltInFunc = (message, options) => {
-  const toastId = buildToast("error", message, options);
-  setTimeout(() => {
-    close(toastId);
-  }, 2000);
-  return toastId;
+  const { duration = 2000, onClickClose, ...rest } = options || {};
+
+  const toastID = buildToast("error", message, {
+    onClickClose: handleClickClose,
+    ...rest,
+  });
+  if (duration > 0) {
+    setTimeout(() => {
+      close(toastID);
+    }, duration);
+  }
+  return toastID;
 };
 
 /**

@@ -1,5 +1,4 @@
 import React from "react";
-
 import { styles } from "./toast.stylex";
 import stylex from "@stylexjs/stylex";
 import { ToastProps } from "./toast.types";
@@ -11,6 +10,7 @@ import "@design/icon/warning-filled";
 
 export const Toast: React.FC<ToastProps> = (props) => {
   const {
+    id,
     content,
     type,
     icon,
@@ -51,7 +51,7 @@ export const Toast: React.FC<ToastProps> = (props) => {
           color="rgba(28,31,35,.8)"
           icon={<is-close />}
           stylex={styles.toast$close$icon}
-          onClick={onClickClose}
+          onClick={() => onClickClose?.(id)}
         ></Button>
       </span>
     ) : null;
