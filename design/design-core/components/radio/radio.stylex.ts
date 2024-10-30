@@ -45,7 +45,7 @@ export const styles = stylex.create({
     inset: 0,
     margin: 0,
     cursor: "pointer",
-    opacity: 1,
+    opacity: 0,
   },
   radio$inner$display: {
     display: "inline-flex",

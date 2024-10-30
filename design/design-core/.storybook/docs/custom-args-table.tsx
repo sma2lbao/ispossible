@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ArgTypes } from "@storybook/blocks";
+import { ArgTypes, HeaderMdx } from "@storybook/blocks";
 
 export const CustomArgsTable = (props) => {
   useEffect(() => {
@@ -28,5 +28,12 @@ export const CustomArgsTable = (props) => {
     }
   }, []);
 
-  return <ArgTypes {...props} />;
+  return (
+    <div>
+      <HeaderMdx as="h3" id="api-参考">
+        API 参考
+      </HeaderMdx>
+      <ArgTypes {...props} />
+    </div>
+  );
 };

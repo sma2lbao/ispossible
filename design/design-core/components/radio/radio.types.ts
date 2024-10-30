@@ -12,14 +12,9 @@ export interface RadioProps
   disabled?: boolean;
 
   /**
-   * Radio组件中input[type="radio"]的name属性，具有相同name的Radio属于同一个RadioGroup，name属性可参考 MDN Radio
-   */
-  name?: string;
-
-  /**
    * 用于设置当前选中的值
    */
-  value?: string | number;
+  value?: any;
 
   /**
    * 选项变化时的回调函数
@@ -52,6 +47,11 @@ export interface RadioGroupProps {
    * @default false
    */
   disabled?: boolean;
+
+  /**
+   * 	RadioGroup 下所有 input[type="radio"] 的 name 属性
+   */
+  name?: string;
 
   /**
    * radio 排列方向,

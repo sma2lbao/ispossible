@@ -6,6 +6,7 @@ type TocItem = { id: string; name: string; story: string };
 
 interface TocProps {
   stories: TocItem[];
+  custom?: Omit<TocItem, "story">[];
 }
 
 const styles = stylex.create({
@@ -24,9 +25,17 @@ export const Toc = (props: TocProps) => {
     };
   });
 
+  const customItems =
+    props.custom?.map((item) => {
+      return {
+        href: `#${item.id}`,
+        label: item.name,
+      };
+    }) || [];
+
   return (
     <div {...stylex.props(styles.root)}>
-      <Anchor items={items} />
+      <Anchor items={[...items, ...customItems]} />
     </div>
   );
 };

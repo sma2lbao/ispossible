@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Radio } from "./radio";
 import { Space } from "../space";
 import { RadioGroup } from "./radio-group";
+import { RadioChangeEvent } from "./radio.types";
 
 const meta = {
   title: "Radio 单选框",
@@ -23,8 +24,8 @@ type Story = StoryObj<typeof meta>;
 export const 基本用法 = () => {
   return (
     <Space>
-      <Radio checked>Radio</Radio>
       <Radio>Radio</Radio>
+      <Radio checked>Radio</Radio>
     </Space>
   );
 };
@@ -33,10 +34,10 @@ export const 基本用法 = () => {
  * 一组互斥的 Radio 配合使用
  */
 export const 单选组合 = () => {
-  const [value, setValue] = useState(1);
-  const handleChange = (e: any) => {
+  const [value, setValue] = useState<number>(1);
+  const handleChange = (e: RadioChangeEvent) => {
     console.log("radio checked", e.target.value);
-    setValue(e.target.value);
+    setValue(e.target.value!);
   };
 
   return (
@@ -53,8 +54,14 @@ export const 单选组合 = () => {
  * 可通过给 RadioGroup 设置 direction属性来决定 组内的 radio 元素水平排列或者垂直排列
  */
 export const 垂直排列 = () => {
+  const [value, setValue] = useState<number>(1);
+  const handleChange = (e: RadioChangeEvent) => {
+    console.log("radio checked", e.target.value);
+    setValue(e.target.value!);
+  };
+
   return (
-    <RadioGroup direction="y">
+    <RadioGroup direction="y" onChange={handleChange} value={value}>
       <Radio value={1}>A</Radio>
       <Radio value={2}>B</Radio>
       <Radio value={3}>C</Radio>
