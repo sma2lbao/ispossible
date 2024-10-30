@@ -5,13 +5,13 @@ import { styles } from "./modal.stylex";
 import { ModalProps } from "./modal.types";
 import { Space } from "../space";
 import { Button } from "../button";
+import { ModalContext } from "./modal.context";
 import "@design/icon/close";
 import "@design/icon/info-circle-filled";
 import "@design/icon/check-circle-filled";
 import "@design/icon/close-circle-filled";
 import "@design/icon/warning-filled";
 import "@design/icon/question-circle-filled";
-import { ModalContext } from "./modal.context";
 
 const iconsConfig = {
   info: <is-info-circle-filled />,

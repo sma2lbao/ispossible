@@ -25,4 +25,10 @@ export interface DrawerProps {
   footer?: React.ReactNode;
 
   children?: React.ReactNode;
+
+  /**
+   * 侧边栏关闭之后的回调
+   * @returns
+   */
+  onClosed?: () => void;
 }

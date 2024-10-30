@@ -60,5 +60,7 @@ export const styles = stylex.create({
     flex: "1 1",
     overflow: "auto",
   },
-  drawer$footer: {},
+  drawer$footer: {
+    padding: "24px",
+  },
 });

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import stylex from "@stylexjs/stylex";
 import { styles } from "./drawer.stylex";
 import { DrawerProps } from "./drawer.types";
@@ -14,7 +14,21 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
     closable = true,
     closeIcon = <is-close />,
     children,
+    onClosed,
   } = props;
+
+  const [innerVisible, setInnerVisible] = useState(false);
+
+  const handleClickClose = () => {
+    setInnerVisible(false);
+    onClosed?.();
+  };
+
+  useEffect(() => {
+    if (typeof visible === "boolean") {
+      setInnerVisible(visible);
+    }
+  }, [visible]);
 
   const renderCloseIcon = () => {
     return closable ? (
@@ -23,6 +37,7 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
         color="rgba(28,31,35,.8)"
         stylex={styles.drawer$header$close}
         icon={closeIcon}
+        onClick={handleClickClose}
       ></Button>
     ) : null;
   };
@@ -48,5 +63,5 @@ export const Drawer: React.FC<DrawerProps> = (props) => {
     );
   };
 
-  return visible ? renderPortal() : null;
+  return innerVisible ? renderPortal() : null;
 };
