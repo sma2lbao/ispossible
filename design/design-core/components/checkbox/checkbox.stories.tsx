@@ -21,5 +21,6 @@ type Story = StoryObj<typeof meta>;
 export const 基本用法 = () => (
   <Space>
     <Checkbox />
+    <Checkbox checked />
   </Space>
 );
