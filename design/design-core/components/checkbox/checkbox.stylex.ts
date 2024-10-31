@@ -11,6 +11,7 @@ export const styles = stylex.create({
     alignItems: "flex-start",
     position: "relative",
     cursor: "pointer",
+    columnGap: "8px",
   },
   checkbox$inner: {
     position: "relative",
@@ -51,6 +52,13 @@ export const styles = stylex.create({
       borderInlineStart: 0,
       opacity: 0,
       transform: "rotate(45deg) scale(0) translate(-50%, -50%)",
+    },
+  },
+  checkbox$inner$display$indeterminate: {
+    [":after"]: {
+      width: "calc(16px / 14 * 8)",
+      height: "2px",
+      border: "none",
     },
   },
   checkbox$inner$display$checked: {

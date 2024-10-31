@@ -4,11 +4,19 @@ import { CheckboxProps } from "./checkbox.types";
 import { styles } from "./checkbox.stylex";
 
 export const Checkbox: React.FC<CheckboxProps> = (props) => {
-  const { value, children, disabled = false, onChange } = props;
+  const {
+    checked = false,
+    children,
+    disabled = false,
+    indeterminate = false,
+    onChange,
+    ...rest
+  } = props;
   const [innerChecked, setInnerChecked] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInnerChecked(true);
+    const checked = e.target.checked;
+    setInnerChecked(checked);
   };
 
   return (
@@ -18,6 +26,7 @@ export const Checkbox: React.FC<CheckboxProps> = (props) => {
           type="checkbox"
           disabled={disabled}
           onChange={handleChange}
+          {...rest}
           {...stylex.props(styles.checkbox$host)}
         />
         <span

@@ -18,9 +18,4 @@ type Story = StoryObj<typeof meta>;
 /**
  * 多选框。
  */
-export const 基本用法 = () => (
-  <Space>
-    <Checkbox />
-    <Checkbox checked />
-  </Space>
-);
+export const 基本用法 = () => <Checkbox>Design Core</Checkbox>;
