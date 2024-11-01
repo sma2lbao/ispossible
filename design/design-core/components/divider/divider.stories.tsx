@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import { Divider, Space } from "../../components";
+import { Divider } from "./divider";
+import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
   title: "Divider 分隔线",

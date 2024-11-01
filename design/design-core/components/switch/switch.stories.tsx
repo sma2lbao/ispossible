@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import { Space, Switch } from "../../components";
+import { Switch } from "./switch";
+import { Space } from "../space";
 import "@design/icon/user";
 
 const meta = {

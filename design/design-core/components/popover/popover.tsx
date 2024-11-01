@@ -1,18 +1,6 @@
 import React from "react";
-import stylex from "@stylexjs/stylex";
 import { Tooltip } from "../tooltip";
-import { TooltipProps } from "../tooltip/tooltip.types";
-
-const styles = stylex.create({
-  custom: {
-    padding: 0,
-  },
-});
-
-export interface PopoverProps extends Omit<TooltipProps, "title"> {
-  children: React.ReactNode;
-  content: () => React.ReactNode | React.ReactNode;
-}
+import type { PopoverProps } from "./popover.types";
 
 export const Popover: React.FC<PopoverProps> = (props) => {
   const {

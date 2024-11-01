@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Anchor } from "../../components";
+import { Anchor } from "./";
 import React from "react";
 
 /**
