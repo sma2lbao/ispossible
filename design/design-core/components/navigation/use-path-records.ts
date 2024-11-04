@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ItemKey } from "./nav.types";
 
 export default function usePathRecords() {
@@ -17,10 +17,6 @@ export default function usePathRecords() {
       return records.get(selectedKey)?.find((item) => item === subNavItemKey);
     });
   };
-
-  useEffect(() => {
-    console.log("records: ", records);
-  }, [records]);
 
   return {
     register,

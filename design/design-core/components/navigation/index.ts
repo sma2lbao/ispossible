@@ -1,3 +1,5 @@
+"use client";
+
 import { Nav } from "./nav";
 import { SubNav } from "./sub-nav";
 import { NavItem } from "./nav-item";
@@ -15,3 +17,9 @@ ExportNav.Item = NavItem;
 ExportNav.SubNav = SubNav;
 
 export { ExportNav as Nav };
+
+export type {
+  OnSelectData as OnSelectNavData,
+  NavProps,
+  ItemType as NavItemType,
+} from "./nav.types";

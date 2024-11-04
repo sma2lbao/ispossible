@@ -1,84 +1,36 @@
-import React, {
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import stylex, { type StyleXStyles } from "@stylexjs/stylex";
-import { AnchorNode, type AnchorNodeBaseProps } from "./anchor-node";
-import { AnchorContext } from "./context";
-import { radius, spacing } from "../theme/tokens.stylex";
-
-export interface AnchorProps {
-  /**
-   * 数据化配置选项内容
-   */
-  items: AnchorNodeBaseProps[];
-  /**
-   * 距离窗口顶部达到指定偏移量后触发
-   * @default 0
-   * @type number
-   */
-  offsetTop?: number;
-  /**
-   * 指定滚动的容器
-   */
-  container?: HTMLElement;
-
-  /**
-   * 锚点样式（StyleXStyles）
-   */
-  style?: StyleXStyles;
-}
-
-type FlatItem = {
-  id: string;
-  eleId: string;
-};
-
-const styles = stylex.create({
-  root: {
-    backgroundColor: "#fff",
-    padding: spacing.basic,
-    borderRadius: radius.basic,
-  },
-});
-
-const idMatcherRegex = /#([\S]+)$/;
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import stylex from "@stylexjs/stylex";
+import { AnchorLink } from "./anchor-link";
+import { AnchorContext } from "./anchor.context";
+import type { AnchorProps, OnClickLinkData } from "./anchor.types";
+import { styles } from "./anchor.stylex";
 
 export const Anchor: React.FC<AnchorProps> = (props) => {
-  const { items, offsetTop = 0, container = window, style } = props;
-  const [activeNodeId, setActiveNodeId] = useState<string>();
+  const {
+    items,
+    offsetTop = 0,
+    container = window,
+    stylex: customStylex,
+    children,
+  } = props;
+  const [activeAnchor, setActiveAnchor] = useState<string>();
+  const [records, setRecords] = useState<string[]>([]);
   const scroolByEventFlag = useRef<boolean>(false);
   const rootRef = useRef<HTMLDivElement>(null);
+  const activeBarRef = useRef<HTMLSpanElement>(null);
 
-  function toIds(items: AnchorProps["items"]): FlatItem[] {
-    return items.reduce<FlatItem[]>((previous, current) => {
-      const matcher = idMatcherRegex.exec(current.href);
-      const currentArray = !matcher
-        ? []
-        : [{ id: current.id, eleId: matcher[1] }];
-      if (current.children) {
-        return previous.concat([...currentArray, ...toIds(current.children)]);
-      }
-      return previous.concat(currentArray);
-    }, []);
-  }
+  const register = (anchor: string) => {
+    if (!records.includes(anchor)) {
+      records.push(anchor);
+      setRecords(records);
+    }
+  };
 
-  const flatItems = useMemo<FlatItem[]>(() => {
-    // 树转数组
-    const ids = toIds(items);
-    return ids;
-  }, [items]);
-
-  const handleClickNode = (node: AnchorNodeBaseProps) => {
-    if (activeNodeId === node.id) return;
+  const handleClickLink = (data: OnClickLinkData) => {
+    if (activeAnchor === data.href) return;
     scroolByEventFlag.current = true;
-    setActiveNodeId(node.id);
-    const nextEleId = flatItems.find((item) => item.id === node.id)?.eleId;
-    if (!nextEleId) return;
-    const rect = document.getElementById(nextEleId)?.getBoundingClientRect();
+    setActiveAnchor(data.href);
+    const rect = document.querySelector(data.href)?.getBoundingClientRect();
     if (rect) {
       window.scrollTo({
         top: rect.top,
@@ -92,35 +44,41 @@ export const Anchor: React.FC<AnchorProps> = (props) => {
       return;
     }
     let closestTop: number | undefined;
-    let closestId: string | undefined;
-    flatItems.forEach(({ id, eleId }) => {
-      const element = document.getElementById(eleId);
-      const rect = element?.getBoundingClientRect();
+    let closestAnchor: string | undefined;
+    records.forEach((anchor) => {
+      const rect = document.querySelector(anchor)?.getBoundingClientRect();
       if (rect?.top != null && offsetTop <= rect?.top) {
         // 满足达到offset条件的(即top已经在窗口上方)
         // 找到最靠近阈值的（top值越小越接近）
         if (closestTop === undefined || rect.top < closestTop) {
-          closestId = id;
+          closestAnchor = anchor;
           closestTop = rect.top;
         }
       }
     });
-    if (closestId) {
-      setActiveNodeId(closestId);
+    if (closestAnchor) {
+      setActiveAnchor(closestAnchor);
     }
   };
 
+  // 自身滚动
   useEffect(() => {
     if (rootRef?.current) {
-      const aDom = rootRef?.current.querySelector<HTMLElement>(
-        `a[data-id="${activeNodeId}"]`
+      const linkNode = rootRef?.current.querySelector<HTMLElement>(
+        `a[data-anchor="${activeAnchor}"]`
       );
-      if (!aDom) return;
-      rootRef?.current.scrollTo({
-        top: aDom.offsetTop - 10,
+      if (!linkNode) return;
+      rootRef.current?.scrollTo({
+        top: linkNode.offsetTop - 10,
       });
+      const top = linkNode.offsetTop + linkNode.clientHeight / 2;
+      activeBarRef.current?.style.setProperty("top", top + "px");
+      activeBarRef.current?.style.setProperty(
+        "height",
+        linkNode.clientHeight + "px"
+      );
     }
-  }, [activeNodeId]);
+  }, [activeAnchor]);
 
   useLayoutEffect(() => {
     container?.addEventListener("scroll", handleScroll);
@@ -130,11 +88,21 @@ export const Anchor: React.FC<AnchorProps> = (props) => {
   }, []);
 
   return (
-    <div {...stylex.props(styles.root, style)} ref={rootRef}>
-      <AnchorContext.Provider value={{ activeNodeId, handleClickNode }}>
-        {items.map((item) => {
-          return <AnchorNode key={item.id} {...item} deep={0} />;
-        })}
+    <div {...stylex.props(styles.root, customStylex)} ref={rootRef}>
+      <span ref={activeBarRef} {...stylex.props(styles.activeBar)}></span>
+      <AnchorContext.Provider
+        value={{
+          level: 0,
+          activeAnchor,
+          register,
+          onClickLink: handleClickLink,
+        }}
+      >
+        {items?.length
+          ? items.map((item, index) => {
+              return <AnchorLink key={item.label + index} {...item} />;
+            })
+          : children}
       </AnchorContext.Provider>
     </div>
   );

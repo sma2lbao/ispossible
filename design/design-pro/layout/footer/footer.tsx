@@ -2,64 +2,65 @@
 
 import React from "react";
 import stylex from "@stylexjs/stylex";
-import { useTheme, type Theme, Button, Space, Link } from "@design/core";
+import { Button, Space, useTokens, Tokens, Typography } from "@design/core";
 import "@design/icon/github";
 
 export interface FooterProps {}
 
 const styles = stylex.create({
-  root: (theme: Theme) => ({
-    backgroundColor: theme.colors.black,
-    color: theme.colors.white,
+  root: (tokens: Tokens) => ({
+    backgroundColor: tokens.palettes.black,
+    color: tokens.palettes.white,
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     padding: 24,
-    fontSize: theme.sizes.basic,
+    fontSize: tokens.typeScales.bodyFont$md,
   }),
-  text: (theme: Theme) => ({
-    marginBottom: theme.spacing.basic,
+  text: (tokens: Tokens) => ({
+    marginBottom: tokens.spacings.margin$1,
   }),
-  button: (theme: Theme) => ({
-    color: theme.colors.white,
+  button: (tokens: Tokens) => ({
+    color: tokens.palettes.white,
   }),
 });
 
 const Footer: React.FC<FooterProps> = () => {
-  const theme = useTheme();
+  const tokens = useTokens();
 
   return (
-    <div {...stylex.props(styles.root(theme))}>
-      <div {...stylex.props(styles.text(theme))}>
+    <div {...stylex.props(styles.root(tokens))}>
+      <div {...stylex.props(styles.text(tokens))}>
         power by sma2lbao | copyright ©{" "}
-        <Link
+        <Typography.Link
           color="inherit"
           href="https://sma2lbao.github.io/"
           target="_blank"
         >
           sma2lbao.github.io
-        </Link>{" "}
+        </Typography.Link>{" "}
         2024.
       </div>
       <Space>
-        <Button
-          href="https://design-docs-eta.vercel.app/"
-          type="link"
-          style={styles.button(theme)}
+        <Typography.Link
+          href="https://is-design-docs.vercel.app/"
+          stylex={styles.button(tokens)}
         >
           基础组件文档
-        </Button>
-        <Button
-          href="https://blogs-orcin.vercel.app/"
-          type="link"
-          style={styles.button(theme)}
+        </Typography.Link>
+        <Typography.Link
+          href="https://is-blogs.vercel.app/"
+          stylex={styles.button(tokens)}
         >
           博客
-        </Button>
+        </Typography.Link>
       </Space>
       <Space>
-        <Button icon={<is-github />} href="https://github.com/sma2lbao" />
+        <Button
+          icon={<is-github />}
+          onClick={() => open("https://github.com/sma2lbao")}
+        />
       </Space>
     </div>
   );

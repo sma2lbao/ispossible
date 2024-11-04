@@ -1,26 +1,39 @@
-export interface BreadCrumbItem {
-  /**
-   * 文本
-   */
-  title: string | React.ReactNode;
-  /**
-   * 跳转路径
-   */
-  path?: string;
-  /**
-   * 跳转路径
-   */
-  href?: string;
-}
+import { StyleXStyles } from "@stylexjs/stylex";
 
-export interface BreadCrumbProps {
+export interface BreadcrumbProps {
   /**
    * 分隔符自定义
    */
   separator?: React.ReactNode;
 
-  /**
-   * 路由栈信息
-   */
-  items: BreadCrumbItem[];
+  children?: React.ReactNode;
 }
+
+export interface BreadcrumbItemProps {
+  /**
+   * 图标
+   */
+  icon?: React.ReactNode;
+
+  /**
+   * 跳转路径
+   */
+  path?: string;
+
+  /**
+   * 最大宽度
+   */
+  maxWidth?: number;
+
+  children?: React.ReactNode;
+
+  stylex?: StyleXStyles;
+
+  /**
+   * 点击事件
+   * @returns
+   */
+  onClick?: () => void;
+}
+
+export interface BreadcrumbContextProps {}

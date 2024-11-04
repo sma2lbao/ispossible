@@ -1,7 +1,7 @@
 import React from "react";
 import { Footer, Topbar } from "@design/pro";
 import stylex from "@stylexjs/stylex";
-import { useTheme, Theme, Affix } from "@design/core";
+import { Affix } from "@design/core";
 import Logo from "./logo";
 
 export interface DocumentProps {
@@ -10,12 +10,12 @@ export interface DocumentProps {
 }
 
 const styles = stylex.create({
-  root: (theme: Theme) => ({
-    backgroundColor: theme.colors.background,
-    minHeight: "100%",
+  root: {
     display: "flex",
     flexDirection: "column",
-  }),
+    backgroundColor: "#fff",
+    minHeight: "100%",
+  },
   body: {
     flex: 1,
     display: "flex",
@@ -38,9 +38,8 @@ const styles = stylex.create({
 
 const Document: React.FC<DocumentProps> = (props) => {
   const { children, sidebar } = props;
-  const theme = useTheme();
   return (
-    <main {...stylex.props(styles.root(theme))}>
+    <div {...stylex.props(styles.root)}>
       <Topbar logo={<Logo />} />
       <div {...stylex.props(styles.body)}>
         <div {...stylex.props(styles.article)}>{children}</div>
@@ -51,7 +50,7 @@ const Document: React.FC<DocumentProps> = (props) => {
         )}
       </div>
       <Footer />
-    </main>
+    </div>
   );
 };
 

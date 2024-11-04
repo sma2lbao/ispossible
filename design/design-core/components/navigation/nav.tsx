@@ -26,7 +26,6 @@ export const Nav: React.FC<NavProps> = (props) => {
   const { register, isSelectedSubNav } = usePathRecords();
   const isHorizontal = mode === "x";
   const isVertical = mode === "y" || mode === "inline";
-  const isInline = mode === "inline";
 
   const handleNavItemClick = (data: OnNavItemClickData) => {
     const { itemKey } = data;

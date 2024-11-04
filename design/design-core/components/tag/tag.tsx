@@ -1,69 +1,69 @@
-import React from "react";
+import React, { useState } from "react";
 import stylex from "@stylexjs/stylex";
-import { colors, radius, spacing, sizes } from "../theme/tokens.stylex";
+import { styles } from "./tag.stylex";
+import type { TagProps } from "./tag.types";
 
-interface TagProps {
-  children: React.ReactNode;
-  /**
-   * 是否有边框
-   */
-  bordered?: boolean;
-  /**
-   * 标签色
-   */
-  color?: string;
-  /**
-   * 设置图标
-   */
-  icon?: React.ReactNode;
-}
+export const Tag = React.forwardRef<HTMLDivElement, TagProps>((props, ref) => {
+  const {
+    children,
+    color,
+    type = "light",
+    shape = "square",
+    prefixIcon,
+    suffixIcon,
+    closeable,
+    avatarSrc,
+    onClick,
+    onClose,
+    tagKey,
+    ...rest
+  } = props;
 
-const styles = stylex.create({
-  base: (color?: string) => ({
-    fontSize: sizes.basic,
-    color: colors.white,
-    backgroundColor: color ?? colors.basic,
-    borderColor: color,
-    borderWidth: 1,
-    borderStyle: "solid",
-    lineHeight: 1.25,
-    padding: "1px 8px",
-    borderRadius: radius.basic,
-    overflow: "hidden",
-    display: "inline-flex",
-    boxSizing: "border-box",
-  }),
-  bordered: (borderColor?: string) => ({
-    color: borderColor ?? "#3a3a3a",
-    borderColor: borderColor ?? "#3a3a3a",
-    backgroundColor: "transparent",
-  }),
-  icon: {
-    marginRight: 4,
-    display: "inline-flex",
-    alignItems: "center",
-  },
-  onlyIcon: {
-    maskRepeat: 0,
-  },
-});
+  const [visible, setVisible] = useState(true);
 
-export const Tag: React.FC<TagProps> = (props) => {
-  const { children, color, bordered = true, icon } = props;
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    onClick?.(e);
+  };
 
-  const isOnlyIcon = !!icon && !children;
+  const handleClose = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    onClose?.(children, e, tagKey);
+    setVisible(false);
+  };
+
+  const prefixNode = prefixIcon ? (
+    <div {...stylex.props(styles.prefixIcon)}>{prefixIcon}</div>
+  ) : null;
+  const avatarNode = avatarSrc ? <div></div> : null;
+  const suffixNode = suffixIcon ? (
+    <div {...stylex.props(styles.suffixIcon)}>{suffixIcon}</div>
+  ) : null;
+  const closeNode = closeable ? (
+    <div {...stylex.props(styles.closeIcon)} onClick={handleClose}>
+      <is-close />
+    </div>
+  ) : null;
 
   return (
-    <span
-      {...stylex.props(styles.base(color), bordered && styles.bordered(color))}
-    >
-      {!!icon && (
-        <i {...stylex.props(styles.icon, isOnlyIcon && styles.onlyIcon)}>
-          {icon}
-        </i>
+    <div
+      ref={ref}
+      onClick={handleClick}
+      {...rest}
+      {...stylex.props(
+        styles.tag,
+        !visible && styles.tag$hidden,
+        shape === "square" && styles.tag$square,
+        shape === "circle" && styles.tag$circle,
+        type === "light" && styles.tag$light(color),
+        type === "ghost" && styles.tag$ghost(color),
+        type === "solid" && styles.tag$solid(color)
       )}
-
-      {children}
-    </span>
+    >
+      {prefixNode}
+      {avatarNode}
+      <div {...stylex.props(styles.content)}>{children}</div>
+      {suffixNode}
+      {closeNode}
+    </div>
   );
-};
+});
