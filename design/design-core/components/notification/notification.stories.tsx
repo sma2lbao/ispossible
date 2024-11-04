@@ -1,0 +1,74 @@
+import React from "react";
+import type { Meta } from "@storybook/react";
+import { Notification as NotificationComponent } from "./notification";
+import { Notification } from "./";
+import { Space } from "../space";
+import { Button } from "../button";
+
+/**
+ * 将页面元素钉在可视范围。
+ */
+const meta = {
+  title: "Notification 消息通知",
+  component: NotificationComponent,
+  parameters: {
+    layout: "centered",
+    doc: {},
+  },
+  tags: ["autodocs"],
+  argTypes: {},
+} satisfies Meta<typeof NotificationComponent>;
+
+export default meta;
+
+/**
+ * 最简单的用法。
+ */
+export const 代码演示 = () => {
+  const handleClick = (type: "info" | "error" | "warning" | "success") => {
+    if (type === "info") {
+      Notification.info({
+        title: "标题",
+        content: "提示",
+      });
+      return;
+    }
+    if (type === "success") {
+      Notification.success({
+        title: "标题",
+        content: "成功",
+      });
+      return;
+    }
+    if (type === "error") {
+      Notification.error({
+        title: "标题",
+        content: "错误",
+      });
+      return;
+    }
+    if (type === "warning") {
+      Notification.warning({
+        title: "标题",
+        content: "警告",
+      });
+      return;
+    }
+  };
+
+  const handleClose = () => {
+    Notification.destroyAll();
+  };
+
+  return (
+    <div>
+      <Space>
+        <Button onClick={() => handleClick("info")}>Info</Button>
+        <Button onClick={() => handleClick("success")}>Success</Button>
+        <Button onClick={() => handleClick("warning")}>Warning</Button>
+        <Button onClick={() => handleClick("error")}>Error</Button>
+        <Button onClick={handleClose}>Close All</Button>
+      </Space>
+    </div>
+  );
+};

@@ -1,61 +1,49 @@
 import React from "react";
 import stylex from "@stylexjs/stylex";
-import { Typography } from "../typography";
-import type { BreadCrumbProps } from "./breadcrumb.types";
+import { styles } from "./breadcrumb.stylex";
+import { BreadcrumbContext } from "./breadcrumb.context";
+import { BreadcrumbItem } from "./breadcrumb-item";
+import type {
+  BreadcrumbContextProps,
+  BreadcrumbProps,
+} from "./breadcrumb.types";
 
-const styles = stylex.create({
-  root: {
-    display: "flex",
-    alignItems: "center",
-  },
-  item: {
-    color: "#333",
-    textDecoration: "none",
-  },
-  link: {
-    cursor: "pointer",
-  },
-  separator: {
-    margin: "0 4px",
-    fontSize: 12,
-    display: "inline-flex",
-    alignItems: "center",
-  },
-});
+export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
+  const { separator = ">", children } = props;
+  const contextValue: BreadcrumbContextProps = {};
 
-export const BreadCrumb: React.FC<BreadCrumbProps> = (props) => {
-  const { separator, items } = props;
+  const renderChildren = () => {
+    const items = React.Children.toArray(children).filter((child) => {
+      return React.isValidElement(child) && child.type === BreadcrumbItem;
+    });
+
+    const len = items?.length ?? 0;
+    if (len === 0) return null;
+    return items?.map((child, index) => {
+      if (index === len - 1) {
+        return React.cloneElement(child as React.ReactElement, {
+          stylex: styles.breadcrumb$item$active,
+          key: index,
+        });
+      }
+      return (
+        <React.Fragment key={index}>
+          {child}
+          {
+            <span {...stylex.props(styles.breadcrumb$item$separator)}>
+              {separator}
+            </span>
+          }
+        </React.Fragment>
+      );
+    });
+  };
+
   return (
-    <div {...stylex.props(styles.root)}>
-      {items.map((item, index) => {
-        const { path, href } = item;
-        const isLast = index === items.length - 1;
-        const isLink = path != null || href != null;
-
-        return (
-          <React.Fragment key={index}>
-            <Typography
-              tagName="span"
-              link={isLink}
-              href={path || href}
-              key={index}
-              style={[styles.item, isLink && styles.link]}
-            >
-              {item.title}
-            </Typography>
-            {!isLast && (
-              <Typography tagName="span" style={styles.separator}>
-                {separator}
-              </Typography>
-            )}
-          </React.Fragment>
-        );
-      })}
+    <div {...stylex.props(styles.breadcrumb)}>
+      <BreadcrumbContext.Provider value={contextValue}>
+        {renderChildren()}
+      </BreadcrumbContext.Provider>
     </div>
   );
-};
-
-BreadCrumb.defaultProps = {
-  separator: "/",
-  items: [],
 };

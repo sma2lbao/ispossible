@@ -1,5 +1,5 @@
 import stylex from "@stylexjs/stylex";
-import { colors } from "../theme/tokens.stylex";
+import { colors } from "../../themes/tokens/color.stylex";
 
 export const styles = stylex.create({
   root: {
@@ -44,7 +44,7 @@ export const styles = stylex.create({
     alignItems: "center",
     boxSizing: "border-box",
     ":hover": {
-      backgroundColor: colors.background,
+      backgroundColor: colors.primaryContainer,
     },
   },
   firstLevel: {
@@ -61,7 +61,7 @@ export const styles = stylex.create({
     boxSizing: "border-box",
     cursor: "pointer",
     ":hover": {
-      backgroundColor: colors.background,
+      backgroundColor: colors.primaryContainer,
     },
   },
   collapsibleWrap: {

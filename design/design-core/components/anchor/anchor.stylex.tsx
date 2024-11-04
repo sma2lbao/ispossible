@@ -1,0 +1,62 @@
+import stylex from "@stylexjs/stylex";
+import { colors } from "../../themes/tokens/color.stylex";
+import { shapes } from "../../themes/tokens/shape.stylex";
+import { typeScales } from "../../themes/tokens/type-scale.stylex";
+
+export const styles = stylex.create({
+  root: {
+    backgroundColor: "#fff",
+    borderRadius: shapes.corner$xs,
+    fontSize: typeScales.bodySize$md,
+    lineHeight: typeScales.bodyLineHeight$md,
+    overflowX: "hidden",
+    overflowY: "auto",
+    position: "relative",
+    "::before": {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      display: "block",
+      width: "2px",
+      height: "100%",
+      backgroundColor: "#eee",
+      borderRadius: "1px",
+      content: "",
+    },
+  },
+
+  linkRoot: {
+    paddingLeft: "16px",
+    paddingTop: "4px",
+    paddingBottom: "4px",
+    fontSize: typeScales.bodySize$md,
+    lineHeight: typeScales.bodyLineHeight$md,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+  },
+  link: {
+    display: "flex",
+    color: colors.onSurface,
+    textDecoration: "none",
+    cursor: "pointer",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+  },
+  linkGap: {
+    marginBottom: "4px",
+  },
+  active: {
+    color: colors.primary,
+  },
+  activeBar: {
+    position: "absolute",
+    display: "inline-flex",
+    left: 0,
+    width: "2px",
+    borderRadius: "1px",
+    backgroundColor: colors.primary,
+    transform: "translateY(-50%)",
+  },
+});

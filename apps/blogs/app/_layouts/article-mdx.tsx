@@ -27,10 +27,17 @@ const ArticleMdx: React.FC<ArticleMdxProps> = (props) => {
 
   return (
     <div>
-      <Typography tagName="h2" style={styles.title}>
+      <Typography
+        variant="headline"
+        gutterBottom
+        size="md"
+        stylex={styles.title}
+      >
         {meta.title}
       </Typography>
-      <Typography tagName="div">{meta.description}</Typography>
+      <Typography variant="body" size="md">
+        {meta.description}
+      </Typography>
       <Space>
         <Space>
           {meta.tags?.map((tag) => (

@@ -3,7 +3,13 @@
 import React from "react";
 import { Footer, Topbar } from "@design/pro";
 import stylex from "@stylexjs/stylex";
-import { useTheme, Theme, Menu } from "@design/core";
+import {
+  Nav,
+  NavItemType,
+  OnSelectNavData,
+  Tokens,
+  useTokens,
+} from "@design/core";
 import Logo from "./logo";
 import { useRouter } from "next/navigation";
 
@@ -13,8 +19,8 @@ export interface DocumentProps {
 }
 
 const styles = stylex.create({
-  root: (theme: Theme) => ({
-    backgroundColor: theme.colors.background,
+  root: (tokens: Tokens) => ({
+    backgroundColor: tokens.palettes.white,
     minHeight: "100%",
     display: "flex",
     flexDirection: "column",
@@ -34,27 +40,28 @@ const styles = stylex.create({
 
 const Document: React.FC<DocumentProps> = (props) => {
   const { children } = props;
-  const theme = useTheme();
   const router = useRouter();
-  const menu = [
+  const tokens = useTokens();
+  const menu: (NavItemType & { path: string })[] = [
     {
-      label: "组件",
-      id: "packages",
-      path: "/packages/button-按钮--docs",
+      text: "组件",
+      itemKey: "packages",
+      path: "/components/button",
     },
   ];
 
-  const handleSelect = (id: string[]) => {
-    if (id[0] == null) return;
-    const currentMenu = menu.find((item) => item.id === id[0]);
+  const handleSelect = (data: OnSelectNavData) => {
+    const { selectedKeys } = data;
+    if (selectedKeys[0] == null) return;
+    const currentMenu = menu.find((item) => item.itemKey === selectedKeys[0]);
     currentMenu && router.push(currentMenu.path);
   };
 
   return (
-    <main {...stylex.props(styles.root(theme))}>
+    <main {...stylex.props(styles.root(tokens))}>
       <Topbar logo={<Logo />}>
         <div {...stylex.props(styles.topbar)}>
-          <Menu items={menu} mode="x" onSelect={handleSelect} />
+          <Nav items={menu} mode="x" onSelect={handleSelect} />
         </div>
       </Topbar>
       <div {...stylex.props(styles.body)}>{children}</div>

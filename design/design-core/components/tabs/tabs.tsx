@@ -1,98 +1,77 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import stylex from "@stylexjs/stylex";
-import { colors } from "../theme/tokens.stylex";
-
-const styles = stylex.create({
-  root: {},
-  top: {
-    display: "flex",
-    alignItems: "center",
-    overflowX: "auto",
-  },
-  item: {
-    cursor: "pointer",
-    padding: "8px 16px",
-    whiteSpace: "nowrap",
-  },
-  disabled: {
-    pointerEvents: "none",
-  },
-  active: {
-    color: colors.primary,
-  },
-  content: {
-    padding: "16px",
-  },
-});
-
-export interface TabItemProps {
-  id: string;
-  label: string;
-  disabled?: boolean;
-  icon?: React.ReactNode;
-  children?: React.ReactNode;
-}
-
-export interface TabsProps {
-  /**
-   * 当前激活 tab 面板的 key
-   */
-  activeId?: string;
-  /**
-   * 配置选项卡内容
-   */
-  items: TabItemProps[];
-  /**
-   * 切换面板的回调
-   * @param activeId
-   * @returns
-   */
-  onChange?: (activeId: string) => void;
-}
+import { styles } from "./tabs.stylex";
+import { TabsContext } from "./tabs.context";
+import type { TabPaneProps, TabsContextProps, TabsProps } from "./tabs.types";
+import { TabPane } from "./tab-pane";
 
 export const Tabs: React.FC<TabsProps> = (props) => {
-  const { items = [], activeId, onChange } = props;
-  const [activeIdInternal, setActiveIdInternal] = useState<string>(() => {
-    return activeId ?? items.find((item) => !item.disabled)?.id ?? "";
+  const { children, onTabClick, onChange, activeKey, type = "line" } = props;
+  const [rawActiveKey, setRawActiveKey] = useState<string | undefined>();
+
+  const contextValue: TabsContextProps = {
+    activeKey: rawActiveKey,
+  };
+
+  const parsePanes = React.Children.map(children, (child) => {
+    if (React.isValidElement(child) && child.type === TabPane) {
+      const { tab, icon, disabled, itemKey, closable } =
+        child.props as TabPaneProps;
+      return { tab, icon, disabled, itemKey, closable };
+    }
   });
 
-  const activeTab = useMemo(() => {
-    return items.find((item) => item.id === activeIdInternal);
-  }, [activeIdInternal, items]);
-
-  const handleClickTab = (tab: TabItemProps) => {
-    if (tab.disabled || tab.id === activeIdInternal) return;
-    setActiveIdInternal(tab.id);
-    onChange?.(tab.id);
+  const handleClick = (item: Omit<TabPaneProps, "children">) => {
+    if (item.disabled) return;
+    onTabClick?.(item.itemKey!);
+    onChange?.(item.itemKey!);
+    if (!("activeKey" in props)) {
+      setRawActiveKey(item.itemKey);
+    }
   };
 
   useEffect(() => {
-    if (activeId && activeIdInternal !== activeId) {
-      setActiveIdInternal(activeId);
+    if ("activeKey" in props) {
+      setRawActiveKey(activeKey);
+      return;
     }
-  }, [activeId]);
+  }, [activeKey]);
 
-  return (
-    <div {...stylex.props(styles.root)}>
-      <div {...stylex.props(styles.top)}>
-        {items.map((item) => {
+  const renderBar = () => {
+    return (
+      <div
+        {...stylex.props(
+          styles.tabs$bar,
+          type === "line" && styles.tabs$bar$line
+        )}
+      >
+        {parsePanes?.map((item, index) => {
           return (
             <div
-              key={item.id}
-              onClick={() => handleClickTab(item)}
+              key={item.itemKey || index}
+              onClick={() => handleClick(item)}
               {...stylex.props(
-                styles.item,
-                item?.id === activeIdInternal && styles.active,
-                item.disabled && styles.disabled
+                styles.tabs$tab,
+                styles.tabs$tab$single,
+                rawActiveKey === item.itemKey && styles.tabs$tab$active
               )}
             >
-              {item.icon}
-              {item.label}
+              {item.tab}
             </div>
           );
         })}
       </div>
-      <div {...stylex.props(styles.content)}>{activeTab?.children}</div>
+    );
+  };
+
+  return (
+    <div {...stylex.props(styles.tabs)}>
+      {renderBar()}
+      <div {...stylex.props(styles.tabs$content)}>
+        <TabsContext.Provider value={contextValue}>
+          {children}
+        </TabsContext.Provider>
+      </div>
     </div>
   );
 };

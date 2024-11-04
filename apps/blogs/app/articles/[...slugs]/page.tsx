@@ -41,7 +41,7 @@ export default async function ArticlePage({
       sidebar={
         !!headings.length && (
           <NoSsr>
-            <Anchor items={headings} style={styles.toc} />
+            <Anchor items={headings} stylex={styles.toc} />
           </NoSsr>
         )
       }

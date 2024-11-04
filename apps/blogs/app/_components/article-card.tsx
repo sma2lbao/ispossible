@@ -4,7 +4,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import stylex, { type StyleXStyles } from "@stylexjs/stylex";
 import { ArticleMeta } from "@/shared/parse-article";
-import { Space, Tag, Theme, Typography, useTheme } from "@design/core";
+import { Space, Tag, Typography } from "@design/core";
 
 export interface ArticleCardProps {
   article: ArticleMeta;
@@ -12,14 +12,14 @@ export interface ArticleCardProps {
 }
 
 const styles = stylex.create({
-  root: (theme: Theme) => ({
+  root: {
     cursor: "pointer",
     display: "flex",
     alignItems: "center",
     minHeight: 163,
     overflow: "hidden",
-    borderBottom: `1px solid ${theme.colors.border}`,
-  }),
+    borderBottom: `1px solid #ddd`,
+  },
   content: {
     flex: 1,
   },
@@ -38,20 +38,23 @@ const ArticleCard: React.FC<ArticleCardProps> = (props) => {
   const { style, article } = props;
   const { title, description, slug, date, tags, poster } = article;
   const router = useRouter();
-  const theme = useTheme();
 
   const handleClick = () => {
     router.push(slug, { scroll: true });
   };
 
   return (
-    <div onClick={handleClick} {...stylex.props(styles.root(theme), style)}>
-      <Space direction="y" style={styles.content}>
-        <Typography tagName="h4">{title}</Typography>
-        <Typography tagName="p">
+    <div onClick={handleClick} {...stylex.props(styles.root, style)}>
+      <Space direction="y" stylex={styles.content}>
+        <Typography variant="title" size="lg">
+          {title}
+        </Typography>
+        <Typography variant="body" size="md">
           {description || "这个人太懒了，什么也没写！"}
         </Typography>
-        <Typography tagName="p">{date}</Typography>
+        <Typography variant="label" size="sm">
+          {date}
+        </Typography>
         <Space size={8}>
           {tags?.map((text) => (
             <Tag key={text}>{text}</Tag>

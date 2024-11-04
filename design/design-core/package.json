@@ -46,7 +46,8 @@
   },
   "dependencies": {
     "@stylexjs/stylex": "~0.8.0",
-    "@design/icon": "workspace:*"
+    "@design/icon": "workspace:*",
+    "short-uuid": "~5.2.0"
   },
   "files": [
     "dist"

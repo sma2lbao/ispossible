@@ -1,64 +1,86 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import stylex from "@stylexjs/stylex";
-import { colors } from "../theme/tokens.stylex";
-import "@design/icon/check";
-
-export interface CheckboxProps {
-  /**
-   * 指定当前是否选中
-   */
-  value?: boolean;
-  /**
-   * 变化时的回调函数
-   */
-  onChange?: (value: boolean) => void;
-}
-
-const styles = stylex.create({
-  root: {
-    height: 20,
-    width: 20,
-    borderRadius: 4,
-    boxSizing: "border-box",
-    border: "1px solid #ddd",
-    outline: "none",
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 0,
-    overflow: "hidden",
-    backgroundColor: "transparent",
-    margin: 0,
-  },
-  thumb: {
-    flex: 1,
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    alignSelf: "stretch",
-    fontSize: 12,
-    color: colors.white,
-    backgroundColor: colors.primary,
-  },
-});
+import { CheckboxChangeEvent, CheckboxProps } from "./checkbox.types";
+import { styles } from "./checkbox.stylex";
+import { CheckboxGroupContext } from "./checkbox.context";
 
 export const Checkbox: React.FC<CheckboxProps> = (props) => {
-  const { value, onChange } = props;
-  const [checkedInner, setCheckedInner] = useState<boolean>(value ?? false);
+  const context = useContext(CheckboxGroupContext);
+  const {
+    value,
+    checked = false,
+    children,
+    disabled = false,
+    indeterminate = false,
+    name,
+    onChange,
+    ...rest
+  } = props;
+  const prevValue = useRef(value);
+  const [innerChecked, setInnerChecked] = useState(false);
 
-  const handleClick = () => {
-    const nextValue = !checkedInner;
-    setCheckedInner(nextValue);
-    onChange?.(nextValue);
+  const nextDisabled = context?.disabled || disabled;
+  const nextName = context?.name || name;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const nextChecked = e.target.checked;
+    const event: CheckboxChangeEvent = {
+      target: {
+        ...props,
+        checked: nextChecked,
+      },
+      stopPropagation: () => {
+        e.stopPropagation();
+      },
+      preventDefault: () => {
+        e.preventDefault();
+      },
+      nativeEvent: e.nativeEvent,
+    };
+    onChange?.(event);
+
+    context?.toggleValue(value);
+    if (!context) {
+      setInnerChecked(nextChecked);
+    }
   };
 
+  useEffect(() => {
+    context?.registerValue(value);
+  }, []);
+
+  useEffect(() => {
+    if (value !== prevValue.current) {
+      context?.cancelValue(prevValue.current);
+      context?.registerValue(value);
+      prevValue.current = value;
+    }
+
+    return () => context?.cancelValue(value);
+  }, [value]);
+
   return (
-    <button onClick={handleClick} {...stylex.props(styles.root)}>
-      {checkedInner && (
-        <span {...stylex.props(styles.thumb)}>
-          <is-check />
-        </span>
-      )}
-    </button>
+    <label {...stylex.props(styles.checkbox)}>
+      <span {...stylex.props(styles.checkbox$inner)}>
+        <input
+          type="checkbox"
+          name={nextName}
+          checked={innerChecked}
+          disabled={nextDisabled}
+          onChange={handleChange}
+          {...rest}
+          {...stylex.props(styles.checkbox$host)}
+        />
+        <span
+          {...stylex.props(
+            styles.checkbox$inner$display,
+            innerChecked && styles.checkbox$inner$display$checked
+          )}
+        ></span>
+      </span>
+      <div {...stylex.props(styles.checkbox$content)}>
+        <span {...stylex.props(styles.checkbox$addon)}>{children}</span>
+      </div>
+    </label>
   );
 };
