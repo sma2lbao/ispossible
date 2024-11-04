@@ -19,7 +19,7 @@ const ArticleTabs = () => {
       {menus.map((item) => {
         return (
           <TabPane key={item.dirname} tab={item.label} itemKey={item.dirname}>
-            <ArticleList key={item.dirname} category={category} />,
+            <ArticleList key={item.dirname} category={category} />
           </TabPane>
         );
       })}
