@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
-import { colors } from "../theme/tokens.stylex";
+import { colors } from "../../themes/tokens/color.stylex";
+import { palettes } from "../../themes/tokens/palette.stylex";
 
 export const styles = stylex.create({
   root: {
@@ -24,6 +25,6 @@ export const styles = stylex.create({
     height: 18,
     width: 18,
     borderRadius: 3,
-    backgroundColor: colors.white,
+    backgroundColor: palettes.white,
   },
 });

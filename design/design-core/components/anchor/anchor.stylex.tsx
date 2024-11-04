@@ -1,18 +1,14 @@
 import stylex from "@stylexjs/stylex";
-import {
-  radius,
-  spacing,
-  colors,
-  lineHeight,
-  sizes,
-} from "../theme/tokens.stylex";
+import { colors } from "../../themes/tokens/color.stylex";
+import { shapes } from "../../themes/tokens/shape.stylex";
+import { typeScales } from "../../themes/tokens/type-scale.stylex";
 
 export const styles = stylex.create({
   root: {
     backgroundColor: "#fff",
-    borderRadius: radius.basic,
-    fontSize: sizes.basic,
-    lineHeight: "20px",
+    borderRadius: shapes.corner$xs,
+    fontSize: typeScales.bodySize$md,
+    lineHeight: typeScales.bodyLineHeight$md,
     overflowX: "hidden",
     overflowY: "auto",
     position: "relative",
@@ -33,15 +29,15 @@ export const styles = stylex.create({
     paddingLeft: "16px",
     paddingTop: "4px",
     paddingBottom: "4px",
-    fontSize: sizes.basic,
-    lineHeight: lineHeight.basic,
+    fontSize: typeScales.bodySize$md,
+    lineHeight: typeScales.bodyLineHeight$md,
     overflow: "hidden",
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
   },
   link: {
     display: "flex",
-    color: colors.basic,
+    color: colors.onSurface,
     textDecoration: "none",
     cursor: "pointer",
     overflow: "hidden",

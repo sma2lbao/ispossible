@@ -1,5 +1,5 @@
 import stylex from "@stylexjs/stylex";
-import { radius } from "../theme/tokens.stylex";
+import { shapes } from "../../themes/tokens/shape.stylex";
 
 export const styles = stylex.create({
   avatar$group: {
@@ -13,7 +13,7 @@ export const styles = stylex.create({
     textAlign: "center",
     width: size,
     height: size,
-    borderRadius: radius.basic,
+    borderRadius: shapes.corner$xs,
     overflow: "hidden",
     verticalAlign: "middle",
     cursor: "pointer",

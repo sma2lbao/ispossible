@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
-import { colors, animation } from "../theme/tokens.stylex";
+import { colors } from "../../themes/tokens/color.stylex";
+import { animation } from "../../themes/tokens/animation.stylex";
 
 export const styles = stylex.create({
   button: {
@@ -52,7 +53,7 @@ export const styles = stylex.create({
     animationIterationCount: "infinite",
   },
   disabled: {
-    color: colors.secondary,
+    color: colors.onPrimaryContainer,
     cursor: "not-allowed",
     ":hover": {
       backgroundColor: null,

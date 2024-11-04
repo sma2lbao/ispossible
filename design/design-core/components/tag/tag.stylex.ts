@@ -1,5 +1,5 @@
 import stylex from "@stylexjs/stylex";
-import { colors, radius, spacing, sizes } from "../theme/tokens.stylex";
+import { colors } from "../../themes/tokens/color.stylex";
 
 export const styles = stylex.create({
   tag: {
@@ -21,8 +21,8 @@ export const styles = stylex.create({
   },
   tag$light: (color?: string, bgColor?: string) => ({
     color: color || colors.primary,
-    backgroundColor: bgColor || colors.border,
-    borderColor: bgColor || colors.border,
+    backgroundColor: bgColor || colors.primaryContainer,
+    borderColor: bgColor || colors.primaryContainer,
   }),
   tag$solid: (color?: string) => ({
     color: "#fff",
