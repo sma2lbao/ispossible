@@ -5,16 +5,18 @@ export type IVariant = "display" | "headline" | "title" | "body" | "label";
 export type ISize = "lg" | "md" | "sm";
 
 export interface TypographyProps {
+  /**
+   * 文本颜色
+   */
+  color?: string;
+
   children?: React.ReactNode;
   /**
    * 原生标签
    * @default "span"
    */
   as?: React.ElementType;
-  /**
-   * 样式
-   */
-  stylex?: StyleXStyles;
+
   /**
    * 文本类型
    * @default body
@@ -32,6 +34,9 @@ export interface TypographyProps {
    */
   gutterBottom?: boolean;
 
+  /**
+   * 暗色主题
+   */
   dimmed?: boolean;
 
   /**
@@ -39,4 +44,21 @@ export interface TypographyProps {
    */
   truncate?: boolean;
   truncateLines?: number;
+
+  /**
+   * 样式
+   */
+  stylex?: StyleXStyles;
+}
+
+export interface TypographyLinkProps
+  extends Omit<TypographyProps, "as">,
+    React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  /**
+   * 是否需要下划线
+   * @default false
+   */
+  underline?: boolean;
+
+  children?: React.ReactNode;
 }

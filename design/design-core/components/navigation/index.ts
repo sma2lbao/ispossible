@@ -15,3 +15,9 @@ ExportNav.Item = NavItem;
 ExportNav.SubNav = SubNav;
 
 export { ExportNav as Nav };
+
+export type {
+  OnSelectData as OnSelectNavData,
+  NavProps,
+  ItemType as NavItemType,
+} from "./nav.types";

@@ -3,7 +3,7 @@
 import React, { useLayoutEffect, useRef } from "react";
 import stylex from "@stylexjs/stylex";
 import { useRouter } from "next/navigation";
-import { Menu } from "@design/core";
+import { Nav, OnSelectNavData } from "@design/core";
 import { STORYBOOK_IFRAME_URL } from "@/constants";
 import { stories } from "@/config";
 
@@ -40,9 +40,9 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
   const router = useRouter();
   const iFrameRef = useRef<HTMLIFrameElement>(null);
 
-  const handleSelect = (ids: string[]) => {
-    if (ids[0] == null) return;
-    const slug = ids[0];
+  const handleSelect = (data: OnSelectNavData) => {
+    if (data.selectedKeys[0] == null) return;
+    const slug = data.selectedKeys[0];
     router.push(`/components/${slug}`);
   };
 
@@ -58,11 +58,11 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
   return (
     <div {...stylex.props(styles.root)}>
       <div {...stylex.props(styles.nav)}>
-        <Menu
-          initialSelectedIds={[decodeURIComponent(slug)]}
+        <Nav
+          // initialSelectedIds={[decodeURIComponent(slug)]}
           items={stories.map((item) => ({
-            id: item.id,
-            label: item.title,
+            itemKey: item.id,
+            text: item.title,
           }))}
           onSelect={handleSelect}
         />

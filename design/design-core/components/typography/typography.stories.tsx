@@ -107,3 +107,9 @@ export const 标题 = () => (
     </div>
   </>
 );
+
+export const 链接 = () => {
+  return (
+    <Typography.Link href="https://www.baidu.com">测试链接</Typography.Link>
+  );
+};

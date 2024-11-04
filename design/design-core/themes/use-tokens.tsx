@@ -23,3 +23,5 @@ export function useTokens() {
     animation,
   };
 }
+
+export type Tokens = ReturnType<typeof useTokens>;

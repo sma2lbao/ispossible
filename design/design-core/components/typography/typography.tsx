@@ -27,6 +27,7 @@ export const Typography = React.forwardRef<HTMLDivElement, TypographyProps>(
   (props, ref) => {
     const {
       as,
+      color,
       stylex: customStylex,
       variant = "body",
       size = "md",
@@ -35,15 +36,17 @@ export const Typography = React.forwardRef<HTMLDivElement, TypographyProps>(
       dimmed,
       truncate,
       truncateLines,
+      ...rest
     } = props;
 
     const Component = as ?? asTagMap[`${variant}$${size}`];
 
     return (
       <Component
+        {...rest}
         {...stylex.props(
           customStylex,
-          styles.host,
+          styles.host(color),
           dimmed && styles["host$dimmed"],
           truncate && commonStyles.truncate,
           !!truncateLines &&

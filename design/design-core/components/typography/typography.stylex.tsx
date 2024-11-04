@@ -10,12 +10,21 @@ const MAX_DENSITY = 0;
 const DENSITY = `${densitys.interval} * clamp(${MIN_DENSITY}, ${densitys.density}, ${MAX_DENSITY}) * ${scales.scale}`;
 
 export const styles = stylex.create({
-  host: {
+  host: (color?: string) => ({
     margin: 0,
+    textDecoration: "none",
+    color: color ?? "inherit",
+  }),
+  host$link: {
+    textDecoration: "none",
+    [":hover"]: {
+      textDecoration: "underline",
+    },
   },
   host$gutterBottom: {
     marginBottom: spacings.padding$1,
   },
+  // 暗色
   host$dimmed: {
     color: colors.onSurfaceVariant,
   },
