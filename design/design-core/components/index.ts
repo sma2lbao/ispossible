@@ -1,7 +1,7 @@
 export { Button } from "./button";
 export { Typography } from "./typography";
 export { Menu } from "./menu";
-export { BreadCrumb } from "./breadcrumb";
+export { Breadcrumb } from "./breadcrumb";
 export { Space } from "./space";
 export { Tag } from "./tag";
 export { Avatar } from "./avatar";
