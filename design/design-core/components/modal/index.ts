@@ -1,3 +1,5 @@
+"use client";
+
 import { Modal } from "./modal";
 import { info, warning, error, success, confirm } from "./modal.api";
 import { BuiltInModalFunc } from "./modal.types";

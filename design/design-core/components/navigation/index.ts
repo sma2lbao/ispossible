@@ -1,3 +1,5 @@
+"use client";
+
 import { Nav } from "./nav";
 import { SubNav } from "./sub-nav";
 import { NavItem } from "./nav-item";

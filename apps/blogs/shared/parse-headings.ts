@@ -8,7 +8,7 @@ export interface HeadingNode {
 }
 
 export interface HeadingTreeNode extends HeadingNode {
-  children?: HeadingTreeNode[];
+  items?: HeadingTreeNode[];
 }
 
 export const buildTree = (
@@ -24,14 +24,14 @@ export const buildTree = (
       break;
     }
 
-    const children: HeadingNode[] = [];
+    const items: HeadingNode[] = [];
     const [childHeadings, nextIndex] = buildTree(
       headings.slice(index + 1),
       current.level + 1
     );
-    children.push(...childHeadings);
+    items.push(...childHeadings);
 
-    nodes.push({ ...current, children });
+    nodes.push({ ...current, items });
     index = nextIndex + index + 1;
   }
 

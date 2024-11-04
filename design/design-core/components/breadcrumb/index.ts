@@ -1,3 +1,5 @@
+"use client";
+
 import { Breadcrumb } from "./breadcrumb";
 import { BreadcrumbItem } from "./breadcrumb-item";
 

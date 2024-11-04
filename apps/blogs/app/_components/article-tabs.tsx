@@ -1,6 +1,6 @@
 "use client";
 
-import { Tabs } from "@design/core";
+import { Tabs, TabPane } from "@design/core";
 import { menus } from "@/config/articles";
 import ArticleList from "./article-list";
 import { useCategory } from "./category-context";
@@ -13,14 +13,17 @@ const ArticleTabs = () => {
 
   return (
     <Tabs
-      activeId={category}
-      items={menus.map((item) => ({
-        id: item.dirname,
-        label: item.label,
-        children: <ArticleList key={item.dirname} category={category} />,
-      }))}
+      // activeId={category}
       onChange={handleTabChange}
-    />
+    >
+      {menus.map((item) => {
+        return (
+          <TabPane key={item.dirname} tab={item.label} itemKey={item.dirname}>
+            <ArticleList key={item.dirname} category={category} />,
+          </TabPane>
+        );
+      })}
+    </Tabs>
   );
 };
 

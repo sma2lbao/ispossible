@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import { DropdownProps } from "./dropdown.types";
+import type { DropdownProps } from "./dropdown.types";
 import { Popover } from "../popover";
 import { DropdownMenu } from "./dropdown-menu";
 import { DropdownContext } from "./dropdown.context";

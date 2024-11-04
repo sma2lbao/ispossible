@@ -1,3 +1,5 @@
+"use client";
+
 import { info, success, warning, error, close, destroyAll } from "./toast.api";
 
 const ExportToast = {
