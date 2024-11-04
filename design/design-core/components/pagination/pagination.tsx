@@ -75,17 +75,12 @@ export const Pagination: React.FC<PaginationProps> = (props) => {
   return (
     <div {...stylex.props(styles.root)}>
       <Space>
-        <Button disabled={page === 1} onClick={handleClickPervious} type="text">
+        <Button disabled={page === 1} onClick={handleClickPervious}>
           <is-left />
         </Button>
 
         {!visiblePages.includes(1) && (
-          <Button
-            type={page === 1 ? "primary" : "text"}
-            onClick={() => handleClickNumber(1)}
-          >
-            1
-          </Button>
+          <Button onClick={() => handleClickNumber(1)}>1</Button>
         )}
 
         {visiblePages[0] > 2 && (
@@ -95,7 +90,6 @@ export const Pagination: React.FC<PaginationProps> = (props) => {
         {visiblePages.map((item, index) => (
           <Button
             key={"page-" + item + ":" + index}
-            type={page === item ? "primary" : "text"}
             onClick={() => handleClickNumber(item)}
           >
             {item}
@@ -107,19 +101,10 @@ export const Pagination: React.FC<PaginationProps> = (props) => {
         )}
 
         {!visiblePages.includes(maxPage) && (
-          <Button
-            type={page === maxPage ? "primary" : "text"}
-            onClick={() => handleClickNumber(maxPage)}
-          >
-            {maxPage}
-          </Button>
+          <Button onClick={() => handleClickNumber(maxPage)}>{maxPage}</Button>
         )}
 
-        <Button
-          disabled={maxPage === page}
-          onClick={handleClickNext}
-          type="text"
-        >
+        <Button disabled={maxPage === page} onClick={handleClickNext}>
           <is-right />
         </Button>
       </Space>
