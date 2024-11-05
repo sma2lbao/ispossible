@@ -3,7 +3,7 @@ import { StyleXStyles } from "@stylexjs/stylex";
 export interface InputProps
   extends Omit<
     React.InputHTMLAttributes<HTMLInputElement>,
-    "value" | "prefix"
+    "value" | "prefix" | "onChange"
   > {
   /**
    * 前置标签
@@ -41,5 +41,13 @@ export interface InputProps
    */
   disabled?: boolean;
 
+  /**
+   * 输入框有内容且 hover 或 focus 时展示清除按钮
+   * @default false
+   */
+  clearable?: boolean;
+
   stylex?: StyleXStyles;
+
+  onChange?: (value?: string) => void;
 }

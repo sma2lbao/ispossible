@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import { Input } from "./";
+import { Space } from "../space";
 import "@design/icon/user";
+import "@design/icon/search";
 
 const meta = {
   title: "Input 输入框",
@@ -21,6 +23,17 @@ type Story = StoryObj<typeof meta>;
  */
 export const 基本用法 = () => (
   <div style={{ width: 300 }}>
-    <Input prefix={<is-user />} placeholder="测试" />
+    <Space direction="y">
+      <Input prefix={<is-user />} placeholder="测试" clearable />
+      <Input suffix={<is-search />} placeholder="测试" />
+    </Space>
   </div>
 );
+
+export const 禁用 = () => {
+  return (
+    <div>
+      <Input disabled />
+    </div>
+  );
+};

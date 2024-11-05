@@ -5,13 +5,15 @@ export const tokens = stylex.defineVars({});
 export const styles = stylex.create({
   input: {
     height: "32px",
-    lineHeight: "32px",
+    lineHeight: "30px",
     fontSize: "14px",
-    display: "inline-block",
+    display: "inline-flex",
+    alignItems: "center",
     position: "relative",
     verticalAlign: "middle",
     boxShadow: "none",
     borderBlockColor: "rgba(46,50,56,.05)",
+    backgroundColor: "rgba(46,50,56,.05)",
     border: "1px solid transparent",
     borderRadius: "3px",
     width: "100%",
@@ -19,18 +21,27 @@ export const styles = stylex.create({
     cursor: "text",
     boxSizing: "border-box",
     color: "rgba(28,31,35,1)",
-
-    [":focus"]: {
-      backgroundColor: "rgba(46,50,56,.13)",
-      borderColor: "rgba(0,100,250, 1)",
-    },
+  },
+  input$clear: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
+    minWidth: "32px",
+    cursor: "pointer",
+    color: "rgba(28,31,35,.62)",
+    fontSize: "16px",
+  },
+  input$focus: {
+    // backgroundColor: "rgba(46,50,56,.13)",
+    borderColor: "rgba(0,100,250, 1)",
   },
   input$disabled: {
     backgroundColor: "rgba(46,50,56,.04)",
     cursor: "not-allowed",
     color: "rgba(28,31,35,.35)",
   },
-  input$display: {
+  input$display: (hasPrefix: boolean, hasSuffix: boolean) => ({
     height: "30px",
     lineHeight: "30px",
     fontSize: "14px",
@@ -38,9 +49,17 @@ export const styles = stylex.create({
     outline: "none",
     width: "100%",
     color: "inherit",
-    paddingLeft: "12px",
-    paddingRight: "12px",
+    paddingLeft: hasPrefix ? 0 : "12px",
+    paddingRight: hasSuffix ? 0 : "12px",
     backgroundColor: "transparent",
     boxSizing: "border-box",
+  }),
+  input$stitch$container: {
+    color: "rgba(28,31,35,.62)",
+    margin: "0 8px",
+    display: "flex",
+    justifyContent: "center",
+    alignContent: "center",
+    fontSize: "16px",
   },
 });
