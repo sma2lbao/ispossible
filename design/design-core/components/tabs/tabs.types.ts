@@ -5,6 +5,11 @@ export interface TabsProps {
   activeKey?: string;
 
   /**
+   * 初始化选中的 tab 页的 key 值
+   */
+  defaultActiveKey?: string;
+
+  /**
    * 标签栏样式
    * @default line
    */

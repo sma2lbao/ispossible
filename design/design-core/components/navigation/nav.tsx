@@ -18,11 +18,14 @@ export const Nav: React.FC<NavProps> = (props) => {
   const {
     mode = "inline",
     isCollapsed = false,
+    defaultSelectedKeys,
     onSelect,
     items,
     children,
   } = props;
-  const [selectedKeys, setSelectedKeys] = useState<ItemKey[]>([]);
+  const [selectedKeys, setSelectedKeys] = useState<ItemKey[]>(
+    defaultSelectedKeys ?? []
+  );
   const { register, isSelectedSubNav } = usePathRecords();
   const isHorizontal = mode === "x";
   const isVertical = mode === "y" || mode === "inline";

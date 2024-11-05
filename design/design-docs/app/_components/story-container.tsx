@@ -59,7 +59,7 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
     <div {...stylex.props(styles.root)}>
       <div {...stylex.props(styles.nav)}>
         <Nav
-          // initialSelectedIds={[decodeURIComponent(slug)]}
+          defaultSelectedKeys={[decodeURIComponent(slug)]}
           items={stories.map((item) => ({
             itemKey: item.id,
             text: item.title,

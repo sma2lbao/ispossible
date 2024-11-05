@@ -6,8 +6,18 @@ import type { TabPaneProps, TabsContextProps, TabsProps } from "./tabs.types";
 import { TabPane } from "./tab-pane";
 
 export const Tabs: React.FC<TabsProps> = (props) => {
-  const { children, onTabClick, onChange, activeKey, type = "line" } = props;
-  const [rawActiveKey, setRawActiveKey] = useState<string | undefined>();
+  const {
+    children,
+    onTabClick,
+    onChange,
+    defaultActiveKey,
+    activeKey,
+    type = "line",
+  } = props;
+  const [rawActiveKey, setRawActiveKey] = useState<string | undefined>(
+    defaultActiveKey
+  );
+  const isControl = "activeKey" in props;
 
   const contextValue: TabsContextProps = {
     activeKey: rawActiveKey,
@@ -25,13 +35,13 @@ export const Tabs: React.FC<TabsProps> = (props) => {
     if (item.disabled) return;
     onTabClick?.(item.itemKey!);
     onChange?.(item.itemKey!);
-    if (!("activeKey" in props)) {
+    if (!isControl) {
       setRawActiveKey(item.itemKey);
     }
   };
 
   useEffect(() => {
-    if ("activeKey" in props) {
+    if (isControl) {
       setRawActiveKey(activeKey);
       return;
     }
