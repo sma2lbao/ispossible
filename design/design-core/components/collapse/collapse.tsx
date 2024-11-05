@@ -1,79 +1,73 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import stylex from "@stylexjs/stylex";
+import { CollapseContext } from "./collapse.context";
+import type { CollapseProps, CollapseContextProps } from "./collapse.types";
 import "@design/icon/caret-right";
 import "@design/icon/caret-bottom";
 
-type ItemType = {
-  /**
-   * 唯一id
-   */
-  id: string;
-  /**
-   * 面板头内容
-   */
-  label: string;
-  children: React.ReactNode;
-};
-
-export interface CollapseProps {
-  /**
-   * 折叠项目内容
-   */
-  items: ItemType[];
-}
-
-const styles = stylex.create({
-  root: {},
-  item: {
-    cursor: "pointer",
-  },
-  hidden: {
-    display: "none",
-  },
-});
-
 export const Collapse: React.FC<CollapseProps> = (props) => {
-  const { items } = props;
-  const [activeIds, setActiveIds] = useState<string[]>([]);
+  const {
+    accordion = false,
+    children,
+    defaultActiveKey,
+    activeKey,
+    collapseIcon = <is-caret-right />,
+    expandIcon = <is-caret-bottom />,
+    onChange,
+  } = props;
+  const isControl = "activeKey" in props;
+  const [activeItemKeySet, setActiveItemKeySet] = useState<Set<string>>(() => {
+    const defaultItemKeys = Array.isArray(defaultActiveKey)
+      ? defaultActiveKey
+      : typeof defaultActiveKey === "string"
+      ? [defaultActiveKey]
+      : [];
+    return new Set(defaultItemKeys);
+  });
 
-  const handleItemClick = (id: string) => {
-    const index = activeIds.findIndex((activeId) => activeId === id);
-    if (index !== -1) {
-      activeIds.splice(index, 1);
-      setActiveIds([...activeIds]);
+  const handleClickItem = (itemKey: string) => {
+    const nextActiveItemKeySet = activeItemKeySet;
+
+    if (!accordion) {
+      nextActiveItemKeySet.has(itemKey)
+        ? nextActiveItemKeySet.delete(itemKey)
+        : nextActiveItemKeySet.add(itemKey);
     } else {
-      activeIds.push(id);
-      setActiveIds([...activeIds]);
+      if (nextActiveItemKeySet.has(itemKey)) {
+        nextActiveItemKeySet.clear();
+      } else {
+        nextActiveItemKeySet.clear();
+        nextActiveItemKeySet.add(itemKey);
+      }
     }
+
+    if (!isControl) {
+      setActiveItemKeySet(new Set(nextActiveItemKeySet));
+    }
+    onChange?.(Array.from(nextActiveItemKeySet));
   };
 
+  const contextValue: CollapseContextProps = {
+    activeItemKeySet: activeItemKeySet,
+    onClickItem: handleClickItem,
+    collapseIcon,
+    expandIcon,
+  };
+
+  useEffect(() => {
+    const nextItemKeys = Array.isArray(activeKey)
+      ? activeKey
+      : typeof activeKey === "string"
+      ? [activeKey]
+      : [];
+    setActiveItemKeySet(new Set(nextItemKeys));
+  }, [activeKey]);
+
   return (
-    <div {...stylex.props(styles.root)}>
-      {items.map((item) => {
-        return (
-          <div
-            key={item.id}
-            {...stylex.props(styles.item)}
-            onClick={() => handleItemClick(item.id)}
-          >
-            <div>
-              {activeIds.includes(item.id) ? (
-                <is-caret-bottom />
-              ) : (
-                <is-caret-right />
-              )}{" "}
-              {item.label}
-            </div>
-            <div
-              {...stylex.props(
-                activeIds.includes(item.id) ? undefined : styles.hidden
-              )}
-            >
-              {item.children}
-            </div>
-          </div>
-        );
-      })}
+    <div>
+      <CollapseContext.Provider value={contextValue}>
+        {children}
+      </CollapseContext.Provider>
     </div>
   );
 };
