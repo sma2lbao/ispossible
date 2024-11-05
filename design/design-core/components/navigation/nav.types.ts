@@ -7,6 +7,8 @@ export interface NavProps {
    */
   mode?: "x" | "y" | "inline";
 
+  defaultSelectedKeys?: ItemKey[];
+
   items?: ItemType[];
   /**
    * inline 模式时是否展开

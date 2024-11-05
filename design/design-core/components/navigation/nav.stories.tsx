@@ -62,11 +62,11 @@ export const 代码演示 = () => {
   return (
     <div>
       <div>
-        <Nav items={items} mode="x" />
+        <Nav items={items} mode="x" defaultSelectedKeys={["user"]} />
       </div>
       <div>
-        <Nav items={items} />
-        <Nav items={items} mode="y" />
+        <Nav items={items} defaultSelectedKeys={["user"]} />
+        <Nav items={items} mode="y" defaultSelectedKeys={["user"]} />
       </div>
     </div>
   );

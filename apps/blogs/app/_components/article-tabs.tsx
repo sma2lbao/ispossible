@@ -12,10 +12,7 @@ const ArticleTabs = () => {
   };
 
   return (
-    <Tabs
-      // activeId={category}
-      onChange={handleTabChange}
-    >
+    <Tabs activeKey={category} onChange={handleTabChange}>
       {menus.map((item) => {
         return (
           <TabPane key={item.dirname} tab={item.label} itemKey={item.dirname}>

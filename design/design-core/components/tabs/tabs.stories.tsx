@@ -24,7 +24,7 @@ type Story = StoryObj<typeof meta>;
 export const 基础使用 = () => {
   return (
     <div>
-      <Tabs>
+      <Tabs defaultActiveKey="1">
         <TabPane tab="文档" itemKey="1">
           <h3>文档</h3>
         </TabPane>
