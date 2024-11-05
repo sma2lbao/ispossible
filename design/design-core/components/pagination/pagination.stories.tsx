@@ -1,4 +1,4 @@
-import { Pagination } from "../../components";
+import { Pagination } from "./";
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 

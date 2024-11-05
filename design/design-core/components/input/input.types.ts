@@ -1,45 +1,45 @@
 import { StyleXStyles } from "@stylexjs/stylex";
 
-export interface InputProps {
+export interface InputProps
+  extends Omit<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    "value" | "prefix"
+  > {
   /**
-   * 带有前缀图标的 input
+   * 前置标签
+   */
+  addonBefore?: React.ReactNode;
+
+  /**
+   * 后置标签
+   */
+  addonAfter?: React.ReactNode;
+
+  /**
+   * 输入框内容默认值
+   */
+  defaultValue?: string;
+
+  /**
+   * 前缀标签
    */
   prefix?: React.ReactNode;
+
   /**
-   * 带有后缀图标的 input
+   * 后缀标签
    */
   suffix?: React.ReactNode;
+
   /**
    * 输入框内容
    */
   value?: string;
 
-  placeholder?: string;
+  /**
+   * 是否禁用，默认为false
+   * @default false
+   */
+  disabled?: boolean;
 
-  style?: StyleXStyles;
-  /**
-   * 输入框内容变化时的回调
-   * @param e
-   * @returns
-   */
-  onChange?: React.ChangeEventHandler;
-}
-
-export interface InputTextareaProps {
-  /**
-   * @default 3
-   */
-  rows?: number;
-  /**
-   * 输入框内容
-   */
-  value?: string;
-  placeholder?: string;
-  style?: StyleXStyles;
-  /**
-   * 输入框内容变化时的回调
-   * @param e
-   * @returns
-   */
-  onChange?: React.ChangeEventHandler;
+  stylex?: StyleXStyles;
 }

@@ -1,31 +1,46 @@
 import stylex from "@stylexjs/stylex";
 
+export const tokens = stylex.defineVars({});
+
 export const styles = stylex.create({
   input: {
-    border: "1px solid #ddd",
-    display: "inline-flex",
-    alignItems: "center",
-    fontSize: 14,
-    padding: 8,
-    borderRadius: 4,
+    height: "32px",
+    lineHeight: "32px",
+    fontSize: "14px",
+    display: "inline-block",
+    position: "relative",
+    verticalAlign: "middle",
+    boxShadow: "none",
+    borderBlockColor: "rgba(46,50,56,.05)",
+    border: "1px solid transparent",
+    borderRadius: "3px",
+    width: "100%",
+    outline: "none",
+    cursor: "text",
+    boxSizing: "border-box",
+    color: "rgba(28,31,35,1)",
+
+    [":focus"]: {
+      backgroundColor: "rgba(46,50,56,.13)",
+      borderColor: "rgba(0,100,250, 1)",
+    },
+  },
+  input$disabled: {
+    backgroundColor: "rgba(46,50,56,.04)",
+    cursor: "not-allowed",
+    color: "rgba(28,31,35,.35)",
   },
   input$display: {
-    outline: "none",
+    height: "30px",
+    lineHeight: "30px",
+    fontSize: "14px",
     border: "none",
-    padding: "0 4px",
+    outline: "none",
     width: "100%",
-  },
-
-  textarea: {
-    fontSize: 14,
-    lineHeight: "20px",
-    border: "1px solid #ddd",
-    width: "100%",
-    alignItems: "center",
-    borderRadius: 4,
-    overflow: "hidden",
-    padding: 8,
+    color: "inherit",
+    paddingLeft: "12px",
+    paddingRight: "12px",
+    backgroundColor: "transparent",
     boxSizing: "border-box",
-    resize: "none",
   },
 });
