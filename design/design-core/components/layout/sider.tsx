@@ -12,8 +12,6 @@ export const Sider: React.FC<SiderProps> = (props) => {
     stylex: customStylex,
   } = props;
 
-  console.log("footer: ", styles.footer, styles.sider(width));
-
   return (
     <aside {...x(className, style, styles.sider(width), customStylex)}>
       {children}
