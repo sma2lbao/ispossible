@@ -41,6 +41,10 @@ export const styles = stylex.create({
     cursor: "not-allowed",
     color: "rgba(28,31,35,.35)",
   },
+  input$display$wrap: {
+    display: "flex",
+    alignItems: "center",
+  },
   input$display: (hasPrefix: boolean, hasSuffix: boolean) => ({
     height: "30px",
     lineHeight: "30px",
@@ -54,6 +58,13 @@ export const styles = stylex.create({
     backgroundColor: "transparent",
     boxSizing: "border-box",
   }),
+  input$addon$container: {
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    color: "rgba(28,31,35,.62)",
+    padding: "0 12px",
+  },
   input$stitch$container: {
     color: "rgba(28,31,35,.62)",
     margin: "0 8px",

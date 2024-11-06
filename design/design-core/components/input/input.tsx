@@ -9,6 +9,8 @@ export const Input: React.FC<InputProps> = (props) => {
     style,
     disabled = false,
     clearable = false,
+    addonBefore,
+    addonAfter,
     prefix,
     suffix,
     defaultValue,
@@ -22,6 +24,8 @@ export const Input: React.FC<InputProps> = (props) => {
   const [isHover, setIsHover] = useState(false);
   const [rawValue, setRawValue] = useState<string>(defaultValue ?? "");
   const isControl = "value" in props;
+  const isClearable =
+    clearable && Boolean(rawValue.length) && (isHover || isFocus);
 
   const handleFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
     setIsFocus(true);
@@ -32,10 +36,18 @@ export const Input: React.FC<InputProps> = (props) => {
   };
 
   const handleMouseEnter: React.MouseEventHandler<HTMLInputElement> = (e) => {
-    setIsHover(true);
+    // setIsHover(true);
   };
 
   const handleMouseLeave: React.MouseEventHandler<HTMLInputElement> = (e) => {
+    // setIsHover(false);
+  };
+
+  const handleWrapEnter = () => {
+    setIsHover(true);
+  };
+
+  const handleWrapLeave = () => {
     setIsHover(false);
   };
 
@@ -67,31 +79,46 @@ export const Input: React.FC<InputProps> = (props) => {
         disabled && styles.input$disabled
       )}
     >
+      {addonBefore ? (
+        <div {...stylex.props(styles.input$addon$container)}>{addonBefore}</div>
+      ) : null}
       {prefix ? (
         <div {...stylex.props(styles.input$stitch$container)}>{prefix}</div>
       ) : null}
-      <input
-        value={rawValue}
-        ref={inputRef}
-        disabled={disabled}
-        {...stylex.props(
-          styles.input$display(Boolean(prefix), Boolean(suffix)),
-          disabled && styles.input$disabled
-        )}
-        {...rest}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        onChange={handleChange}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      />
-      {clearable && rawValue.length && (isHover || isFocus) ? (
-        <div {...stylex.props(styles.input$clear)} onClick={handleClear}>
-          <is-close-circle-filled />
-        </div>
-      ) : null}
+      <div
+        {...stylex.props(styles.input$display$wrap)}
+        onMouseEnter={handleWrapEnter}
+        onMouseLeave={handleWrapLeave}
+      >
+        <input
+          value={rawValue}
+          ref={inputRef}
+          disabled={disabled}
+          {...stylex.props(
+            styles.input$display(
+              Boolean(prefix) || Boolean(addonBefore),
+              isClearable || Boolean(suffix) || Boolean(addonAfter)
+            ),
+            disabled && styles.input$disabled
+          )}
+          {...rest}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        />
+        {isClearable ? (
+          <div {...stylex.props(styles.input$clear)} onClick={handleClear}>
+            <is-close-circle-filled />
+          </div>
+        ) : null}
+      </div>
       {suffix ? (
         <div {...stylex.props(styles.input$stitch$container)}>{suffix}</div>
+      ) : null}
+      {addonAfter ? (
+        <div {...stylex.props(styles.input$addon$container)}>{addonAfter}</div>
       ) : null}
     </div>
   );

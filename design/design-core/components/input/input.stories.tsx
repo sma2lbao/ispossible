@@ -37,3 +37,7 @@ export const 禁用 = () => {
     </div>
   );
 };
+
+export const 前后置标签 = () => {
+  return <Input addonBefore="http://" addonAfter=".com" clearable />;
+};
