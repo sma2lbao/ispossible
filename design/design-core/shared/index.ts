@@ -5,3 +5,5 @@ export const isFunction = (target: unknown): target is Function => {
 export const noop = () => {};
 
 export * from "./merge";
+
+export * from "./merge-stylex";
