@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import { Affix, Button } from "../../components";
+import { Affix } from "./affix";
+import { Button } from "../button";
 
 /**
  * 将页面元素钉在可视范围。
@@ -9,7 +10,7 @@ const meta = {
   title: "Affix 固钉",
   component: Affix,
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
     doc: {},
   },
   tags: ["autodocs"],
@@ -24,8 +25,8 @@ type Story = StoryObj<typeof meta>;
  */
 export const 代码演示 = () => {
   return (
-    <div style={{ height: "100px" }}>
-      <Affix offsetTop={100}>
+    <div>
+      <Affix>
         <Button>按钮</Button>
       </Affix>
     </div>

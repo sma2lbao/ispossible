@@ -12,6 +12,16 @@ import { Toc } from "./toc";
 import { MessageContainer } from "../blocks/message-container";
 import { CustomArgsTable } from "./custom-args-table";
 
+export interface AnchorsData {
+  type: "anchors";
+  args: {
+    anchors: {
+      href: string;
+      label: string;
+    }[];
+  };
+}
+
 const styles = stylex.create({
   root: {
     display: "flex",
@@ -40,6 +50,28 @@ export const DocsContainer = () => {
       storiesDOM.innerHTML = "";
     }
   }, []);
+
+  const sendMessage = () => {
+    const anchors = stories.map((item) => ({
+      href: `#anchor--${item.id}`,
+      label: item.name,
+    }));
+    anchors.push({
+      label: "API参考",
+      href: "#anchor--api-参考",
+    });
+    const answer: AnchorsData = {
+      type: "anchors",
+      args: {
+        anchors,
+      },
+    };
+    window.parent?.postMessage(answer, "*");
+  };
+
+  useEffect(() => {
+    sendMessage();
+  }, [stories]);
 
   return (
     <div className="sb-unstyled">

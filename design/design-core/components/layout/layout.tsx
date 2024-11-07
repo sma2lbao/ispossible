@@ -29,7 +29,8 @@ export const Layout: React.FC<LayoutProps> = (props) => {
     if (headerRef.current == null) return;
 
     const observer = new ResizeObserver(() => {
-      setHeaderRect(headerRef.current!.getBoundingClientRect());
+      headerRef.current &&
+        setHeaderRect(headerRef.current.getBoundingClientRect());
     });
     observer.observe(headerRef.current);
 

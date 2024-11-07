@@ -23,6 +23,8 @@ export interface AnchorProps {
   stylex?: StyleXStyles;
 
   children?: React.ReactNode;
+
+  onClick?: (data: OnClickLinkData) => void;
 }
 
 export interface AnchorLinkProps {

@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import stylex from "@stylexjs/stylex";
 import { useRouter } from "next/navigation";
-import { Layout, Nav, OnSelectNavData } from "@design/core";
+import { Anchor, Layout, Nav, OnSelectNavData } from "@design/core";
 import { STORYBOOK_IFRAME_URL } from "@/constants";
 import { stories } from "@/config";
 
@@ -29,6 +29,7 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
   const path = stories.find((item) => item.id === slug)?.path || "";
   const router = useRouter();
   const iFrameRef = useRef<HTMLIFrameElement>(null);
+  const [anchors, setAnchors] = useState([]);
 
   const handleSelect = (data: OnSelectNavData) => {
     if (data.selectedKeys[0] == null) return;
@@ -41,6 +42,9 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
       const data = event.data;
       if (data?.type === "document" && iFrameRef.current) {
         iFrameRef.current.style.height = data.args.height + "px";
+      }
+      if (data?.type === "anchors" && iFrameRef.current) {
+        setAnchors(data.args.anchors);
       }
     });
   }, []);
@@ -64,6 +68,9 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
           src={`${STORYBOOK_IFRAME_URL}?viewMode=docs&id=${path}`}
         />
       </Layout.Content>
+      <Layout.Sider width={200} sticky>
+        <Anchor items={anchors} />
+      </Layout.Sider>
     </Layout>
   );
 };
