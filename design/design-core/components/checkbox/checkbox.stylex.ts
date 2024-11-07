@@ -38,7 +38,7 @@ export const styles = stylex.create({
     backgroundColor: "transparent",
     borderRadius: "3px",
 
-    [":after"]: {
+    ["::after"]: {
       content: "",
       boxSizing: "border-box",
       position: "absolute",
@@ -55,7 +55,7 @@ export const styles = stylex.create({
     },
   },
   checkbox$inner$display$indeterminate: {
-    [":after"]: {
+    ["::after"]: {
       width: "calc(16px / 14 * 8)",
       height: "2px",
       border: "none",
@@ -65,7 +65,7 @@ export const styles = stylex.create({
     backgroundColor: colors.primary,
     color: "#fff",
 
-    [":after"]: {
+    ["::after"]: {
       opacity: 1,
       transform: "rotate(45deg) scale(1) translate(-50%,-50%)",
     },

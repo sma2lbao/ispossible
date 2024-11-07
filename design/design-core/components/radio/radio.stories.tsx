@@ -36,7 +36,6 @@ export const 基本用法 = () => {
 export const 单选组合 = () => {
   const [value, setValue] = useState<number>(1);
   const handleChange = (e: RadioChangeEvent) => {
-    console.log("radio checked", e.target.value);
     setValue(e.target.value!);
   };
 
@@ -56,7 +55,6 @@ export const 单选组合 = () => {
 export const 垂直排列 = () => {
   const [value, setValue] = useState<number>(1);
   const handleChange = (e: RadioChangeEvent) => {
-    console.log("radio checked", e.target.value);
     setValue(e.target.value!);
   };
 

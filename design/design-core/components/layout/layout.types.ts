@@ -22,4 +22,6 @@ export interface ContentProps extends BaseLayoutProps {}
 
 export interface FooterProps extends BaseLayoutProps {}
 
-export interface LayoutContextProps {}
+export interface LayoutContextProps {
+  headerRect?: DOMRect;
+}

@@ -42,10 +42,10 @@
     "@types/react-dom": "^18",
     "vite": "^5",
     "@types/mdx": "~2.0.11",
-    "vite-plugin-stylex": "~0.12.0"
+    "vite-plugin-stylex": "~0.13.0"
   },
   "dependencies": {
-    "@stylexjs/stylex": "~0.8.0",
+    "@stylexjs/stylex": "~0.9.3",
     "@design/icon": "workspace:*",
     "short-uuid": "~5.2.0",
     "clsx": "~2.1.1"

@@ -7,7 +7,7 @@ export interface CheckboxProps
     React.InputHTMLAttributes<HTMLInputElement>,
     "onChange" | "value"
   > {
-  value: CheckboxValueType;
+  value?: CheckboxValueType;
 
   /**
    * 指定当前是否选中

@@ -58,7 +58,20 @@ export const 代码演示 = () => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div
+      style={{
+        padding: "20px",
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "10px",
+      }}
+    >
+      {/* <Layout style={layoutStyle}>
+        <Header style={headerStyle}>Header</Header>
+        <Content style={contentStyle}>Content</Content>
+        <Footer style={footerStyle}>Footer</Footer>
+      </Layout> */}
+
       <Layout style={layoutStyle}>
         <Header style={headerStyle}>Header</Header>
         <Layout>
@@ -69,6 +82,28 @@ export const 代码演示 = () => {
         </Layout>
         <Footer style={footerStyle}>Footer</Footer>
       </Layout>
+
+      {/* <Layout style={layoutStyle}>
+        <Header style={headerStyle}>Header</Header>
+        <Layout>
+          <Content style={contentStyle}>Content</Content>
+          <Sider width="25%" style={siderStyle}>
+            Sider
+          </Sider>
+        </Layout>
+        <Footer style={footerStyle}>Footer</Footer>
+      </Layout> */}
+
+      {/* <Layout style={layoutStyle}>
+        <Sider width="25%" style={siderStyle}>
+          Sider
+        </Sider>
+        <Layout>
+          <Header style={headerStyle}>Header</Header>
+          <Content style={contentStyle}>Content</Content>
+          <Footer style={footerStyle}>Footer</Footer>
+        </Layout>
+      </Layout> */}
     </div>
   );
 };

@@ -1,3 +1,5 @@
+"use client";
+
 import { Layout } from "./layout";
 import { Header } from "./header";
 import { Sider } from "./sider";

@@ -25,7 +25,7 @@
     "unist-util-visit": "~5.0.0",
     "mdast-util-to-string": "~4.0.0",
     "github-slugger": "~2.0.0",
-    "@stylexjs/stylex": "~0.8.0"
+    "@stylexjs/stylex": "~0.9.3"
   },
   "devDependencies": {
     "typescript": "^5",
@@ -35,9 +35,9 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
     "@types/unist": "~3.0.2",
-    "@stylexjs/babel-plugin": "~0.8.0",
-    "@stylexjs/eslint-plugin": "~0.8.0",
-    "@stylexjs/nextjs-plugin": "~0.8.0"
+    "@stylexjs/babel-plugin": "~0.9.3",
+    "@stylexjs/eslint-plugin": "~0.9.3",
+    "@stylexjs/nextjs-plugin": "~0.9.3"
   },
   "files": [
     ".next",
