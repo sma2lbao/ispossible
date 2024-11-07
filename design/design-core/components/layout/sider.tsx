@@ -8,6 +8,8 @@ export const Sider: React.FC<SiderProps> = (props) => {
   const context = useContext(LayoutContext);
   const {
     width = 200,
+    sticky = false,
+    top = 0,
     children,
     className,
     style,
@@ -15,7 +17,15 @@ export const Sider: React.FC<SiderProps> = (props) => {
   } = props;
 
   return (
-    <aside {...x(className, style, styles.sider(width), customStylex)}>
+    <aside
+      {...x(
+        className,
+        style,
+        styles.sider(width),
+        sticky && styles.sider$sticky(context?.headerRect?.height ?? top),
+        customStylex
+      )}
+    >
       {children}
     </aside>
   );

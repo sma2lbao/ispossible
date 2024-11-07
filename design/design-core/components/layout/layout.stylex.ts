@@ -16,12 +16,24 @@ export const styles = stylex.create({
   header: {
     flex: "0 0 auto",
     boxSizing: "border-box",
+    zIndex: 1,
   },
+  header$sticky: (top: number) => ({
+    position: "sticky",
+    top: `${top}px`,
+  }),
   sider: (width: React.CSSProperties["width"]) => ({
     boxSizing: "border-box",
     position: "relative",
     minWidth: 0,
     width,
+    overflow: "hidden",
+  }),
+  sider$sticky: (top: number) => ({
+    position: "sticky",
+    top: `${top}px`,
+    height: `calc(100vh - ${top}px)`,
+    overflow: "auto",
   }),
   content: {
     flex: "auto",

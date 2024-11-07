@@ -1,15 +1,10 @@
 "use client";
 
 import React from "react";
+import { Layout } from "@design/core";
 import { Footer, Topbar } from "@design/pro";
 import stylex from "@stylexjs/stylex";
-import {
-  Nav,
-  NavItemType,
-  OnSelectNavData,
-  Tokens,
-  useTokens,
-} from "@design/core";
+import { Nav, NavItemType, OnSelectNavData } from "@design/core";
 import Logo from "./logo";
 import { useRouter } from "next/navigation";
 
@@ -19,20 +14,6 @@ export interface DocumentProps {
 }
 
 const styles = stylex.create({
-  root: (tokens: Tokens) => ({
-    backgroundColor: tokens.palettes.white,
-    minHeight: "100%",
-    display: "flex",
-    flexDirection: "column",
-  }),
-  body: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    padding: "8px",
-    alignItems: "flex-start",
-  },
   topbar: {
     margin: "0 24px",
   },
@@ -41,7 +22,6 @@ const styles = stylex.create({
 const Document: React.FC<DocumentProps> = (props) => {
   const { children } = props;
   const router = useRouter();
-  const tokens = useTokens();
   const menu: (NavItemType & { path: string })[] = [
     {
       text: "组件",
@@ -58,15 +38,17 @@ const Document: React.FC<DocumentProps> = (props) => {
   };
 
   return (
-    <main {...stylex.props(styles.root(tokens))}>
-      <Topbar logo={<Logo />}>
-        <div {...stylex.props(styles.topbar)}>
-          <Nav items={menu} mode="x" onSelect={handleSelect} />
-        </div>
-      </Topbar>
-      <div {...stylex.props(styles.body)}>{children}</div>
+    <Layout>
+      <Layout.Header sticky>
+        <Topbar logo={<Logo />}>
+          <div {...stylex.props(styles.topbar)}>
+            <Nav items={menu} mode="x" onSelect={handleSelect} />
+          </div>
+        </Topbar>
+      </Layout.Header>
+      <Layout.Content>{children}</Layout.Content>
       <Footer />
-    </main>
+    </Layout>
   );
 };
 

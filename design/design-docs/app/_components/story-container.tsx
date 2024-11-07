@@ -3,7 +3,7 @@
 import React, { useLayoutEffect, useRef } from "react";
 import stylex from "@stylexjs/stylex";
 import { useRouter } from "next/navigation";
-import { Nav, OnSelectNavData } from "@design/core";
+import { Layout, Nav, OnSelectNavData } from "@design/core";
 import { STORYBOOK_IFRAME_URL } from "@/constants";
 import { stories } from "@/config";
 
@@ -12,25 +12,15 @@ export interface StoryContainerProps {
 }
 
 const styles = stylex.create({
-  root: {
-    flex: "1",
+  sider: {
     backgroundColor: "#fff",
-    display: "flex",
-  },
-  nav: {
-    width: 280,
-    borderRight: "1px solid #eee",
-  },
-  wrap: {
-    flex: 1,
-    fontSize: 0,
+    textAlign: "right",
   },
   iframe: {
-    width: "100%",
-    minHeight: "100%",
     border: 0,
     padding: 0,
     margin: 0,
+    width: "100%",
   },
 });
 
@@ -56,8 +46,8 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
   }, []);
 
   return (
-    <div {...stylex.props(styles.root)}>
-      <div {...stylex.props(styles.nav)}>
+    <Layout>
+      <Layout.Sider width={280} sticky stylex={styles.sider}>
         <Nav
           defaultSelectedKeys={[decodeURIComponent(slug)]}
           items={stories.map((item) => ({
@@ -66,15 +56,15 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
           }))}
           onSelect={handleSelect}
         />
-      </div>
-      <div {...stylex.props(styles.wrap)}>
+      </Layout.Sider>
+      <Layout.Content>
         <iframe
           {...stylex.props(styles.iframe)}
           ref={iFrameRef}
           src={`${STORYBOOK_IFRAME_URL}?viewMode=docs&id=${path}`}
         />
-      </div>
-    </div>
+      </Layout.Content>
+    </Layout>
   );
 };
 

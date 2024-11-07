@@ -1,5 +1,5 @@
 import React from "react";
-import { Anchor } from "../../components";
+import { Anchor, Affix } from "../../components";
 import stylex from "@stylexjs/stylex";
 
 type TocItem = { id: string; name: string; story: string };
@@ -11,8 +11,6 @@ interface TocProps {
 
 const styles = stylex.create({
   root: {
-    position: "sticky",
-    top: "64px",
     marginLeft: "40px",
   },
 });
@@ -35,7 +33,9 @@ export const Toc = (props: TocProps) => {
 
   return (
     <div {...stylex.props(styles.root)}>
-      <Anchor items={[...items, ...customItems]} />
+      <Affix offsetTop={64}>
+        <Anchor items={[...items, ...customItems]} />
+      </Affix>
     </div>
   );
 };

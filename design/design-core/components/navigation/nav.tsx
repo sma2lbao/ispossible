@@ -61,7 +61,13 @@ export const Nav: React.FC<NavProps> = (props) => {
           isSelectedSubNav,
         }}
       >
-        <div {...stylex.props(styles.root, isHorizontal && styles.horizontal)}>
+        <div
+          {...stylex.props(
+            styles.root,
+            isHorizontal && styles.horizontal,
+            isVertical && styles.vertical
+          )}
+        >
           <div
             {...stylex.props(
               isVertical && styles.yInner,

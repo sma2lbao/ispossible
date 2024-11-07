@@ -9,7 +9,6 @@ const styles = stylex.create({
   root: {
     backgroundColor: "#fff",
     padding: "8px 24px",
-    height: 52,
     display: "flex",
     alignItems: "center",
   },
@@ -47,7 +46,7 @@ export const Topbar: React.FC<TopbarProps> = (props) => {
         {!!logo && <div {...stylex.props(styles.wrap)}>{logo}</div>}
         <div {...stylex.props(styles.content)}>{children}</div>
         <div {...stylex.props(styles.tools)}>
-          <Button icon={<is-github />} />
+          <Button icon={<is-github />} theme="ghost" />
         </div>
       </div>
     </div>

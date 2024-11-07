@@ -42,8 +42,6 @@ export const Layout: React.FC<LayoutProps> = (props) => {
     headerRect: hasHeader ? headerRect : parentContext?.headerRect,
   };
 
-  console.log("customStylex: ", customStylex);
-
   return (
     <div
       {...x(
