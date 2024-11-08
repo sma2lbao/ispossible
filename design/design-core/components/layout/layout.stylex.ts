@@ -33,7 +33,36 @@ export const styles = stylex.create({
     position: "sticky",
     top: `${top}px`,
     height: `calc(100vh - ${top}px)`,
-    overflow: "auto",
+    overflowY: "auto",
+    overflowX: "hidden",
+    padding: "10px",
+    scrollbarGutter: "stable",
+    // 滚动条
+    ["::-webkit-scrollbar"]: {
+      // display: "none",
+    },
+    // 滑块
+    ["::-webkit-scrollbar-thumb"]: {
+      backgroundColor: "transparent",
+    },
+    // 槽位
+    ["::-webkit-scrollbar-track"]: {
+      opacity: 0,
+      backgroundColor: "transparent",
+    },
+    [":hover"]: {
+      ["::-webkit-scrollbar"]: {
+        width: "6px",
+        heigth: "6px",
+      },
+      ["::-webkit-scrollbar-thumb"]: {
+        borderRadius: "6px",
+        backgroundColor: "rgb(167,171,176)",
+      },
+      ["::-webkit-scrollbar-track"]: {
+        backgroundColor: "transparent",
+      },
+    },
   }),
   content: {
     flex: "auto",

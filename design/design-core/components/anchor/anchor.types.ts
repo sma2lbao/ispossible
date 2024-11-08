@@ -55,4 +55,6 @@ export type OnClickLinkData = {
   href: string;
 
   domEvent: React.MouseEvent<HTMLAnchorElement>;
+
+  targetRect?: DOMRect;
 };

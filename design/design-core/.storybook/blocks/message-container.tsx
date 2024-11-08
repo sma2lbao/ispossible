@@ -22,7 +22,9 @@ export const MessageContainer: FC = () => {
     const observer = new ResizeObserver((entries) => {
       sendMessage();
     });
-    observer.observe(document.body);
+    const ele = document.body.querySelector(".sb-unstyled");
+    if (!ele) return;
+    observer.observe(ele);
 
     return () => {
       observer.unobserve(document.body);

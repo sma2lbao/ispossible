@@ -9,7 +9,7 @@ export { Tooltip } from "./tooltip";
 export { Popover } from "./popover";
 export { Collapse } from "./collapse";
 export { Tree } from "./tree";
-export { Anchor } from "./anchor";
+export * from "./anchor";
 export { NoSsr } from "./no-ssr";
 export * from "./tabs";
 export { Affix } from "./affix";

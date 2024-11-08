@@ -12,6 +12,7 @@ export const Anchor: React.FC<AnchorProps> = (props) => {
     container = window,
     stylex: customStylex,
     children,
+    onClick,
   } = props;
   const [activeAnchor, setActiveAnchor] = useState<string>();
   const [records, setRecords] = useState<string[]>([]);
@@ -31,6 +32,11 @@ export const Anchor: React.FC<AnchorProps> = (props) => {
     scroolByEventFlag.current = true;
     setActiveAnchor(data.href);
     const rect = document.querySelector(data.href)?.getBoundingClientRect();
+    onClick?.({
+      domEvent: data.domEvent,
+      href: data.href,
+      targetRect: rect,
+    });
     if (rect) {
       window.scrollTo({
         top: rect.top,

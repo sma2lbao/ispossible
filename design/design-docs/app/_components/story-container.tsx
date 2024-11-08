@@ -21,6 +21,7 @@ const styles = stylex.create({
     padding: 0,
     margin: 0,
     width: "100%",
+    minHeight: "100%",
   },
 });
 
@@ -46,7 +47,31 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
       if (data?.type === "anchors" && iFrameRef.current) {
         setAnchors(data.args.anchors);
       }
+      if (data?.type === "click-anchor" && iFrameRef.current) {
+        window.scrollTo({
+          top: data.args.targetRect.top,
+        });
+      }
     });
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!iFrameRef.current) return;
+    const handleScroll = () => {
+      if (!iFrameRef.current) return;
+      const answer = {
+        type: "scroll",
+        args: {
+          scrollY: window.scrollY,
+        },
+      };
+      iFrameRef.current.contentWindow?.postMessage(answer, "*");
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
@@ -68,9 +93,9 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
           src={`${STORYBOOK_IFRAME_URL}?viewMode=docs&id=${path}`}
         />
       </Layout.Content>
-      <Layout.Sider width={200} sticky>
+      {/* <Layout.Sider width={200} sticky>
         <Anchor items={anchors} />
-      </Layout.Sider>
+      </Layout.Sider> */}
     </Layout>
   );
 };
