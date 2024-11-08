@@ -36,7 +36,8 @@ export const Affix: React.FC<AffixProps> = (props) => {
       const rootRect = rootRef.current.getBoundingClientRect();
 
       // 判断 target 是否为 window
-      const isWindow = target === window;
+      const isWindow =
+        Object.prototype.toString.call(target) === "[object Window]";
       let shouldAffix = false;
 
       if (isWindow) {
@@ -63,11 +64,10 @@ export const Affix: React.FC<AffixProps> = (props) => {
     };
 
     if (target) {
-      const scrollTarget = target === window ? window : (target as HTMLElement);
-      scrollTarget.addEventListener("scroll", handleScroll);
+      target.addEventListener("scroll", handleScroll);
       handleScroll(); // Initial check in case already affixed
       return () => {
-        scrollTarget.removeEventListener("scroll", handleScroll);
+        target.removeEventListener("scroll", handleScroll);
       };
     }
   }, [offset, direction, target, containerRect]);

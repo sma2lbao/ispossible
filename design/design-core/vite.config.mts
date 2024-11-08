@@ -7,5 +7,10 @@ export default defineConfig({
     headers: {
       "Access-Control-Allow-Origin": "*",
     },
+    cors: {
+      origin: "*", // 允许所有来源
+      methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      credentials: true,
+    },
   },
 });

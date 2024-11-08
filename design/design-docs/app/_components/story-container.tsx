@@ -90,7 +90,7 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
         <iframe
           {...stylex.props(styles.iframe)}
           ref={iFrameRef}
-          src={`${STORYBOOK_IFRAME_URL}?viewMode=docs&id=${path}`}
+          src={`/storybook/iframe.html?singleStory=true&viewMode=docs&id=${path}&globals=`}
         />
       </Layout.Content>
       {/* <Layout.Sider width={200} sticky>

@@ -15,7 +15,7 @@ export interface AffixProps {
    * 设置 Affix 需要监听其滚动事件的元素
    * @default window
    */
-  target?: HTMLElement;
+  target?: HTMLElement | Window;
 
   children?: React.ReactNode;
 }

@@ -53,7 +53,7 @@ export const styles = stylex.create({
     [":hover"]: {
       ["::-webkit-scrollbar"]: {
         width: "6px",
-        heigth: "6px",
+        height: "6px",
       },
       ["::-webkit-scrollbar-thumb"]: {
         borderRadius: "6px",

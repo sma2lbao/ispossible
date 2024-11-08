@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
-import { Anchor, OnClickLinkData } from "../../components";
+import { Affix, Anchor, OnClickLinkData } from "../../components";
 import stylex from "@stylexjs/stylex";
 
 type TocItem = { id: string; name: string; story: string };
@@ -19,8 +19,8 @@ export interface ClickAnchorData {
 const styles = stylex.create({
   root: (scrollY: number) => ({
     marginLeft: "40px",
-    position: "sticky",
-    top: `${scrollY + 65}px`,
+    // position: "sticky",
+    // top: `${scrollY + 65}px`,
   }),
 });
 
@@ -72,7 +72,9 @@ export const Toc = (props: TocProps) => {
 
   return (
     <div {...stylex.props(styles.root(parentScrollY))}>
-      <Anchor items={anchors} onClick={handleClickAnchor} />
+      <Affix target={window.parent} offset={65}>
+        <Anchor items={anchors} onClick={handleClickAnchor} />
+      </Affix>
     </div>
   );
 };
