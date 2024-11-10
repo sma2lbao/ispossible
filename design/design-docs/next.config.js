@@ -1,5 +1,9 @@
 // @ts-check
 const stylexPlugin = require("@stylexjs/nextjs-plugin");
+const STORYBOOK_IFRAME_DOMAIN =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:6006"
+    : "https://design-core.vercel.app";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -8,7 +12,7 @@ const nextConfig = {
     return [
       {
         source: "/storybook/:path*",
-        destination: "http://127.0.0.1:5500/:path*",
+        destination: STORYBOOK_IFRAME_DOMAIN + "/:path*",
       },
     ];
   },

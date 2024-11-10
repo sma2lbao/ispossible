@@ -1,5 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { AffixProps } from "./affix.types";
+import { isWindow } from "../../shared";
 
 export const Affix: React.FC<AffixProps> = (props) => {
   const { offset = 0, direction = "top", target = window, children } = props;
@@ -7,15 +8,9 @@ export const Affix: React.FC<AffixProps> = (props) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [affixed, setAffixed] = useState(false);
   const [containerRect, setContainerRect] = useState<DOMRect>();
+  const [positionStyle, setPositionStyle] = useState<React.CSSProperties>({});
 
-  // 获取容器的初始宽高，用于创建占位元素
-  useLayoutEffect(() => {
-    if (containerRef.current) {
-      setContainerRect(containerRef.current.getBoundingClientRect());
-    }
-  }, []);
-
-  // 监听 window resize 事件，以便在窗口尺寸变化时更新组件状态
+  // 监听窗口尺寸变化
   useEffect(() => {
     const handleResize = () => {
       if (containerRef.current) {
@@ -23,58 +18,79 @@ export const Affix: React.FC<AffixProps> = (props) => {
       }
     };
 
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
+  // 更新 affix 状态和位置样式
   useEffect(() => {
-    const handleScroll = () => {
+    const updatePosition = () => {
       if (!rootRef.current || !containerRect) return;
 
       const rootRect = rootRef.current.getBoundingClientRect();
-
-      // 判断 target 是否为 window
-      const isWindow =
-        Object.prototype.toString.call(target) === "[object Window]";
       let shouldAffix = false;
+      let newPositionStyle: React.CSSProperties = {};
 
-      if (isWindow) {
-        // 如果是 window，使用 scrollY 或 scrollX 计算偏移
-        shouldAffix =
-          direction === "top"
-            ? rootRect.top <= offset
-            : window.innerHeight - rootRect.bottom <= offset;
+      if (isWindow(target)) {
+        if (target !== window) {
+          const scrollY = target.scrollY;
+          // target 为 window，直接根据视口计算
+          shouldAffix =
+            direction === "top"
+              ? rootRect.top <= offset
+              : window.innerHeight - rootRect.bottom <= offset;
+
+          newPositionStyle =
+            direction === "top"
+              ? { top: offset + scrollY }
+              : { bottom: offset };
+        } else {
+          // target 为 window，直接根据视口计算
+          shouldAffix =
+            direction === "top"
+              ? rootRect.top <= offset
+              : window.innerHeight - rootRect.bottom <= offset;
+
+          newPositionStyle =
+            direction === "top" ? { top: offset } : { bottom: offset };
+        }
       } else {
-        // 如果是其他 DOM 元素，使用 target 的 getBoundingClientRect()
-        const targetRect = (target as HTMLElement).getBoundingClientRect();
-        const offsetTop =
-          direction === "top"
-            ? rootRect.top - targetRect.top
-            : targetRect.bottom - rootRect.bottom;
-
-        shouldAffix =
-          direction === "top"
-            ? offsetTop <= offset
-            : offsetTop + containerRect.height >= offset;
+        // target 为 DOM 元素，使用 target 的位置计算
+        const targetRect = target.getBoundingClientRect();
+        if (direction === "top") {
+          shouldAffix = rootRect.top <= targetRect.top + offset;
+          newPositionStyle = {
+            top: targetRect.top + offset,
+          };
+        } else {
+          shouldAffix = rootRect.bottom >= targetRect.bottom - offset;
+          newPositionStyle = {
+            top: targetRect.bottom - offset - containerRect.height,
+          };
+        }
       }
 
       setAffixed(shouldAffix);
+      if (shouldAffix) {
+        setPositionStyle(newPositionStyle);
+      }
     };
 
-    if (target) {
-      target.addEventListener("scroll", handleScroll);
-      handleScroll(); // Initial check in case already affixed
-      return () => {
-        target.removeEventListener("scroll", handleScroll);
-      };
-    }
+    // 获取目标滚动元素
+    updatePosition(); // 初始检查
+
+    target.addEventListener("scroll", updatePosition);
+    return () => {
+      target.removeEventListener("scroll", updatePosition);
+    };
   }, [offset, direction, target, containerRect]);
 
   return (
     <div ref={rootRef}>
-      {/* 占位元素，当 affixed 状态为 true 时显示 */}
+      {/* 占位元素 */}
       {affixed && containerRect ? (
         <div
           style={{
@@ -90,14 +106,12 @@ export const Affix: React.FC<AffixProps> = (props) => {
         style={
           affixed
             ? {
-                position: "fixed",
+                position: "fixed", // 只有当 affixed 为 true 时才固定定位
                 width: containerRect?.width,
                 zIndex: 99,
-                ...(direction === "bottom"
-                  ? { bottom: offset }
-                  : { top: offset }),
+                ...positionStyle,
               }
-            : {}
+            : {} // 否则保持原本流中的位置
         }
       >
         {children}
