@@ -22,7 +22,7 @@
     "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@stylexjs/babel-plugin": "~0.8.0"
+    "@stylexjs/babel-plugin": "~0.9.3"
   },
   "peerDependencies": {
     "react-dom": "~18.2.0",
@@ -31,6 +31,6 @@
   "dependencies": {
     "@design/core": "workspace:*",
     "@design/icon": "workspace:*",
-    "@stylexjs/stylex": "~0.8.0"
+    "@stylexjs/stylex": "~0.9.3"
   }
 }

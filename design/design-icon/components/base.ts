@@ -33,11 +33,14 @@ export function createWebIcon(name: string, source: string) {
             align-items: center;
           }
           .is-icon {
-            display: inline-flex;
-            align-items: center;
-            color: inherit;
+            display: inline-block;
+            font-style: normal;
             line-height: 0;
-            vertical-align: -.125em;
+            text-align: center;
+            text-transform: none;
+            text-rendering: optimizeLegibility;
+            fill: currentColor;
+            color: inherit;
           }
           svg {
             display: inline-block;

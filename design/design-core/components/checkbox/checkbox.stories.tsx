@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import { Space, Checkbox } from "../../components";
+import { Checkbox } from "../../components";
 
 const meta = {
   title: "Checkbox 多选框",

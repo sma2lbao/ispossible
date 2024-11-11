@@ -10,9 +10,13 @@ export const styles = stylex.create({
     boxSizing: "border-box",
     padding: "20px",
   },
+  vertical: {
+    borderRight: "none",
+  },
   horizontal: {
     width: "100%",
     display: "flex",
+    borderRight: "none",
   },
   yInner: {
     width: "100%",

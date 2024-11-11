@@ -23,6 +23,8 @@ export interface AnchorProps {
   stylex?: StyleXStyles;
 
   children?: React.ReactNode;
+
+  onClick?: (data: OnClickLinkData) => void;
 }
 
 export interface AnchorLinkProps {
@@ -53,4 +55,6 @@ export type OnClickLinkData = {
   href: string;
 
   domEvent: React.MouseEvent<HTMLAnchorElement>;
+
+  targetRect?: DOMRect;
 };

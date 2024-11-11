@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import stylex from "@stylexjs/stylex";
-import { CheckboxChangeEvent, CheckboxProps } from "./checkbox.types";
 import { styles } from "./checkbox.stylex";
 import { CheckboxGroupContext } from "./checkbox.context";
+import type { CheckboxChangeEvent, CheckboxProps } from "./checkbox.types";
 
 export const Checkbox: React.FC<CheckboxProps> = (props) => {
   const context = useContext(CheckboxGroupContext);

@@ -2,36 +2,10 @@ import React, { useMemo } from "react";
 import stylex from "@stylexjs/stylex";
 import { Space } from "../space";
 import { Button } from "../button";
-import "@design/icon/right";
+import { styles } from "./pagination.stylex";
+import type { PaginationProps } from "./pagination.types";
 import "@design/icon/left";
-
-const styles = stylex.create({
-  root: {},
-  ellipsis: {
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    verticalAlign: "super",
-  },
-});
-
-export interface PaginationProps {
-  /**
-   * 总条目数
-   */
-  total?: number;
-  /**
-   * 每页条目数
-   * @default 20
-   */
-  pageSize?: number;
-  /**
-   * 当前页
-   * @default 1
-   */
-  page?: number;
-  onPageChange?: (nextPage: number) => void;
-}
+import "@design/icon/right";
 
 const MAX_DISPLAY = 5;
 
@@ -64,32 +38,48 @@ export const Pagination: React.FC<PaginationProps> = (props) => {
     }
   };
 
+  /**
+   * 点击上一页
+   */
   const handleClickPervious = () => {
     onPageChange?.(page - 1);
   };
 
+  /**
+   * 点击下一页
+   */
   const handleClickNext = () => {
     onPageChange?.(page + 1);
   };
 
   return (
-    <div {...stylex.props(styles.root)}>
+    <div {...stylex.props(styles.pagination)}>
       <Space>
-        <Button disabled={page === 1} onClick={handleClickPervious}>
+        <Button
+          theme="ghost"
+          disabled={page === 1}
+          onClick={handleClickPervious}
+        >
           <is-left />
         </Button>
 
         {!visiblePages.includes(1) && (
-          <Button onClick={() => handleClickNumber(1)}>1</Button>
+          <Button
+            theme={page === 1 ? "light" : "ghost"}
+            onClick={() => handleClickNumber(1)}
+          >
+            1
+          </Button>
         )}
 
         {visiblePages[0] > 2 && (
-          <span {...stylex.props(styles.ellipsis)}>...</span>
+          <span {...stylex.props(styles.pagination$ellipsis)}>...</span>
         )}
 
         {visiblePages.map((item, index) => (
           <Button
             key={"page-" + item + ":" + index}
+            theme={item === page ? "light" : "ghost"}
             onClick={() => handleClickNumber(item)}
           >
             {item}
@@ -97,14 +87,23 @@ export const Pagination: React.FC<PaginationProps> = (props) => {
         ))}
 
         {visiblePages[MAX_DISPLAY - 1] < maxPage - 1 && (
-          <span {...stylex.props(styles.ellipsis)}>...</span>
+          <span {...stylex.props(styles.pagination$ellipsis)}>...</span>
         )}
 
         {!visiblePages.includes(maxPage) && (
-          <Button onClick={() => handleClickNumber(maxPage)}>{maxPage}</Button>
+          <Button
+            theme={maxPage === page ? "light" : "ghost"}
+            onClick={() => handleClickNumber(maxPage)}
+          >
+            {maxPage}
+          </Button>
         )}
 
-        <Button disabled={maxPage === page} onClick={handleClickNext}>
+        <Button
+          theme="ghost"
+          disabled={maxPage === page}
+          onClick={handleClickNext}
+        >
           <is-right />
         </Button>
       </Space>

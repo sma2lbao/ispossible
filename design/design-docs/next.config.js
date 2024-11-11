@@ -1,12 +1,21 @@
 // @ts-check
 const stylexPlugin = require("@stylexjs/nextjs-plugin");
+const STORYBOOK_IFRAME_DOMAIN =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:6006"
+    : "https://design-core.vercel.app";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Configure `pageExtensions` to include MDX files
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
-  // Optionally, add any other Next.js config below
-  //  output: 'standalone',
+  async rewrites() {
+    return [
+      {
+        source: "/storybook/:path*",
+        destination: STORYBOOK_IFRAME_DOMAIN + "/:path*",
+      },
+    ];
+  },
 };
 
 module.exports = stylexPlugin({
