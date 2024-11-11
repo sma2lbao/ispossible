@@ -45,7 +45,7 @@ const Document: React.FC<DocumentProps> = (props) => {
         <div {...stylex.props(styles.article)}>{children}</div>
         {sidebar && (
           <div {...stylex.props(styles.sidebar)}>
-            <Affix offsetTop={8}>{sidebar}</Affix>
+            <Affix offset={8}>{sidebar}</Affix>
           </div>
         )}
       </div>
