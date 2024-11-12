@@ -1,3 +1,4 @@
+import { StyleXStyles } from "@stylexjs/stylex";
 import { CSSProperties, ReactNode } from "react";
 
 export interface NavProps {
@@ -20,6 +21,10 @@ export interface NavProps {
   children?: ReactNode;
 
   style?: CSSProperties;
+
+  className?: string;
+
+  stylex?: StyleXStyles;
 }
 
 export type ItemType = SubNavProps | NavItemProps;
@@ -56,6 +61,8 @@ export interface BaseItemProps {
    * 是否禁用
    */
   disabled?: boolean;
+
+  [key: string]: any;
 }
 /**
  * 子菜单

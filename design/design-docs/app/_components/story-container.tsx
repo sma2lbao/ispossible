@@ -10,24 +10,18 @@ import {
   OnClickLinkData,
   OnSelectNavData,
 } from "@design/core";
-import { STORYBOOK_IFRAME_URL } from "@/constants";
-import { stories } from "@/config";
+import { navConfig, type NavConfigItemType } from "@/config";
+import "@design/icon/skype-filled";
 
 export interface StoryContainerProps {
   slug: string;
 }
 
-interface ClickAnchorData {
-  type: "click-anchor";
-  args: {
-    targetRect: DOMRect;
-  };
-}
-
 const styles = stylex.create({
   sider: {
     backgroundColor: "#fff",
-    textAlign: "right",
+    // textAlign: "right",
+    borderRight: "1px solid rgba(28,31,35,.08)",
   },
   iframe: {
     border: 0,
@@ -36,11 +30,26 @@ const styles = stylex.create({
     width: "100%",
     minHeight: "100%",
   },
+  anchor$container: {
+    backgroundColor: "#fff",
+    paddingTop: "65px",
+  },
 });
+
+const findStoryPath = (items: NavConfigItemType[], slug: string) => {
+  items.forEach((child) => {
+    if (child.itemKey === slug) {
+      return child.path;
+    }
+    if (child.items) {
+      return findStoryPath(child.items, slug);
+    }
+  });
+};
 
 const StoryContainer: React.FC<StoryContainerProps> = (props) => {
   const { slug } = props;
-  const path = stories.find((item) => item.id === slug)?.path || "";
+  const path = findStoryPath(navConfig, slug);
   const router = useRouter();
   const iFrameRef = useRef<HTMLIFrameElement>(null);
   const [anchors, setAnchors] = useState([]);
@@ -81,13 +90,11 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
 
   return (
     <Layout>
-      <Layout.Sider width={280} sticky stylex={styles.sider}>
+      <Layout.Sider width={320} sticky stylex={styles.sider}>
         <Nav
           defaultSelectedKeys={[decodeURIComponent(slug)]}
-          items={stories.map((item) => ({
-            itemKey: item.id,
-            text: item.title,
-          }))}
+          style={{ width: "100%" }}
+          items={navConfig}
           onSelect={handleSelect}
         />
       </Layout.Sider>
@@ -98,7 +105,7 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
           src={`/storybook/iframe.html?singleStory=true&viewMode=docs&id=${path}&globals=`}
         />
       </Layout.Content>
-      <Layout.Sider width={200} sticky style={{ backgroundColor: "#fff" }}>
+      <Layout.Sider width={280} sticky stylex={styles.anchor$container}>
         <Anchor items={anchors} onClick={handleClickAnchor} />
       </Layout.Sider>
     </Layout>

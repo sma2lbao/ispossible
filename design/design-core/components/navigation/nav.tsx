@@ -13,6 +13,7 @@ import stylex from "@stylexjs/stylex";
 import { styles } from "./nav.stylex";
 import usePathRecords from "./use-path-records";
 import { PathRegisterContext } from "./path.context";
+import { x } from "../../shared";
 
 export const Nav: React.FC<NavProps> = (props) => {
   const {
@@ -22,6 +23,9 @@ export const Nav: React.FC<NavProps> = (props) => {
     onSelect,
     items,
     children,
+    className,
+    style,
+    stylex: customStylex,
   } = props;
   const [selectedKeys, setSelectedKeys] = useState<ItemKey[]>(
     defaultSelectedKeys ?? []
@@ -62,10 +66,13 @@ export const Nav: React.FC<NavProps> = (props) => {
         }}
       >
         <div
-          {...stylex.props(
+          {...x(
+            className,
+            style,
             styles.root,
             isHorizontal && styles.horizontal,
-            isVertical && styles.vertical
+            isVertical && styles.vertical,
+            customStylex
           )}
         >
           <div
