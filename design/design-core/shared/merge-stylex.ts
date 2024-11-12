@@ -47,7 +47,6 @@ function x(
   ...styles: XStyles
 ): XReturn;
 function x(...args: any[]): XReturn {
-  return stylex.props(...args);
   let style: React.CSSProperties = {};
   let className: string = "";
 

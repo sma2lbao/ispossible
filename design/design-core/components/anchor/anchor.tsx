@@ -9,7 +9,7 @@ export const Anchor: React.FC<AnchorProps> = (props) => {
   const {
     items,
     offsetTop = 0,
-    container = window,
+    container = global?.window ? window : null,
     stylex: customStylex,
     children,
     onClick,

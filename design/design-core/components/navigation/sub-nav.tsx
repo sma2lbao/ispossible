@@ -8,6 +8,8 @@ import { PathTrackerContext, useFullPath, useMeasure } from "./path.context";
 import { Popover } from "../popover";
 import "@design/icon/down";
 import "@design/icon/right";
+import "@design/icon/caret-down-filled";
+import "@design/icon/caret-right-filled";
 
 export const SubNav: React.FC<SubNavProps> = (props) => {
   const context = useContext(NavContext);
@@ -16,18 +18,20 @@ export const SubNav: React.FC<SubNavProps> = (props) => {
     icon,
     expandIcon = context.mode === "inline" ||
     (context.mode === "x" && context.level === 0) ? (
-      <is-down />
+      <is-caret-down-filled />
     ) : (
-      <is-right />
+      <is-caret-right-filled />
     ),
-    isCollapsed,
+    isCollapsed = true,
     text,
     itemKey,
     items,
     children,
   } = props;
 
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const [collapsed, setCollapsed] = useState<boolean>(
+    context.mode === "inline" ? isCollapsed : false
+  );
   const fullPath = useFullPath(itemKey);
   const measure = useMeasure();
   const isSelected = measure?.isSelectedSubNav(context.selectedKeys, itemKey);

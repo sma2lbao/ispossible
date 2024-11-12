@@ -20,8 +20,8 @@ export interface StoryContainerProps {
 const styles = stylex.create({
   sider: {
     backgroundColor: "#fff",
-    // textAlign: "right",
     borderRight: "1px solid rgba(28,31,35,.08)",
+    padding: 0,
   },
   iframe: {
     border: 0,
@@ -36,15 +36,22 @@ const styles = stylex.create({
   },
 });
 
-const findStoryPath = (items: NavConfigItemType[], slug: string) => {
-  items.forEach((child) => {
+const findStoryPath = (
+  items: NavConfigItemType[],
+  slug: string
+): string | undefined => {
+  for (const child of items) {
     if (child.itemKey === slug) {
       return child.path;
     }
     if (child.items) {
-      return findStoryPath(child.items, slug);
+      const result = findStoryPath(child.items, slug);
+      if (result) {
+        return result;
+      }
     }
-  });
+  }
+  return undefined;
 };
 
 const StoryContainer: React.FC<StoryContainerProps> = (props) => {
@@ -64,7 +71,7 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
     window.addEventListener("message", (event) => {
       const data = event.data;
       if (data?.type === "document" && iFrameRef.current) {
-        iFrameRef.current.style.height = data.args.height + "px";
+        iFrameRef.current.style.height = data.args.height + 1 + "px";
       }
       if (data?.type === "anchors" && iFrameRef.current) {
         setAnchors(data.args.anchors);
@@ -90,7 +97,7 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
 
   return (
     <Layout>
-      <Layout.Sider width={320} sticky stylex={styles.sider}>
+      <Layout.Sider width={280} sticky stylex={styles.sider}>
         <Nav
           defaultSelectedKeys={[decodeURIComponent(slug)]}
           style={{ width: "100%" }}
