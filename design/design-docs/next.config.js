@@ -9,12 +9,26 @@ const STORYBOOK_IFRAME_DOMAIN =
 const nextConfig = {
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   async rewrites() {
-    return [
-      {
-        source: "/storybook/:path*",
-        destination: STORYBOOK_IFRAME_DOMAIN + "/:path*",
-      },
-    ];
+    return {
+      beforeFiles: [
+        {
+          source: "/storybook/:path*",
+          destination: STORYBOOK_IFRAME_DOMAIN + "/:path*",
+          basePath: false,
+        },
+      ],
+      afterFiles: [],
+      fallback:
+        process.env.NODE_ENV === "development"
+          ? [
+              {
+                source: "/:path*",
+                destination: STORYBOOK_IFRAME_DOMAIN + "/:path*",
+                basePath: false,
+              },
+            ]
+          : [],
+    };
   },
 };
 

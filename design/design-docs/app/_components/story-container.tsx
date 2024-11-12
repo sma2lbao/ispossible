@@ -3,12 +3,25 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 import stylex from "@stylexjs/stylex";
 import { useRouter } from "next/navigation";
-import { Anchor, Layout, Nav, OnSelectNavData } from "@design/core";
+import {
+  Anchor,
+  Layout,
+  Nav,
+  OnClickLinkData,
+  OnSelectNavData,
+} from "@design/core";
 import { STORYBOOK_IFRAME_URL } from "@/constants";
 import { stories } from "@/config";
 
 export interface StoryContainerProps {
   slug: string;
+}
+
+interface ClickAnchorData {
+  type: "click-anchor";
+  args: {
+    targetRect: DOMRect;
+  };
 }
 
 const styles = stylex.create({
@@ -35,7 +48,7 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
   const handleSelect = (data: OnSelectNavData) => {
     if (data.selectedKeys[0] == null) return;
     const slug = data.selectedKeys[0];
-    router.push(`/components/${slug}`);
+    router.push(`/core-components/${slug}`);
   };
 
   useLayoutEffect(() => {
@@ -55,24 +68,16 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
     });
   }, []);
 
-  useLayoutEffect(() => {
-    if (!iFrameRef.current) return;
-    const handleScroll = () => {
-      if (!iFrameRef.current) return;
-      const answer = {
-        type: "scroll",
-        args: {
-          scrollY: window.scrollY,
-        },
-      };
-      iFrameRef.current.contentWindow?.postMessage(answer, "*");
-    };
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const handleClickAnchor = (data: OnClickLinkData) => {
+    const rect = iFrameRef.current?.contentWindow?.document
+      .querySelector(data.href)
+      ?.getBoundingClientRect();
+    if (rect) {
+      window.scrollTo({
+        top: rect.top,
+      });
+    }
+  };
 
   return (
     <Layout>
@@ -86,16 +91,16 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
           onSelect={handleSelect}
         />
       </Layout.Sider>
-      <Layout.Content>
+      <Layout.Content style={{ fontSize: 0 }}>
         <iframe
           {...stylex.props(styles.iframe)}
           ref={iFrameRef}
           src={`/storybook/iframe.html?singleStory=true&viewMode=docs&id=${path}&globals=`}
         />
       </Layout.Content>
-      {/* <Layout.Sider width={200} sticky>
-        <Anchor items={anchors} />
-      </Layout.Sider> */}
+      <Layout.Sider width={200} sticky style={{ backgroundColor: "#fff" }}>
+        <Anchor items={anchors} onClick={handleClickAnchor} />
+      </Layout.Sider>
     </Layout>
   );
 };

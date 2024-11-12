@@ -20,7 +20,7 @@ export default function Home() {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push("/components/button");
+    router.push("/core-components/button");
   };
 
   return (
