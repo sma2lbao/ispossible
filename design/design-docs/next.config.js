@@ -14,15 +14,20 @@ const nextConfig = {
         {
           source: "/storybook/:path*",
           destination: STORYBOOK_IFRAME_DOMAIN + "/:path*",
+          basePath: false,
         },
       ],
       afterFiles: [],
-      fallback: [
-        {
-          source: "/:path*",
-          destination: STORYBOOK_IFRAME_DOMAIN + "/:path*",
-        },
-      ],
+      fallback:
+        process.env.NODE_ENV === "development"
+          ? [
+              {
+                source: "/:path*",
+                destination: STORYBOOK_IFRAME_DOMAIN + "/:path*",
+                basePath: false,
+              },
+            ]
+          : [],
     };
   },
 };

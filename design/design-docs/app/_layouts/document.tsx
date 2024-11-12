@@ -26,7 +26,7 @@ const Document: React.FC<DocumentProps> = (props) => {
     {
       text: "组件",
       itemKey: "packages",
-      path: "/components/button",
+      path: "/core-components/button",
     },
   ];
 

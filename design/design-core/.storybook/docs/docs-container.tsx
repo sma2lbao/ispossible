@@ -84,12 +84,6 @@ export const DocsContainer = () => {
           <CustomArgsTable exclude={["children"]} />
           <MessageContainer />
         </div>
-        <div {...stylex.props(styles.toc)}>
-          <Toc
-            stories={stories}
-            custom={[{ id: "api-参考", name: "API参考" }]}
-          />
-        </div>
       </div>
     </div>
   );
