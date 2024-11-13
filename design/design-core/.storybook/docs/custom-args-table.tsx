@@ -29,7 +29,7 @@ export const CustomArgsTable = (props) => {
   }, []);
 
   return (
-    <div>
+    <div className="sb-anchor">
       <HeaderMdx as="h3" id="api-参考">
         API 参考
       </HeaderMdx>

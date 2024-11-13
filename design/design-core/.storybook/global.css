@@ -1,5 +1,23 @@
 @stylex stylesheet;
 
+.sb-anchor .css-wzniqs {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.sb-anchor .css-1ofkq6d {
+  float: none;
+  line-height: inherit;
+  padding-right: 10px;
+  margin-left: 10px;
+  color: inherit;
+}
+.sb-anchor .css-wzniqs svg {
+  top: 0;
+}
+
 /* 滚动槽 */
 ::-webkit-scrollbar {
   width: 6px;

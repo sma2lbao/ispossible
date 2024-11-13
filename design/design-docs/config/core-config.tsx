@@ -1,4 +1,4 @@
-import { NavItemType } from "@design/core";
+import type { NavItemType } from "@design/core";
 
 export type NavConfigItemType = NavItemType & {
   path?: string;
@@ -21,12 +21,25 @@ export const navConfig: NavConfigItemType[] = [
         path: "divider-分隔线--docs",
         text: "Divider 分隔线",
       },
-      { itemKey: "button", path: "button-按钮--docs", text: "Button 按钮" },
-      { itemKey: "space", path: "space-间距--docs", text: "Space 间距" },
+      {
+        itemKey: "button",
+        path: "button-按钮--docs",
+        text: "Button 按钮",
+      },
+      {
+        itemKey: "space",
+        path: "space-间距--docs",
+        text: "Space 间距",
+      },
       {
         itemKey: "typography",
         path: "typography-排版--docs",
         text: "Typography 排版",
+      },
+      {
+        itemKey: "grid",
+        path: "grid-栅格--docs",
+        text: "Grid 栅格",
       },
     ],
   },
@@ -121,6 +134,11 @@ export const navConfig: NavConfigItemType[] = [
         itemKey: "popover",
         path: "popover-气泡卡片--docs",
         text: "Popover 气泡卡片",
+      },
+      {
+        itemKey: "modal",
+        path: "modal-模态对话框--docs",
+        text: "Modal 模态对话框",
       },
       { itemKey: "toast", path: "toast-提示--docs", text: "Toast 提示" },
       { itemKey: "alert", path: "alert-提示--docs", text: "Alert 提示" },

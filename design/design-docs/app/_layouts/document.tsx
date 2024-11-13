@@ -3,7 +3,7 @@
 import React from "react";
 import { Layout } from "@design/core";
 import { Footer, Topbar } from "@design/pro";
-import stylex from "@stylexjs/stylex";
+import stylex, { StyleXStyles } from "@stylexjs/stylex";
 import { Nav, NavItemType, OnSelectNavData } from "@design/core";
 import Logo from "./logo";
 import { useRouter } from "next/navigation";
@@ -11,19 +11,26 @@ import { useRouter } from "next/navigation";
 export interface DocumentProps {
   children?: React.ReactNode;
   sidebar?: React.ReactNode;
+  stylex?: StyleXStyles;
 }
 
 const styles = stylex.create({
+  document: {
+    minHeight: "100vh",
+  },
   header: {
     borderBottom: "1px solid rgba(28,31,35,.08)",
   },
   topbar: {
     margin: "0 24px",
   },
+  content: {
+    backgroundColor: "#fff",
+  },
 });
 
 const Document: React.FC<DocumentProps> = (props) => {
-  const { children } = props;
+  const { children, stylex: customStylex } = props;
   const router = useRouter();
   const menu: (NavItemType & { path: string })[] = [
     {
@@ -41,7 +48,7 @@ const Document: React.FC<DocumentProps> = (props) => {
   };
 
   return (
-    <Layout>
+    <Layout stylex={styles.document}>
       <Layout.Header sticky stylex={styles.header}>
         <Topbar logo={<Logo />}>
           <div {...stylex.props(styles.topbar)}>
@@ -49,7 +56,9 @@ const Document: React.FC<DocumentProps> = (props) => {
           </div>
         </Topbar>
       </Layout.Header>
-      <Layout.Content>{children}</Layout.Content>
+      <Layout.Content stylex={[styles.content, customStylex]}>
+        {children}
+      </Layout.Content>
       <Footer />
     </Layout>
   );

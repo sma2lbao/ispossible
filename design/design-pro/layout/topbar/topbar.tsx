@@ -40,13 +40,17 @@ export interface TopbarProps {
 export const Topbar: React.FC<TopbarProps> = (props) => {
   const { logo, contentWidth = 1280, children } = props;
 
+  const handleClick = () => {
+    open("https://github.com/sma2lbao");
+  };
+
   return (
     <div {...stylex.props(styles.root)}>
       <div {...stylex.props(styles.main(contentWidth))}>
         {!!logo && <div {...stylex.props(styles.wrap)}>{logo}</div>}
         <div {...stylex.props(styles.content)}>{children}</div>
         <div {...stylex.props(styles.tools)}>
-          <Button icon={<is-github />} theme="ghost" />
+          <Button icon={<is-github />} theme="ghost" onClick={handleClick} />
         </div>
       </div>
     </div>

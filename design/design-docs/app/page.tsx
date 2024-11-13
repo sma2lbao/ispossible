@@ -1,18 +1,21 @@
 "use client";
 
 import Document from "./_layouts/document";
-import { Button } from "@design/core";
+import { Button, Space } from "@design/core";
 import { useRouter } from "next/navigation";
 import stylex from "@stylexjs/stylex";
+import "@design/icon/github";
 
 const styles = stylex.create({
+  document: {
+    display: "flex",
+  },
   root: {
-    flex: "1",
-    backgroundColor: "#fff",
-    alignSelf: "stretch",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    flex: 1,
+    width: "100%",
   },
 });
 
@@ -24,9 +27,16 @@ export default function Home() {
   };
 
   return (
-    <Document>
+    <Document stylex={styles.document}>
       <div {...stylex.props(styles.root)}>
-        <Button onClick={handleClick}>开始使用</Button>
+        <Space size={20}>
+          <Button onClick={handleClick} theme="solid">
+            开始使用
+          </Button>
+          <Button onClick={handleClick} icon={<is-github />}>
+            Github
+          </Button>
+        </Space>
       </div>
     </Document>
   );
