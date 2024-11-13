@@ -1,7 +1,5 @@
 import { notFound } from "next/navigation";
 import matter from "gray-matter";
-import { Anchor, NoSsr } from "@design/core";
-import stylex from "@stylexjs/stylex";
 import { HeadingTreeNode, parseHeadings } from "@/shared/parse-headings";
 import {
   ArticleMatterProps,
@@ -9,23 +7,16 @@ import {
   readContent,
 } from "@/shared/parse-article";
 import Document from "../../_layouts/document";
-import ArticleMdx from "../../_layouts/article-mdx";
+import ArticleContainer from "../../_components/article-container";
 
-const styles = stylex.create({
-  toc: {
-    maxHeight: 600,
-    overflow: "auto",
-    padding: "16px 8px",
-  },
-});
-
-export default async function ArticlePage({
+export default function ArticlePage({
   params,
 }: {
   params: { slugs: string[] };
 }) {
   const { slugs } = params;
   const exist = existFile(slugs);
+  console.log("exist: ", exist);
   if (!exist) {
     return notFound();
   }
@@ -37,16 +28,12 @@ export default async function ArticlePage({
   const meta: ArticleMatterProps = source.data;
 
   return (
-    <Document
-      sidebar={
-        !!headings.length && (
-          <NoSsr>
-            <Anchor items={headings} stylex={styles.toc} />
-          </NoSsr>
-        )
-      }
-    >
-      <ArticleMdx meta={meta} content={source.content} />
+    <Document>
+      <ArticleContainer
+        meta={meta}
+        headings={headings}
+        content={source.content}
+      />
     </Document>
   );
 }

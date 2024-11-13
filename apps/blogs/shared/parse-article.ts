@@ -1,4 +1,4 @@
-import { basename, join, sep } from "path";
+import path from "path";
 import { MDX_DIRNAME, MDX_SUFFIX } from "../constants";
 import { existsSync, readFileSync, readdirSync } from "fs";
 import matter from "gray-matter";
@@ -13,10 +13,10 @@ export interface ArticleMatterProps {
 
 // 通过 slugs 获取原始内容
 export const readContent = (slugs: string[]) => {
-  const filePath = join(
+  const filePath = path.join(
     process.cwd(),
     MDX_DIRNAME,
-    `${slugs.join(sep)}${MDX_SUFFIX}`
+    `${slugs.join(path.sep)}${MDX_SUFFIX}`
   );
   return readFileSync(filePath, {
     encoding: "utf-8",
@@ -25,10 +25,11 @@ export const readContent = (slugs: string[]) => {
 
 // 是否存在该mdx
 export const existFile = (slugs: string[]) => {
-  const filePath = join(
+  console.log("slugs: ", slugs);
+  const filePath = path.join(
     process.cwd(),
     MDX_DIRNAME,
-    `${slugs.join(sep)}${MDX_SUFFIX}`
+    `${slugs.join(path.sep)}${MDX_SUFFIX}`
   );
   return existsSync(filePath);
 };
@@ -41,7 +42,7 @@ export interface ArticleMeta extends ArticleMatterProps {
 // 通过单个目录名获取该目录下的所有mdx文件的基础信息
 export const findArticleMetas = (dirname: string): ArticleMeta[] => {
   const result: ArticleMeta[] = [];
-  const dirnamePath = join(process.cwd(), MDX_DIRNAME, dirname);
+  const dirnamePath = path.join(process.cwd(), MDX_DIRNAME, dirname);
   if (!existsSync(dirnamePath)) {
     return result;
   }
@@ -51,8 +52,8 @@ export const findArticleMetas = (dirname: string): ArticleMeta[] => {
   }).filter((file) => file.endsWith(MDX_SUFFIX));
 
   files.forEach((file) => {
-    const filePath = join(process.cwd(), MDX_DIRNAME, dirname, file);
-    let fileName = basename(file, MDX_SUFFIX);
+    const filePath = path.join(process.cwd(), MDX_DIRNAME, dirname, file);
+    let fileName = path.basename(file, MDX_SUFFIX);
     const slug = `/articles/${dirname}/${fileName}`;
     const fileContent = readFileSync(filePath, {
       encoding: "utf-8",

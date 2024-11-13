@@ -1,7 +1,9 @@
+"use client";
+
 import React from "react";
-import { Footer, Topbar } from "@design/pro";
 import stylex from "@stylexjs/stylex";
-import { Affix } from "@design/core";
+import { Footer, Topbar } from "@design/pro";
+import { Layout } from "@design/core";
 import Logo from "./logo";
 
 export interface DocumentProps {
@@ -10,47 +12,29 @@ export interface DocumentProps {
 }
 
 const styles = stylex.create({
-  root: {
-    display: "flex",
-    flexDirection: "column",
+  document: {
+    minHeight: "100vh",
+  },
+  header: {
+    borderBottom: "1px solid rgba(28,31,35,.08)",
+  },
+  content: {
     backgroundColor: "#fff",
-    minHeight: "100%",
-  },
-  body: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    padding: "8px",
-    alignItems: "flex-start",
-  },
-  article: {
-    backgroundColor: "#fff",
-    width: 1100,
-    overflow: "auto",
-    padding: 24,
-  },
-  sidebar: {
-    width: 210,
-    marginLeft: 8,
   },
 });
 
 const Document: React.FC<DocumentProps> = (props) => {
-  const { children, sidebar } = props;
+  const { children } = props;
   return (
-    <div {...stylex.props(styles.root)}>
-      <Topbar logo={<Logo />} />
-      <div {...stylex.props(styles.body)}>
-        <div {...stylex.props(styles.article)}>{children}</div>
-        {sidebar && (
-          <div {...stylex.props(styles.sidebar)}>
-            <Affix offset={8}>{sidebar}</Affix>
-          </div>
-        )}
-      </div>
-      <Footer />
-    </div>
+    <Layout stylex={styles.document}>
+      <Layout.Header sticky stylex={styles.header}>
+        <Topbar logo={<Logo />} />
+      </Layout.Header>
+      <Layout.Content stylex={styles.content}>{children}</Layout.Content>
+      <Layout.Footer>
+        <Footer />
+      </Layout.Footer>
+    </Layout>
   );
 };
 

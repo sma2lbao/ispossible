@@ -59,7 +59,9 @@ const Document: React.FC<DocumentProps> = (props) => {
       <Layout.Content stylex={[styles.content, customStylex]}>
         {children}
       </Layout.Content>
-      <Footer />
+      <Layout.Footer>
+        <Footer />
+      </Layout.Footer>
     </Layout>
   );
 };
