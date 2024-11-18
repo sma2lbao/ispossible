@@ -46,12 +46,14 @@ const Footer: React.FC<FooterProps> = () => {
         <Typography.Link
           href="https://is-design-docs.vercel.app/"
           stylex={styles.button(tokens)}
+          target="_blank"
         >
           基础组件文档
         </Typography.Link>
         <Typography.Link
           href="https://is-blogs.vercel.app/"
           stylex={styles.button(tokens)}
+          target="_blank"
         >
           博客
         </Typography.Link>

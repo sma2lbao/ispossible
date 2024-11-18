@@ -36,7 +36,7 @@ export const styles = stylex.create({
     whiteSpace: "nowrap",
   },
   link: {
-    display: "flex",
+    display: "block",
     color: colors.onSurface,
     textDecoration: "none",
     cursor: "pointer",

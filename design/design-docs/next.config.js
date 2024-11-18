@@ -1,5 +1,7 @@
 // @ts-check
-const stylexPlugin = require("@stylexjs/nextjs-plugin");
+// const stylexPlugin = require("@stylexjs/nextjs-plugin");
+const stylexPlugin = require("@stylexswc/nextjs-plugin");
+
 const STORYBOOK_IFRAME_DOMAIN =
   process.env.NODE_ENV === "development"
     ? "http://localhost:6006"
@@ -32,8 +34,14 @@ const nextConfig = {
   },
 };
 
+// @ts-ignore
 module.exports = stylexPlugin({
-  filename: "stylex-bundle.css",
   rootDir: __dirname,
-  useCSSLayers: true,
+  dev: process.env.NODE_ENV === "development",
+  genConditionalClasses: true,
+  treeshakeCompensation: true,
+  unstable_moduleResolution: {
+    type: "commonJS",
+    rootDir: __dirname,
+  },
 })(nextConfig);

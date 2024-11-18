@@ -16,15 +16,17 @@ export interface ArticleContainerProps {
 }
 
 const styles = stylex.create({
-  toc: {
-    maxHeight: 600,
-    overflow: "auto",
-    padding: "16px 8px",
+  page: {
+    width: "1280px",
+    margin: "0 auto",
     backgroundColor: "#fff",
   },
-  page: {
-    width: "1100px",
-    margin: "0 auto",
+  content: {
+    padding: "16px",
+    overflow: "hidden",
+  },
+  toc: {
+    padding: "16px 10px",
     backgroundColor: "#fff",
   },
 });
@@ -34,11 +36,11 @@ const ArticleContainer: React.FC<ArticleContainerProps> = (props) => {
 
   return (
     <Layout stylex={styles.page}>
-      <Layout.Content>
+      <Layout.Content stylex={styles.content}>
         <ArticleMdx meta={meta} content={content} />
       </Layout.Content>
-      <Layout.Sider>
-        <Anchor items={headings} stylex={styles.toc} />
+      <Layout.Sider sticky stylex={styles.toc}>
+        <Anchor items={headings} />
       </Layout.Sider>
     </Layout>
   );

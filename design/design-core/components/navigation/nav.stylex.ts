@@ -17,6 +17,7 @@ export const styles = stylex.create({
     width: "100%",
     display: "flex",
     borderRight: "none",
+    padding: "12px",
   },
   yInner: {
     width: "100%",

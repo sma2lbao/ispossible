@@ -28,6 +28,7 @@ export const styles = stylex.create({
     minWidth: 0,
     width,
     overflow: "hidden",
+    flexShrink: 0,
   }),
   sider$sticky: (top: number) => ({
     position: "sticky",

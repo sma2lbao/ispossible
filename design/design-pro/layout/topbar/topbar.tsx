@@ -11,6 +11,7 @@ const styles = stylex.create({
     padding: "8px 24px",
     display: "flex",
     alignItems: "center",
+    minHeight: "66px",
   },
   main: (width: number) => ({
     width,
