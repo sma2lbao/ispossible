@@ -37,7 +37,10 @@
     "@types/unist": "~3.0.2",
     "@stylexjs/babel-plugin": "~0.9.3",
     "@stylexjs/eslint-plugin": "~0.9.3",
-    "@stylexjs/nextjs-plugin": "~0.9.3"
+    "@stylexjs/nextjs-plugin": "~0.9.3",
+    "@babel/preset-env": "~7.26.0",
+    "@stylexswc/nextjs-plugin": "~0.4.2",
+    "@stylexswc/rs-compiler": "~0.4.2"
   },
   "files": [
     ".next",

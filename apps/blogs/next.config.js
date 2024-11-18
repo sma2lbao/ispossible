@@ -1,13 +1,19 @@
 // @ts-check
-const stylexPlugin = require("@stylexjs/nextjs-plugin");
+const stylexPlugin = require("@stylexswc/nextjs-plugin");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
 };
 
+// @ts-ignore
 module.exports = stylexPlugin({
-  filename: "stylex-bundle.css",
   rootDir: __dirname,
-  useCSSLayers: true,
+  dev: process.env.NODE_ENV === "development",
+  genConditionalClasses: true,
+  treeshakeCompensation: true,
+  unstable_moduleResolution: {
+    type: "commonJS",
+    rootDir: __dirname,
+  },
 })(nextConfig);

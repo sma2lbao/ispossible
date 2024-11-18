@@ -25,7 +25,6 @@ export const readContent = (slugs: string[]) => {
 
 // 是否存在该mdx
 export const existFile = (slugs: string[]) => {
-  console.log("slugs: ", slugs);
   const filePath = path.join(
     process.cwd(),
     MDX_DIRNAME,

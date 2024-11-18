@@ -16,7 +16,6 @@ export default function ArticlePage({
 }) {
   const { slugs } = params;
   const exist = existFile(slugs);
-  console.log("exist: ", exist);
   if (!exist) {
     return notFound();
   }

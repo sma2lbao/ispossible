@@ -7,14 +7,6 @@ import ArticleMdx from "../_layouts/article-mdx";
 import type { ArticleMatterProps } from "@/shared/parse-article";
 import { HeadingTreeNode } from "@/shared/parse-headings";
 
-const styles = stylex.create({
-  toc: {
-    maxHeight: 600,
-    overflow: "auto",
-    padding: "16px 8px",
-  },
-});
-
 export interface ArticleContainerProps {
   meta: ArticleMatterProps;
 
@@ -23,11 +15,25 @@ export interface ArticleContainerProps {
   headings?: HeadingTreeNode[];
 }
 
+const styles = stylex.create({
+  toc: {
+    maxHeight: 600,
+    overflow: "auto",
+    padding: "16px 8px",
+    backgroundColor: "#fff",
+  },
+  page: {
+    width: "1100px",
+    margin: "0 auto",
+    backgroundColor: "#fff",
+  },
+});
+
 const ArticleContainer: React.FC<ArticleContainerProps> = (props) => {
   const { meta, content, headings } = props;
 
   return (
-    <Layout>
+    <Layout stylex={styles.page}>
       <Layout.Content>
         <ArticleMdx meta={meta} content={content} />
       </Layout.Content>
