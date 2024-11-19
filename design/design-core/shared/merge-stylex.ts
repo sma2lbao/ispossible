@@ -49,27 +49,18 @@ function x(
 function x(...args: any[]): XReturn {
   let style: React.CSSProperties = {};
   let className: string = "";
+  let styles: XStyles = [];
 
-  // 判断第一个参数类型
-  const first = args[0];
-  const second = args[1];
-
-  if (typeof first === "string") {
-    className = first;
-  } else if (isCSSProperties(first)) {
-    style = first;
+  // 遍历参数，按类型处理
+  for (const arg of args) {
+    if (typeof arg === "string") {
+      className = clsx(className, arg);
+    } else if (isCSSProperties(arg)) {
+      style = { ...style, ...arg };
+    } else if (arg != null) {
+      styles = styles.concat(arg);
+    }
   }
-
-  if (typeof second === "string") {
-    className = clsx(className, second);
-  } else if (isCSSProperties(second)) {
-    style = { ...style, ...second };
-  }
-
-  // 提取 styles 数组
-  const styles = args.slice(
-    typeof first === "undefined" ? 0 : typeof second === "undefined" ? 1 : 2
-  ) as XStyles;
 
   // 合并 stylex 的样式
   const { style: xStyle, className: xClassName } = stylex.props(...styles);

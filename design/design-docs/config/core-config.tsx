@@ -119,6 +119,7 @@ export const navConfig: NavConfigItemType[] = [
         text: "Tooltip 文字提示",
       },
       { itemKey: "drawer", path: "drawer-抽屉--docs", text: "Drawer 抽屉" },
+      { itemKey: "list", path: "list-列表--docs", text: "List 列表" },
     ],
   },
   {

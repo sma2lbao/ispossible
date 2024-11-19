@@ -1,4 +1,5 @@
 import { type ArticleMeta } from "@/shared/parse-article";
+import { List } from "@design/core";
 import React, { useEffect, useState } from "react";
 import stylex from "@stylexjs/stylex";
 import ArticleCard from "./article-card";
@@ -29,11 +30,15 @@ const ArticleList: React.FC<ArticleListPorps> = (props) => {
   }, [category]);
   return (
     <div>
-      {articles.map((item) => {
-        return (
-          <ArticleCard article={item} key={item.slug} style={styles.card} />
-        );
-      })}
+      <List hasLoadMore finished>
+        {articles.map((item) => {
+          return (
+            <List.Item key={item.slug}>
+              <ArticleCard article={item} style={styles.card} />
+            </List.Item>
+          );
+        })}
+      </List>
     </div>
   );
 };

@@ -27,4 +27,5 @@ export { Toast } from "./toast";
 export { Notification } from "./notification";
 export { Dropdown } from "./dropdown";
 export { Layout } from "./layout";
+export { List } from "./list";
 export { useTokens, type Tokens } from "../themes/use-tokens";

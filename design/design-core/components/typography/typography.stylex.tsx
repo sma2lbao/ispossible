@@ -16,6 +16,7 @@ export const styles = stylex.create({
     color: color ?? "inherit",
   }),
   host$link: {
+    cursor: "pointer",
     textDecoration: "none",
     [":hover"]: {
       textDecoration: "underline",

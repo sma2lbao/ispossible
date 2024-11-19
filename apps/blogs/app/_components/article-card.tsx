@@ -18,7 +18,7 @@ const styles = stylex.create({
     alignItems: "center",
     minHeight: 163,
     overflow: "hidden",
-    borderBottom: `1px solid #ddd`,
+    width: "100%",
   },
   content: {
     flex: 1,
