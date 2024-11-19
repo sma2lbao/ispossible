@@ -44,14 +44,14 @@ const Footer: React.FC<FooterProps> = () => {
       </div>
       <Space>
         <Typography.Link
-          href="https://is-design-docs.vercel.app/"
+          href="https://design.sma1lbao.cn/"
           stylex={styles.button(tokens)}
           target="_blank"
         >
           基础组件文档
         </Typography.Link>
         <Typography.Link
-          href="https://is-blogs.vercel.app/"
+          href="https://blog.sma1lbao.cn/"
           stylex={styles.button(tokens)}
           target="_blank"
         >
