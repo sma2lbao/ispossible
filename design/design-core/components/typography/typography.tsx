@@ -4,6 +4,7 @@ import type { TypographyProps, ISize, IVariant } from "./typography.types";
 import { styles } from "./typography.stylex";
 import React from "react";
 import { commonStyles } from "../../themes/common-styles";
+import { x } from "../../shared";
 
 export const asTagMap: Record<`${IVariant}$${ISize}`, React.ElementType> = {
   display$lg: "span",
@@ -28,6 +29,8 @@ export const Typography = React.forwardRef<HTMLDivElement, TypographyProps>(
     const {
       as,
       color,
+      style,
+      className,
       stylex: customStylex,
       variant = "body",
       size = "md",
@@ -44,8 +47,9 @@ export const Typography = React.forwardRef<HTMLDivElement, TypographyProps>(
     return (
       <Component
         {...rest}
-        {...stylex.props(
-          customStylex,
+        {...x(
+          className,
+          style,
           styles.host(color),
           dimmed && styles["host$dimmed"],
           truncate && commonStyles.truncate,
@@ -53,7 +57,8 @@ export const Typography = React.forwardRef<HTMLDivElement, TypographyProps>(
             truncateLines > 0 &&
             commonStyles.truncateLines(truncateLines),
           gutterBottom && styles["host$gutterBottom"],
-          styles[`${variant}$${size}`]
+          styles[`${variant}$${size}`],
+          customStylex
         )}
         ref={ref}
       >

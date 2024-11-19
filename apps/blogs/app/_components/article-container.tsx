@@ -39,7 +39,7 @@ const ArticleContainer: React.FC<ArticleContainerProps> = (props) => {
       <Layout.Content stylex={styles.content}>
         <ArticleMdx meta={meta} content={content} />
       </Layout.Content>
-      <Layout.Sider sticky stylex={styles.toc}>
+      <Layout.Sider sticky stylex={styles.toc} top={20}>
         <Anchor items={headings} />
       </Layout.Sider>
     </Layout>

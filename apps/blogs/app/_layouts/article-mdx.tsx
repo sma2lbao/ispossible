@@ -15,10 +15,13 @@ export interface ArticleMdxProps {
 
 const styles = stylex.create({
   title: {
-    marginBottom: 16,
+    marginBottom: "16px",
   },
   image: {
     maxWidth: "100%",
+  },
+  body: {
+    paddingTop: "20px",
   },
 });
 
@@ -27,12 +30,7 @@ const ArticleMdx: React.FC<ArticleMdxProps> = (props) => {
 
   return (
     <div>
-      <Typography
-        variant="headline"
-        gutterBottom
-        size="md"
-        stylex={styles.title}
-      >
+      <Typography variant="headline" size="md" stylex={styles.title}>
         {meta.title}
       </Typography>
       <Typography variant="body" size="md">
@@ -44,9 +42,11 @@ const ArticleMdx: React.FC<ArticleMdxProps> = (props) => {
             <Tag key={tag}>{tag}</Tag>
           ))}
         </Space>
-        <span>{meta.date}</span>
+        <Typography variant="label" size="md">
+          {meta.date}
+        </Typography>
       </Space>
-      <div>
+      <div {...stylex.props(styles.body)}>
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeHighlight, rehypeSlug]}

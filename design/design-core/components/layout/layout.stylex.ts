@@ -40,7 +40,8 @@ export const styles = stylex.create({
     scrollbarGutter: "stable",
     // 滚动条
     ["::-webkit-scrollbar"]: {
-      // display: "none",
+      opacity: 0,
+      width: "5px",
     },
     // 滑块
     ["::-webkit-scrollbar-thumb"]: {
@@ -48,17 +49,15 @@ export const styles = stylex.create({
     },
     // 槽位
     ["::-webkit-scrollbar-track"]: {
-      opacity: 0,
       backgroundColor: "transparent",
     },
     [":hover"]: {
       ["::-webkit-scrollbar"]: {
-        width: "6px",
-        height: "6px",
+        opacity: 1,
       },
       ["::-webkit-scrollbar-thumb"]: {
-        borderRadius: "6px",
-        backgroundColor: "rgb(167,171,176)",
+        borderRadius: "5px",
+        backgroundColor: "#bfbfbf",
       },
       ["::-webkit-scrollbar-track"]: {
         backgroundColor: "transparent",

@@ -49,6 +49,10 @@ export interface TypographyProps {
    * 样式
    */
   stylex?: StyleXStyles;
+
+  style?: React.CSSProperties;
+
+  className?: string;
 }
 
 export interface TypographyLinkProps
