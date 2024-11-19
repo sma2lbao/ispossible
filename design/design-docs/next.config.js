@@ -5,7 +5,7 @@ const stylexPlugin = require("@stylexswc/nextjs-plugin");
 const STORYBOOK_IFRAME_DOMAIN =
   process.env.NODE_ENV === "development"
     ? "http://localhost:6006"
-    : "https://design-core.sma1lbao.cn/";
+    : "https://design-core.sma1lbao.cn";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
