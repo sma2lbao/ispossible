@@ -2,7 +2,7 @@
 title: 继承与原型链
 description: ""
 tags: ["JavaScript"]
-poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+poster: ""
 date: 2024/02/01
 ---
 
@@ -138,7 +138,7 @@ console.log(doSomething.prototype);
 
 ```js
 function doSomething() {}
-doSomething.prototype.foo = 'bar';
+doSomething.prototype.foo = "bar";
 console.log(doSomething.prototype);
 ```
 
@@ -166,9 +166,9 @@ console.log(doSomething.prototype);
 
 ```js
 function doSomething() {}
-doSomething.prototype.foo = 'bar'; // add a property onto the prototype
+doSomething.prototype.foo = "bar"; // add a property onto the prototype
 var doSomeInstancing = new doSomething();
-doSomeInstancing.prop = 'some value'; // add a property onto the object
+doSomeInstancing.prop = "some value"; // add a property onto the object
 console.log(doSomeInstancing);
 ```
 
@@ -205,15 +205,15 @@ console.log(doSomeInstancing);
 
 ```js
 function doSomething() {}
-doSomething.prototype.foo = 'bar';
+doSomething.prototype.foo = "bar";
 var doSomeInstancing = new doSomething();
-doSomeInstancing.prop = 'some value';
-console.log('doSomeInstancing.prop:      ' + doSomeInstancing.prop);
-console.log('doSomeInstancing.foo:       ' + doSomeInstancing.foo);
-console.log('doSomething.prop:           ' + doSomething.prop);
-console.log('doSomething.foo:            ' + doSomething.foo);
-console.log('doSomething.prototype.prop: ' + doSomething.prototype.prop);
-console.log('doSomething.prototype.foo:  ' + doSomething.prototype.foo);
+doSomeInstancing.prop = "some value";
+console.log("doSomeInstancing.prop:      " + doSomeInstancing.prop);
+console.log("doSomeInstancing.foo:       " + doSomeInstancing.foo);
+console.log("doSomething.prop:           " + doSomething.prop);
+console.log("doSomething.foo:            " + doSomething.foo);
+console.log("doSomething.prototype.prop: " + doSomething.prototype.prop);
+console.log("doSomething.prototype.foo:  " + doSomething.prototype.foo);
 ```
 
 结果如下：
@@ -242,7 +242,7 @@ var o = { a: 1 };
 // 原型链如下：
 // o ---> Object.prototype ---> null
 
-var a = ['yo', 'whadup', '?'];
+var a = ["yo", "whadup", "?"];
 
 // 数组都继承于 Array.prototype
 // (Array.prototype 中包含 indexOf, forEach 等方法)
@@ -305,7 +305,7 @@ console.log(d.hasOwnProperty); // undefined，因为 d 没有继承 Object.proto
 ECMAScript6 引入了一套新的关键字用来实现 [class](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes)。使用基于类语言的开发人员会对这些结构感到熟悉，但它们是不同的。JavaScript 仍然基于原型。这些新的关键字包括 class, constructor，static，extends 和 super。
 
 ```js
-'use strict';
+"use strict";
 
 class Polygon {
   constructor(height, width) {
@@ -337,16 +337,16 @@ var square = new Square(2);
 遍历对象的属性时，原型链上的**每个**可枚举属性都会被枚举出来。要检查对象是否具有自己定义的属性，而不是其原型链上的某个属性，则必须使用所有对象从 `Object.prototype` 继承的 [`hasOwnProperty`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty) 方法。下面给出一个具体的例子来说明它：
 
 ```js
-console.log(g.hasOwnProperty('vertices'));
+console.log(g.hasOwnProperty("vertices"));
 // true
 
-console.log(g.hasOwnProperty('nope'));
+console.log(g.hasOwnProperty("nope"));
 // false
 
-console.log(g.hasOwnProperty('addVertex'));
+console.log(g.hasOwnProperty("addVertex"));
 // false
 
-console.log(g.__proto__.hasOwnProperty('addVertex'));
+console.log(g.__proto__.hasOwnProperty("addVertex"));
 // true
 ```
 

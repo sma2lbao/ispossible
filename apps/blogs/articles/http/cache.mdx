@@ -2,7 +2,7 @@
 title: HTTP 缓存
 description: http 缓冲介绍
 tags: ["HTTP"]
-poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+poster: ""
 date: 2024/02/01
 ---
 
@@ -377,7 +377,7 @@ If-Modified-Since: Tue, 22 Feb 2022 20:20:20 GMT
 
 ```js
 // 注意：“reload”不是正常重新加载的正确模式；“no-cache”才是
-fetch('/', { cache: 'no-cache' });
+fetch("/", { cache: "no-cache" });
 ```
 
 ### 强制重新加载
@@ -401,7 +401,7 @@ Cache-Control: no-cache
 
 ```js
 // 注意：“reload”——而不是 “no-cache”——是 “强制重新加载” 的正确模式
-fetch('/', { cache: 'reload' });
+fetch("/", { cache: "reload" });
 ```
 
 ### 避免重新验证

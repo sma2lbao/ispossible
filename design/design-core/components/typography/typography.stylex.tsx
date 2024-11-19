@@ -23,7 +23,7 @@ export const styles = stylex.create({
     },
   },
   host$gutterBottom: {
-    marginBottom: spacings.padding$1,
+    marginBottom: spacings.padding$2,
   },
   // 暗色
   host$dimmed: {

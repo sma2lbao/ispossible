@@ -3,7 +3,6 @@ title: 括号生成
 description: ""
 date: 2024/02/01
 tags: ["算法", "中等"]
-poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
 ---
 
 [22. 括号生成](https://leetcode.cn/problems/generate-parentheses/)
@@ -16,7 +15,7 @@ function generateParenthesis(n: number): string[] {
   if (n < 1) {
     return answer;
   }
-  dfs('', n, n, answer);
+  dfs("", n, n, answer);
   return answer;
 }
 
@@ -28,7 +27,7 @@ function dfs(str: string, left: number, right: number, array: string[]) {
 
   if (left > right) return;
 
-  left > 0 && dfs(str + '(', left - 1, right, array);
-  right > 0 && dfs(str + ')', left, right - 1, array);
+  left > 0 && dfs(str + "(", left - 1, right, array);
+  right > 0 && dfs(str + ")", left, right - 1, array);
 }
 ```

@@ -13,7 +13,7 @@ const styles = stylex.create({
     alignItems: "center",
     minHeight: "66px",
   },
-  main: (width: number) => ({
+  main: (width: number | string) => ({
     width,
     display: "flex",
     alignItems: "center",
@@ -34,7 +34,7 @@ const styles = stylex.create({
 
 export interface TopbarProps {
   logo?: React.ReactNode;
-  contentWidth?: number;
+  contentWidth?: number | string;
   children?: React.ReactNode;
 }
 

@@ -2,7 +2,7 @@
 title: JavaScript 中的相等性判断
 description: ""
 tags: ["JavaScript"]
-poster: "https://img0.baidu.com/it/u=3542748506,4060302361&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+poster: ""
 date: 2024/02/01
 ---
 
@@ -29,8 +29,8 @@ JavaScript 提供三种不同的值比较操作：
 
 ```js
 var num = 0;
-var obj = new String('0');
-var str = '0';
+var obj = new String("0");
+var str = "0";
 var b = false;
 
 console.log(num === num); // true
@@ -213,8 +213,8 @@ console.log(obj === undefined); // false
 
 ```js
 var num = 0;
-var obj = new String('0');
-var str = '0';
+var obj = new String("0");
+var str = "0";
 var b = false;
 
 console.log(num == num); // true
@@ -239,7 +239,7 @@ console.log(obj == undefined);
 
 ```js
 // 向 Nmuber 构造函数添加一个不可变的属性 NEGATIVE_ZERO
-Object.defineProperty(Number, 'NEGATIVE_ZERO', {
+Object.defineProperty(Number, "NEGATIVE_ZERO", {
   value: -0,
   writable: false,
   configurable: false,
@@ -247,7 +247,7 @@ Object.defineProperty(Number, 'NEGATIVE_ZERO', {
 });
 
 function attemptMutation(v) {
-  Object.defineProperty(Number, 'NEGATIVE_ZERO', { value: v });
+  Object.defineProperty(Number, "NEGATIVE_ZERO", { value: v });
 }
 ```
 

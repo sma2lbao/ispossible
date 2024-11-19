@@ -36,7 +36,7 @@ const styles = stylex.create({
 
 const ArticleCard: React.FC<ArticleCardProps> = (props) => {
   const { style, article } = props;
-  const { title, description, slug, date, tags, poster } = article;
+  const { title, slug, date, tags, poster, summary } = article;
   const router = useRouter();
 
   const handleClick = () => {
@@ -49,8 +49,8 @@ const ArticleCard: React.FC<ArticleCardProps> = (props) => {
         <Typography variant="title" size="lg">
           {title}
         </Typography>
-        <Typography variant="body" size="md">
-          {description || "这个人太懒了，什么也没写！"}
+        <Typography variant="body" size="md" truncateLines={3}>
+          {summary || "这个人太懒了，什么也没写！"}
         </Typography>
         <Typography variant="label" size="sm">
           {date}

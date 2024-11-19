@@ -20,6 +20,7 @@ const styles = stylex.create({
   },
   header: {
     borderBottom: "1px solid rgba(28,31,35,.08)",
+    width: "100%",
   },
   topbar: {
     margin: "0 24px",
@@ -50,7 +51,7 @@ const Document: React.FC<DocumentProps> = (props) => {
   return (
     <Layout stylex={styles.document}>
       <Layout.Header sticky stylex={styles.header}>
-        <Topbar logo={<Logo />}>
+        <Topbar logo={<Logo />} contentWidth="100%">
           <div {...stylex.props(styles.topbar)}>
             <Nav items={menu} mode="x" onSelect={handleSelect} />
           </div>
