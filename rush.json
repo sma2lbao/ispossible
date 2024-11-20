@@ -321,6 +321,13 @@
       ]
     },
     {
+      "packageName": "@apps/music",
+      "projectFolder": "apps/music",
+      "tags": [
+        "apps"
+      ]
+    },
+    {
       "packageName": "@tools/eslint-config",
       "projectFolder": "tools/eslint-config",
       "tags": [
