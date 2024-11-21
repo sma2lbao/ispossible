@@ -10,13 +10,11 @@ export async function GET() {
 
 export async function POST(request: Request) {
   const payload = await request.json();
-  console.log("payload: ", payload);
   const newUser = await prisma.user.create({
     data: {
       name: payload.name,
       email: payload.email,
     },
   });
-  console.log("newUser: ", newUser);
   return NextResponse.json({ data: newUser });
 }

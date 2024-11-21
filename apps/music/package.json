@@ -12,7 +12,13 @@
     "react": "^18",
     "react-dom": "^18",
     "next": "14.2.18",
-    "@prisma/client": "~5.22.0"
+    "@prisma/client": "~5.22.0",
+    "@design/core": "workspace:*",
+    "@design/pro": "workspace:*",
+    "@design/icon": "workspace:*",
+    "next-auth": "~5.0.0-beta.25",
+    "@auth/prisma-adapter": "~2.7.4",
+    "@auth/unstorage-adapter": "~2.7.4"
   },
   "devDependencies": {
     "typescript": "^5",
