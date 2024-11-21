@@ -18,7 +18,10 @@
     "@design/icon": "workspace:*",
     "next-auth": "~5.0.0-beta.25",
     "@auth/prisma-adapter": "~2.7.4",
-    "zod": "~3.23.8"
+    "zod": "~3.23.8",
+    "@stylexjs/stylex": "~0.9.3",
+    "@stylexswc/nextjs-plugin": "~0.4.2",
+    "@stylexswc/rs-compiler": "~0.4.2"
   },
   "devDependencies": {
     "typescript": "^5",
@@ -27,6 +30,9 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.18",
-    "prisma": "~5.22.0"
+    "prisma": "~5.22.0",
+    "@stylexjs/babel-plugin": "~0.9.3",
+    "@stylexjs/eslint-plugin": "~0.9.3",
+    "@stylexjs/nextjs-plugin": "~0.9.3"
   }
 }

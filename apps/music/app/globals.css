@@ -40,3 +40,17 @@ a {
     color-scheme: dark;
   }
 }
+
+/* 滚动槽 */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: transparent;
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: #bfbfbf;
+}

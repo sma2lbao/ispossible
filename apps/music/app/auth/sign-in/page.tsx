@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 export default function Login() {
   const credentialsAction = (formData: FormData) => {
     signIn("credentials", {
-      username: formData.get("email"),
+      email: formData.get("email"),
       password: formData.get("password"),
       redirectTo: "/auth/sign-out",
     });
@@ -15,7 +15,7 @@ export default function Login() {
       <div>
         <form action={credentialsAction}>
           <label htmlFor="credentials-email">
-            Username
+            Email
             <input type="email" id="credentials-email" name="email" />
           </label>
           <label htmlFor="credentials-password">

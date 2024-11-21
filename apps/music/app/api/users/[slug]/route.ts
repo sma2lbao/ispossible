@@ -7,5 +7,6 @@ export async function GET(
   const slug = (await params).slug;
 
   console.log("slug: ", slug);
+
   return NextResponse.json({ data: null });
 }

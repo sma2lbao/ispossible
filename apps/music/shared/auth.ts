@@ -9,6 +9,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
   secret: "sma1lbao",
   session: { strategy: "jwt" },
+
   providers: [
     Credentials({
       async authorize(credentials) {
@@ -31,6 +32,15 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     }),
     Github,
   ],
+
+  callbacks: {
+    async session({ session, user }) {
+      if (session.user && user) {
+        session.user.id = user.id;
+      }
+      return session;
+    },
+  },
   pages: {
     signIn: "/auth/sign-in", // 自定义登录页面路径（可选）
   },

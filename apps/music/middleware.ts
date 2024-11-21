@@ -1,11 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "./shared/auth";
 
-export default auth((request) => {
-  // if (!request.auth) {
-  //   return NextResponse.redirect(new URL("/auth/login", request.url));
-  // }
-  console.log("auth: ", request.auth);
+export default auth(() => {
   return NextResponse.next();
 });
 

@@ -1,7 +1,10 @@
-"use client";
+import { SessionProvider } from "next-auth/react";
+import Dashboard from "./dashboard";
 
-import { signOut } from "next-auth/react";
-
-export default function SignOut() {
-  return <button onClick={() => signOut()}>Sign Out</button>;
+export default function Administrator() {
+  return (
+    <SessionProvider>
+      <Dashboard />
+    </SessionProvider>
+  );
 }
