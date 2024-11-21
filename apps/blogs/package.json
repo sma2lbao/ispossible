@@ -33,7 +33,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "14.2.15",
+    "eslint-config-next": "14.2.18",
     "@types/unist": "~3.0.2",
     "@stylexjs/babel-plugin": "~0.9.3",
     "@stylexjs/eslint-plugin": "~0.9.3",
