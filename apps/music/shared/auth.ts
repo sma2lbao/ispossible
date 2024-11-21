@@ -3,6 +3,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "@/database";
 import Github from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
+import { z } from "zod";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -10,21 +11,22 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   session: { strategy: "jwt" },
   providers: [
     Credentials({
-      credentials: {
-        username: {},
-        password: {},
-      },
       async authorize(credentials) {
-        if (
-          credentials.username === "admin" &&
-          credentials.password === "admin"
-        ) {
-          return {
-            username: "admin",
-            email: "admin@test.com",
-          };
+        const parsed = z
+          .object({ email: z.string().email(), password: z.string().min(6) })
+          .safeParse(credentials);
+        if (parsed.success) {
+          const { email, password } = parsed.data;
+          const user = await prisma.user.findUnique({
+            where: {
+              email: email,
+              password: password,
+            },
+          });
+          if (user) return user;
+          throw new Error("Invalid credentials.");
         }
-        throw new Error("Invalid credentials.");
+        throw parsed.error;
       },
     }),
     Github,
