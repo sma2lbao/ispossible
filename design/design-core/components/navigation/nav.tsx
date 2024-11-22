@@ -35,13 +35,14 @@ export const Nav: React.FC<NavProps> = (props) => {
   const isVertical = mode === "y" || mode === "inline";
 
   const handleNavItemClick = (data: OnNavItemClickData) => {
-    const { itemKey } = data;
+    const { itemKey, domEvent, ...rest } = data;
     const exist = selectedKeys.includes(itemKey);
     const nextSelectedKeys = [itemKey];
     setSelectedKeys(nextSelectedKeys);
     if (exist) return;
 
     const onSelectData: OnSelectData = {
+      ...rest,
       itemKey,
       selectedKeys: nextSelectedKeys,
     };

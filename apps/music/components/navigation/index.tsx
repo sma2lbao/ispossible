@@ -1,7 +1,9 @@
 "use-client";
-import React from "react";
+import React, { useState } from "react";
 import stylex from "@stylexjs/stylex";
-import { Nav, type NavItemType } from "@design/core";
+import { useRouter } from "next/navigation";
+import { Nav, type OnSelectNavData, type NavItemType } from "@design/core";
+import Logo from "./logo";
 
 export interface NavigationProps {}
 
@@ -10,10 +12,18 @@ const styles = stylex.create({
     width: "100%",
     backgroundColor: "#fff",
   },
+  logo$container: {
+    height: "80px",
+    display: "flex",
+    paddingLeft: "32px",
+    alignItems: "center",
+  },
 });
 
 const Navigation: React.FC<NavigationProps> = (props) => {
+  const router = useRouter();
   const {} = props;
+  const [defaultSelectedKeys] = useState<string[]>([]);
 
   const navConfig: NavItemType[] = [
     {
@@ -23,6 +33,7 @@ const Navigation: React.FC<NavigationProps> = (props) => {
         {
           itemKey: "recommand",
           text: "推荐",
+          path: "/trend",
         },
       ],
     },
@@ -47,9 +58,23 @@ const Navigation: React.FC<NavigationProps> = (props) => {
     },
   ];
 
+  const handleSelect = (data: OnSelectNavData) => {
+    if (data.path) {
+      router.push(data.path);
+    }
+  };
+
   return (
     <div {...stylex.props(styles.navigation)}>
-      <Nav items={navConfig} style={{ width: "100%" }} />
+      <div {...stylex.props(styles.logo$container)}>
+        <Logo />
+      </div>
+      <Nav
+        items={navConfig}
+        style={{ width: "100%" }}
+        onSelect={handleSelect}
+        defaultSelectedKeys={defaultSelectedKeys}
+      />
     </div>
   );
 };

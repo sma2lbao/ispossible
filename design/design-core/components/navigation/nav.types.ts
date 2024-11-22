@@ -31,12 +31,12 @@ export type ItemType = SubNavProps | NavItemProps;
 
 export type ItemKey = string | number;
 
-export interface OnSelectData {
+export interface OnSelectData extends Partial<BaseItemProps> {
   itemKey: ItemKey;
   selectedKeys: any[];
 }
 
-export interface OnNavItemClickData {
+export interface OnNavItemClickData extends Partial<BaseItemProps> {
   itemKey: ItemKey;
   domEvent: React.MouseEvent<HTMLElement>;
 }

@@ -42,6 +42,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     },
   },
   pages: {
-    signIn: "/auth/sign-in", // 自定义登录页面路径（可选）
+    signIn: "/sign-in", // 自定义登录页面路径（可选）
   },
 });

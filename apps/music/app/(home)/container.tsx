@@ -6,21 +6,26 @@ import Navigation from "@/components/navigation";
 import MiniPlayer from "@/components/mini-player";
 import Topbar from "@/components/topbar";
 
+export interface ContinerProps {
+  children?: React.ReactNode;
+}
+
 const styles = stylex.create({
   root: {
     minHeight: "100vh",
   },
   sider: {
     backgroundColor: "#fff",
+    padding: 0,
   },
 });
 
-export default function Home() {
+export default function Continer(props: ContinerProps) {
   return (
     <Layout stylex={styles.root}>
       <Layout.Content>
         <Layout>
-          <Layout.Sider sticky stylex={styles.sider}>
+          <Layout.Sider sticky width={280} stylex={styles.sider}>
             <Navigation />
           </Layout.Sider>
           <Layout.Content>
@@ -28,7 +33,7 @@ export default function Home() {
               <Layout.Header>
                 <Topbar />
               </Layout.Header>
-              <Layout.Content>内容区</Layout.Content>
+              <Layout.Content>{props.children}</Layout.Content>
             </Layout>
           </Layout.Content>
         </Layout>

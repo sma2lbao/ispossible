@@ -6,7 +6,7 @@ import { styles } from "./nav.stylex";
 import { useFullPath, useMeasure } from "./path.context";
 
 export const NavItem: React.FC<NavItemProps> = (props) => {
-  const { icon, itemKey, text, disabled = false } = props;
+  const { icon, itemKey, text, disabled = false, ...rest } = props;
   const context = useContext(NavContext);
   const isActive = context.selectedKeys?.includes(itemKey);
   const fullPath = useFullPath(itemKey);
@@ -15,6 +15,7 @@ export const NavItem: React.FC<NavItemProps> = (props) => {
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     if (disabled) return;
     context.onNavItemClick({
+      ...props,
       itemKey,
       domEvent: event,
     });

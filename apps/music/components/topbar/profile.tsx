@@ -18,7 +18,7 @@ const Profile: React.FC = () => {
   const session = useSession();
 
   const handleSignIn = () => {
-    router.push("/auth/sign-in");
+    router.push("/sign-in");
   };
 
   const handleSignOut = () => {
