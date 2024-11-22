@@ -13,6 +13,12 @@ export interface ButtonProps extends HostHTMLButtonProps {
    */
   type?: "primary" | "secondary";
 
+  /**
+   * 将按钮设置为块级按钮
+   * @default false
+   */
+  block?: boolean;
+
   color?: string;
 
   /**
@@ -44,6 +50,10 @@ export interface ButtonProps extends HostHTMLButtonProps {
   loading?: boolean;
 
   stylex?: StyleXStyles;
+
+  style?: React.CSSProperties;
+
+  className?: string;
 
   /**
    * 点击按钮时的回调

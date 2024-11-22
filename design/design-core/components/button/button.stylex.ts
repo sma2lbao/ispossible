@@ -22,6 +22,9 @@ export const styles = stylex.create({
     cursor: "pointer",
     border: "0px solid transparent",
   },
+  button$block: {
+    width: "100%",
+  },
   button$light: (color?: string) => ({
     color: color || colors.primary,
     backgroundColor: "#2e32380d",

@@ -10,6 +10,9 @@ const styles = stylex.create({
   root: {
     minHeight: "100vh",
   },
+  sider: {
+    backgroundColor: "#fff",
+  },
 });
 
 export default function Home() {
@@ -17,7 +20,7 @@ export default function Home() {
     <Layout stylex={styles.root}>
       <Layout.Content>
         <Layout>
-          <Layout.Sider sticky>
+          <Layout.Sider sticky stylex={styles.sider}>
             <Navigation />
           </Layout.Sider>
           <Layout.Content>

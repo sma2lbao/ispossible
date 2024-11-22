@@ -3,11 +3,13 @@ import stylex from "@stylexjs/stylex";
 import { ButtonProps } from "./button.types";
 import { styles } from "./button.stylex";
 import "@design/icon/loading";
+import { x } from "../../shared";
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     const {
       children,
+      block = false,
       type = "primary",
       color,
       theme = "light",
@@ -17,6 +19,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       loading = false,
       onClick,
       stylex: customStylex,
+      style,
+      className,
       ...rest
     } = props;
 
@@ -36,12 +40,15 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         onClick={handleClick}
-        {...stylex.props(
+        {...x(
+          className,
+          style,
           styles.button,
           theme === "light" && styles.button$light(color),
           theme === "solid" && styles.button$solid(color),
           theme === "ghost" && styles.button$ghost(color),
           theme === "outline" && styles.button$outline(color),
+          block && styles.button$block,
           onlyIcon && styles.button$onlyIcon,
           (disabled || loading) && styles.disabled,
           customStylex
