@@ -21,7 +21,9 @@
     "zod": "~3.23.8",
     "@stylexjs/stylex": "~0.9.3",
     "@stylexswc/nextjs-plugin": "~0.4.2",
-    "@stylexswc/rs-compiler": "~0.4.2"
+    "@stylexswc/rs-compiler": "~0.4.2",
+    "cos-js-sdk-v5": "~1.8.6",
+    "qcloud-cos-sts": "~3.1.1"
   },
   "devDependencies": {
     "typescript": "^5",
