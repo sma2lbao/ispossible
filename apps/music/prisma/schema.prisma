@@ -13,6 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// 用户表
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -22,30 +23,108 @@ model User {
   image         String?
   accounts      Account[]
 
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("t_user")
 }
 
+// 第三方账户信息
 model Account {
   userId            String  @map("user_id")
   type              String
   provider          String
   providerAccountId String  @map("provider_account_id")
-  refresh_token     String?
-  access_token      String?
-  expires_at        Int?
-  token_type        String?
+  refreshToken      String? @map("refresh_token")
+  accessToken       String? @map("access_token")
+  expiresAt         Int?    @map("expires_at")
+  tokenType         String? @map("token_type")
   scope             String?
-  id_token          String?
-  session_state     String?
+  idToken           String? @map("id_token")
+  sessionState      String? @map("session_state")
 
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([provider, providerAccountId])
   @@map("t_account")
+}
+
+model Song {
+  id        Int      @id @default(autoincrement())
+  title     String
+  duration  Int // 持续时间，单位为秒
+  lyrics    String? // 歌词
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  artistId Int    @map("artist_id")
+  artist   Artist @relation(fields: [artistId], references: [id])
+  albumId  Int?   @map("album_id")
+  album    Album? @relation(fields: [albumId], references: [id])
+
+  playlists PlaylistSong[]
+
+  @@map("t_song")
+}
+
+// 歌手信息
+model Artist {
+  id   Int     @id @default(autoincrement())
+  name String
+  bio  String? // 歌手简介
+
+  imageUrl  String?  @map("image_url") // 歌手图片
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  albums Album[]
+  songs  Song[]
+
+  @@map("t_artist")
+}
+
+// 专辑信息
+model Album {
+  id          Int       @id @default(autoincrement())
+  title       String
+  releaseDate DateTime? @map("release_date")
+  coverUrl    String?   @map("cover_url") // 专辑封面图片
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  artistId Int    @map("artist_id")
+  artist   Artist @relation(fields: [artistId], references: [id])
+  songs    Song[]
+
+  @@map("t_album")
+}
+
+model Playlist {
+  id          Int      @id @default(autoincrement())
+  name        String // 播放列表名称
+  description String? // 描述，可选
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  songs PlaylistSong[] // 多对多关系，关联 Song
+
+  @@map("t_playlist")
+}
+
+model PlaylistSong {
+  id         Int @id @default(autoincrement())
+  playlistId Int @map("playlist_id")
+  songId     Int @map("song_id")
+
+  playlist Playlist @relation(fields: [playlistId], references: [id])
+  song     Song     @relation(fields: [songId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([playlistId, songId]) // 保证同一个播放列表内不会有重复的歌曲
+  @@map("t_playlist_song")
 }
