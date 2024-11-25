@@ -5,10 +5,11 @@ import { useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 import stylex from "@stylexjs/stylex";
 import { Button, Avatar, Typography, Popover, Divider } from "@design/core";
+import "@design/icon/logout";
 
 const styles = stylex.create({
   popup$conent: {
-    width: "320px",
+    width: "220px",
     textAlign: "center",
   },
 });
@@ -34,7 +35,12 @@ const Profile: React.FC = () => {
           {user.name}
         </Typography>
         <Divider />
-        <Button block theme="ghost" onClick={handleSignOut}>
+        <Button
+          block
+          theme="ghost"
+          onClick={handleSignOut}
+          icon={<is-logout />}
+        >
           Sign Out
         </Button>
       </div>

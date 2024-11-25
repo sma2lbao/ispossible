@@ -18,6 +18,13 @@ const styles = stylex.create({
     backgroundColor: "#fff",
     padding: 0,
   },
+  playerContainer: {
+    position: "fixed",
+    bottom: 0,
+    left: 0,
+    width: "100%",
+    opacity: 0.6,
+  },
 });
 
 export default function Continer(props: ContinerProps) {
@@ -38,7 +45,7 @@ export default function Continer(props: ContinerProps) {
           </Layout.Content>
         </Layout>
       </Layout.Content>
-      <Layout.Footer>
+      <Layout.Footer stylex={styles.playerContainer}>
         <MiniPlayer />
       </Layout.Footer>
     </Layout>
