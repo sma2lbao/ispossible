@@ -120,6 +120,7 @@ export const navConfig: NavConfigItemType[] = [
       },
       { itemKey: "drawer", path: "drawer-抽屉--docs", text: "Drawer 抽屉" },
       { itemKey: "list", path: "list-列表--docs", text: "List 列表" },
+      { itemKey: "image", path: "image-图片--docs", text: "Image 图片" },
     ],
   },
   {
