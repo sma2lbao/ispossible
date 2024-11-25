@@ -29,4 +29,5 @@ export { Dropdown } from "./dropdown";
 export { Layout } from "./layout";
 export { List } from "./list";
 export * from "./grid";
+export * from "./image";
 export { useTokens, type Tokens } from "../themes/use-tokens";
