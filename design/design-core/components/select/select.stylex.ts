@@ -52,6 +52,7 @@ export const styles = stylex.create({
     width: "32px",
     color: "rgba(28,31,35,.62)",
     flexShrink: 0,
+    fontSize: "14px",
   },
   select$selection: {
     fontSize: "14px",
@@ -63,6 +64,7 @@ export const styles = stylex.create({
     overflow: "hidden",
     cursor: "pointer",
     color: "rgba(28,31,35,1)",
+    marginLeft: "12px",
   },
   select$content$warp: {
     whiteSpace: "nowrap",
@@ -70,6 +72,9 @@ export const styles = stylex.create({
     display: "flex",
     alignItems: "center",
     height: "100%",
+  },
+  select$content$placeholder: {
+    color: "rgba(28,31,35,.62)",
   },
   select$content$text: {
     width: "100%",
@@ -103,6 +108,12 @@ export const styles = stylex.create({
     [":hover"]: {
       backgroundColor: "rgba(46,50,56,.09)",
     },
+  },
+  select$option$disabled: {
+    cursor: "not-allowed",
+  },
+  select$option$selected: {
+    fontWeight: 600,
   },
   select$option$text: {},
 });

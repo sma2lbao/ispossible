@@ -20,7 +20,7 @@ type Story = StoryObj<typeof meta>;
 
 export const 基本使用 = () => {
   return (
-    <Select style={{ width: "320px" }}>
+    <Select style={{ width: "320px" }} placeholder="请选择">
       <Select.Option value="ui">Design UI</Select.Option>
       <Select.Option value="core">Design Core</Select.Option>
       <Select.Option value="pro">Design Pro</Select.Option>

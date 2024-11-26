@@ -1,6 +1,32 @@
 import { StyleXStyles } from "@stylexjs/stylex";
 
+export type SelectValueType = number | string | undefined;
+
+export interface DisplayValueType {
+  key?: React.Key;
+
+  value?: SelectValueType;
+
+  label?: React.ReactNode;
+
+  disabled?: boolean;
+}
+
 export interface SelectProps {
+  placeholder?: string;
+
+  /**
+   * 指定默认选中的条目
+   */
+  defaultValue?: SelectValueType;
+
+  /**
+   * 指定当前选中的条目，多选时为一个数组。
+   */
+  value?: SelectValueType;
+
+  clearable?: boolean;
+
   /**
    * 前缀
    */
@@ -15,11 +41,16 @@ export interface SelectProps {
 
   className?: string;
 
+  /**
+   * 是否禁用
+   */
   disabled?: boolean;
 
   loading?: boolean;
 
   children?: React.ReactNode;
+
+  onChange?: (nextValue: SelectValueType) => void;
 }
 
 export interface SelectOptionProps {
@@ -36,7 +67,7 @@ export interface SelectOptionProps {
   /**
    * 属性值
    */
-  value?: string | number;
+  value: string | number;
 
   style?: React.CSSProperties;
 
@@ -46,5 +77,13 @@ export interface SelectOptionProps {
 
   children?: React.ReactNode;
 
+  key?: React.Key;
+
   [key: string]: any;
+}
+
+export interface SelectContextProps {
+  onSelectOption: (option: SelectOptionProps) => void;
+
+  value: SelectValueType;
 }
