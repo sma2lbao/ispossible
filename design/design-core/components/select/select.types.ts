@@ -1,4 +1,26 @@
-export interface SelectProps {}
+import { StyleXStyles } from "@stylexjs/stylex";
+
+export interface SelectProps {
+  /**
+   * 前缀
+   */
+  prefix?: React.ReactNode;
+
+  /**
+   * 后缀
+   */
+  suffix?: React.ReactNode;
+
+  style?: React.CSSProperties;
+
+  className?: string;
+
+  disabled?: boolean;
+
+  loading?: boolean;
+
+  children?: React.ReactNode;
+}
 
 export interface SelectOptionProps {
   /**
@@ -15,4 +37,14 @@ export interface SelectOptionProps {
    * 属性值
    */
   value?: string | number;
+
+  style?: React.CSSProperties;
+
+  stylex?: StyleXStyles;
+
+  className?: string;
+
+  children?: React.ReactNode;
+
+  [key: string]: any;
 }

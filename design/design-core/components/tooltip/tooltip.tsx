@@ -36,7 +36,7 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
   const [position, setPosition] = useState<{ top: number; left: number }>();
   const [visibleInner, setVisibleInner] = useState<boolean>(false);
 
-  const child: React.ReactElement = React.isValidElement(children) ? (
+  const child = React.isValidElement(children) ? (
     children
   ) : (
     <React.Fragment>{children}</React.Fragment>
@@ -156,7 +156,7 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
   return (
     <React.Fragment>
       {React.cloneElement(child, {
-        ref: mergeRefs(child.props?.ref, triggerRef),
+        ref: mergeRefs((child as any)?.ref, triggerRef),
         onMouseEnter: mergeEvents(
           child.props?.onMouseEnter,
           trigger === "hover" ? handleOpenPopover : noop
