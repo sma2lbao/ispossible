@@ -31,4 +31,5 @@ export { List } from "./list";
 export * from "./grid";
 export * from "./image";
 export * from "./select";
+export * from "./upload";
 export { useTokens, type Tokens } from "../themes/use-tokens";
