@@ -30,4 +30,5 @@ export { Layout } from "./layout";
 export { List } from "./list";
 export * from "./grid";
 export * from "./image";
+export * from "./select";
 export { useTokens, type Tokens } from "../themes/use-tokens";

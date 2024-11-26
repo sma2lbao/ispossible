@@ -53,6 +53,7 @@ export const navConfig: NavConfigItemType[] = [
         text: "Checkbox 多选框",
       },
       { itemKey: "input", path: "input-输入框--docs", text: "Input 输入框" },
+      { itemKey: "select", path: "select-选择器--docs", text: "Select 选择器" },
       { itemKey: "radio", path: "radio-单选框--docs", text: "Radio 单选框" },
       { itemKey: "switch", path: "switch-开关--docs", text: "Switch 开关" },
     ],

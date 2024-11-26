@@ -14,6 +14,7 @@ import { calculatePosition } from "./utils";
 import { styles, light } from "./tooltip.stylex";
 
 export const Tooltip: React.FC<TooltipProps> = (props) => {
+  const isControl = "visible" in props && props.trigger === "custom";
   const {
     title,
     children,
@@ -34,15 +35,19 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
   const openTimer = useRef<NodeJS.Timeout | null>(null);
   const closeTimer = useRef<NodeJS.Timeout | null>(null);
   const [position, setPosition] = useState<{ top: number; left: number }>();
-  const [visibleInner, setVisibleInner] = useState<boolean>(false);
+  const [visibleInner, setVisibleInner] = useState<boolean>(visible);
 
-  const child: React.ReactElement = React.isValidElement(children) ? (
+  const child = React.isValidElement(children) ? (
     children
   ) : (
     <React.Fragment>{children}</React.Fragment>
   );
 
+  /**
+   * 打开弹窗
+   */
   const handleOpenPopover = () => {
+    if (isControl) return;
     if (closeTimer.current) {
       clearTimeout(closeTimer.current);
     }
@@ -51,15 +56,23 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     }, enterDelay);
   };
 
+  /**
+   * 关闭弹窗
+   */
   const handleClosePopover = () => {
+    if (isControl) return;
     closeTimer.current = setTimeout(() => {
       setVisibleInner(false);
     }, leaveDelay);
   };
 
-  // 鼠标移入弹窗
+  /**
+   * 鼠标移入弹窗
+   */
   const handleEnterPopover = () => {
+    if (isControl) return;
     if (closeTimer.current) {
+      // 需要清除关闭回调
       clearTimeout(closeTimer.current);
     }
     setVisibleInner(true);
@@ -67,7 +80,9 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
 
   // 鼠标移出弹窗
   const handleLeavePopover = () => {
-    handleClosePopover();
+    if (trigger === "hover") {
+      handleClosePopover();
+    }
   };
 
   const handleOutside = useCallback((event: MouseEvent) => {
@@ -75,7 +90,9 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     handleClosePopover();
   }, []);
 
-  // 更新位置
+  /**
+   * 更新位置
+   */
   const updatePosition = () => {
     const triggerRect = triggerRef.current?.getBoundingClientRect();
     if (tooltipRef.current && triggerRect) {
@@ -96,7 +113,9 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
     }
   };
 
-  // 当大小变化时更新位置
+  /**
+   * 当大小变化时更新位置
+   */
   const handleResize = () => {
     if (visibleInner) {
       updatePosition();
@@ -156,7 +175,7 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
   return (
     <React.Fragment>
       {React.cloneElement(child, {
-        ref: mergeRefs(child.props?.ref, triggerRef),
+        ref: mergeRefs((child as any)?.ref, triggerRef),
         onMouseEnter: mergeEvents(
           child.props?.onMouseEnter,
           trigger === "hover" ? handleOpenPopover : noop

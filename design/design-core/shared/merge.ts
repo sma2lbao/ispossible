@@ -21,8 +21,8 @@ export const mergeRefs = <T>(...refs: (Ref<T> | undefined)[]) => {
     refs.forEach((ref) => {
       if (typeof ref === "function") {
         ref(node); // 如果 ref 是回调形式，调用它
-      } else if (ref != null) {
-        // 如果是对象形式，则赋值给 current
+      } else if (ref && typeof ref === "object" && "current" in ref) {
+        // 如果是对象 ref（如 useRef 创建的），更新 current
         (ref as React.MutableRefObject<T | null>).current = node;
       }
     });
