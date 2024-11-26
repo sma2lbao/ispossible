@@ -1,3 +1,5 @@
+"use client";
+
 import { Select } from "./select";
 import { SelectOption } from "./select-option";
 
