@@ -44,9 +44,31 @@ export interface UploadProps {
    */
   withCredentials?: boolean;
 
-  beforeUpload?: () => void;
+  beforeUpload?: (file: File) => boolean | Promise<File>;
 
-  customRequest?: () => void;
+  customRequest?: (options: UploadRequestOptions) => void;
+
+  onChange?: (file: UploadFile, files: UploadFile[]) => void;
+
+  /**
+   * 点击清空时的回调
+   * @returns
+   */
+  onClear?: () => void;
+
+  onRemove?: (file: UploadFile) => void;
+
+  onRetry?: (file: UploadFile) => void;
+}
+
+export interface UploadFilesProps {
+  files: UploadFile[];
+
+  onClear?: () => void;
+
+  onRemove?: (file: UploadFile) => void;
+
+  onRetry?: (file: UploadFile) => void;
 }
 
 export interface UploadFile {
@@ -73,7 +95,7 @@ export interface UploadFile {
   /**
    * 上传状态
    */
-  status: "success" | "uploading" | "fail";
+  status: "success" | "uploading" | "fail" | "wait";
 
   /**
    * 唯一标识符，不设置时会自动生成
@@ -84,4 +106,30 @@ export interface UploadFile {
    * 下载地址
    */
   url?: string;
+}
+
+export interface UploadRequestOptions<T = any> {
+  action: string;
+
+  /**
+   * 请求方式
+   * @default POST
+   */
+  method?: string;
+
+  /**
+   * 发到后台的文件参数名
+   * @default file
+   */
+  filename?: string;
+
+  file: Blob | string | File;
+
+  withCredentials?: boolean;
+
+  onProgress?: (percent: number, e?: ProgressEvent) => void;
+
+  onError?: (e: ProgressEvent | Error, body?: T) => void;
+
+  onSuccess?: (body: T) => void;
 }

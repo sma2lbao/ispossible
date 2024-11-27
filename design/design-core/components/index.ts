@@ -32,4 +32,5 @@ export * from "./grid";
 export * from "./image";
 export * from "./select";
 export * from "./upload";
+export * from "./progress";
 export { useTokens, type Tokens } from "../themes/use-tokens";

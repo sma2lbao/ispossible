@@ -1,4 +1,4 @@
-// @ts-check
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const stylexPlugin = require("@stylexswc/nextjs-plugin");
 
 /** @type {import('next').NextConfig} */
@@ -6,7 +6,7 @@ const nextConfig = {
   pageExtensions: ["js", "jsx", "ts", "tsx"],
 };
 
-// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 module.exports = stylexPlugin({
   rootDir: __dirname,
   dev: process.env.NODE_ENV === "development",
