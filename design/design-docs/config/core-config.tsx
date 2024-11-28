@@ -48,6 +48,16 @@ export const navConfig: NavConfigItemType[] = [
     text: "表单类",
     items: [
       {
+        itemKey: "form",
+        path: "form-表单--docs",
+        text: "Form 表单",
+      },
+      {
+        itemKey: "upload",
+        path: "upload-上传--docs",
+        text: "Upload 上传",
+      },
+      {
         itemKey: "checkbox",
         path: "checkbox-多选框--docs",
         text: "Checkbox 多选框",
@@ -122,6 +132,11 @@ export const navConfig: NavConfigItemType[] = [
       { itemKey: "drawer", path: "drawer-抽屉--docs", text: "Drawer 抽屉" },
       { itemKey: "list", path: "list-列表--docs", text: "List 列表" },
       { itemKey: "image", path: "image-图片--docs", text: "Image 图片" },
+      {
+        itemKey: "progress",
+        path: "progress-进度条--docs",
+        text: "Progress 进度条",
+      },
     ],
   },
   {
