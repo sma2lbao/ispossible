@@ -44,6 +44,7 @@ export const styles = stylex.create({
   input$display$wrap: {
     display: "flex",
     alignItems: "center",
+    width: "100%",
   },
   input$display: (hasPrefix: boolean, hasSuffix: boolean) => ({
     height: "30px",
