@@ -6,7 +6,32 @@ import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
-  adapter: PrismaAdapter(prisma),
+  adapter: {
+    ...PrismaAdapter(prisma),
+    linkAccount: async (account) => {
+      const {
+        access_token: accessToken,
+        refresh_token: refreshToken,
+        id_token: idToken,
+        token_type: tokenType,
+        expires_at: expiresAt,
+        ...rest
+      } = account;
+
+      await prisma.account.create({
+        data: {
+          refreshToken,
+          accessToken,
+          idToken,
+          tokenType,
+          expiresAt,
+          ...rest,
+        },
+      });
+
+      return account;
+    },
+  },
   secret: "sma1lbao",
   session: { strategy: "jwt" },
 
