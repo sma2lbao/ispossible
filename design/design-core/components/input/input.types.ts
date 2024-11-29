@@ -5,6 +5,8 @@ export interface InputProps
     React.InputHTMLAttributes<HTMLInputElement>,
     "value" | "prefix" | "onChange" | "onBlur"
   > {
+  name?: string;
+
   /**
    * 前置标签
    */

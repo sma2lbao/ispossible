@@ -1,13 +1,12 @@
 "use client";
-import { Button, Form, Input, Upload, Toast } from "@design/core";
+import { Button, Form, Input, Upload, UploadFile } from "@design/core";
 import stylex from "@stylexjs/stylex";
-import useSWR from "swr";
 
 type FormData = {
   title: string;
   description?: string;
-  coverUrl?: string;
-  sourceUrl: string;
+  coverFiles?: UploadFile[];
+  sourceFiles: UploadFile[];
 };
 
 const styles = stylex.create({
@@ -20,20 +19,27 @@ const styles = stylex.create({
   },
 });
 
-const fetcher = () =>
-  fetch("/api/songs", { method: "POST" }).then((response) => response.json());
-
 function CreateSong() {
-  const { isLoading, mutate } = useSWR(null, fetcher, {
-    keepPreviousData: true,
-    onError: (error) => {
-      Toast.error(error?.message ?? "服务器繁忙~");
-    },
-  });
+  // const { isLoading, mutate } = useSWR(null, fetcher, {
+  //   keepPreviousData: true,
+  //   onError: (error) => {
+  //     Toast.error(error?.message ?? "服务器繁忙~");
+  //   },
+  // });
   const handleSubmit = (data: FormData) => {
-    console.log("data: ", data);
-    mutate(data);
-    fetch("/api/songs");
+    debugger;
+    const { title, description, sourceFiles, coverFiles } = data;
+    const songDTO = {
+      title,
+      description,
+      sourceUrl: sourceFiles[0].response
+        ? JSON.parse(sourceFiles[0].response)?.data?.url
+        : undefined,
+      coverUrl: coverFiles?.[0].response
+        ? JSON.parse(coverFiles[0].response)?.data?.url
+        : undefined,
+    };
+    console.log("songDTO: ", songDTO);
   };
 
   return (
@@ -45,19 +51,19 @@ function CreateSong() {
           required
           rules={{ required: { value: true, message: "请输入歌名" } }}
         >
-          <Input />
+          <Input placeholder="请输入歌名" />
         </Form.Field>
         <Form.Field label="歌曲描述" name="description">
           <Input />
         </Form.Field>
-        <Form.Field label="封面图片" name="coverUrl">
+        <Form.Field label="封面图片" name="coverFiles">
           <Upload action="/api/upload/files">
             <Button>点击上传</Button>
           </Upload>
         </Form.Field>
         <Form.Field
           label="源文件"
-          name="sourceUrl"
+          name="sourceFiles"
           required
           rules={{ required: "请上传源文件" }}
         >
@@ -66,9 +72,7 @@ function CreateSong() {
           </Upload>
         </Form.Field>
 
-        <Button type="submit" loading={isLoading}>
-          创建
-        </Button>
+        <Button type="submit">创建</Button>
       </Form>
     </div>
   );

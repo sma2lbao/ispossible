@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import stylex from "@stylexjs/stylex";
 import { styles } from "./input.stylex";
 import type { InputProps } from "./input.types";
@@ -19,7 +19,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       defaultValue,
       value,
       onChange,
-      placeholder,
       ...rest
     } = props;
     const inputRef = useRef<HTMLInputElement>(null);
@@ -38,14 +37,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       setIsFocus(false);
     };
 
-    const handleMouseEnter: React.MouseEventHandler<HTMLInputElement> = (e) => {
-      // setIsHover(true);
-    };
-
-    const handleMouseLeave: React.MouseEventHandler<HTMLInputElement> = (e) => {
-      // setIsHover(false);
-    };
-
     const handleWrapEnter = () => {
       setIsHover(true);
     };
@@ -56,9 +47,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
       const newValue = e.target.value;
-      if (!isControl) {
-        setRawValue(newValue);
-      }
+      setRawValue(newValue);
       onChange?.(newValue);
     };
 
@@ -69,10 +58,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     };
 
     useEffect(() => {
-      if (isControl) {
+      if (isControl && rawValue !== value) {
         setRawValue(value || "");
       }
-    }, [value]);
+    }, [value, rawValue]);
 
     return (
       <div
@@ -111,8 +100,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             onFocus={handleFocus}
             onBlur={handleBlur}
             onChange={handleChange}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
           />
           {isClearable ? (
             <div {...stylex.props(styles.input$clear)} onClick={handleClear}>

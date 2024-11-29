@@ -1,4 +1,6 @@
 export interface UploadProps {
+  name?: string;
+
   /**
    * html 原生属性，接受上传的文件类型。
    * accept 的值为你允许选择文件的MIME types 字符串或文件后缀（.jpg等）
@@ -59,6 +61,8 @@ export interface UploadProps {
   onRemove?: (file: UploadFile) => void;
 
   onRetry?: (file: UploadFile) => void;
+
+  onBlur?: (e: React.FocusEvent<HTMLDivElement>) => void;
 }
 
 export interface UploadFilesProps {
@@ -106,6 +110,11 @@ export interface UploadFile {
    * 下载地址
    */
   url?: string;
+
+  /**
+   * 上传成功后的response
+   */
+  response?: any;
 }
 
 export interface UploadRequestOptions<T = any> {
