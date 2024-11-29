@@ -9,7 +9,7 @@ export interface UploadProps {
    * 发到后台的文件参数名
    * @default 'file'
    */
-  name?: string;
+  filename?: string;
 
   /**
    * 上传的地址

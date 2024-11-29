@@ -54,17 +54,21 @@ model Account {
 }
 
 model Song {
-  id        Int      @id @default(autoincrement())
-  title     String
-  duration  Int /// 持续时间，单位为秒
-  lyrics    String? /// 歌词
+  id          Int     @id @default(autoincrement())
+  title       String /// 歌曲名
+  description String // 描述
+  sourceUrl   String  @map("source_url") /// 源文件
+  coverUrl    String? @map("cover_url") /// 封面图片
+  duration    Int? /// 持续时间，单位为秒
+  lyrics      String? /// 歌词
+
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  artistId Int    @map("artist_id")
-  artist   Artist @relation(fields: [artistId], references: [id])
-  albumId  Int?   @map("album_id")
-  album    Album? @relation(fields: [albumId], references: [id])
+  artistId Int?    @map("artist_id")
+  artist   Artist? @relation(fields: [artistId], references: [id])
+  albumId  Int?    @map("album_id")
+  album    Album?  @relation(fields: [albumId], references: [id])
 
   playlists PlaylistSong[]
 

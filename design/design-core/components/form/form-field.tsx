@@ -17,7 +17,7 @@ export function FormField<T extends FieldValues>(props: FormFieldProps<T>) {
 
   const renderChildren = () => {
     const type = (children as React.ReactElement)?.type;
-    if (type === "input") {
+    if (typeof type === "string") {
       const registerReturn = register(name, { ...rules });
 
       return React.cloneElement(children as React.ReactElement, {

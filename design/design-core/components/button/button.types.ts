@@ -4,15 +4,9 @@ type ButtonTheme = "solid" | "ghost" | "light" | "outline";
 
 type HostHTMLButtonProps = Omit<
   React.ButtonHTMLAttributes<HTMLElement>,
-  "type" | "style"
+  "style"
 >;
 export interface ButtonProps extends HostHTMLButtonProps {
-  /**
-   * 设置按钮类型
-   * @default primary
-   */
-  type?: "primary" | "secondary";
-
   /**
    * 将按钮设置为块级按钮
    * @default false

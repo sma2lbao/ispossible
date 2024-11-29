@@ -13,7 +13,7 @@ import { xhrRequest } from "./upload.xhr";
 export const Upload: React.FC<UploadProps> = (props) => {
   const {
     action,
-    name = "file",
+    filename = "file",
     disabled,
     accept,
     files,
@@ -118,7 +118,7 @@ export const Upload: React.FC<UploadProps> = (props) => {
 
     if (!action || !file.instance) return;
     const options: UploadRequestOptions = {
-      filename: name,
+      filename,
       action,
       file: file.instance!,
       withCredentials,

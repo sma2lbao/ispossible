@@ -10,7 +10,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const {
       children,
       block = false,
-      type = "primary",
       color,
       theme = "light",
       disabled = false,

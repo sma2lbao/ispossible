@@ -25,7 +25,8 @@
     "cos-js-sdk-v5": "~1.8.6",
     "qcloud-cos-sts": "~3.1.1",
     "minio": "~8.0.2",
-    "dayjs": "~1.11.13"
+    "dayjs": "~1.11.13",
+    "swr": "~2.2.5"
   },
   "devDependencies": {
     "typescript": "^5",
