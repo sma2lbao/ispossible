@@ -23,7 +23,9 @@
     "@stylexswc/nextjs-plugin": "~0.4.2",
     "@stylexswc/rs-compiler": "~0.4.2",
     "cos-js-sdk-v5": "~1.8.6",
-    "qcloud-cos-sts": "~3.1.1"
+    "qcloud-cos-sts": "~3.1.1",
+    "minio": "~8.0.2",
+    "dayjs": "~1.11.13"
   },
   "devDependencies": {
     "typescript": "^5",
