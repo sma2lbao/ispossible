@@ -1,5 +1,6 @@
 "use client";
-import { Button, Form, Input, Upload, UploadFile } from "@design/core";
+import useSWRMutation from "swr/mutation";
+import { Button, Form, Input, Toast, Upload, UploadFile } from "@design/core";
 import stylex from "@stylexjs/stylex";
 
 type FormData = {
@@ -7,6 +8,13 @@ type FormData = {
   description?: string;
   coverFiles?: UploadFile[];
   sourceFiles: UploadFile[];
+};
+
+type SongDTO = {
+  title: string;
+  description?: string;
+  coverUrl?: string;
+  sourceUrl: string;
 };
 
 const styles = stylex.create({
@@ -19,17 +27,26 @@ const styles = stylex.create({
   },
 });
 
+function fetcher(url: "/api/songs", { arg }: { arg: SongDTO }) {
+  return fetch(url, {
+    method: "POST",
+    body: JSON.stringify(arg),
+  }).then((res) => res.json());
+}
+
 function CreateSong() {
-  // const { isLoading, mutate } = useSWR(null, fetcher, {
-  //   keepPreviousData: true,
-  //   onError: (error) => {
-  //     Toast.error(error?.message ?? "服务器繁忙~");
-  //   },
-  // });
+  const { trigger } = useSWRMutation("/api/songs", fetcher, {
+    onError: (error) => {
+      Toast.error(error?.message ?? "服务器繁忙~");
+    },
+    onSuccess: () => {
+      Toast.success("创建成功");
+    },
+  });
   const handleSubmit = (data: FormData) => {
     debugger;
     const { title, description, sourceFiles, coverFiles } = data;
-    const songDTO = {
+    const songDTO: SongDTO = {
       title,
       description,
       sourceUrl: sourceFiles[0].response
@@ -39,7 +56,7 @@ function CreateSong() {
         ? JSON.parse(coverFiles[0].response)?.data?.url
         : undefined,
     };
-    console.log("songDTO: ", songDTO);
+    trigger(songDTO);
   };
 
   return (
