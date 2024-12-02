@@ -27,7 +27,14 @@ const justifyConfig: Record<
 };
 
 export const Row: React.FC<RowProps> = (props) => {
-  const { children, gutter = 0, type, align, justify } = props;
+  const {
+    children,
+    gutter = 0,
+    type,
+    align,
+    justify,
+    stylex: customStylex,
+  } = props;
   const memoGutter: [number, number] =
     Array.isArray(gutter) && gutter.length === 2
       ? gutter
@@ -49,7 +56,8 @@ export const Row: React.FC<RowProps> = (props) => {
           type === "flex" &&
             justify &&
             styles.row$flex$justify(justifyConfig[justify]),
-          styles.row$gutter(memoGutter)
+          styles.row$gutter(memoGutter),
+          customStylex
         )}
       >
         {children}

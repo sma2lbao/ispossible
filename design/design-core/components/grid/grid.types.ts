@@ -1,3 +1,5 @@
+import { StyleXStyles } from "@stylexjs/stylex";
+
 export type RowAlignType = "top" | "middle" | "bottom";
 export type RowJustifyType =
   | "start"
@@ -29,6 +31,8 @@ export interface RowProps {
   justify?: RowJustifyType;
 
   children?: React.ReactNode;
+
+  stylex?: StyleXStyles;
 }
 
 export interface ColProps {
@@ -57,6 +61,8 @@ export interface ColProps {
   push?: SpanNumber;
 
   children?: React.ReactNode;
+
+  stylex?: StyleXStyles;
 }
 
 export interface GridContextProps {

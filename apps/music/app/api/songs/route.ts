@@ -15,9 +15,13 @@ export async function POST(request: Request) {
   const newSong = await prisma.song.create({
     data: {
       title: payload.title,
-      duration: payload.duration,
+      description: payload.description ?? "",
+      sourceUrl: payload.sourceUrl,
+      coverUrl: payload.coverUrl,
+      duration: payload.duration ?? 0,
       lyrics: payload.lyrics,
       artistId: payload.artistId,
+      albumId: payload.albumId,
     },
   });
 

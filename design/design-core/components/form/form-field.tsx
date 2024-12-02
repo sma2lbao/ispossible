@@ -1,9 +1,17 @@
 import React from "react";
 import type { FormFieldProps } from "./form.types";
-import { Controller, FieldValues, useFormContext } from "react-hook-form";
+import {
+  type FieldValues,
+  type Path,
+  type PathValue,
+  Controller,
+  useFormContext,
+} from "react-hook-form";
 import { x } from "../../shared";
 import { styles } from "./form.stylex";
 import "@design/icon/exclamation-circle-filled";
+import { Input } from "../input";
+import { Upload, UploadFile } from "../upload";
 
 export function FormField<T extends FieldValues>(props: FormFieldProps<T>) {
   const { required, label, name, rules, children } = props;
@@ -11,13 +19,14 @@ export function FormField<T extends FieldValues>(props: FormFieldProps<T>) {
     formState: { errors },
     register,
     control,
+    setValue,
   } = useFormContext<T>();
 
   const isError = name in errors;
 
   const renderChildren = () => {
     const type = (children as React.ReactElement)?.type;
-    if (type === "input") {
+    if (typeof type === "string") {
       const registerReturn = register(name, { ...rules });
 
       return React.cloneElement(children as React.ReactElement, {
@@ -31,8 +40,49 @@ export function FormField<T extends FieldValues>(props: FormFieldProps<T>) {
         control={control}
         rules={rules}
         render={(option) => {
-          return React.cloneElement(children as React.ReactElement, {
-            ...option.field,
+          const { name, value, disabled, ref, onChange, onBlur } = option.field;
+          const element = children as React.ReactElement;
+          if (element.type === Input) {
+            return React.cloneElement(element, {
+              name,
+              value,
+              disabled: disabled ?? element.props.disabled,
+              ref,
+              onBlur,
+              onChange: (value: string) => {
+                setValue(name, value as PathValue<T, Path<T>>);
+              },
+            });
+          }
+
+          if (element.type === Upload) {
+            return React.cloneElement(element, {
+              name,
+              files: value,
+              disabled,
+              ref,
+              onChange: (_: UploadFile, files: UploadFile[]) => {
+                setValue(name, files as PathValue<T, Path<T>>);
+              },
+              onClear: () => {
+                setValue(name, [] as PathValue<T, Path<T>>);
+              },
+              onRetry: (_: UploadFile, files: UploadFile[]) => {
+                setValue(name, files as PathValue<T, Path<T>>);
+              },
+              onRemove: (_: UploadFile, files: UploadFile[]) => {
+                setValue(name, files as PathValue<T, Path<T>>);
+              },
+            });
+          }
+
+          return React.cloneElement(element, {
+            name,
+            value,
+            disabled,
+            ref,
+            onChange,
+            onBlur,
           });
         }}
       />

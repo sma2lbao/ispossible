@@ -6,6 +6,7 @@ import { MINIO_BUCKET } from "@/constants";
 export async function POST(request: NextRequest) {
   const formData = await request.formData();
   const file = formData.get("file") as File;
+
   let filename = file.name;
   const filenameParts = filename.match(/^(.*?)(\.[^\.]+)$/);
   if (filenameParts) {
@@ -13,7 +14,7 @@ export async function POST(request: NextRequest) {
       filenameParts?.[2]
     }`;
   }
-  const objectId = "songs/" + filename;
+  const objectId = "files/" + filename;
 
   const buffer = Buffer.from(await file.arrayBuffer());
 

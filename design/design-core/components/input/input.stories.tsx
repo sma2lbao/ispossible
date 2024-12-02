@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Input } from "./";
 import { Space } from "../space";
 import "@design/icon/user";
@@ -29,6 +29,21 @@ export const 基本用法 = () => (
     </Space>
   </div>
 );
+
+export const 受控 = () => {
+  const [value, setValue] = useState<string>("123");
+
+  return (
+    <div>
+      <Input
+        value={value}
+        onChange={(value) => {
+          setValue(value);
+        }}
+      />
+    </div>
+  );
+};
 
 export const 禁用 = () => {
   return (

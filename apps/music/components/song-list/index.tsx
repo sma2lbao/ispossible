@@ -2,32 +2,22 @@
 import React from "react";
 import { List } from "@design/core";
 import SongListItem from "./song-list-item";
+import type { Song } from "@prisma/client";
 
-export interface SongListProps {}
+export interface SongListProps {
+  songs: Song[];
+}
 
 const SongList: React.FC<SongListProps> = (props) => {
-  const {} = props;
+  const { songs } = props;
 
   return (
     <List>
-      <List.Item>
-        <SongListItem />
-      </List.Item>
-      <List.Item>
-        <SongListItem />
-      </List.Item>
-      <List.Item>
-        <SongListItem />
-      </List.Item>
-      <List.Item>
-        <SongListItem />
-      </List.Item>
-      <List.Item>
-        <SongListItem />
-      </List.Item>
-      <List.Item>
-        <SongListItem />
-      </List.Item>
+      {songs.map((item) => (
+        <List.Item key={item.id}>
+          <SongListItem song={item} />
+        </List.Item>
+      ))}
     </List>
   );
 };

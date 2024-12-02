@@ -3,8 +3,10 @@ import { StyleXStyles } from "@stylexjs/stylex";
 export interface InputProps
   extends Omit<
     React.InputHTMLAttributes<HTMLInputElement>,
-    "value" | "prefix" | "onChange"
+    "value" | "prefix" | "onChange" | "onBlur"
   > {
+  name?: string;
+
   /**
    * 前置标签
    */
@@ -49,5 +51,7 @@ export interface InputProps
 
   stylex?: StyleXStyles;
 
-  onChange?: (value?: string) => void;
+  onChange?: (value: string) => void;
+
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
