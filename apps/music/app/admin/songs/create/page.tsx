@@ -44,9 +44,8 @@ function CreateSong() {
     },
   });
   const handleSubmit = (data: FormData) => {
-    debugger;
     const { title, description, sourceFiles, coverFiles } = data;
-    const songDTO: SongDTO = {
+    const newSong: SongDTO = {
       title,
       description,
       sourceUrl: sourceFiles[0].response
@@ -56,7 +55,7 @@ function CreateSong() {
         ? JSON.parse(coverFiles[0].response)?.data?.url
         : undefined,
     };
-    trigger(songDTO);
+    trigger(newSong);
   };
 
   return (

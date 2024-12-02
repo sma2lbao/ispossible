@@ -23,9 +23,10 @@ model User {
   image         String?
   accounts      Account[]
 
-  createdAt DateTime   @default(now()) @map("created_at")
-  updatedAt DateTime   @updatedAt @map("updated_at")
-  Playlist  Playlist[]
+  createdAt DateTime       @default(now()) @map("created_at")
+  updatedAt DateTime       @updatedAt @map("updated_at")
+  playlists Playlist[] /// 我的歌单
+  favorites FavoriteSong[] /// 我喜欢的歌曲
 
   @@map("t_user")
 }
@@ -53,6 +54,21 @@ model Account {
   @@map("t_account")
 }
 
+model FavoriteSong {
+  id Int @id @default(autoincrement())
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  songId Int  @map("song_id")
+  song   Song @relation(fields: [songId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at") /// 用户标记喜欢的时间
+
+  @@unique([userId, songId]) /// 保证同一用户不会重复喜欢同一首歌曲
+  @@map("t_favorite_song")
+}
+
 model Song {
   id          Int     @id @default(autoincrement())
   title       String /// 歌曲名
@@ -70,7 +86,8 @@ model Song {
   albumId  Int?    @map("album_id")
   album    Album?  @relation(fields: [albumId], references: [id])
 
-  playlists PlaylistSong[]
+  playlists   PlaylistSong[]
+  favoritedBy FavoriteSong[]
 
   @@map("t_song")
 }
@@ -111,6 +128,7 @@ model Playlist {
   id          Int      @id @default(autoincrement())
   name        String /// 播放列表名称
   description String? /// 描述，可选
+  coverUrl    String? /// 封面
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
 
