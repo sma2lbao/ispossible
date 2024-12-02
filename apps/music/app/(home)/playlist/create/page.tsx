@@ -63,7 +63,12 @@ export default function CreatePlaylist() {
   return (
     <div {...stylex.props(styles.content)}>
       <Form<FormData> onSubmit={handleSumbit}>
-        <Form.Field label="歌单名" name="name">
+        <Form.Field
+          label="歌单名"
+          name="name"
+          required
+          rules={{ required: { value: true, message: "请输入歌单名" } }}
+        >
           <Input />
         </Form.Field>
         <Form.Field label="简介" name="description">

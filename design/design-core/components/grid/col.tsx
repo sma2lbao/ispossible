@@ -6,7 +6,14 @@ import { GridContext } from "./grid.context";
 
 export const Col: React.FC<ColProps> = (props) => {
   const context = useContext(GridContext);
-  const { span = 0, offset = 0, pull = 0, push = 0, children } = props;
+  const {
+    span = 0,
+    offset = 0,
+    pull = 0,
+    push = 0,
+    children,
+    stylex: customStylex,
+  } = props;
   const gutter = context?.gutter ?? [0, 0];
 
   return (
@@ -17,7 +24,8 @@ export const Col: React.FC<ColProps> = (props) => {
         styles.col$span(span),
         styles.col$offset(offset),
         styles.col$pull(pull),
-        styles.col$push(push)
+        styles.col$push(push),
+        customStylex
       )}
     >
       {children}

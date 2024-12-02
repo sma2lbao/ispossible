@@ -60,9 +60,17 @@ export function FormField<T extends FieldValues>(props: FormFieldProps<T>) {
               name,
               files: value,
               disabled,
-              onBlur,
               ref,
               onChange: (_: UploadFile, files: UploadFile[]) => {
+                setValue(name, files as PathValue<T, Path<T>>);
+              },
+              onClear: () => {
+                setValue(name, [] as PathValue<T, Path<T>>);
+              },
+              onRetry: (_: UploadFile, files: UploadFile[]) => {
+                setValue(name, files as PathValue<T, Path<T>>);
+              },
+              onRemove: (_: UploadFile, files: UploadFile[]) => {
                 setValue(name, files as PathValue<T, Path<T>>);
               },
             });

@@ -1,6 +1,6 @@
 import React from "react";
 import type { UploadFile, UploadFilesProps } from "./upload.types";
-import { x } from "../../shared";
+import { formatBytes, x } from "../../shared";
 import { styles } from "./upload.stylex";
 import { Button } from "../button";
 import "@design/icon/close";
@@ -51,11 +51,13 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
                 <span {...x(styles.upload$files$item$info$name)}>
                   {file.name}
                 </span>
-                <span>
-                  <span {...x(styles.upload$files$item$info$size)}>
-                    {file.size}
+                {file.size ? (
+                  <span>
+                    <span {...x(styles.upload$files$item$info$size)}>
+                      {formatBytes(file.size)}
+                    </span>
                   </span>
-                </span>
+                ) : null}
               </div>
               {file.status === "uploading" ? (
                 <Progress

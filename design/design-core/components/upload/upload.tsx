@@ -183,12 +183,11 @@ export const Upload = React.forwardRef<HTMLInputElement, UploadProps>(
      * @returns
      */
     const handleRemove = (file: UploadFile) => {
-      onRemove?.(file);
-      if (isControl) return;
       const nextRawFiles = rawFiles.slice();
       const index = nextRawFiles.findIndex((item) => item.uid === file.uid);
       nextRawFiles.splice(index, 1);
-      setRawFiles(nextRawFiles);
+      !isControl ? setRawFiles(nextRawFiles) : null;
+      onRemove?.(file, nextRawFiles);
     };
 
     /**
@@ -197,8 +196,6 @@ export const Upload = React.forwardRef<HTMLInputElement, UploadProps>(
      * @returns
      */
     const handleRetry = (file: UploadFile) => {
-      onRetry?.(file);
-      if (isControl) return;
       const nextRawFiles = rawFiles.slice();
       const index = nextRawFiles.findIndex((item) => item.uid === file.uid);
       const nextFile: UploadFile = {
@@ -207,7 +204,8 @@ export const Upload = React.forwardRef<HTMLInputElement, UploadProps>(
         percent: 0,
       };
       nextRawFiles[index] = nextFile;
-      setRawFiles(nextRawFiles);
+      !isControl ? setRawFiles(nextRawFiles) : null;
+      onRetry?.(file, nextRawFiles);
     };
 
     const reset = () => {

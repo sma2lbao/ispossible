@@ -1,5 +1,5 @@
 import stylex from "@stylexjs/stylex";
-import { RowAlignType, RowJustifyType, SpanNumber } from "./grid.types";
+import { SpanNumber } from "./grid.types";
 
 export const styles = stylex.create({
   row: {
@@ -9,7 +9,7 @@ export const styles = stylex.create({
     height: "auto",
     marginRight: 0,
     marginLeft: 0,
-    zoom: 1,
+    zoom: `${1}`,
     textAlign: "center",
 
     ["::before"]: {
@@ -39,11 +39,6 @@ export const styles = stylex.create({
   col: {
     display: "block",
     boxSizing: "border-box",
-
-    minHeight: "30px",
-    lineHeight: "30px",
-    backgroundColor: "rgba(234,245,255, 1)",
-    outline: "1px solid rgba(152,205,253, 1)",
   },
 
   col$gutter: (gutter: [number, number]) => ({

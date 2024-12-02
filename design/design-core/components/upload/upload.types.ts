@@ -58,9 +58,9 @@ export interface UploadProps {
    */
   onClear?: () => void;
 
-  onRemove?: (file: UploadFile) => void;
+  onRemove?: (file: UploadFile, files: UploadFile[]) => void;
 
-  onRetry?: (file: UploadFile) => void;
+  onRetry?: (file: UploadFile, files: UploadFile[]) => void;
 
   onBlur?: (e: React.FocusEvent<HTMLDivElement>) => void;
 }

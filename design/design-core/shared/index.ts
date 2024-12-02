@@ -11,3 +11,5 @@ export const noop = () => {};
 export * from "./merge";
 
 export * from "./merge-stylex";
+
+export * from "./format";
