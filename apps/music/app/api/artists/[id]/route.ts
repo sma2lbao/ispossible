@@ -8,7 +8,7 @@ export async function GET(
   const id = (await params).id;
   const artist = await prisma.artist.findUniqueOrThrow({
     where: {
-      id: +id,
+      id,
     },
   });
 
@@ -23,7 +23,7 @@ export async function PUT(
   const payload = await request.json();
   const newArtist = await prisma.artist.update({
     where: {
-      id: +id,
+      id,
     },
     data: {
       name: payload.name,
@@ -42,7 +42,7 @@ export async function DELETE(
   const id = (await params).id;
   await prisma.artist.delete({
     where: {
-      id: +id,
+      id,
     },
   });
 

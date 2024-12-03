@@ -8,7 +8,7 @@ export async function GET(
   const id = (await params).id;
   const song = await prisma.song.findUniqueOrThrow({
     where: {
-      id: +id,
+      id,
     },
   });
 
@@ -23,7 +23,7 @@ export async function PUT(
   const payload = await request.json();
   const newSong = await prisma.song.update({
     where: {
-      id: +id,
+      id,
     },
     data: {
       title: payload.title,
@@ -42,7 +42,7 @@ export async function DELETE(
   const id = (await params).id;
   await prisma.song.delete({
     where: {
-      id: +id,
+      id,
     },
   });
 
