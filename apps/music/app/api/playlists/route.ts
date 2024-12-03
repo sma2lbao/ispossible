@@ -2,6 +2,14 @@ import prisma from "@/database";
 import { auth } from "@/shared/auth";
 import { NextRequest, NextResponse } from "next/server";
 
+export async function GET() {
+  const playlists = await prisma.playlist.findMany({
+    take: 10,
+  });
+
+  return NextResponse.json({ data: playlists });
+}
+
 export async function POST(request: NextRequest) {
   const payload = await request.json();
   const session = await auth();

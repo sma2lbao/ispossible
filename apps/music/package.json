@@ -26,7 +26,8 @@
     "qcloud-cos-sts": "~3.1.1",
     "minio": "~8.0.2",
     "dayjs": "~1.11.13",
-    "swr": "~2.2.5"
+    "swr": "~2.2.5",
+    "zustand": "~5.0.1"
   },
   "devDependencies": {
     "typescript": "^5",

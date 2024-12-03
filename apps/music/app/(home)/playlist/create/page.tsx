@@ -37,7 +37,7 @@ const fetcher = (url: string, { arg }: { arg: PlaylistDTO }) => {
 };
 
 export default function CreatePlaylist() {
-  const { trigger } = useSWRMutation("/api/playlist", fetcher, {
+  const { trigger } = useSWRMutation("/api/playlists", fetcher, {
     onError: (error) => {
       Toast.error(error?.message ?? "服务器繁忙~");
     },

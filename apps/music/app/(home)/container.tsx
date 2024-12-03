@@ -3,8 +3,8 @@
 import { Layout } from "@design/core";
 import stylex from "@stylexjs/stylex";
 import Navigation from "@/components/navigation";
-import MiniPlayer from "@/components/mini-player";
 import Topbar from "@/components/topbar";
+import AudioPlayer from "./components/audio-player";
 
 export interface ContinerProps {
   children?: React.ReactNode;
@@ -12,16 +12,15 @@ export interface ContinerProps {
 
 const styles = stylex.create({
   root: {
-    minHeight: "100vh",
+    height: "100vh",
+    overflow: "hidden",
   },
   sider: {
     backgroundColor: "#fff",
     padding: 0,
+    overflowY: "auto",
   },
   playerContainer: {
-    position: "fixed",
-    bottom: 0,
-    left: 0,
     width: "100%",
     display: "flex",
     alignItems: "center",
@@ -32,22 +31,24 @@ export default function Continer(props: ContinerProps) {
   return (
     <Layout stylex={styles.root}>
       <Layout.Content>
-        <Layout>
-          <Layout.Sider sticky width={280} stylex={styles.sider}>
+        <Layout style={{ height: "100%" }}>
+          <Layout.Sider width={280} stylex={styles.sider}>
             <Navigation />
           </Layout.Sider>
           <Layout.Content>
-            <Layout>
+            <Layout style={{ height: "100%" }}>
               <Layout.Header>
                 <Topbar />
               </Layout.Header>
-              <Layout.Content>{props.children}</Layout.Content>
+              <Layout.Content style={{ overflowY: "auto" }}>
+                {props.children}
+              </Layout.Content>
             </Layout>
           </Layout.Content>
         </Layout>
       </Layout.Content>
       <Layout.Footer stylex={styles.playerContainer}>
-        <MiniPlayer />
+        <AudioPlayer />
       </Layout.Footer>
     </Layout>
   );

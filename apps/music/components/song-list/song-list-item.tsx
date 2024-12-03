@@ -14,6 +14,8 @@ dayjs.extend(duration);
 
 export interface SongListItemProps {
   song: Song;
+
+  onPlay?: () => void;
 }
 
 const styles = stylex.create({
@@ -37,7 +39,7 @@ const styles = stylex.create({
 });
 
 const SongListItem: React.FC<SongListItemProps> = (props) => {
-  const { song } = props;
+  const { song, onPlay } = props;
 
   return (
     <div {...stylex.props(styles.item)}>
@@ -46,7 +48,11 @@ const SongListItem: React.FC<SongListItemProps> = (props) => {
       </div>
       <div {...stylex.props(styles.item$tools)}>
         <Space>
-          <Button theme="ghost" icon={<is-play-circle-filled />}></Button>
+          <Button
+            theme="ghost"
+            icon={<is-play-circle-filled />}
+            onClick={onPlay}
+          ></Button>
           <Button theme="ghost" icon={<is-heart-filled />}></Button>
           <Button theme="ghost" icon={<is-plus-circle />}></Button>
         </Space>

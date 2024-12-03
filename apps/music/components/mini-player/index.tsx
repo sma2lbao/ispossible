@@ -14,12 +14,14 @@ import "@design/icon/heart";
 dayjs.extend(duration);
 
 export interface MiniPlayerProps {
-  song?: {
-    title: string;
-    sourceUrl: string;
-    coverUrl?: string;
-    [key: string]: unknown;
-  };
+  song?: MiniSong;
+}
+
+export interface MiniSong {
+  title: string;
+  sourceUrl: string;
+  coverUrl?: string;
+  [key: string]: unknown;
 }
 
 const styles = stylex.create({
@@ -77,6 +79,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
   const [status, setStatus] = useState<AudioStatus>("loading");
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [rawSong, setRawSong] = useState<MiniSong | undefined>(undefined);
 
   const handlePlay = () => {
     audioRef.current?.play();
@@ -101,15 +104,14 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
   };
 
   useEffect(() => {
-    audioRef.current
-      ? (audioRef.current.src =
-          "/api/upload/files/files/t-rex-roar_20241202105921.mp3")
-      : null;
-  }, []);
-
-  useEffect(() => {
     console.log("status: ", status);
   }, [status]);
+
+  useEffect(() => {
+    if (song !== rawSong) {
+      setRawSong(song);
+    }
+  }, [song, rawSong]);
 
   return (
     <>
@@ -119,7 +121,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
             <Avatar src={song?.coverUrl} shape="square" size={56} />
             <div>
               <div>
-                <span>歌曲名</span>
+                <span>{rawSong?.title ?? "--"}</span>
                 <span>- 歌手名</span>
               </div>
               <div {...stylex.props(styles.songTools)}>
@@ -171,6 +173,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
 
       <audio
         ref={audioRef}
+        src={rawSong?.sourceUrl}
         controls={false}
         preload="auto"
         onPause={() => setStatus("pause")}

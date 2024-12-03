@@ -1,3 +1,4 @@
+import { PlayerStoreProvider } from "@/providers/player-store-provider";
 import Continer from "./container";
 
 export default function HomeLayout({
@@ -5,5 +6,9 @@ export default function HomeLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <Continer>{children}</Continer>;
+  return (
+    <PlayerStoreProvider>
+      <Continer>{children}</Continer>
+    </PlayerStoreProvider>
+  );
 }

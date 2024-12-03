@@ -1,6 +1,6 @@
-import PlaylistGrids from "@/components/playlist-grids";
-import RecentUpload from "./components/recent-upload";
 import stylex from "@stylexjs/stylex";
+import RecentUpload from "./components/recent-upload";
+import PopularPlaylists from "./components/popular-playlists";
 
 const styles = stylex.create({
   home: {
@@ -14,7 +14,7 @@ const styles = stylex.create({
 export default function Home() {
   return (
     <div {...stylex.props(styles.home)}>
-      <PlaylistGrids />
+      <PopularPlaylists />
       <RecentUpload />
     </div>
   );
