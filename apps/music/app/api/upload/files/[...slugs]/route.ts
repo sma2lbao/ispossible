@@ -13,25 +13,7 @@ export async function GET(
   const slugs = (await params).slugs;
   const id = slugs.join("/");
 
-  const stream = await minio.getObject(MINIO_BUCKET, id);
-  const readable = new ReadableStream({
-    start(controller) {
-      stream.on("data", (chunk) => {
-        controller.enqueue(chunk);
-      });
+  const url = await minio.presignedGetObject(MINIO_BUCKET, id, 3600);
 
-      stream.on("end", () => {
-        controller.close();
-      });
-
-      stream.on("error", (err) => {
-        controller.error(err);
-      });
-    },
-  });
-  return new NextResponse(readable, {
-    headers: {
-      "Content-Type": "application/octet-stream",
-    },
-  });
+  return NextResponse.redirect(url);
 }

@@ -2,10 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import minio from "@/shared/minio";
 import dayjs from "dayjs";
 import { MINIO_BUCKET } from "@/constants";
+import { auth } from "@/shared/auth";
 
 export async function POST(request: NextRequest) {
+  const session = await auth();
+  const userId = session?.user?.id ?? "anonymous";
   const formData = await request.formData();
   const file = formData.get("file") as File;
+  const mimetype = file.type.split("/")?.[0] ?? "file";
 
   let filename = file.name;
   const filenameParts = filename.match(/^(.*?)(\.[^\.]+)$/);
@@ -14,7 +18,7 @@ export async function POST(request: NextRequest) {
       filenameParts?.[2]
     }`;
   }
-  const objectId = "files/" + filename;
+  const objectId = `resources/${userId}/${mimetype}/${filename}`;
 
   const buffer = Buffer.from(await file.arrayBuffer());
 
