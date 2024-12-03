@@ -13,7 +13,7 @@ export async function DELETE(
   const deleteResult = await prisma.favoriteSong.deleteMany({
     where: {
       userId,
-      songId: Number(songId),
+      songId,
     },
   });
   if (deleteResult.count === 0) {
