@@ -25,6 +25,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
+      <meta
+        http-equiv="Content-Security-Policy"
+        content="upgrade-insecure-requests"
+      ></meta>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
       </body>
