@@ -4,17 +4,17 @@ import stylex from "@stylexjs/stylex";
 import { Button, Form, Input, Upload, UploadFile } from "@design/core";
 
 type FormData = {
-  name: string;
+  title: string;
 
-  bio?: string;
+  description?: string;
 
-  imageFiles?: UploadFile[];
+  coverFiles?: UploadFile[];
 };
 
-type ArtistDTO = {
-  name: string;
-  bio?: string;
-  imageUrl?: string;
+type AlbumDTO = {
+  title: string;
+  description?: string;
+  coverUrl?: string;
 };
 
 const styles = stylex.create({
@@ -27,45 +27,45 @@ const styles = stylex.create({
   },
 });
 
-const fetcher = (url: string, { arg }: { arg: ArtistDTO }) => {
+const fetcher = (url: string, { arg }: { arg: AlbumDTO }) => {
   return fetch(url, {
     method: "POST",
     body: JSON.stringify(arg),
   }).then((response) => response.json());
 };
 
-export default function CreateArtist() {
-  const { trigger } = useSWRMutation("/api/artists", fetcher, {});
+export default function CreateAlbum() {
+  const { trigger } = useSWRMutation("/api/albums", fetcher, {});
 
   const handleSubmit = (data: FormData) => {
-    const { name, bio, imageFiles } = data;
-    const newArtist: ArtistDTO = {
-      name,
-      bio,
-      imageUrl: imageFiles?.[0].response
-        ? JSON.parse(imageFiles[0].response)?.data?.url
+    const { title, description, coverFiles } = data;
+    const newAlbum: AlbumDTO = {
+      title,
+      description,
+      coverUrl: coverFiles?.[0].response
+        ? JSON.parse(coverFiles[0].response)?.data?.url
         : undefined,
     };
-    trigger(newArtist);
+    trigger(newAlbum);
   };
 
   return (
     <div {...stylex.props(styles.content)}>
       <Form<FormData> onSubmit={handleSubmit}>
-        <Form.Field<FormData>
-          label="歌手名"
-          name="name"
+        <Form.Field
+          label="专辑名"
+          name="title"
           required
           rules={{
-            required: { value: true, message: "请输入歌手名" },
+            required: { value: true, message: "请输入专辑名" },
           }}
         >
           <Input />
         </Form.Field>
-        <Form.Field<FormData> label="歌手简介" name="bio">
+        <Form.Field label="专辑简介" name="description">
           <Input />
         </Form.Field>
-        <Form.Field<FormData> label="歌手头像" name="imageFiles">
+        <Form.Field label="封面图片" name="coverFiles">
           <Upload action="/api/upload/files">
             <Button>点击上传</Button>
           </Upload>

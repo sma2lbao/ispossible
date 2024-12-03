@@ -7,15 +7,22 @@ import type { Song } from "@prisma/client";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 import "@design/icon/heart-filled";
+import "@design/icon/heart";
 import "@design/icon/plus-circle";
 import "@design/icon/play-circle-filled";
 
 dayjs.extend(duration);
 
 export interface SongListItemProps {
-  song: Song;
+  song: Song & {
+    isFavorited?: boolean;
+  };
 
   onPlay?: () => void;
+
+  onFavor?: () => void;
+
+  onUnfavor?: () => void;
 }
 
 const styles = stylex.create({
@@ -39,7 +46,7 @@ const styles = stylex.create({
 });
 
 const SongListItem: React.FC<SongListItemProps> = (props) => {
-  const { song, onPlay } = props;
+  const { song, onPlay, onFavor, onUnfavor } = props;
 
   return (
     <div {...stylex.props(styles.item)}>
@@ -52,9 +59,18 @@ const SongListItem: React.FC<SongListItemProps> = (props) => {
             theme="ghost"
             icon={<is-play-circle-filled />}
             onClick={onPlay}
-          ></Button>
-          <Button theme="ghost" icon={<is-heart-filled />}></Button>
-          <Button theme="ghost" icon={<is-plus-circle />}></Button>
+          />
+          {song.isFavorited ? (
+            <Button
+              theme="ghost"
+              icon={<is-heart-filled />}
+              onClick={onUnfavor}
+            />
+          ) : (
+            <Button theme="ghost" icon={<is-heart />} onClick={onFavor} />
+          )}
+
+          <Button theme="ghost" icon={<is-plus-circle />} />
         </Space>
       </div>
       <Typography variant="body" size="md" stylex={styles.item$album}>

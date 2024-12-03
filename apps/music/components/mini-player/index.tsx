@@ -99,6 +99,11 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
     setCurrentTime(audioRef.current?.currentTime ?? 0);
   };
 
+  const handleCanPlay = () => {
+    setStatus("ready");
+    audioRef.current?.play();
+  };
+
   const handleFavorite = () => {
     console.log("join");
   };
@@ -109,6 +114,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
 
   useEffect(() => {
     if (song !== rawSong) {
+      setCurrentTime(0);
       setRawSong(song);
     }
   }, [song, rawSong]);
@@ -179,7 +185,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
         onPause={() => setStatus("pause")}
         onPlay={() => setStatus("play")}
         onPlaying={() => setStatus("playing")}
-        onCanPlay={() => setStatus("ready")}
+        onCanPlay={handleCanPlay}
         onEnded={() => setStatus("ended")}
         onWaiting={() => setStatus("waiting")}
         onDurationChange={handleDurationChange}

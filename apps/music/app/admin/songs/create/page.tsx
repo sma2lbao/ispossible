@@ -27,12 +27,12 @@ const styles = stylex.create({
   },
 });
 
-function fetcher(url: "/api/songs", { arg }: { arg: SongDTO }) {
+const fetcher = (url: string, { arg }: { arg: SongDTO }) => {
   return fetch(url, {
     method: "POST",
     body: JSON.stringify(arg),
-  }).then((res) => res.json());
-}
+  }).then((response) => response.json());
+};
 
 function CreateSong() {
   const { trigger } = useSWRMutation("/api/songs", fetcher, {

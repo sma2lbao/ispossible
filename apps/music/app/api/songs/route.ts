@@ -1,12 +1,28 @@
 import prisma from "@/database";
+import { auth } from "@/shared/auth";
 import { NextResponse } from "next/server";
 
 export async function GET() {
+  const session = await auth();
+  const userId = session?.user?.id;
   const songs = await prisma.song.findMany({
     take: 10,
+    include: {
+      favoritedBy: Boolean(userId)
+        ? {
+            where: { userId },
+            select: { id: true },
+          }
+        : {},
+    },
   });
 
-  return NextResponse.json({ data: songs });
+  return NextResponse.json({
+    data: songs.map((song) => ({
+      ...song,
+      isFavorited: userId ? song.favoritedBy.length > 0 : false,
+    })),
+  });
 }
 
 export async function POST(request: Request) {
