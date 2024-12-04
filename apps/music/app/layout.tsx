@@ -27,8 +27,8 @@ export default function RootLayout({
     <html lang="zh-CN">
       <meta
         http-equiv="Content-Security-Policy"
-        content="upgrade-insecure-requests"
-      ></meta>
+        content="default-src 'self'; img-src *; media-src 'self' http: https:;"
+      />
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
       </body>
