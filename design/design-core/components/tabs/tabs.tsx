@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+"use client";
+
+import React, { useEffect, useMemo, useState } from "react";
 import stylex from "@stylexjs/stylex";
 import { styles } from "./tabs.stylex";
 import { TabsContext } from "./tabs.context";
@@ -23,13 +25,17 @@ export const Tabs: React.FC<TabsProps> = (props) => {
     activeKey: rawActiveKey,
   };
 
-  const parsePanes = React.Children.map(children, (child) => {
-    if (React.isValidElement(child) && child.type === TabPane) {
-      const { tab, icon, disabled, itemKey, closable } =
-        child.props as TabPaneProps;
-      return { tab, icon, disabled, itemKey, closable };
-    }
-  });
+  const parsePanes = useMemo(
+    () =>
+      React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+          const { tab, icon, disabled, itemKey, closable } =
+            child.props as TabPaneProps;
+          return { tab, icon, disabled, itemKey, closable };
+        }
+      }),
+    [children]
+  );
 
   const handleClick = (item: Omit<TabPaneProps, "children">) => {
     if (item.disabled) return;

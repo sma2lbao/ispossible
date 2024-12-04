@@ -1,4 +1,4 @@
 "use client";
 
-export * from "./tabs";
-export * from "./tab-pane";
+export { Tabs } from "./tabs";
+export { TabPane } from "./tab-pane";

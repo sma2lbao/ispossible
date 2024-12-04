@@ -2,6 +2,7 @@
 import useSWRMutation from "swr/mutation";
 import { Button, Form, Input, Toast, Upload, UploadFile } from "@design/core";
 import stylex from "@stylexjs/stylex";
+import { getAudioDuration } from "@/shared/audio";
 
 type FormData = {
   title: string;
@@ -15,6 +16,7 @@ type SongDTO = {
   description?: string;
   coverUrl?: string;
   sourceUrl: string;
+  duration: number;
 };
 
 const styles = stylex.create({
@@ -43,8 +45,9 @@ function CreateSong() {
       Toast.success("创建成功");
     },
   });
-  const handleSubmit = (data: FormData) => {
+  const handleSubmit = async (data: FormData) => {
     const { title, description, sourceFiles, coverFiles } = data;
+    const duration = await getAudioDuration(sourceFiles[0].instance!);
     const newSong: SongDTO = {
       title,
       description,
@@ -54,6 +57,7 @@ function CreateSong() {
       coverUrl: coverFiles?.[0].response
         ? JSON.parse(coverFiles[0].response)?.data?.url
         : undefined,
+      duration,
     };
     trigger(newSong);
   };
@@ -83,7 +87,7 @@ function CreateSong() {
           required
           rules={{ required: "请上传源文件" }}
         >
-          <Upload action="/api/upload/files">
+          <Upload action="/api/upload/files" accept="audio/*">
             <Button>点击上传</Button>
           </Upload>
         </Form.Field>

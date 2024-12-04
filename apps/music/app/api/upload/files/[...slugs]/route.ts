@@ -15,7 +15,5 @@ export async function GET(
 
   const url = await minio.presignedGetObject(MINIO_BUCKET, id, 3600);
 
-  console.log("url: ", url);
-
   return NextResponse.redirect(url);
 }
