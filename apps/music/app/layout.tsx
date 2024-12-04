@@ -25,6 +25,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
+      <meta
+        http-equiv="Content-Security-Policy-Report-Only"
+        content="default-src 'self'; report-uri /api/csp-report"
+      />
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
       </body>
