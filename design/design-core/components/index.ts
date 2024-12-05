@@ -34,4 +34,5 @@ export * from "./select";
 export * from "./upload";
 export * from "./progress";
 export * from "./form";
+export * from "./textarea";
 export { useTokens, type Tokens } from "../themes/use-tokens";

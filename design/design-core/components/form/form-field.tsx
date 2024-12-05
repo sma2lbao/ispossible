@@ -12,6 +12,7 @@ import { styles } from "./form.stylex";
 import "@design/icon/exclamation-circle-filled";
 import { Input } from "../input";
 import { Upload, UploadFile } from "../upload";
+import { Textarea } from "../textarea";
 
 export function FormField<T extends FieldValues>(props: FormFieldProps<T>) {
   const { required, label, name, rules, children } = props;
@@ -42,7 +43,7 @@ export function FormField<T extends FieldValues>(props: FormFieldProps<T>) {
         render={(option) => {
           const { name, value, disabled, ref, onChange, onBlur } = option.field;
           const element = children as React.ReactElement;
-          if (element.type === Input) {
+          if (element.type === Input || element.type === Textarea) {
             return React.cloneElement(element, {
               name,
               value,

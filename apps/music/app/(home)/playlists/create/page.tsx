@@ -1,5 +1,13 @@
 "use client";
-import { Button, Form, Input, Toast, Upload, UploadFile } from "@design/core";
+import {
+  Button,
+  Form,
+  Input,
+  Textarea,
+  Toast,
+  Upload,
+  UploadFile,
+} from "@design/core";
 import stylex from "@stylexjs/stylex";
 import { useState } from "react";
 import useSWRMutation from "swr/mutation";
@@ -72,7 +80,7 @@ export default function CreatePlaylist() {
           <Input />
         </Form.Field>
         <Form.Field label="简介" name="description">
-          <Input />
+          <Textarea />
         </Form.Field>
         <Form.Field label="封面图片" name="coverFiles">
           <Upload action="/api/upload/files">

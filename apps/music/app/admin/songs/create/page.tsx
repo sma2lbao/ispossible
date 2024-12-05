@@ -1,6 +1,14 @@
 "use client";
 import useSWRMutation from "swr/mutation";
-import { Button, Form, Input, Toast, Upload, UploadFile } from "@design/core";
+import {
+  Button,
+  Form,
+  Input,
+  Textarea,
+  Toast,
+  Upload,
+  UploadFile,
+} from "@design/core";
 import stylex from "@stylexjs/stylex";
 import { getAudioDuration } from "@/shared/audio";
 
@@ -74,7 +82,7 @@ function CreateSong() {
           <Input placeholder="请输入歌名" />
         </Form.Field>
         <Form.Field label="歌曲描述" name="description">
-          <Input />
+          <Textarea placeholder="请输入" />
         </Form.Field>
         <Form.Field label="封面图片" name="coverFiles">
           <Upload action="/api/upload/files">

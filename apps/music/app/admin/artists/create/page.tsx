@@ -1,7 +1,14 @@
 "use client";
 import useSWRMutation from "swr/mutation";
 import stylex from "@stylexjs/stylex";
-import { Button, Form, Input, Upload, UploadFile } from "@design/core";
+import {
+  Button,
+  Form,
+  Input,
+  Textarea,
+  Upload,
+  UploadFile,
+} from "@design/core";
 
 type FormData = {
   name: string;
@@ -63,7 +70,7 @@ export default function CreateArtist() {
           <Input />
         </Form.Field>
         <Form.Field<FormData> label="歌手简介" name="bio">
-          <Input />
+          <Textarea />
         </Form.Field>
         <Form.Field<FormData> label="歌手头像" name="imageFiles">
           <Upload action="/api/upload/files">
