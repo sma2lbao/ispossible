@@ -11,9 +11,25 @@ export async function GET() {
 
   const songs = await prisma.song.findMany({
     take: 10,
+    include: {
+      favoritedBy: {
+        where: {
+          userId,
+        },
+      },
+    },
+  });
+
+  const nextSongs = songs.map((item) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { favoritedBy: _, ...rest } = item;
+    return {
+      ...rest,
+      isFavorited: true,
+    };
   });
 
   return NextResponse.json({
-    data: songs,
+    data: nextSongs,
   });
 }

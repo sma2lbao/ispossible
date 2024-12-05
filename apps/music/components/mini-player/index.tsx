@@ -128,7 +128,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
             <div>
               <div>
                 <span>{rawSong?.title ?? "--"}</span>
-                <span>- 歌手名</span>
+                {/* <span>-</span> */}
               </div>
               <div {...stylex.props(styles.songTools)}>
                 <Button

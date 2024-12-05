@@ -20,6 +20,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       stylex: customStylex,
       style,
       className,
+      type = "button",
       ...rest
     } = props;
 
@@ -52,6 +53,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           (disabled || loading) && styles.disabled,
           customStylex
         )}
+        type={type}
         {...rest}
       >
         <span {...stylex.props(styles.button$content)}>

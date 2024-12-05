@@ -29,7 +29,7 @@ export const SubNav: React.FC<SubNavProps> = (props) => {
     children,
   } = props;
 
-  const [collapsed, setCollapsed] = useState<boolean>(
+  const [rawCollapsed, setRawCollapsed] = useState<boolean>(
     context.mode === "inline" ? isCollapsed : false
   );
   const fullPath = useFullPath(itemKey);
@@ -46,7 +46,7 @@ export const SubNav: React.FC<SubNavProps> = (props) => {
   );
 
   const handleSubNavTitleClick = () => {
-    setCollapsed(!collapsed);
+    setRawCollapsed(!rawCollapsed);
   };
 
   const renderTitle = () => {
@@ -59,9 +59,9 @@ export const SubNav: React.FC<SubNavProps> = (props) => {
         )}
         onClick={handleSubNavTitleClick}
       >
-        {!!icon && <i {...stylex.props(styles.icon)}>{icon}</i>}
+        {Boolean(icon) && <i {...stylex.props(styles.icon)}>{icon}</i>}
         <span {...stylex.props(styles.text)}>{text}</span>
-        <i {...stylex.props(styles.expandIcon, collapsed && styles.reverse)}>
+        <i {...stylex.props(styles.expandIcon, rawCollapsed && styles.reverse)}>
           {expandIcon}
         </i>
       </div>
@@ -94,7 +94,7 @@ export const SubNav: React.FC<SubNavProps> = (props) => {
     return (
       <>
         {renderTitle()}
-        {collapsed && renderChildren()}
+        {rawCollapsed && renderChildren()}
       </>
     );
   };

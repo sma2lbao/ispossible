@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ItemKey,
   NavProps,
@@ -20,6 +20,7 @@ export const Nav: React.FC<NavProps> = (props) => {
     mode = "inline",
     isCollapsed = false,
     defaultSelectedKeys,
+    selectedKeys,
     onSelect,
     items,
     children,
@@ -27,7 +28,8 @@ export const Nav: React.FC<NavProps> = (props) => {
     style,
     stylex: customStylex,
   } = props;
-  const [selectedKeys, setSelectedKeys] = useState<ItemKey[]>(
+  const isControl = "selectedKeys" in props;
+  const [rawSelectedKeys, setRawSelectedKeys] = useState<ItemKey[]>(
     defaultSelectedKeys ?? []
   );
   const { register, isSelectedSubNav } = usePathRecords();
@@ -36,9 +38,9 @@ export const Nav: React.FC<NavProps> = (props) => {
 
   const handleNavItemClick = (data: OnNavItemClickData) => {
     const { itemKey, domEvent, ...rest } = data;
-    const exist = selectedKeys.includes(itemKey);
+    const exist = rawSelectedKeys.includes(itemKey);
     const nextSelectedKeys = [itemKey];
-    setSelectedKeys(nextSelectedKeys);
+    !isControl ? setRawSelectedKeys(nextSelectedKeys) : null;
     if (exist) return;
 
     const onSelectData: OnSelectData = {
@@ -52,11 +54,17 @@ export const Nav: React.FC<NavProps> = (props) => {
   const context: NavContextType = {
     mode,
     isCollapsed,
-    selectedKeys,
+    selectedKeys: rawSelectedKeys,
     firstLevel: true,
     level: 0,
     onNavItemClick: handleNavItemClick,
   };
+
+  useEffect(() => {
+    if (selectedKeys !== rawSelectedKeys) {
+      setRawSelectedKeys(selectedKeys ?? []);
+    }
+  }, [selectedKeys]);
 
   return (
     <NavContext.Provider value={context}>

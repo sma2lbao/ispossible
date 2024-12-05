@@ -1,6 +1,5 @@
 import React from "react";
 import stylex from "@stylexjs/stylex";
-import { SessionProvider } from "next-auth/react";
 import Profile from "./profile";
 
 export interface TopbarProps {}
@@ -22,9 +21,7 @@ const Topbar: React.FC<TopbarProps> = (props) => {
 
   return (
     <div {...stylex.props(styles.topbar)}>
-      <SessionProvider>
-        <Profile />
-      </SessionProvider>
+      <Profile />
     </div>
   );
 };

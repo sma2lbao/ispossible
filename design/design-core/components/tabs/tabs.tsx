@@ -69,7 +69,8 @@ export const Tabs: React.FC<TabsProps> = (props) => {
               {...stylex.props(
                 styles.tabs$tab,
                 styles.tabs$tab$single,
-                rawActiveKey === item.itemKey && styles.tabs$tab$active
+                rawActiveKey === item.itemKey && styles.tabs$tab$active,
+                item.disabled && styles.tabs$tab$disabled
               )}
             >
               {item.tab}

@@ -30,6 +30,10 @@ export const styles = stylex.create({
     color: "rgba(28,31,35,1)",
     borderBottom: `2px solid ${colors.primary}`,
   },
+  tabs$tab$disabled: {
+    cursor: "not-allowed",
+    color: "rgba(28, 31, 35, 0.35)",
+  },
   tabs$content: {
     width: "100%",
     padding: "5px 0",

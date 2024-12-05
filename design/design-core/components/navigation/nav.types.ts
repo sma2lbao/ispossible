@@ -10,6 +10,11 @@ export interface NavProps {
 
   defaultSelectedKeys?: ItemKey[];
 
+  /**
+   * 受控
+   */
+  selectedKeys?: ItemKey[];
+
   items?: ItemType[];
   /**
    * inline 模式时是否展开
