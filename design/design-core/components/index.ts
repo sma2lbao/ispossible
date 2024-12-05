@@ -25,7 +25,7 @@ export { Modal } from "./modal";
 export * from "./navigation";
 export { Toast } from "./toast";
 export { Notification } from "./notification";
-export { Dropdown } from "./dropdown";
+export * from "./dropdown";
 export { Layout } from "./layout";
 export { List } from "./list";
 export * from "./grid";

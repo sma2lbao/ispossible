@@ -1,4 +1,4 @@
 "use client";
 
 export * from "./tooltip";
-export type { Direction } from "./tooltip.types";
+export type { Direction, TooltipHandles } from "./tooltip.types";

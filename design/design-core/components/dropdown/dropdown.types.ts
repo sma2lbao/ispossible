@@ -26,3 +26,8 @@ export interface DropdownMenuItemProps {
   active?: boolean;
   onClick?: () => void;
 }
+
+export interface DropdownContextProps {
+  showTick: boolean;
+  onClick: () => void;
+}

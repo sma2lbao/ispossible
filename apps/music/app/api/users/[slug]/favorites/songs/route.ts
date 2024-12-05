@@ -1,30 +1,22 @@
 import prisma from "@/database";
-import { auth } from "@/shared/auth";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
-  const session = await auth();
-  const userId = session?.user?.id;
-  if (!userId) {
-    return NextResponse.json({ error: "userId not exist" }, { status: 403 });
-  }
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  const userId = (await params).slug;
 
-  const songs = await prisma.song.findMany({
-    take: 10,
+  const favoritedSongs = await prisma.favoriteSong.findMany({
+    where: { userId },
     include: {
-      favoritedBy: {
-        where: {
-          userId,
-        },
-      },
+      song: true,
     },
   });
 
-  const nextSongs = songs.map((item) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { favoritedBy: _, ...rest } = item;
+  const nextSongs = favoritedSongs.map((item) => {
     return {
-      ...rest,
+      ...item.song,
       isFavorited: true,
     };
   });

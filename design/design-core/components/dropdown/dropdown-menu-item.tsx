@@ -22,6 +22,7 @@ export const DropdownMenuItem = React.forwardRef<
 
   const handleClick = () => {
     onClick?.();
+    context.onClick();
   };
 
   if (node === "divider") {

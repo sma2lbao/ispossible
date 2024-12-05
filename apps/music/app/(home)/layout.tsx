@@ -1,5 +1,6 @@
 import { PlayerStoreProvider } from "@/providers/player-store-provider";
 import Continer from "./container";
+import { PlaylistsStoreProvider } from "@/providers/playlists-store-provider";
 
 export default function HomeLayout({
   children,
@@ -8,7 +9,9 @@ export default function HomeLayout({
 }>) {
   return (
     <PlayerStoreProvider>
-      <Continer>{children}</Continer>
+      <PlaylistsStoreProvider>
+        <Continer>{children}</Continer>
+      </PlaylistsStoreProvider>
     </PlayerStoreProvider>
   );
 }

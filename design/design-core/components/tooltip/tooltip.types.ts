@@ -65,3 +65,7 @@ export interface TooltipProps {
 
   popupStyle?: React.CSSProperties;
 }
+
+export interface TooltipHandles {
+  close: () => void;
+}
