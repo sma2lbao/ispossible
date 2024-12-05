@@ -20,7 +20,6 @@ import "@design/icon/heart";
 import "@design/icon/plus-circle";
 import "@design/icon/play-circle-filled";
 import { usePlayerStore } from "@/providers/player-store-provider";
-import { useSession } from "next-auth/react";
 
 dayjs.extend(duration);
 
