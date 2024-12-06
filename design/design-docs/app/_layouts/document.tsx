@@ -27,6 +27,7 @@ const styles = stylex.create({
   },
   content: {
     backgroundColor: "#fff",
+    display: "flex",
   },
 });
 
