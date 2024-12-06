@@ -1,98 +1,94 @@
 import React, { useState } from "react";
-import stylex, { StyleXStyles } from "@stylexjs/stylex";
+import type { AlertProps } from "./alert.types";
+import { x } from "../../shared";
+import { styles } from "./alert.stylex";
+import { Button } from "../button";
+import { Typography } from "../typography";
 import "@design/icon/close";
-import "@design/icon/close-circle";
-import "@design/icon/info-circle";
-import "@design/icon/warning";
-import "@design/icon/check-circle";
+import "@design/icon/info-circle-filled";
+import "@design/icon/check-circle-filled";
+import "@design/icon/close-circle-filled";
+import "@design/icon/warning-filled";
 
-export interface AlertProps {
-  /**
-   * 提示内容
-   */
-  message: React.ReactNode;
-  /**
-   * 可关闭配置
-   */
-  closable?: boolean;
-  /**
-   * 指定提示的样式
-   * @default info
-   */
-  type?: "success" | "info" | "warning" | "error";
-
-  onClose?: () => void;
-
-  style?: StyleXStyles;
-}
-
-const styles = stylex.create({
-  root: {
-    display: "flex",
-    padding: "8px 16px",
-    borderRadius: 4,
-  },
-  content: {
-    flex: 1,
-    display: "flex",
-  },
-  icon: {
-    marginRight: 6,
-    display: "flex",
-    alignItems: "center",
-  },
-  info: {
-    backgroundColor: "#fffbe6",
-  },
-  warning: {
-    backgroundColor: "#faad14",
-  },
-  error: {
-    backgroundColor: "#faad14",
-  },
-  success: {
-    backgroundColor: "#faad14",
-  },
-  closable: {
-    marginLeft: 8,
-    alignSelf: "center",
-    cursor: "pointer",
-    display: "flex",
-    alignItems: "center",
-  },
-});
-
-const icons: Record<string, React.ReactNode> = {
-  success: <is-check-circle />,
-  info: <is-info-circle />,
-  warning: <is-warning />,
-  error: <is-close-circle />,
+const iconsConfig = {
+  info: <is-info-circle-filled />,
+  success: <is-check-circle-filled />,
+  warning: <is-warning-filled />,
+  error: <is-close-circle-filled />,
 };
 
 export const Alert: React.FC<AlertProps> = (props) => {
-  const { message, type = "info", onClose } = props;
+  const {
+    type = "info",
+    bordered = false,
+    title,
+    description,
+    closable = true,
+    onClose,
+    justify = "center",
+    icon = iconsConfig[type],
+    style,
+    stylex,
+    className,
+  } = props;
   const [visible, setVisible] = useState(true);
 
-  const handleClick = () => {
+  const handleClose = () => {
     setVisible(false);
     onClose?.();
   };
 
-  if (!visible) {
-    return null;
-  }
+  if (!visible) return null;
 
   return (
-    <div {...stylex.props(styles.root, styles[type])}>
-      <div {...stylex.props(styles.content)}>
-        <div {...stylex.props(styles.icon)}>{icons[type]}</div>
-        <div>{message}</div>
-      </div>
-      <div {...stylex.props(styles.closable)} onClick={handleClick}>
-        <is-close />
+    <div
+      {...x(
+        className,
+        style,
+        styles.alert,
+        styles[`alert$${type}`],
+        bordered && styles[`alert$border$${type}`],
+        stylex
+      )}
+    >
+      <div {...x(styles.alert$content$warp)}>
+        <div
+          {...x(
+            styles.alert$content,
+            justify === "start" && styles.alert$content$start
+          )}
+        >
+          {Boolean(icon) ? <div {...x(styles.alert$icon)}>{icon}</div> : null}
+          <div {...x(styles.alert$content$body)}>
+            {Boolean(title) ? (
+              <Typography
+                stylex={styles.alert$content$title}
+                as="div"
+                variant="title"
+                size="md"
+              >
+                {title}
+              </Typography>
+            ) : null}
+
+            <Typography
+              stylex={styles.alert$content$description}
+              variant="body"
+              size="md"
+            >
+              {description}
+            </Typography>
+          </div>
+        </div>
+        {closable ? (
+          <Button
+            stylex={styles.alert$close}
+            theme="ghost"
+            icon={<is-close />}
+            onClick={handleClose}
+          />
+        ) : null}
       </div>
     </div>
   );
 };
-
-export default Alert;

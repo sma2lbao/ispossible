@@ -164,6 +164,7 @@ model Playlist {
   author   User   @relation(fields: [authorId], references: [id]) /// 单向关系定义
 
   songs PlaylistSong[] /// 多对多关系，关联 Song
+  tags  PlaylistTag[] /// 多对多关系，关联 Tag
 
   @@map("t_playlist")
 }
@@ -181,4 +182,30 @@ model PlaylistSong {
 
   @@unique([playlistId, songId]) /// 保证同一个播放列表内不会有重复的歌曲
   @@map("t_playlist_song")
+}
+
+model Tag {
+  id        String        @id @default(cuid())
+  name      String /// 标签名称
+  category  String /// 标签分类
+  playlists PlaylistTag[] /// 多对多关系
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("t_tag")
+}
+
+model PlaylistTag {
+  playlistId String @map("playlist_id")
+  tagId      String @map("tag_id")
+
+  playlist Playlist @relation(fields: [playlistId], references: [id])
+  tag      Tag      @relation(fields: [tagId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@id([playlistId, tagId]) /// 复合主键
+  @@map("t_playlist_tag")
 }

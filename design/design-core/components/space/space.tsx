@@ -2,6 +2,7 @@ import React from "react";
 import stylex from "@stylexjs/stylex";
 import type { SpaceProps } from "./space.types";
 import { styles } from "./space.stylex";
+import { x } from "../../shared";
 
 export const Space: React.FC<SpaceProps> = (props) => {
   const {
@@ -21,8 +22,8 @@ export const Space: React.FC<SpaceProps> = (props) => {
   return (
     <div
       {...stylex.props(
-        styles.root(size),
-        direction === "y" && styles.vertical,
+        styles.space(size),
+        direction === "y" && styles.space$vertical,
         customStylex
       )}
     >
@@ -32,7 +33,9 @@ export const Space: React.FC<SpaceProps> = (props) => {
         if (!child) return;
         return (
           <>
-            <div key={index}>{child}</div>
+            <div key={index} {...x(styles.space$item)}>
+              {child}
+            </div>
             {!isLast && separator}
           </>
         );

@@ -1,15 +1,18 @@
 import stylex from "@stylexjs/stylex";
 
 export const styles = stylex.create({
-  root: (size?: number) => ({
+  space: (size?: number) => ({
     display: "inline-flex",
     columnGap: size ?? 8,
     rowGap: size ?? 8,
     alignItems: "center",
   }),
-  vertical: {
+  space$vertical: {
     flexDirection: "column",
     alignItems: "flex-start",
+    width: "100%",
+  },
+  space$item: {
     width: "100%",
   },
 });
