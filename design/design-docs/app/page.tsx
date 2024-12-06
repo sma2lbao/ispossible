@@ -7,9 +7,6 @@ import stylex from "@stylexjs/stylex";
 import "@design/icon/github";
 
 const styles = stylex.create({
-  document: {
-    display: "flex",
-  },
   root: {
     display: "flex",
     alignItems: "center",
@@ -27,17 +24,15 @@ export default function Home() {
   };
 
   return (
-    <Document stylex={styles.document}>
-      <div {...stylex.props(styles.root)}>
-        <Space size={20}>
-          <Button onClick={handleClick} theme="solid">
-            开始使用
-          </Button>
-          <Button onClick={handleClick} icon={<is-github />}>
-            Github
-          </Button>
-        </Space>
-      </div>
-    </Document>
+    <div {...stylex.props(styles.root)}>
+      <Space size={20}>
+        <Button onClick={handleClick} theme="solid">
+          开始使用
+        </Button>
+        <Button onClick={handleClick} icon={<is-github />}>
+          Github
+        </Button>
+      </Space>
+    </div>
   );
 }

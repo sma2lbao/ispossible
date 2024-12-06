@@ -11,6 +11,7 @@ import {
 } from "@design/core";
 import stylex from "@stylexjs/stylex";
 import { getAudioDuration } from "@/shared/audio";
+import "@design/icon/plus";
 
 type FormData = {
   title: string;
@@ -85,8 +86,15 @@ function CreateSong() {
           <Textarea placeholder="请输入" />
         </Form.Field>
         <Form.Field label="封面图片" name="coverFiles">
-          <Upload action="/api/upload/files">
-            <Button>点击上传</Button>
+          <Upload
+            action="/api/upload/files"
+            listType="picture"
+            limit={1}
+            accept="image/*"
+          >
+            <span style={{ fontSize: "24px" }}>
+              <is-plus />
+            </span>
           </Upload>
         </Form.Field>
         <Form.Field

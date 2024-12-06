@@ -99,7 +99,7 @@ const StoryContainer: React.FC<StoryContainerProps> = (props) => {
     <Layout>
       <Layout.Sider width={280} sticky stylex={styles.sider}>
         <Nav
-          defaultSelectedKeys={[decodeURIComponent(slug)]}
+          selectedKeys={[decodeURIComponent(slug)]}
           style={{ width: "100%" }}
           items={navConfig}
           onSelect={handleSelect}

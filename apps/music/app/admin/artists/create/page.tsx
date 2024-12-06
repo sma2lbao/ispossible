@@ -73,8 +73,15 @@ export default function CreateArtist() {
           <Textarea />
         </Form.Field>
         <Form.Field<FormData> label="歌手头像" name="imageFiles">
-          <Upload action="/api/upload/files">
-            <Button>点击上传</Button>
+          <Upload
+            action="/api/upload/files"
+            listType="picture"
+            limit={1}
+            accept="image/*"
+          >
+            <span style={{ fontSize: "24px" }}>
+              <is-plus />
+            </span>
           </Upload>
         </Form.Field>
 

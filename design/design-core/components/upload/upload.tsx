@@ -9,6 +9,7 @@ import type {
   UploadRequestOptions,
 } from "./upload.types";
 import { xhrRequest } from "./upload.xhr";
+import { UploadContext } from "./upload.context";
 
 export const Upload = React.forwardRef<HTMLInputElement, UploadProps>(
   (props, forwardRef) => {
@@ -16,10 +17,11 @@ export const Upload = React.forwardRef<HTMLInputElement, UploadProps>(
       name,
       action,
       filename = "file",
+      listType = "list",
       disabled,
       accept,
       files,
-      limit,
+      limit = Infinity,
       multiple,
       children,
       beforeUpload,
@@ -241,15 +243,28 @@ export const Upload = React.forwardRef<HTMLInputElement, UploadProps>(
           onClick={(e) => e.stopPropagation()}
           onChange={handleChange}
         />
-        <div {...x(styles.upload$trigger)} onClick={handleClick}>
-          {children}
-        </div>
-        <UploadFiles
-          files={rawFiles}
-          onClear={handleClear}
-          onRemove={handleRemove}
-          onRetry={handleRetry}
-        />
+        {listType === "list" ? (
+          <div {...x(styles.upload$trigger)} onClick={handleClick}>
+            {children}
+          </div>
+        ) : null}
+        <UploadContext.Provider value={{ listType, limit }}>
+          <UploadFiles
+            files={rawFiles}
+            onClear={handleClear}
+            onRemove={handleRemove}
+            onRetry={handleRetry}
+          >
+            {listType === "picture" ? (
+              <div
+                {...x(styles.upload$trigger, styles.upload$trigger$picture)}
+                onClick={handleClick}
+              >
+                {children}
+              </div>
+            ) : null}
+          </UploadFiles>
+        </UploadContext.Provider>
       </div>
     );
   }

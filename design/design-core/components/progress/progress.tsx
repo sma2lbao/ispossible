@@ -8,6 +8,7 @@ export const Progress: React.FC<ProgressProps> = (props) => {
     direction = "x",
     type = "line",
     stroke,
+    trackStroke,
     percent = 0,
     className,
     style,
@@ -24,7 +25,7 @@ export const Progress: React.FC<ProgressProps> = (props) => {
         stylex
       )}
     >
-      <div {...x(styles.progress$track)}>
+      <div {...x(styles.progress$track(trackStroke))}>
         <div
           {...x(
             { width: `${percent}%`, backgroundColor: stroke },

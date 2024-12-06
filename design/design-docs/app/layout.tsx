@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Document from "./_layouts/document";
 import "normalize.css";
 import "./_styles/global.css";
 
@@ -14,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Document>{children}</Document>
+      </body>
     </html>
   );
 }

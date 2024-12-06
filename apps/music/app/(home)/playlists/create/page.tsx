@@ -11,6 +11,7 @@ import {
 import stylex from "@stylexjs/stylex";
 import { useState } from "react";
 import useSWRMutation from "swr/mutation";
+import "@design/icon/plus";
 
 type PlaylistDTO = {
   name: string;
@@ -83,8 +84,15 @@ export default function CreatePlaylist() {
           <Textarea />
         </Form.Field>
         <Form.Field label="封面图片" name="coverFiles">
-          <Upload action="/api/upload/files">
-            <Button>点击上传</Button>
+          <Upload
+            action="/api/upload/files"
+            listType="picture"
+            limit={1}
+            accept="image/*"
+          >
+            <span style={{ fontSize: "24px" }}>
+              <is-plus />
+            </span>
           </Upload>
         </Form.Field>
 

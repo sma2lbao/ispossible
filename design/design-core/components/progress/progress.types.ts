@@ -7,6 +7,11 @@ export interface ProgressProps {
   stroke?: string;
 
   /**
+   * 进度条轨道填充色
+   */
+  trackStroke?: string;
+
+  /**
    * 类型
    * @default line
    */

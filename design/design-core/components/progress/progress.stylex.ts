@@ -10,11 +10,12 @@ export const styles = stylex.create({
     marginTop: "4px",
     marginBottom: "4px",
   },
-  progress$track: {
-    backgroundColor: "rgba(46,50,56,.05)",
+  progress$track: (trackStroke?: string) => ({
+    backgroundColor: trackStroke ?? "rgba(46,50,56,.05)",
     width: "100%",
     height: "100%",
-  },
+    borderRadius: "3px",
+  }),
   progress$x$track$inner: {
     height: "100%",
     backgroundColor: "rgba(59,179,70,1)",

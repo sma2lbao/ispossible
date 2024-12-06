@@ -9,6 +9,7 @@ import {
   Upload,
   UploadFile,
 } from "@design/core";
+import "@design/icon/plus";
 
 type FormData = {
   title: string;
@@ -73,8 +74,15 @@ export default function CreateAlbum() {
           <Textarea />
         </Form.Field>
         <Form.Field label="封面图片" name="coverFiles">
-          <Upload action="/api/upload/files">
-            <Button>点击上传</Button>
+          <Upload
+            action="/api/upload/files"
+            listType="picture"
+            limit={1}
+            accept="image/*"
+          >
+            <span style={{ fontSize: "24px" }}>
+              <is-plus />
+            </span>
           </Upload>
         </Form.Field>
 

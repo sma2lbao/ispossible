@@ -2,6 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Form } from "./";
 import { Input } from "../input";
+import { Button } from "../button";
 
 const meta = {
   title: "Form 表单",
@@ -53,7 +54,7 @@ export const 基本用法 = () => {
           <Input placeholder="Enter your email" />
         </Form.Field>
 
-        <input type="submit" />
+        <Button type="submit">提交</Button>
       </Form>
     </div>
   );

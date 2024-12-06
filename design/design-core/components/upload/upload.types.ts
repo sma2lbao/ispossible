@@ -29,6 +29,12 @@ export interface UploadProps {
   files?: UploadFile[];
 
   /**
+   * 文件列表展示类型
+   * @default list
+   */
+  listType?: "list" | "picture";
+
+  /**
    * 最大允许上传文件个数
    */
   limit?: number;
@@ -67,6 +73,8 @@ export interface UploadProps {
 
 export interface UploadFilesProps {
   files: UploadFile[];
+
+  children?: React.ReactNode;
 
   onClear?: () => void;
 
@@ -141,4 +149,10 @@ export interface UploadRequestOptions<T = any> {
   onError?: (e: ProgressEvent | Error, body?: T) => void;
 
   onSuccess?: (body: T) => void;
+}
+
+export interface UploadContextProps {
+  listType: UploadProps["listType"];
+
+  limit?: UploadProps["limit"];
 }
