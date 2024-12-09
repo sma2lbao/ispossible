@@ -28,7 +28,7 @@ model UserRole {
 
 enum RoleName {
   ADMIN
-  User
+  USER
   GUEST
 }
 
