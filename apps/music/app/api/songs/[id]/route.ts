@@ -27,7 +27,6 @@ export async function PUT(
     },
     data: {
       title: payload.title,
-      lyrics: payload.lyrics,
       artistId: payload.artistId,
     },
   });
