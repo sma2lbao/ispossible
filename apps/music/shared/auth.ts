@@ -31,6 +31,23 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
 
       return account;
     },
+    createUser: async (user) => {
+      const returnUser = await prisma.user.create({
+        data: user,
+      });
+      const userRole = await prisma.role.findFirst({
+        where: { name: "USER" },
+      });
+      if (userRole) {
+        await prisma.userRole.create({
+          data: {
+            userId: returnUser.id,
+            roleId: userRole.id,
+          },
+        });
+      }
+      return returnUser;
+    },
   },
   secret: "sma1lbao",
   session: { strategy: "jwt" },
@@ -59,10 +76,30 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   ],
 
   callbacks: {
-    async session({ session, user, token }) {
-      if (session.user && (user || token.sub)) {
-        session.user.id = user?.id ?? token.sub;
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id; // 存储用户 ID
+
+        // 查询用户角色
+        const userRoles = await prisma.userRole.findMany({
+          where: { userId: user.id },
+          include: {
+            role: true, // 获取角色详细信息
+          },
+        });
+
+        // 存储角色信息到 token
+        token.roles = userRoles.map((userRole) => userRole.role.name);
       }
+      return token;
+    },
+
+    async session({ session, token }) {
+      if (session.user && token.sub) {
+        session.user.id = (token.id ?? token.sub) as string;
+        session.user.roles = (token.roles || []) as string[];
+      }
+
       return session;
     },
   },

@@ -26,10 +26,16 @@ model UserRole {
   @@map("t_user_role")
 }
 
+enum RoleName {
+  ADMIN
+  User
+  GUEST
+}
+
 /// 角色表
 model Role {
   id          String     @id @default(cuid())
-  name        String     @unique
+  name        RoleName   @unique
   description String?
   users       UserRole[]
 
@@ -102,8 +108,8 @@ model Song {
   description String? // 描述
   sourceUrl   String  @map("source_url") /// 源文件
   coverUrl    String? @map("cover_url") /// 封面图片
+  lyricUrl    String? @map("lyric_url") /// 歌词地址
   duration    Int? /// 持续时间，单位为秒
-  lyrics      String? /// 歌词
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")

@@ -18,6 +18,7 @@ type FormData = {
   description?: string;
   coverFiles?: UploadFile[];
   sourceFiles: UploadFile[];
+  lyricFiles?: UploadFile[];
 };
 
 type SongDTO = {
@@ -25,6 +26,7 @@ type SongDTO = {
   description?: string;
   coverUrl?: string;
   sourceUrl: string;
+  lyricUrl?: string;
   duration: number;
 };
 
@@ -55,8 +57,9 @@ function CreateSong() {
     },
   });
   const handleSubmit = async (data: FormData) => {
-    const { title, description, sourceFiles, coverFiles } = data;
+    const { title, description, sourceFiles, coverFiles, lyricFiles } = data;
     const duration = await getAudioDuration(sourceFiles[0].instance!);
+
     const newSong: SongDTO = {
       title,
       description,
@@ -65,6 +68,9 @@ function CreateSong() {
         : undefined,
       coverUrl: coverFiles?.[0].response
         ? JSON.parse(coverFiles[0].response)?.data?.url
+        : undefined,
+      lyricUrl: lyricFiles?.[0].response
+        ? JSON.parse(lyricFiles[0].response)?.data?.url
         : undefined,
       duration,
     };
@@ -104,6 +110,11 @@ function CreateSong() {
           rules={{ required: "请上传源文件" }}
         >
           <Upload action="/api/upload/files" accept="audio/*">
+            <Button>点击上传</Button>
+          </Upload>
+        </Form.Field>
+        <Form.Field<FormData> label="歌词文件" name="lyricFiles">
+          <Upload action="/api/upload/files" accept="*.lrc">
             <Button>点击上传</Button>
           </Upload>
         </Form.Field>

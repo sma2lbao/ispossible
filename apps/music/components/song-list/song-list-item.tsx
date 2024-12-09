@@ -164,7 +164,7 @@ const SongListItem: React.FC<SongListItemProps> = (props) => {
         --
       </Typography>
       <Typography variant="body" size="md" stylex={styles.item$duration}>
-        {dayjs.duration(song.duration ?? 0).format("mm:ss")}
+        {dayjs.duration(song.duration ?? 0, "seconds").format("mm:ss")}
       </Typography>
     </div>
   );

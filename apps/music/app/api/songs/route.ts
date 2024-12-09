@@ -35,7 +35,7 @@ export async function POST(request: Request) {
       sourceUrl: payload.sourceUrl,
       coverUrl: payload.coverUrl,
       duration: payload.duration ?? 0,
-      lyrics: payload.lyrics,
+      lyricUrl: payload.lyricUrl,
       artistId: payload.artistId,
       albumId: payload.albumId,
     },
