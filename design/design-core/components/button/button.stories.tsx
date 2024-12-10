@@ -4,7 +4,7 @@ import { Button, Space } from "../../components";
 import "@design/icon/user";
 
 /**
- * 按钮用于开始一个即时操作。
+ * 按钮是一种命令组件，可发起一个即时操作。
  */
 const meta = {
   title: "Button 按钮",

@@ -1,9 +1,11 @@
 import stylex from "@stylexjs/stylex";
 
-/**
- * 主题色
- */
-const primaryPalette = {
+export const palettes = stylex.defineVars({
+  white: "#fff",
+  black: "#000",
+  /**
+   * 主题色
+   */
   primary0: "#000",
   primary10: "#22005d",
   primary20: "#381e72",
@@ -20,12 +22,67 @@ const primaryPalette = {
   primary98: "#fdf7ff",
   primary99: "#fffbff",
   primary100: "#fff",
-};
+  /**
+   * 次级配色
+   */
+  secondary0: "#000",
+  secondary10: "#1e192b",
+  secondary20: "#332d41",
+  secondary25: "#3e384c",
+  secondary30: "#4a4458",
+  secondary35: "#564f64",
+  secondary40: "#625b71",
+  secondary50: "#7b748a",
+  secondary60: "#958da4",
+  secondary70: "#b0a7c0",
+  secondary80: "#cbc2db",
+  secondary90: "#e8def8",
+  secondary95: "#f6eeff",
+  secondary98: "#fdf7ff",
+  secondary99: "#fffbff",
+  secondary100: "#fff",
+  /**
+   * 第三配色
+   */
+  tertiary0: "#000",
+  tertiary10: "#31101d",
+  tertiary20: "#4a2532",
+  tertiary25: "#56303d",
+  tertiary30: "#633b48",
+  tertiary35: "#704654",
+  tertiary40: "#7e5260",
+  tertiary50: "#996a79",
+  tertiary60: "#b58392",
+  tertiary70: "#d29dad",
+  tertiary80: "#efb8c8",
+  tertiary90: "#ffd9e3",
+  tertiary95: "#ffecf0",
+  tertiary98: "#fff8f8",
+  tertiary99: "#fffbff",
+  tertiary100: "#fff",
+  /**
+   * 错误
+   */
+  error0: "#000",
+  error10: "#410002",
+  error20: "#690005",
+  error25: "#7e0007",
+  error30: "#93000a",
+  error35: "#a80710",
+  error40: "#ba1a1a",
+  error50: "#de3730",
+  error60: "#ff5449",
+  error70: "#ff897d",
+  error80: "#ffb4ab",
+  error90: "#ffdad6",
+  error95: "#ffedea",
+  error98: "#fff8f7",
+  error99: "#fffbff",
+  error100: "#fff",
 
-/**
- * 中性配色
- */
-const neutralPalette = {
+  /**
+   * 中性配色
+   */
   neutral0: "#000",
   neutral4: "#0f0e11",
   neutral6: "#141316",
@@ -52,12 +109,9 @@ const neutralPalette = {
   neutral98: "#fdf8fd",
   neutral99: "#fffbff",
   neutral100: "#fff",
-};
-
-/**
- * 中性色变量
- */
-const neutralVariant = {
+  /**
+   * 中性色变量
+   */
   neutralVariant0: "#000",
   neutralVariant10: "#1d1a22",
   neutralVariant20: "#322f38",
@@ -74,81 +128,4 @@ const neutralVariant = {
   neutralVariant98: "#fdf7ff",
   neutralVariant99: "#fffbff",
   neutralVariant100: "#fff",
-};
-
-/**
- * 次级配色
- */
-const secondaryPalette = {
-  secondary0: "#000",
-  secondary10: "#1e192b",
-  secondary20: "#332d41",
-  secondary25: "#3e384c",
-  secondary30: "#4a4458",
-  secondary35: "#564f64",
-  secondary40: "#625b71",
-  secondary50: "#7b748a",
-  secondary60: "#958da4",
-  secondary70: "#b0a7c0",
-  secondary80: "#cbc2db",
-  secondary90: "#e8def8",
-  secondary95: "#f6eeff",
-  secondary98: "#fdf7ff",
-  secondary99: "#fffbff",
-  secondary100: "#fff",
-};
-
-/**
- * 第三配色
- */
-const tertiaryPalette = {
-  tertiary0: "#000",
-  tertiary10: "#31101d",
-  tertiary20: "#4a2532",
-  tertiary25: "#56303d",
-  tertiary30: "#633b48",
-  tertiary35: "#704654",
-  tertiary40: "#7e5260",
-  tertiary50: "#996a79",
-  tertiary60: "#b58392",
-  tertiary70: "#d29dad",
-  tertiary80: "#efb8c8",
-  tertiary90: "#ffd9e3",
-  tertiary95: "#ffecf0",
-  tertiary98: "#fff8f8",
-  tertiary99: "#fffbff",
-  tertiary100: "#fff",
-};
-
-/**
- * 错误
- */
-const errorPalette = {
-  error0: "#000",
-  error10: "#410002",
-  error20: "#690005",
-  error25: "#7e0007",
-  error30: "#93000a",
-  error35: "#a80710",
-  error40: "#ba1a1a",
-  error50: "#de3730",
-  error60: "#ff5449",
-  error70: "#ff897d",
-  error80: "#ffb4ab",
-  error90: "#ffdad6",
-  error95: "#ffedea",
-  error98: "#fff8f7",
-  error99: "#fffbff",
-  error100: "#fff",
-};
-
-export const palettes = stylex.defineVars({
-  white: "#fff",
-  black: "#000",
-  ...primaryPalette,
-  ...secondaryPalette,
-  ...tertiaryPalette,
-  ...neutralPalette,
-  ...neutralVariant,
-  ...errorPalette,
 });

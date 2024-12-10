@@ -33,8 +33,11 @@ export const styles = stylex.create({
     },
   }),
   button$solid: (color?: string) => ({
-    color: "#fff",
+    color: colors.onPrimary,
     backgroundColor: color || colors.primary,
+    ":hover": {
+      backgroundColor: colors.primaryHover,
+    },
   }),
   button$ghost: (color?: string) => ({
     color: color || colors.primary,
@@ -56,7 +59,7 @@ export const styles = stylex.create({
     animationIterationCount: "infinite",
   },
   disabled: {
-    color: colors.onPrimaryContainer,
+    color: colors.primaryDisabled,
     cursor: "not-allowed",
     ":hover": {
       backgroundColor: null,

@@ -1,4 +1,5 @@
 import stylex from "@stylexjs/stylex";
+import { colors } from "../../themes/tokens/color.stylex";
 
 export const styles = stylex.create({
   toast$wrap: {
@@ -36,16 +37,16 @@ export const styles = stylex.create({
     fill: color || "currentColor",
   }),
   toast$info: {
-    color: "rgb(0,100,250)",
+    color: colors.primary,
   },
   toast$success: {
-    color: "rgb(59,179,70,1)",
+    color: colors.success,
   },
   toast$warning: {
-    color: "rgba(252,136,0,1)",
+    color: colors.warn,
   },
   toast$error: {
-    color: "rgba(249,57,32,1)",
+    color: colors.error,
   },
   toast$content$text: (maxWidth?: number | string) => ({
     marginLeft: "12px",

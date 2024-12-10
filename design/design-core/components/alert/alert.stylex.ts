@@ -1,24 +1,25 @@
 import stylex from "@stylexjs/stylex";
+import { colors } from "../../themes/tokens/color.stylex";
 
 export const styles = stylex.create({
   alert: {
     padding: "12px",
   },
   alert$info: {
-    backgroundColor: "rgba(234,245,255,1)",
-    color: "rgba(0,100,250,1)",
+    backgroundColor: colors.primaryContainer,
+    color: colors.primary,
   },
   alert$warning: {
-    backgroundColor: "rgba(255,248,234,1)",
-    color: "rgba(252,136,0,1)",
+    backgroundColor: colors.warnContainer,
+    color: colors.warn,
   },
   alert$error: {
-    backgroundColor: "rgba(254,242,237,1)",
-    color: "rgba(249,57,32,1)",
+    backgroundColor: colors.errorContainer,
+    color: colors.error,
   },
   alert$success: {
-    backgroundColor: "rgba(236,247,236,1)",
-    color: "rgba(59,179,70,1)",
+    backgroundColor: colors.successContainer,
+    color: colors.success,
   },
   alert$border$info: {
     borderRadius: "3px",

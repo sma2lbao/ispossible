@@ -1,4 +1,5 @@
 import stylex from "@stylexjs/stylex";
+import { colors } from "../../themes/tokens/color.stylex";
 
 export const styles = stylex.create({
   modal$portal: {},
@@ -65,19 +66,19 @@ export const styles = stylex.create({
     height: "24px",
   },
   modal$info: {
-    color: "rgb(0,100,250)",
+    color: colors.primary,
   },
   modal$success: {
-    color: "rgb(59,179,70,1)",
+    color: colors.success,
   },
   modal$warning: {
-    color: "rgba(252,136,0,1)",
+    color: colors.warn,
   },
   modal$error: {
-    color: "rgba(249,57,32,1)",
+    color: colors.error,
   },
   modal$confirm: {
-    color: "rgb(0,100,250)",
+    color: colors.primary,
   },
   modal$header$title: {
     display: "inline-flex",

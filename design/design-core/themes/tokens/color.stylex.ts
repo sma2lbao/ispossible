@@ -1,58 +1,70 @@
 import stylex from "@stylexjs/stylex";
-import { palettes } from "./palette.stylex";
 
 export const colors = stylex.defineVars({
-  primary: palettes.primary40, // 应用的主颜色，用于突出显示主要元素，如按钮、链接等
-  onPrimary: palettes.primary100, // 与 primary 颜色对比的颜色，通常用于文本或图标。
-  primaryContainer: palettes.primary90, // 主色的容器颜色，通常是 primary 的变体，用于背景或卡片。
-  onPrimaryContainer: palettes.primary10, // 在主色容器中的对比颜色。
-  secondary: palettes.secondary40, // 辅助颜色，用于次要元素。
-  onSecondary: palettes.secondary100, // 与 secondary 对比的颜色，通常是文本或图标颜色。
-  secondaryContainer: palettes.secondary90, // 辅助色的容器颜色。
-  onSecondaryContainer: palettes.secondary10, // 辅助色容器中的对比颜色。
-  tertiary: palettes.tertiary40, // 第三颜色，可能用于额外的强调或特殊组件。
-  onTertiary: palettes.tertiary100, // 与 tertiary 对比的颜色。
-  tertiaryContainer: palettes.tertiary90, // 第三颜色的容器颜色。
-  onTertiaryContainer: palettes.tertiary10, // 容器中的对比颜色。
-  error: palettes.error40, // 错误状态的颜色，通常用于警告或错误提示。
-  onError: palettes.error100, // 与 error 对比的颜色，通常用于错误背景下的文字。
-  errorContainer: palettes.error90, // 错误颜色的容器背景色。
-  onErrorContainer: palettes.error10, // 错误容器中的对比颜色。
-  surface: palettes.neutral98, // 通常用于背景色，如页面背景或卡片背景。
-  onSurface: palettes.neutral10, // 表面背景上的文本或图标颜色。
-  onSurfaceVariant: palettes.neutralVariant30,
-  // 不同透明度的表面容器颜色，逐渐由浅至深，用于不同的层次感和阴影效果。
-  surfaceContainerLowest: palettes.neutral100,
-  surfaceContainerLow: palettes.neutral96,
-  surfaceContainer: palettes.neutral94,
-  surfaceContainerHigh: palettes.neutral92,
-  surfaceContainerHighest: palettes.neutral90,
-  // 用于倒置色彩对比的表面颜色。
-  inverseSurface: palettes.neutral20,
-  inverseOnSurface: palettes.neutral95,
-  inversePrimary: palettes.primary80,
-  // 用于边框或分隔线的颜色。
-  outline: palettes.neutralVariant50,
-  // 较浅或较深的 outline 变体。
-  outlineVariant: palettes.neutralVariant80,
-  // 这些是主色、副色和第三色的固定版本，用于在特定情况下保持颜色一致性（如当背景色会影响颜色的对比度时）
-  primaryFixed: palettes.primary90,
-  secondaryFixed: palettes.secondary90,
-  tertiaryFixed: palettes.tertiary90,
-  // 这些是固定颜色的暗色变体，用于不同的阴影或深色模式下。
-  primaryFixedDim: palettes.primary80,
-  secondaryFixedDim: palettes.secondary80,
-  tertiaryFixedDim: palettes.tertiary80,
-  onPrimaryFixed: palettes.primary10,
-  onSecondaryFixed: palettes.secondary10,
-  onTertiaryFixed: palettes.tertiary10,
-  onPrimaryFixedVariant: palettes.primary30,
-  onSecondaryFixedVariant: palettes.secondary30,
-  onTertiaryFixedVariant: palettes.tertiary30,
-  surfaceDim: palettes.neutral87,
-  surfaceBright: palettes.neutral98,
-  // 阴影的颜色，通常是透明或深色，用于表示深度。
-  shadow: palettes.neutral0,
-  // 用于模糊效果或遮罩层的颜色，通常用于弹窗、模态对话框等场景。
-  scrim: palettes.neutral0,
+  // 主色 (Primary)
+  primary: "#0064FA", // 主色调（蓝色）
+  onPrimary: "#FFFFFF", // 主色上的前景色
+  primaryContainer: "#D9E2FF", // 容器色（浅蓝色）
+  onPrimaryContainer: "#002884", // 容器内前景色（深蓝色）
+
+  // 辅助色 (Secondary)
+  secondary: "#5E5C68", // 辅助色（中性灰紫色）
+  onSecondary: "#FFFFFF", // 辅助色上的前景色
+  secondaryContainer: "#EDE7F6", // 容器色（浅灰紫色）
+  onSecondaryContainer: "#2A2A37", // 容器内前景色（深灰紫色）
+
+  // 错误色 (Error)
+  error: "#D32F2F", // 错误色（红色）
+  onError: "#FFFFFF", // 错误背景上的前景色
+  errorContainer: "#F9DEDC", // 容器背景色
+  onErrorContainer: "#4A0000", // 容器内前景色
+
+  // 警告色 (Warn)
+  warn: "#ED6C02", // 警告色（橙色）
+  onWarn: "#FFFFFF", // 警告背景上的前景色
+  warnContainer: "#FFF3E0", // 容器背景色
+  onWarnContainer: "#4A2500", // 容器内前景色
+
+  // 成功色 (Success)
+  success: "#2E7D32", // 成功色（绿色）
+  onSuccess: "#FFFFFF", // 成功背景上的前景色
+  successContainer: "#E8F5E9", // 容器背景色
+  onSuccessContainer: "#1B5E20", // 容器内前景色
+
+  // 表面和背景 (Surface/Background)
+  surface: "#FFFFFF", // 表面色（白色）
+  onSurface: "#212121", // 表面上的前景色
+  surfaceVariant: "#F5F5F5", // 表面变体
+  onSurfaceVariant: "#757575", // 表面变体上的前景色
+  background: "#F9FAFB", // 背景色
+  onBackground: "#121212", // 背景上的前景色
+
+  // 填充色 (Fill)
+  fill1: "#F0F4FF", // 最浅的填充色
+  fill2: "#D9E2FF", // 浅色填充
+  fill3: "#B3C9FF", // 中等浅的填充色
+  fill4: "#8DAFFF", // 中等深的填充色
+  fill5: "#6587FF", // 深色填充
+
+  // 边框和分隔线 (Outline)
+  outline: "#BDBDBD", // 边框色
+  outlineVariant: "#E0E0E0", // 边框变体
+
+  // 中性色 (Neutral)
+  neutral: "#9E9E9E", // 中性色（灰色）
+  onNeutral: "#FFFFFF", // 中性色上的前景色
+  neutralContainer: "#FAFAFA", // 容器色
+  onNeutralContainer: "#303030", // 容器内前景色
+
+  // 反转表面色 (Dark Mode)
+  inverseSurface: "#2E2E2E", // 深色模式下的表面色
+  inverseOnSurface: "#F4EFF4", // 反转表面的前景色
+  inversePrimary: "#A8C7FF", // 深色模式下的主色变体
+
+  // 透明度处理 (Disabled)
+  disabledOpacity: "0.38", // 禁用状态的透明度
+
+  // 阴影与模糊
+  shadow: "#00000033", // 半透明黑色阴影
+  scrim: "#0000004D", // 更深的模糊遮罩
 });

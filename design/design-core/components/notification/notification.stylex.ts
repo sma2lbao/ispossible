@@ -1,4 +1,5 @@
 import stylex from "@stylexjs/stylex";
+import { colors } from "../../themes/tokens/color.stylex";
 
 export const styles = stylex.create({
   notification$wrap: {
@@ -51,16 +52,16 @@ export const styles = stylex.create({
     minWidth: 0,
   },
   notification$info: {
-    color: "rgb(0,100,250)",
+    color: colors.primary,
   },
   notification$warning: {
-    color: "rgba(252,136,0,1)",
+    color: colors.warn,
   },
   notification$error: {
-    color: "rgba(249,57,32,1)",
+    color: colors.error,
   },
   notification$success: {
-    color: "rgb(59,179,70,1)",
+    color: colors.success,
   },
   notification$content$inner$title: {
     fontSize: "16px",
