@@ -1,4 +1,5 @@
 import stylex from "@stylexjs/stylex";
+import { shapes } from "../../themes/tokens/shape.stylex";
 
 export const styles = stylex.create({
   upload: {
@@ -22,7 +23,7 @@ export const styles = stylex.create({
     alignItems: "center",
     border: "2px dashed rgba(28,31,35,.08)",
     color: "rgba(107,112,117,1)",
-    borderRadius: "3px",
+    borderRadius: shapes.corner$xs,
     cursor: "pointer",
   },
   upload$files: {
@@ -50,7 +51,7 @@ export const styles = stylex.create({
     marginBottom: "8px",
   },
   upload$files$item: {
-    borderRadius: "6px",
+    borderRadius: shapes.corner$sm,
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "space-between",
@@ -67,7 +68,7 @@ export const styles = stylex.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: "3px",
+    borderRadius: shapes.corner$xs,
     flexShrink: 0,
   },
   upload$files$item$preview$placeholder: {
@@ -133,7 +134,7 @@ export const styles = stylex.create({
   upload$files$picture$card: {
     width: "92px",
     height: "92px",
-    borderRadius: "3px",
+    borderRadius: shapes.corner$xs,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -185,7 +186,7 @@ export const styles = stylex.create({
     left: "50%",
     transform: "translate(-50%, -50%)",
     color: "rgba(0,100,250, 1)",
-    borderRadius: "50%",
+    borderRadius: shapes.corner$circle,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

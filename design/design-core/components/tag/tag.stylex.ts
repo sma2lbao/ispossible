@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { colors } from "../../themes/tokens/color.stylex";
+import { shapes } from "../../themes/tokens/shape.stylex";
 
 export const styles = stylex.create({
   tag: {
@@ -35,10 +36,10 @@ export const styles = stylex.create({
     borderColor: color || colors.primary,
   }),
   tag$square: {
-    borderRadius: "3px",
+    borderRadius: shapes.corner$xs,
   },
   tag$circle: {
-    borderRadius: "99px",
+    borderRadius: shapes.corner$full,
   },
   prefixIcon: {
     display: "flex",

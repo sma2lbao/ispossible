@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { colors } from "../../themes/tokens/color.stylex";
+import { shapes } from "../../themes/tokens/shape.stylex";
 
 export const styles = stylex.create({
   alert: {
@@ -22,19 +23,19 @@ export const styles = stylex.create({
     color: colors.success,
   },
   alert$border$info: {
-    borderRadius: "3px",
+    borderRadius: shapes.corner$xs,
     border: "1px solid rgba(152,205,253, 1)",
   },
   alert$border$warning: {
-    borderRadius: "3px",
+    borderRadius: shapes.corner$xs,
     border: "1px solid rgba(254,217,152,1)",
   },
   alert$border$error: {
-    borderRadius: "3px",
+    borderRadius: shapes.corner$xs,
     border: "1px solid rgba(253,183,165,1)",
   },
   alert$border$success: {
-    borderRadius: "3px",
+    borderRadius: shapes.corner$xs,
     border: "1px solid rgba(164,224,167,1)",
   },
   alert$content$warp: {

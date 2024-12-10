@@ -1,6 +1,7 @@
 import stylex from "@stylexjs/stylex";
 import { colors } from "../../themes/tokens/color.stylex";
 import { animation } from "../../themes/tokens/animation.stylex";
+import { shapes } from "../../themes/tokens/shape.stylex";
 
 export const styles = stylex.create({
   button: {
@@ -16,7 +17,7 @@ export const styles = stylex.create({
     outline: "none",
     verticalAlign: "middle",
     whiteSpace: "nowrap",
-    borderRadius: "3px",
+    borderRadius: shapes.corner$xs,
     boxSizing: "border-box",
     backgroundColor: "transparent",
     cursor: "pointer",

@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { colors } from "../../themes/tokens/color.stylex";
+import { shapes } from "../../themes/tokens/shape.stylex";
 
 export const styles = stylex.create({
   notification$wrap: {
@@ -18,7 +19,7 @@ export const styles = stylex.create({
     minWidth: "320px",
     padding: "16px 12px 16px 20px;",
     backgroundColor: "#fff",
-    borderRadius: "6px",
+    borderRadius: shapes.corner$sm,
     boxShadow: "0 0 1px rgba(0,0,0,0.3),0 4px 14px rgba(0,0,0,0.1)",
     display: "flex",
   },

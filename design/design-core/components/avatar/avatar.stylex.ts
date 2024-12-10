@@ -23,7 +23,7 @@ export const styles = stylex.create({
     color: "#fff",
   },
   avatar$circle: {
-    borderRadius: "50%",
+    borderRadius: shapes.corner$circle,
   },
   avatar$border: {
     border: "1px solid #fff",

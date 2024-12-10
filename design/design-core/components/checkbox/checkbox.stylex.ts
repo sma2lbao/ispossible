@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { colors } from "../../themes/tokens/color.stylex";
+import { shapes } from "../../themes/tokens/shape.stylex";
 
 export const styles = stylex.create({
   checkbox: {
@@ -36,7 +37,7 @@ export const styles = stylex.create({
     height: "16px",
     margin: 0,
     backgroundColor: "transparent",
-    borderRadius: "3px",
+    borderRadius: shapes.corner$xs,
 
     ["::after"]: {
       content: "",

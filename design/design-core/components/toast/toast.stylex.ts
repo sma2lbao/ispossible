@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { colors } from "../../themes/tokens/color.stylex";
+import { shapes } from "../../themes/tokens/shape.stylex";
 
 export const styles = stylex.create({
   toast$wrap: {
@@ -23,7 +24,7 @@ export const styles = stylex.create({
     justifyContent: "center",
     margin: "12px",
     fontWeight: 600,
-    borderRadius: "6px",
+    borderRadius: shapes.corner$sm,
     boxShadow: "0 0 1px rgba(0,0,0,0.3),0 4px 14px rgba(0,0,0,0.1)",
   },
   toast$content$icon: (color?: string) => ({

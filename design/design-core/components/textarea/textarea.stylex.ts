@@ -1,4 +1,5 @@
 import stylex from "@stylexjs/stylex";
+import { shapes } from "../../themes/tokens/shape.stylex";
 
 export const styles = stylex.create({
   textarea: {
@@ -10,7 +11,7 @@ export const styles = stylex.create({
     display: "inline-flex",
     boxSizing: "border-box",
     border: "1px solid transparent",
-    borderRadius: "3px",
+    borderRadius: shapes.corner$xs,
     backgroundColor: "rgba(46,50,56,.05)",
   },
   textarea$focus: {

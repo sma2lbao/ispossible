@@ -1,4 +1,5 @@
 import stylex from "@stylexjs/stylex";
+import { shapes } from "../../themes/tokens/shape.stylex";
 
 export const tokens = stylex.defineVars({
   color: "#ffffff",
@@ -17,7 +18,7 @@ export const styles = stylex.create({
     position: "absolute",
     color: tokens.color,
     backgroundColor: tokens.bgColor,
-    borderRadius: "4px",
+    borderRadius: shapes.corner$xs,
     padding: "8px",
     inset: "0 auto auto 0",
     fontSize: 14,

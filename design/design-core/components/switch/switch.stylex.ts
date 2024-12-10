@@ -1,6 +1,7 @@
 import stylex from "@stylexjs/stylex";
 import { colors } from "../../themes/tokens/color.stylex";
 import { palettes } from "../../themes/tokens/palette.stylex";
+import { shapes } from "../../themes/tokens/shape.stylex";
 
 export const styles = stylex.create({
   root: {
@@ -24,7 +25,7 @@ export const styles = stylex.create({
     display: "inline-flex",
     height: 18,
     width: 18,
-    borderRadius: 3,
+    borderRadius: shapes.corner$xs,
     backgroundColor: palettes.white,
   },
 });

@@ -1,9 +1,10 @@
 import stylex from "@stylexjs/stylex";
+import { shapes } from "../../themes/tokens/shape.stylex";
 
 export const styles = stylex.create({
   select: {
     boxSizing: "border-box",
-    borderRadius: "3px",
+    borderRadius: shapes.corner$xs,
     border: "1px solid transparent",
     height: "32px",
     fontWeight: 400,
@@ -97,7 +98,7 @@ export const styles = stylex.create({
     wordBreak: "break-all",
     padding: "8px 12px",
     color: "rgba(28,31,35,1)",
-    borderRadius: 0,
+    borderRadius: shapes.corner$none,
     position: "relative",
     display: "flex",
     flexWrap: "nowrap",

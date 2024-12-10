@@ -1,4 +1,5 @@
 import stylex from "@stylexjs/stylex";
+import { shapes } from "../../themes/tokens/shape.stylex";
 
 export const styles = stylex.create({
   collapse: {},
@@ -17,7 +18,7 @@ export const styles = stylex.create({
     lineHeight: "20px",
     cursor: "pointer",
     outline: "none",
-    borderRadius: "3px",
+    borderRadius: shapes.corner$xs,
 
     [":hover"]: {
       backgroundColor: "rgba(46,50,56,.05)",

@@ -1,4 +1,5 @@
 import stylex from "@stylexjs/stylex";
+import { shapes } from "../../themes/tokens/shape.stylex";
 
 export const tokens = stylex.defineVars({});
 
@@ -15,7 +16,7 @@ export const styles = stylex.create({
     borderBlockColor: "rgba(46,50,56,.05)",
     backgroundColor: "rgba(46,50,56,.05)",
     border: "1px solid transparent",
-    borderRadius: "3px",
+    borderRadius: shapes.corner$xs,
     width: "100%",
     outline: "none",
     cursor: "text",

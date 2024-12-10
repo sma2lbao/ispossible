@@ -1,64 +1,74 @@
 import stylex from "@stylexjs/stylex";
 export const colors = stylex.defineVars({
   // 主色 (Primary)
-  primary: "#0064FA", // 主色调（蓝色）
-  onPrimary: "#FFFFFF", // 主色上的前景色（白色）
-  primaryContainer: "#D9E2FF", // 容器色（浅蓝色）
-  onPrimaryContainer: "#001A40", // 容器内前景色（深蓝色）
-
-  // 主色交互状态
-  primaryHover: "#0058E0", // 悬停状态（稍暗的蓝色）
-  primaryPressed: "#0048BF", // 按下状态（更深的蓝色）
-  primaryFocus: "#0064FA70", // 焦点状态（透明版蓝色）
-  primaryDisabled: "#0064FA40", // 禁用状态（降低透明度）
+  primary: "rgb(0,100,250)", // 主色调
+  onPrimary: "rgb(255,255,255)", // 主色上的前景色
+  primaryContainer: "", // 容器色
+  onPrimaryContainer: "", // 容器内前景色
+  primaryHover: "rgb(0,98,214)", // 悬停状态（稍暗的蓝色）
+  primaryPressed: "rgb(0,79,179)", // 按下状态（更深的蓝色）
+  primaryFocus: "", // 焦点状态（透明版蓝色）
+  primaryDisabled: "rgb(152,205,253)", // 禁用状态（降低透明度）
 
   // 辅助色 (Secondary)
-  secondary: "#5E5C68", // 辅助色（中性灰紫色）
-  onSecondary: "#FFFFFF", // 辅助色上的前景色
-  secondaryContainer: "#E3E1F0", // 容器色（浅灰紫色）
-  onSecondaryContainer: "#1A1B23", // 容器内前景色（深灰紫色）
+  secondary: "rgb(64,180,243)", // 辅助色 强调作用次于主要颜色，但仍然具有强调作用。
+  onSecondary: "rgb(255,255,255)", // 辅助色上的前景色
+  secondaryContainer: "", // 容器色
+  onSecondaryContainer: "", // 容器内前景色
+  secondaryHover: "rgb(110,200,246)", // 悬停状态
+  secondaryPressed: "rgb(157,220,249)", // 按下状态 active
+  secondaryFocus: "", // 焦点状态
+  secondaryDisabled: "rgb(3,102,169)", // 禁用状态
 
-  // 辅助色交互状态
-  secondaryHover: "#53515D", // 悬停状态
-  secondaryPressed: "#484651", // 按下状态
-  secondaryFocus: "#5E5C6870", // 焦点状态
-  secondaryDisabled: "#5E5C6840", // 禁用状态
+  // 第三颜色
+  tertiary: "rgb(107,112,117)",
+  onTertiary: "rgb(255,255,255)",
+  tertiaryContainer: "",
+  onTertiaryContainer: "",
+  tertiaryHover: "rgb(85,91,97)",
+  tertiaryPressed: "rgb(65,70,76)",
+  tertiaryFocus: "",
+  tertiaryDisabled: "",
+
+  // 信息色 (Error)
+  info: "rgb(0,100,250)", // 通常用于表达客观、中立信息
+  onInfo: "rgb(255,255,255)", // 错误背景上的前景色
+  infoContainer: "", // 错误容器背景色
+  onInfoContainer: "", // 容器内前景色
+  infoHover: "rgb(0,98,214)", // 悬停状态
+  infoPressed: "rgb(0,79,179)", // 按下状态
+  infoFocus: "", // 焦点状态
+  infoDisabled: "rgb(152,205,253)", // 禁用状态
 
   // 错误色 (Error)
-  error: "#F93920", // 错误色（红色）
-  onError: "#FFFFFF", // 错误背景上的前景色
-  errorContainer: "#F9DEDC", // 错误容器背景色
-  onErrorContainer: "#410E0B", // 容器内前景色
-
-  // 错误交互状态
-  errorHover: "#9E2019", // 悬停状态
-  errorPressed: "#841A14", // 按下状态
-  errorFocus: "#B3261E70", // 焦点状态
-  errorDisabled: "#B3261E40", // 禁用状态
+  error: "rgb(249,57,32)", // 错误色（红色）
+  onError: "rgb(255,255,255)", // 错误背景上的前景色
+  errorContainer: "", // 错误容器背景色
+  onErrorContainer: "", // 容器内前景色
+  errorHover: "rgb(213,37,21)", // 悬停状态
+  errorPressed: "rgb(178,20,12)", // 按下状态
+  errorFocus: "", // 焦点状态
+  errorDisabled: "", // 禁用状态
 
   // 警告色 (Warn)
-  warn: "#FC8800", // 警告色（橙色）
-  onWarn: "#FFFFFF", // 警告背景上的前景色
-  warnContainer: "#FFE6C4", // 容器背景色
-  onWarnContainer: "#4D2600", // 容器内前景色
-
-  // 警告交互状态
-  warnHover: "#E69520", // 悬停状态
-  warnPressed: "#CC841A", // 按下状态
-  warnFocus: "#FFA72670", // 焦点状态
-  warnDisabled: "#FFA72640", // 禁用状态
+  warn: "rgb(252,136,0)", // 警告色（橙色）
+  onWarn: "rgb(255,255,255)", // 警告背景上的前景色
+  warnContainer: "", // 容器背景色
+  onWarnContainer: "", // 容器内前景色
+  warnHover: "rgb(210,103,0)", // 悬停状态
+  warnPressed: "rgb(168,74,0)", // 按下状态
+  warnFocus: "", // 焦点状态
+  warnDisabled: "", // 禁用状态
 
   // 成功色（Success）
-  success: "#3bb346",
-  onSuccess: "#FFFFFF",
+  success: "rgb(59,179,70)",
+  onSuccess: "rgb(255,255,255)",
   successContainer: "",
   onSuccessContainer: "",
-
-  // 成功交互状态
-  successHover: "",
-  successPressed: "",
+  successHover: "rgb(48,149,59)",
+  successPressed: "rgb(37,119,47)",
   successFocus: "",
-  successDisabled: "",
+  successDisabled: "rgb(164,224,167)",
 
   // 表面和背景 (Surface/Background)
   surface: "#FFFBFE", // 表面色（浅灰白色）

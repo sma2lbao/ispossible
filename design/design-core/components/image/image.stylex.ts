@@ -1,8 +1,9 @@
 import stylex from "@stylexjs/stylex";
+import { shapes } from "../../themes/tokens/shape.stylex";
 
 export const styles = stylex.create({
   image: {
-    borderRadius: "3px",
+    borderRadius: shapes.corner$xs,
     position: "relative",
     display: "inline-block",
     overflow: "hidden",
@@ -25,7 +26,7 @@ export const styles = stylex.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: "3px",
+    borderRadius: shapes.corner$xs,
     backgroundColor: "rgba(46,50,56,.05)",
     color: "rgba(28,31,35,.35)",
   },

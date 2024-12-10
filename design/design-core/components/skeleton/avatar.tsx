@@ -2,17 +2,18 @@ import React from "react";
 import stylex from "@stylexjs/stylex";
 
 import { type SkeletonAvatarProps } from "./skeleton.types";
+import { shapes } from "../../themes/tokens/shape.stylex";
 
 const styles = stylex.create({
   avatar: (size: number) => ({
     width: size || 80,
     height: size || 80,
-    borderRadius: "50%",
+    borderRadius: shapes.corner$circle,
     backgroundColor: "#ddd",
     display: "inline-block",
   }),
   square: {
-    borderRadius: 6,
+    borderRadius: shapes.corner$sm,
   },
 });
 

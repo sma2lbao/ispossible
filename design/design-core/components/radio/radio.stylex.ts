@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { colors } from "../../themes/tokens/color.stylex";
+import { shapes } from "../../themes/tokens/shape.stylex";
 
 export const styles = stylex.create({
   radio$group: {
@@ -57,7 +58,7 @@ export const styles = stylex.create({
     borderWidth: "1px",
     borderStyle: "solid",
     borderColor: "rgba(28,31,35,.35)",
-    borderRadius: "16px",
+    borderRadius: shapes.corner$lg,
     backgroundColor: "transparent",
 
     ["::after"]: {
@@ -66,7 +67,7 @@ export const styles = stylex.create({
       top: 0,
       width: "100%",
       height: "100%",
-      borderRadius: "50%",
+      borderRadius: shapes.corner$circle,
       opacity: 0,
       transform: "scale(0)",
       backgroundColor: "#fff",

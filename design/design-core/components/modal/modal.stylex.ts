@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { colors } from "../../themes/tokens/color.stylex";
+import { shapes } from "../../themes/tokens/shape.stylex";
 
 export const styles = stylex.create({
   modal$portal: {},
@@ -31,7 +32,7 @@ export const styles = stylex.create({
     boxSizing: "border-box",
     flexDirection: "column",
     backgroundColor: "#fff",
-    borderRadius: "12px",
+    borderRadius: shapes.corner$md,
     padding: "0 24px",
     overflow: "hidden",
     boxShadow: "0 0 1px rgba(0,0,0,0.3),0 4px 14px rgba(0,0,0,0.1)",
