@@ -33,7 +33,7 @@ export const Space: React.FC<SpaceProps> = (props) => {
         if (!child) return;
         return (
           <>
-            <div key={index} {...x(styles.space$item)}>
+            <div key={index} {...x(direction === "y" && styles.space$item)}>
               {child}
             </div>
             {!isLast && separator}
