@@ -4,7 +4,7 @@ import { Alert } from ".";
 import { Space } from "../space";
 
 /**
- * 警告提示，展现需要关注的信息。
+ * 横幅通常用于标识全页的状态或通知等。它通常是常驻的，需要用户主动将其关闭。
  */
 const meta = {
   title: "Alert 提示",
@@ -23,7 +23,7 @@ type Story = StoryObj<typeof meta>;
 /**
  * 最简单的用法。
  */
-export const 代码演示 = () => {
+export const 基本用法 = () => {
   return (
     <div style={{ padding: "30px" }}>
       <Space direction="y">

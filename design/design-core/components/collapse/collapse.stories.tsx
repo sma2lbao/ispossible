@@ -19,9 +19,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /**
- * 可以同时展开多个面板
+ * 用于将复杂的内容区域分组和隐藏，可折叠或展开，默认可以展开多个面板，也可以只展开某几个面板。
  */
-export const 代码演示 = () => {
+export const 基本用法 = () => {
   return (
     <div>
       <Collapse accordion>

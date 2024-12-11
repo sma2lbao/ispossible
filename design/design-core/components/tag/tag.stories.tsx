@@ -5,7 +5,7 @@ import "@design/icon/home";
 import { TagGroup } from "./group";
 
 /**
- * 进行标记和分类的小标签。
+ * 用于信息的选择、筛选、分类。用户通过标签进行信息反馈和交互操作。
  */
 const meta = {
   title: "Tag 标签",
@@ -21,9 +21,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /**
- * 基本标签的用法
+ * 标签的基础用法。
  */
-export const 基本: Story = {
+export const 基本用法: Story = {
   args: {
     children: "标签",
     prefixIcon: <is-home />,
@@ -85,7 +85,6 @@ export const 可删除: Story = {
 /**
  * 使用 TagGroup
  */
-
 export const 使用TagGroup = () => {
   const tagList = [
     { color: "light-blue", label: "标签一" },

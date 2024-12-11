@@ -3,6 +3,9 @@ import React from "react";
 import { Row, Col } from "./";
 import "@design/icon/user";
 
+/**
+ * 栅格可以有效的保证页面的一致性、逻辑性、加强团队协作和统一。
+ */
 const meta = {
   title: "Grid 栅格",
   component: Row,
@@ -16,7 +19,7 @@ const meta = {
 export default meta;
 
 /**
- * 通过鼠标或键盘输入内容，是最基础的表单域的包装。
+ * 展示了最基本的 24 等分应用。
  */
 export const 基本用法 = () => (
   <div style={{ boxSizing: "border-box", padding: "20px", overflow: "auto" }}>
@@ -64,6 +67,9 @@ export const 基本用法 = () => (
   </div>
 );
 
+/**
+ * 通过在 Row 上指定 gutter 可以增加栅格的区域间隔。
+ */
 export const Gutter间隔 = () => {
   return (
     <div style={{ boxSizing: "border-box", padding: "20px", overflow: "auto" }}>
@@ -125,7 +131,10 @@ export const Gutter间隔 = () => {
   );
 };
 
-export const Offset偏移量 = () => {
+/**
+ * 指定 offset 可以对栅格进行平移操作。
+ */
+export const 栅格偏移 = () => {
   return (
     <div
       className="grid"
@@ -158,6 +167,9 @@ export const Offset偏移量 = () => {
   );
 };
 
+/**
+ * 指定 push 或者 pull 可以对栅格进行排序。
+ */
 export const 栅格排序 = () => {
   return (
     <div style={{ boxSizing: "border-box", padding: "20px", overflow: "auto" }}>
@@ -173,6 +185,9 @@ export const 栅格排序 = () => {
   );
 };
 
+/**
+ * 通过设置 Row 组件的 flex 属性，可以任意配置 flex 布局。
+ */
 export const Flex布局 = () => {
   return (
     <div style={{ boxSizing: "border-box", padding: "20px", overflow: "auto" }}>

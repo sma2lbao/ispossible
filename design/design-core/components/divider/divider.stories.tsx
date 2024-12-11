@@ -2,6 +2,9 @@ import React from "react";
 import { Divider } from "./divider";
 import type { Meta, StoryObj } from "@storybook/react";
 
+/**
+ * 划分内容区域，对模块做分隔。
+ */
 const meta = {
   title: "Divider 分隔线",
   component: Divider,
@@ -16,7 +19,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /**
- * 默认为水平分割线，可在中间加入文字。
+ * 对不同章节的文本段落进行分割，默认为水平分割线，可在中间加入文字。
+ * 通过 align 指定分割线文字的位置。
  */
 export const 基本用法 = () => (
   <div style={{ width: 300 }}>
@@ -25,7 +29,30 @@ export const 基本用法 = () => (
     <Divider>到底了</Divider>
 
     <Divider align="end">到底了</Divider>
+  </div>
+);
 
+/**
+ * 指定 direction 为 y 即可使用竖直分割线。
+ */
+export const 竖直分割线 = () => (
+  <>
+    <div
+      style={{
+        height: 150,
+        width: 400,
+        overflow: "hidden",
+        marginBottom: "16px",
+      }}
+    >
+      <Divider direction="y" align="start">
+        分隔线
+      </Divider>
+      <Divider direction="y">分隔线</Divider>
+      <Divider direction="y" align="end">
+        分隔线
+      </Divider>
+    </div>
     <div style={{ display: "flex", height: 20, alignItems: "center" }}>
       <div>文字</div>
       <Divider direction="y" />
@@ -33,29 +60,5 @@ export const 基本用法 = () => (
       <Divider direction="y" />
       <div>文字</div>
     </div>
-  </div>
-);
-
-export const Y方向有文字 = () => (
-  <div style={{ height: 150, width: 400, overflow: "hidden" }}>
-    <Divider direction="y" align="start">
-      分隔线
-    </Divider>
-    <Divider direction="y">分隔线</Divider>
-    <Divider direction="y" align="end">
-      分隔线
-    </Divider>
-  </div>
-);
-
-export const X方向无文字 = () => (
-  <div style={{ width: 300, overflow: "hidden" }}>
-    <Divider />
-  </div>
-);
-
-export const Y方向无文字 = () => (
-  <div style={{ height: 100, width: 300, overflow: "hidden" }}>
-    <Divider direction="y" />
-  </div>
+  </>
 );

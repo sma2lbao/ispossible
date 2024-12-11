@@ -4,6 +4,9 @@ import { Switch } from "./switch";
 import { Space } from "../space";
 import "@design/icon/user";
 
+/**
+ * 互斥性的操作控件，用户可打开或关闭某个功能。
+ */
 const meta = {
   title: "Switch 开关",
   component: Switch,

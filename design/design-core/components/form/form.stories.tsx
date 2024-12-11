@@ -4,6 +4,9 @@ import { Form } from "./";
 import { Input } from "../input";
 import { Button } from "../button";
 
+/**
+ * 具有数据收集、校验和提交功能的表单，包含复选框、单选框、输入框、下拉选择框等元素。
+ */
 const meta = {
   title: "Form 表单",
   component: Form,
@@ -16,6 +19,9 @@ const meta = {
 
 export default meta;
 
+/**
+ * 非受控模式的用法。
+ */
 export const 基本用法 = () => {
   type FormData = {
     username: string;

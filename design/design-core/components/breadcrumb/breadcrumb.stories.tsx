@@ -4,7 +4,7 @@ import React from "react";
 import "@design/icon/right";
 
 /**
- * 显示当前页面在系统层级结构中的位置，并能向上返回。
+ * 面包屑是辅助导航模式，用于识别页面在层次结构内的位置，并根据需要向上返回。
  */
 const meta = {
   title: "Breadcrumb 面包屑",
@@ -17,12 +17,11 @@ const meta = {
 } satisfies Meta<typeof Breadcrumb>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
 /**
- * 垂直菜单，子菜单是弹出的形式。
+ * 适用于广泛基本用法。分隔方式分为图标分隔及斜线分隔两种方式，可根据不同场景使用。
  */
-export const 基本使用 = () => {
+export const 基本用法 = () => {
   return (
     <div>
       <Breadcrumb>

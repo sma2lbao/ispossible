@@ -3,6 +3,9 @@ import { Drawer } from "./drawer";
 import type { Meta } from "@storybook/react";
 import { Button } from "../button";
 
+/**
+ * 触发命令后，从屏幕一侧滑出的抽屉式的面板。
+ */
 const meta = {
   title: "Drawer 抽屉",
   component: Drawer,
@@ -15,7 +18,10 @@ const meta = {
 
 export default meta;
 
-export const 基本使用 = () => {
+/**
+ * 基础抽屉，点击触发按钮抽屉从右侧滑出，点击遮罩区关闭。
+ */
+export const 基本用法 = () => {
   const [visible, setVisivle] = useState(false);
   return (
     <>

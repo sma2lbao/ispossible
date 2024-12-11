@@ -18,7 +18,7 @@ const meta = {
 
 export default meta;
 
-export const 基础用法 = () => (
+export const 基本用法 = () => (
   <Space>
     <Button>Button</Button>
     <Button disabled theme="solid">

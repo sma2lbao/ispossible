@@ -5,6 +5,9 @@ import { Button } from "../button";
 import type { UploadRequestOptions } from "./upload.types";
 import "@design/icon/plus";
 
+/**
+ * 用户可传输文件或提交相应的内容。
+ */
 const meta = {
   title: "Upload 上传",
   component: Upload,
@@ -17,7 +20,10 @@ const meta = {
 
 export default meta;
 
-export const 基础使用 = () => {
+/**
+ * 最基础的上传组件用法。
+ */
+export const 基本用法 = () => {
   return (
     <Upload action="http://localhost:3000/api/upload">
       <Button theme="light">点击上传</Button>
@@ -25,7 +31,10 @@ export const 基础使用 = () => {
   );
 };
 
-export const 覆盖默认的上传 = () => {
+/**
+ * 默认通过 Ajax 请求上传，可以设置 customRequest 覆盖默认的上传请求，实现自定义上传。
+ */
+export const 自定义上传 = () => {
   const customRequest = (options: UploadRequestOptions) => {
     const {} = options;
   };

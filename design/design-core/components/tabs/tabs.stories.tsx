@@ -3,7 +3,7 @@ import { Tabs, TabPane } from "./";
 import type { Meta, StoryObj } from "@storybook/react";
 
 /**
- * 选项卡切换组件。
+ * 将内容组织同一视图中，一次可查看一个视图内容。查看其他内容可切换选项卡查看。
  */
 const meta = {
   title: "Tabs 标签页",
@@ -16,12 +16,11 @@ const meta = {
 } satisfies Meta<typeof Tabs>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
 /**
  * 默认选中第一项
  */
-export const 基础使用 = () => {
+export const 基本用法 = () => {
   return (
     <div>
       <Tabs defaultActiveKey="1">

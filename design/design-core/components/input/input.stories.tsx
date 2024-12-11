@@ -1,10 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { Input } from "./";
 import { Space } from "../space";
 import "@design/icon/user";
 import "@design/icon/search";
 
+/**
+ * 基本表单组件，并在原生控件基础上进行了功能扩展，可以组合使用。
+ */
 const meta = {
   title: "Input 输入框",
   component: Input,

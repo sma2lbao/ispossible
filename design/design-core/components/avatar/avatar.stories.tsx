@@ -2,7 +2,6 @@ import { Avatar, Space } from "../../components";
 import type { Meta } from "@storybook/react";
 import React from "react";
 import "@design/icon/user";
-import { AvatarGroup } from "./avatar-group";
 
 /**
  * 用来代表用户或事物，支持图片、图标或字符展示。
@@ -20,9 +19,9 @@ const meta = {
 export default meta;
 
 /**
- * 支持两种形状可选。
+ * 头像的基础使用
  */
-export const 基本 = () => (
+export const 基本用法 = () => (
   <Space direction="x">
     <Avatar>
       <is-user />
@@ -42,15 +41,18 @@ export const 自适应字符大小 = () => {
   );
 };
 
+/**
+ * 使用 Avatar.Group 可以使用头像组功能
+ */
 export const 头像组 = () => {
   return (
-    <AvatarGroup max={3}>
+    <Avatar.Group max={3}>
       <Avatar>LL</Avatar>
       <Avatar>CX</Avatar>
       <Avatar>CX</Avatar>
       <Avatar>RM</Avatar>
       <Avatar>ZL</Avatar>
       <Avatar>YZ</Avatar>
-    </AvatarGroup>
+    </Avatar.Group>
   );
 };

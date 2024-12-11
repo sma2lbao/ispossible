@@ -2,6 +2,9 @@ import { List } from "./";
 import React, { useRef, useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
+/**
+ * 最基础的列表展示，可承载文字、列表、图片、段落，常用于后台数据展示页面。
+ */
 const meta = {
   title: "List 列表",
   component: List,
@@ -15,7 +18,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const 代码演示 = () => {
+/**
+ * 最基础的列表展示，可承载文字、列表、图片、段落，常用于后台数据展示页面。
+ */
+export const 基本用法 = () => {
   const data = [
     "从明天起，做一个幸福的人",
     "喂马，劈柴，周游世界",

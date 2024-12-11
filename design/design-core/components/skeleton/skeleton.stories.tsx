@@ -2,6 +2,9 @@ import { Skeleton } from "./";
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
+/**
+ * 将加载中的数据用灰色占位。
+ */
 const meta = {
   title: "Skeleton 骨架屏",
   component: Skeleton,
@@ -15,8 +18,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const 代码演示 = () => (
+export const 基本用法 = () => (
   <div style={{ padding: 50 }}>
     <Skeleton />
   </div>

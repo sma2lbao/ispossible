@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta } from "@storybook/react";
 import { Dropdown } from "./dropdown";
 import { Button } from "../button";
 import { DropdownMenuItemProps } from "./dropdown.types";
 import { Space } from "../space";
 
+/**
+ * 页面上的命令过多时，可将备选命令收纳到向下展开的浮层容器中。
+ */
 const meta = {
   title: "Dropdown 下拉框",
   component: Dropdown,
@@ -18,7 +21,10 @@ const meta = {
 
 export default meta;
 
-export const 基本使用 = () => {
+/**
+ * 基础下拉菜单。
+ */
+export const 基本用法 = () => {
   const menu: DropdownMenuItemProps[] = [
     { node: "title", name: "分组1" },
     {

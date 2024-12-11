@@ -6,7 +6,7 @@ import { Space } from "../space";
 import { Button } from "../button";
 
 /**
- * 将页面元素钉在可视范围。
+ * 全局展示通知提醒，将信息及时有效的传达给用户。
  */
 const meta = {
   title: "Notification 消息通知",
@@ -22,9 +22,9 @@ const meta = {
 export default meta;
 
 /**
- * 最简单的用法。
+ * 通知提醒框有 4 种不同的类型，分别为：info, success, warning, error
  */
-export const 代码演示 = () => {
+export const 基本用法 = () => {
   const handleClick = (type: "info" | "error" | "warning" | "success") => {
     if (type === "info") {
       Notification.info({

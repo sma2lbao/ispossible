@@ -14,6 +14,6 @@ const meta = {
 
 export default meta;
 
-export const 基本使用 = () => {
+export const 基本用法 = () => {
   return <Textarea />;
 };

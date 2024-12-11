@@ -23,7 +23,7 @@ type Story = StoryObj<typeof meta>;
 /**
  * 最简单的用法。
  */
-export const 代码演示: Story = {
+export const 基本用法: Story = {
   args: {
     items: [
       {
@@ -44,6 +44,9 @@ export const 代码演示: Story = {
   },
 };
 
+/**
+ * 基本用法，随着页面滚动，锚点浮动在页面固定位置。
+ */
 export const 使用组件 = () => {
   return (
     <Anchor>

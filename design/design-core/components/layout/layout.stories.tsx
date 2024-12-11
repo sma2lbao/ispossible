@@ -2,6 +2,9 @@ import { Layout } from "./";
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
+/**
+ * 页面的基础布局框架，常与组件嵌套使用，构建页面整体布局。
+ */
 const meta = {
   title: "Layout 布局",
   component: Layout,
@@ -15,8 +18,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const 代码演示 = () => {
+/**
+ * 典型的页面布局。
+ */
+export const 基本用法 = () => {
   const { Header, Footer, Sider, Content } = Layout;
 
   const headerStyle: React.CSSProperties = {

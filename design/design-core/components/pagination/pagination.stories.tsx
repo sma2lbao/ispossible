@@ -2,6 +2,9 @@ import { Pagination } from "./";
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
+/**
+ * 采用分页控制单页内的信息数量，也可进行页面跳转。
+ */
 const meta = {
   title: "Pagination 分页",
   component: Pagination,
@@ -14,8 +17,7 @@ const meta = {
 
 export default meta;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const 代码演示 = () => {
+export const 基本用法 = () => {
   const [current, setCurrent] = useState(1);
 
   return (

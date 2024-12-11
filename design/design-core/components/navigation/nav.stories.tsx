@@ -7,6 +7,9 @@ import "@design/icon/wechat";
 import "@design/icon/menu";
 import "@design/icon/check-square";
 
+/**
+ * 收纳、排列并展示一系列选项的列表。
+ */
 const meta = {
   title: "Navigation 导航",
   component: Nav,
@@ -20,8 +23,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const 代码演示 = () => {
+export const 基本用法 = () => {
   const items = [
     { itemKey: "user", text: "用户管理", icon: <is-user /> },
     {

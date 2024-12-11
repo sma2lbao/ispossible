@@ -3,6 +3,9 @@ import React, { useState } from "react";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
+/**
+ * 鼠标悬停、聚焦或点击在某个组件时，弹出的文字提示。
+ */
 const meta = {
   title: "Tooltip 文字提示",
   component: Tooltip,
@@ -16,10 +19,11 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-
-export const 基本使用 = () => {
-  const title = "基本使用";
+/**
+ * 鼠标移入，气泡出现，鼠标移出，气泡消失。
+ */
+export const 基本用法 = () => {
+  const title = "基本用法";
   const container: React.CSSProperties = {
     display: "flex",
     justifyContent: "space-between",
@@ -101,6 +105,9 @@ export const 基本使用 = () => {
   );
 };
 
+/**
+ * 设为 custom 时，需要配合 visible 属性使用，此时显示与否完全受控
+ */
 export const 触发时机 = () => {
   const [toggle, setToggle] = useState(false);
 
