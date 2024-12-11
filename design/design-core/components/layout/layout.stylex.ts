@@ -1,4 +1,5 @@
 import stylex from "@stylexjs/stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const styles = stylex.create({
   layout: {
@@ -36,7 +37,7 @@ export const styles = stylex.create({
     height: `calc(100vh - ${top}px)`,
     overflowY: "auto",
     overflowX: "hidden",
-    padding: "10px",
+    padding: spacings.padding$3,
     scrollbarGutter: "stable",
     // 滚动条
     ["::-webkit-scrollbar"]: {

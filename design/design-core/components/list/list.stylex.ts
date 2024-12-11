@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { animation } from "../../themes/tokens/animation.stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const styles = stylex.create({
   list: {
@@ -12,7 +13,7 @@ export const styles = stylex.create({
     listStyle: "none",
   },
   list$item: {
-    padding: "12px 24px",
+    padding: `${spacings.padding$3} ${spacings.padding$6}`,
     borderBottom: "1px solid rgba(28,31,35,.08)",
     display: "flex",
     width: "100%",
@@ -26,7 +27,7 @@ export const styles = stylex.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    padding: "12px 24px",
+    padding: `${spacings.padding$3} ${spacings.padding$6}`,
     color: "#999",
   },
   loading: {

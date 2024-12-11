@@ -1,4 +1,5 @@
 import stylex from "@stylexjs/stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const styles = stylex.create({
   drawer$portal: {
@@ -39,7 +40,7 @@ export const styles = stylex.create({
   drawer$header: {
     display: "flex",
     alignItems: "flex-start",
-    padding: "16px 24px",
+    padding: `${spacings.padding$4} ${spacings.padding$6}`,
   },
   drawer$title: {
     flex: "1 0 auto",
@@ -51,16 +52,16 @@ export const styles = stylex.create({
     textAlign: "left",
   },
   drawer$header$close: {
-    padding: "4px",
+    padding: spacings.padding$1,
     color: "#1c1f23cc",
     height: "24px",
   },
   drawer$body: {
-    padding: "0 24px",
+    padding: `0 ${spacings.padding$6}`,
     flex: "1 1",
     overflow: "auto",
   },
   drawer$footer: {
-    padding: "24px",
+    padding: spacings.padding$6,
   },
 });

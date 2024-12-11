@@ -1,11 +1,12 @@
 import stylex from "@stylexjs/stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const styles = stylex.create({
   form: {},
   form$field: {
     margin: 0,
-    paddingTop: "12px",
-    paddingBottom: "12px",
+    paddingTop: spacings.padding$3,
+    paddingBottom: spacings.padding$3,
     overflow: "hidden",
   },
   form$field$label: {
@@ -16,7 +17,7 @@ export const styles = stylex.create({
     color: "rgba(28,31,35,1)",
     marginBottom: "4px",
     marginTop: 0,
-    paddingRight: "16px",
+    paddingRight: spacings.padding$4,
     verticalAlign: "middle",
     fontSize: "14px",
     lineHeight: "20px",

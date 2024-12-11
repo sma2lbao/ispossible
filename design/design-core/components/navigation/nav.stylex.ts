@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { colors } from "../../themes/tokens/color.stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const styles = stylex.create({
   root: {
@@ -8,7 +9,7 @@ export const styles = stylex.create({
     borderRight: "1px solid rgba(28,31,35,.08)",
     fontSize: "14px",
     boxSizing: "border-box",
-    padding: "20px",
+    padding: spacings.padding$5,
   },
   vertical: {
     borderRight: "none",
@@ -17,7 +18,7 @@ export const styles = stylex.create({
     width: "100%",
     display: "flex",
     borderRight: "none",
-    padding: "12px",
+    padding: spacings.padding$3,
   },
   yInner: {
     width: "100%",
@@ -43,7 +44,7 @@ export const styles = stylex.create({
     height: "36px",
     cursor: "pointer",
     display: "flex",
-    padding: "8px 12px",
+    padding: `${spacings.padding$2} ${spacings.padding$3}`,
     fontSize: "14px",
     lineHeight: "20px",
     alignItems: "center",
@@ -62,7 +63,7 @@ export const styles = stylex.create({
     justifyContent: "flex-start",
     height: "36px",
     alignItems: "center",
-    padding: "8px 12px",
+    padding: `${spacings.padding$2} ${spacings.padding$3}`,
     boxSizing: "border-box",
     cursor: "pointer",
     ":hover": {
@@ -75,7 +76,7 @@ export const styles = stylex.create({
     flexDirection: "column",
   },
   inlineCollapsibleWrap: {
-    paddingTop: "8px",
+    paddingTop: spacings.padding$2,
   },
   icon: {
     minWidth: "20px",

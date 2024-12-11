@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import stylex, { StyleXStyles } from "@stylexjs/stylex";
 import { TableContext } from "./context";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 const styles = stylex.create({
   root: (align: string, width?: string | number) => ({
     width: width ?? "auto",
     display: "table-cell",
     textAlign: align,
-    padding: 16,
+    padding: spacings.padding$4,
     borderBottom: `1px solid rgba(224, 224, 224, 1)`,
     boxSizing: "border-box",
   }),

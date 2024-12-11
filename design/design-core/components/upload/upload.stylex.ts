@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { shapes } from "../../themes/tokens/shape.stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const styles = stylex.create({
   upload: {
@@ -82,7 +83,7 @@ export const styles = stylex.create({
     flex: "1 1",
   },
   upload$files$item$close: {
-    padding: "4px",
+    padding: spacings.padding$1,
     color: "rgba(28,31,35,.8)",
     marginLeft: "8px",
     marginRight: "8px",

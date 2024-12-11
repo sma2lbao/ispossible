@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { colors } from "../../themes/tokens/color.stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const styles = stylex.create({
   tabs: {},
@@ -16,8 +17,9 @@ export const styles = stylex.create({
   tabs$tab: {
     fontSize: "14px",
     lineHeight: "20px",
-    padding: "16px 4px 14px",
+    padding: `${spacings.padding$4} ${spacings.padding$1}`,
     borderBottom: "2px solid transparent",
+    boxSizing: "border-box",
   },
   tabs$tab$single: {
     display: "inline-flex",
@@ -36,7 +38,7 @@ export const styles = stylex.create({
   },
   tabs$content: {
     width: "100%",
-    padding: "5px 0",
+    padding: `${spacings.padding$2} 0`,
   },
   tabs$pane: {
     width: "100%",

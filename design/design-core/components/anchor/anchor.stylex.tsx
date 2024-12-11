@@ -2,6 +2,7 @@ import stylex from "@stylexjs/stylex";
 import { colors } from "../../themes/tokens/color.stylex";
 import { shapes } from "../../themes/tokens/shape.stylex";
 import { typeScales } from "../../themes/tokens/type-scale.stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const styles = stylex.create({
   root: {
@@ -26,9 +27,9 @@ export const styles = stylex.create({
   },
 
   linkRoot: {
-    paddingLeft: "16px",
-    paddingTop: "4px",
-    paddingBottom: "4px",
+    paddingLeft: spacings.padding$4,
+    paddingTop: spacings.padding$1,
+    paddingBottom: spacings.padding$1,
     fontSize: typeScales.bodySize$md,
     lineHeight: typeScales.bodyLineHeight$md,
     overflow: "hidden",

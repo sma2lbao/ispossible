@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { shapes } from "../../themes/tokens/shape.stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const tokens = stylex.defineVars({
   color: "#ffffff",
@@ -19,7 +20,7 @@ export const styles = stylex.create({
     color: tokens.color,
     backgroundColor: tokens.bgColor,
     borderRadius: shapes.corner$xs,
-    padding: "8px",
+    padding: spacings.padding$2,
     inset: "0 auto auto 0",
     fontSize: 14,
     lineHeight: 1.4,

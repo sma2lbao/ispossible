@@ -1,6 +1,7 @@
 import stylex from "@stylexjs/stylex";
 import { colors } from "../../themes/tokens/color.stylex";
 import { shapes } from "../../themes/tokens/shape.stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const styles = stylex.create({
   tag: {
@@ -11,7 +12,7 @@ export const styles = stylex.create({
     fontSize: "12px",
     height: "24px",
     lineHeight: "16px",
-    padding: "4px 8px",
+    padding: `${spacings.padding$1} ${spacings.padding$2}`,
     overflow: "hidden",
     whiteSpace: "nowrap",
     borderWidth: "1px",
@@ -43,7 +44,7 @@ export const styles = stylex.create({
   },
   prefixIcon: {
     display: "flex",
-    paddingRight: "4px",
+    paddingRight: spacings.padding$1,
   },
   content: {
     overflow: "hidden",
@@ -52,10 +53,10 @@ export const styles = stylex.create({
   },
   suffixIcon: {
     display: "flex",
-    paddingLeft: "4px",
+    paddingLeft: spacings.padding$1,
   },
   closeIcon: {
-    paddingLeft: "4px",
+    paddingLeft: spacings.padding$1,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",

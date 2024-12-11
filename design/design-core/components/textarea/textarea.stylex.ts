@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { shapes } from "../../themes/tokens/shape.stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const styles = stylex.create({
   textarea: {
@@ -23,7 +24,7 @@ export const styles = stylex.create({
     border: "0 solid transparent",
     width: "100%",
     boxSizing: "border-box",
-    padding: "5px 12px",
+    padding: `${spacings.padding$2} ${spacings.padding$3}`,
     outline: "none",
     resize: "none",
     height: "100%",

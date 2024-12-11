@@ -2,6 +2,7 @@ import stylex from "@stylexjs/stylex";
 import { colors } from "../../themes/tokens/color.stylex";
 import { animation } from "../../themes/tokens/animation.stylex";
 import { shapes } from "../../themes/tokens/shape.stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const styles = stylex.create({
   button: {
@@ -12,7 +13,7 @@ export const styles = stylex.create({
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    padding: "6px 12px",
+    padding: `${spacings.padding$2} ${spacings.padding$3}`,
     fontWeight: 600,
     outline: "none",
     verticalAlign: "middle",
@@ -73,7 +74,7 @@ export const styles = stylex.create({
     gap: "8px",
   },
   button$onlyIcon: {
-    padding: "8px",
+    padding: spacings.padding$2,
   },
   button$icon: {
     fontSize: "16px",

@@ -1,6 +1,7 @@
 import stylex from "@stylexjs/stylex";
 import { colors } from "../../themes/tokens/color.stylex";
 import { shapes } from "../../themes/tokens/shape.stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const styles = stylex.create({
   toast$wrap: {
@@ -19,7 +20,7 @@ export const styles = stylex.create({
     color: "#1c1f23",
     backgroundColor: "#fff",
     display: "inline-flex",
-    padding: "12px 8px",
+    padding: `${spacings.padding$3} ${spacings.padding$2}`,
     alignItems: "flex-start",
     justifyContent: "center",
     margin: "12px",
@@ -61,7 +62,7 @@ export const styles = stylex.create({
     marginTop: "-2px",
   },
   toast$close$icon: {
-    padding: "4px",
+    padding: spacings.padding$1,
     height: "24px",
   },
 });

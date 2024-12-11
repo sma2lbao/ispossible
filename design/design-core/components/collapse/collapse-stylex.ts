@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { shapes } from "../../themes/tokens/shape.stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const styles = stylex.create({
   collapse: {},
@@ -10,7 +11,7 @@ export const styles = stylex.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: "8px",
+    padding: spacings.padding$2,
     margin: "4px 8px",
     color: "rgba(28,31,35,1)",
     fontWeight: 600,
@@ -38,7 +39,7 @@ export const styles = stylex.create({
     color: "rgba(28,31,35,.62)",
   },
   collapse$panel$content: {
-    padding: "4px 16px 8px",
+    padding: `${spacings.padding$1} ${spacings.padding$4} ${spacings.padding$2}`,
     color: "rgba(28,31,35,.8)",
     fontSize: "14px",
     lineHeight: "20px",

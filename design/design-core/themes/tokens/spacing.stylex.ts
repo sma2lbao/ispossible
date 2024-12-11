@@ -10,7 +10,6 @@ const MARGIN_SCALE = `calc(${MARGIN_UNIT} * ${scales.scale})`;
 
 export const spacings = stylex.defineVars({
   paddingScale: PADDING_SCALE,
-  "padding$0.5": `calc(${PADDING_SCALE} * 0.5)`,
   padding$1: `calc(${PADDING_SCALE} * 1)`,
   padding$2: `calc(${PADDING_SCALE} * 2)`,
   padding$3: `calc(${PADDING_SCALE} * 3)`,
@@ -19,6 +18,7 @@ export const spacings = stylex.defineVars({
   padding$6: `calc(${PADDING_SCALE} * 6)`,
   padding$7: `calc(${PADDING_SCALE} * 7)`,
   padding$8: `calc(${PADDING_SCALE} * 8)`,
+  padding$9: `calc(${PADDING_SCALE} * 9)`,
 
   marginScale: MARGIN_SCALE,
   margin$1: `calc(${MARGIN_SCALE} * 1)`,

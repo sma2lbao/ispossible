@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { shapes } from "../../themes/tokens/shape.stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const tokens = stylex.defineVars({});
 
@@ -55,8 +56,8 @@ export const styles = stylex.create({
     outline: "none",
     width: "100%",
     color: "inherit",
-    paddingLeft: hasPrefix ? 0 : "12px",
-    paddingRight: hasSuffix ? 0 : "12px",
+    paddingLeft: hasPrefix ? 0 : spacings.padding$3,
+    paddingRight: hasSuffix ? 0 : spacings.padding$3,
     backgroundColor: "transparent",
     boxSizing: "border-box",
   }),
@@ -65,7 +66,7 @@ export const styles = stylex.create({
     display: "flex",
     alignItems: "center",
     color: "rgba(28,31,35,.62)",
-    padding: "0 12px",
+    padding: `0 ${spacings.padding$3}`,
   },
   input$stitch$container: {
     color: "rgba(28,31,35,.62)",

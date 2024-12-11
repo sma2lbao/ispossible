@@ -1,10 +1,11 @@
 import stylex from "@stylexjs/stylex";
 import { colors } from "../../themes/tokens/color.stylex";
 import { shapes } from "../../themes/tokens/shape.stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const styles = stylex.create({
   alert: {
-    padding: "12px",
+    padding: spacings.padding$3,
   },
   alert$info: {
     backgroundColor: colors.primaryContainer,
@@ -69,7 +70,7 @@ export const styles = stylex.create({
     color: "rgba(28,31,35,1)",
   },
   alert$close: {
-    padding: "4px",
+    padding: spacings.padding$1,
     height: "24px",
   },
 });

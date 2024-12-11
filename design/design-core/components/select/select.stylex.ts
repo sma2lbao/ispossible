@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { shapes } from "../../themes/tokens/shape.stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const styles = stylex.create({
   select: {
@@ -85,7 +86,7 @@ export const styles = stylex.create({
 
   select$option$list$container: (minWidth: number) => ({
     minWidth: `${minWidth}px`,
-    padding: "4px 0",
+    padding: `${spacings.padding$1} 0`,
   }),
   select$option$list: {
     overflowX: "hidden",
@@ -96,7 +97,7 @@ export const styles = stylex.create({
     fontSize: "14px",
     lineHeight: "20px",
     wordBreak: "break-all",
-    padding: "8px 12px",
+    padding: `${spacings.padding$2} ${spacings.padding$3}`,
     color: "rgba(28,31,35,1)",
     borderRadius: shapes.corner$none,
     position: "relative",

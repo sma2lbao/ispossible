@@ -1,6 +1,7 @@
 import stylex from "@stylexjs/stylex";
 import { colors } from "../../themes/tokens/color.stylex";
 import { shapes } from "../../themes/tokens/shape.stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const styles = stylex.create({
   notification$wrap: {
@@ -17,7 +18,7 @@ export const styles = stylex.create({
     margin: "20px",
     width: "auto",
     minWidth: "320px",
-    padding: "16px 12px 16px 20px;",
+    padding: `${spacings.padding$4} ${spacings.padding$3} ${spacings.padding$4} ${spacings.padding$5}`,
     backgroundColor: "#fff",
     borderRadius: shapes.corner$sm,
     boxShadow: "0 0 1px rgba(0,0,0,0.3),0 4px 14px rgba(0,0,0,0.1)",
@@ -84,7 +85,7 @@ export const styles = stylex.create({
     marginTop: "-2px",
   },
   notification$close$icon: {
-    padding: "4px",
+    padding: spacings.padding$1,
     height: "24px",
   },
 });
