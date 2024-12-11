@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import type { FormContextProps, FormProps } from "./form.types";
 import {
   useForm,
@@ -24,6 +24,10 @@ export function Form<T extends FieldValues>(props: FormProps<T>) {
   const handleFail: SubmitErrorHandler<T> = (errors) => {
     onFail?.(errors);
   };
+
+  useEffect(() => {
+    methods.reset(defaultValues);
+  }, [defaultValues]);
 
   return (
     <form onSubmit={methods.handleSubmit(handleSubmit, handleFail)}>

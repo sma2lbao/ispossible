@@ -1,5 +1,6 @@
 "use client";
-import useSWRMutation from "swr/mutation";
+
+import { getAudioDuration } from "@/shared/audio";
 import {
   Button,
   Form,
@@ -10,8 +11,9 @@ import {
   UploadFile,
 } from "@design/core";
 import stylex from "@stylexjs/stylex";
-import { getAudioDuration } from "@/shared/audio";
-import "@design/icon/plus";
+import { useMemo } from "react";
+import useSWR from "swr";
+import useSWRMutation from "swr/mutation";
 
 type FormData = {
   title: string;
@@ -27,7 +29,7 @@ type SongDTO = {
   coverUrl?: string;
   sourceUrl: string;
   lyricUrl?: string;
-  duration: number;
+  duration?: number;
 };
 
 const styles = stylex.create({
@@ -40,52 +42,68 @@ const styles = stylex.create({
   },
 });
 
-const fetcher = (url: string, { arg }: { arg: SongDTO }) => {
+const fetcher = (url: string) => {
+  return fetch(url).then((respose) => respose.json());
+};
+
+const updater = (url: string, { arg }: { arg: SongDTO }) => {
   return fetch(url, {
-    method: "POST",
+    method: "PUT",
     body: JSON.stringify(arg),
   }).then((response) => response.json());
 };
 
-export default function CreateSong() {
-  const { trigger } = useSWRMutation("/api/songs", fetcher, {
-    onError: (error) => {
-      Toast.error(error?.message ?? "服务器繁忙~");
-    },
+export default function UpdateSong({ params }: { params: { id: string } }) {
+  const songId = params.id;
+  const { data } = useSWR(songId ? `/api/songs/${songId}` : null, fetcher);
+  const { trigger } = useSWRMutation(`/api/songs/${songId}`, updater, {
     onSuccess: () => {
-      Toast.success("创建成功");
+      Toast.success("更新成功");
     },
   });
+
+  const defaultValues: FormData = useMemo(() => {
+    return {
+      title: data?.data.title ?? "",
+      sourceFiles: data?.data.sourceUrl
+        ? [
+            {
+              uid: `${Date.now()}`,
+              url: data?.data.sourceUrl,
+              status: "success",
+            },
+          ]
+        : [],
+    };
+  }, [data]);
+
   const handleSubmit = async (data: FormData) => {
     const { title, description, sourceFiles, coverFiles, lyricFiles } = data;
-    const duration = await getAudioDuration(sourceFiles[0].instance!);
-
-    const newSong: SongDTO = {
+    const duration = sourceFiles[0].instance
+      ? await getAudioDuration(sourceFiles[0].instance!)
+      : undefined;
+    const nextSong: SongDTO = {
       title,
       description,
+      duration,
       sourceUrl: sourceFiles[0].response
         ? JSON.parse(sourceFiles[0].response)?.data?.url
-        : undefined,
+        : sourceFiles[0].url,
       coverUrl: coverFiles?.[0].response
         ? JSON.parse(coverFiles[0].response)?.data?.url
-        : undefined,
+        : coverFiles?.[0].url,
       lyricUrl: lyricFiles?.[0].response
         ? JSON.parse(lyricFiles[0].response)?.data?.url
-        : undefined,
-      duration,
+        : lyricFiles?.[0].url,
     };
-    trigger(newSong);
+
+    trigger(nextSong);
   };
 
   return (
     <div {...stylex.props(styles.content)}>
-      <Form<FormData> onSubmit={handleSubmit}>
-        <Form.Field
-          label="歌名"
-          name="title"
-          required
-          rules={{ required: { value: true, message: "请输入歌名" } }}
-        >
+      <Form onSubmit={handleSubmit} defaultValues={defaultValues}>
+        <Form.Field label="歌名" name="title" required>
           <Input placeholder="请输入歌名" />
         </Form.Field>
         <Form.Field label="歌曲描述" name="description">

@@ -12,6 +12,15 @@ import "@design/icon/redo";
 import "@design/icon/exclamation-circle-filled";
 import { Tooltip } from "../tooltip";
 
+const extractUrlName = (url?: string) => {
+  if (!url) return "";
+  const match = url.match(/[^/]+$/);
+  if (match) {
+    return match[0];
+  }
+  return "";
+};
+
 export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
   const context = useContext(UploadContext);
   const { files, onClear, onRemove, onRetry, children } = props;
@@ -110,7 +119,7 @@ export const UploadFiles: React.FC<UploadFilesProps> = (props) => {
             <div {...x(styles.upload$files$item$info)}>
               <div {...x(styles.upload$files$item$info$text)}>
                 <span {...x(styles.upload$files$item$info$name)}>
-                  {file.name}
+                  {file.name ?? extractUrlName(file.url)}
                 </span>
                 {file.size ? (
                   <span>
