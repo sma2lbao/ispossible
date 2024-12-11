@@ -10,7 +10,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const {
       children,
       block = false,
-      color,
+      color = "primary",
       theme = "light",
       disabled = false,
       icon,
@@ -39,11 +39,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
+        disabled={disabled}
         onClick={handleClick}
         {...x(
           className,
           style,
           styles.button,
+          styles.button$color(color),
           theme === "light" && styles.button$light(color),
           theme === "solid" && styles.button$solid(color),
           theme === "ghost" && styles.button$ghost(color),

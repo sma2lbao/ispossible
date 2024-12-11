@@ -1,6 +1,7 @@
 import stylex from "@stylexjs/stylex";
 import { shapes } from "../../themes/tokens/shape.stylex";
 import { spacings } from "../../themes/tokens/spacing.stylex";
+import { colors } from "../../themes/tokens/color.stylex";
 
 export const styles = stylex.create({
   upload: {
@@ -144,7 +145,7 @@ export const styles = stylex.create({
     overflow: "hidden",
 
     ["::before"]: {
-      backgroundColor: "rgba(22,22,26,0.6)",
+      backgroundColor: colors.overlay,
       content: "",
       position: "absolute",
       inset: 0,

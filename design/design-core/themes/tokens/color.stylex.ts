@@ -1,12 +1,15 @@
 import stylex from "@stylexjs/stylex";
 export const colors = stylex.defineVars({
+  white: "rgb(255,255,255)", // 浅色模式下深色背景内容Inverse
+  black: "rgb(0,0,0)", // 深色模式下浅色背景内容Inverse
+
   // 主色 (Primary)
   primary: "rgb(0,100,250)", // 主色调
   onPrimary: "rgb(255,255,255)", // 主色上的前景色
   primaryContainer: "", // 容器色
   onPrimaryContainer: "", // 容器内前景色
   primaryHover: "rgb(0,98,214)", // 悬停状态（稍暗的蓝色）
-  primaryPressed: "rgb(0,79,179)", // 按下状态（更深的蓝色）
+  primaryActive: "rgb(0,79,179)", // 按下状态（更深的蓝色）
   primaryFocus: "", // 焦点状态（透明版蓝色）
   primaryDisabled: "rgb(152,205,253)", // 禁用状态（降低透明度）
 
@@ -16,7 +19,7 @@ export const colors = stylex.defineVars({
   secondaryContainer: "", // 容器色
   onSecondaryContainer: "", // 容器内前景色
   secondaryHover: "rgb(110,200,246)", // 悬停状态
-  secondaryPressed: "rgb(157,220,249)", // 按下状态 active
+  secondaryActive: "rgb(157,220,249)", // 按下状态 active
   secondaryFocus: "", // 焦点状态
   secondaryDisabled: "rgb(3,102,169)", // 禁用状态
 
@@ -26,7 +29,7 @@ export const colors = stylex.defineVars({
   tertiaryContainer: "",
   onTertiaryContainer: "",
   tertiaryHover: "rgb(85,91,97)",
-  tertiaryPressed: "rgb(65,70,76)",
+  tertiaryActive: "rgb(65,70,76)",
   tertiaryFocus: "",
   tertiaryDisabled: "",
 
@@ -36,7 +39,7 @@ export const colors = stylex.defineVars({
   infoContainer: "", // 错误容器背景色
   onInfoContainer: "", // 容器内前景色
   infoHover: "rgb(0,98,214)", // 悬停状态
-  infoPressed: "rgb(0,79,179)", // 按下状态
+  infoActive: "rgb(0,79,179)", // 按下状态
   infoFocus: "", // 焦点状态
   infoDisabled: "rgb(152,205,253)", // 禁用状态
 
@@ -46,7 +49,7 @@ export const colors = stylex.defineVars({
   errorContainer: "", // 错误容器背景色
   onErrorContainer: "", // 容器内前景色
   errorHover: "rgb(213,37,21)", // 悬停状态
-  errorPressed: "rgb(178,20,12)", // 按下状态
+  errorActive: "rgb(178,20,12)", // 按下状态
   errorFocus: "", // 焦点状态
   errorDisabled: "", // 禁用状态
 
@@ -56,7 +59,7 @@ export const colors = stylex.defineVars({
   warnContainer: "", // 容器背景色
   onWarnContainer: "", // 容器内前景色
   warnHover: "rgb(210,103,0)", // 悬停状态
-  warnPressed: "rgb(168,74,0)", // 按下状态
+  warnActive: "rgb(168,74,0)", // 按下状态
   warnFocus: "", // 焦点状态
   warnDisabled: "", // 禁用状态
 
@@ -66,23 +69,38 @@ export const colors = stylex.defineVars({
   successContainer: "",
   onSuccessContainer: "",
   successHover: "rgb(48,149,59)",
-  successPressed: "rgb(37,119,47)",
+  successActive: "rgb(37,119,47)",
   successFocus: "",
   successDisabled: "rgb(164,224,167)",
 
+  // 链接（Link）
+  link: "rgb(0,100,250)",
+  onLink: "rgb(255,255,255)",
+  linkContainer: "",
+  onLinkContainer: "",
+  linkHover: "rgb(0,98,214)",
+  linkActive: "rgb(0,79,179)",
+  linkFocus: "rgb(0,100,250)",
+  linkDisabled: "",
+
   // 表面和背景 (Surface/Background)
-  surface: "#FFFBFE", // 表面色（浅灰白色）
+  surface: "rgb(255,255,255)", // 表面色，卡片、模态框、对话框的背景颜色
   onSurface: "#1C1B1F", // 表面上的前景色
   surfaceVariant: "#E7E0EC", // 表面变体
   onSurfaceVariant: "#49454F", // 表面变体上的前景色
-  background: "#FFFBFE", // 背景色
+  background: "#FFFBFE", // 背景色，页面主体的底色
   onBackground: "#1C1B1F", // 背景上的前景色
-
-  // 表面交互状态
   surfaceHover: "#F6F2FA", // 悬停状态
-  surfacePressed: "#EDE7F6", // 按下状态
+  surfaceActive: "#EDE7F6", // 按下状态
   surfaceFocus: "#FFFBFE70", // 焦点状态
   surfaceDisabled: "#FFFBFE40", // 禁用状态
+
+  // 蒙层
+  overlay: "rgba(22,22,26,0.6)",
+
+  fill: "rgba(46,50,56,0.05)", // 填充色 - 默认态，用于Button等
+  fillHover: "rgba(46,50,56,0.09)",
+  fillActive: "rgba(46,50,56,0.13)",
 
   // 中性色 (Neutral)
   neutral: "#E0E0E0", // 中性色（浅灰）

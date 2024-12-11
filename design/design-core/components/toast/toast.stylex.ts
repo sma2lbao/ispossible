@@ -18,7 +18,7 @@ export const styles = stylex.create({
     fontSize: "14px",
     lineHeight: "20px",
     color: "#1c1f23",
-    backgroundColor: "#fff",
+    backgroundColor: colors.surface,
     display: "inline-flex",
     padding: `${spacings.padding$3} ${spacings.padding$2}`,
     alignItems: "flex-start",

@@ -8,7 +8,7 @@ export const styles = stylex.create({
   modal$mask: {
     position: "fixed",
     inset: 0,
-    backgroundColor: "rgba(22,22,26,0.6)",
+    backgroundColor: colors.overlay,
     zIndex: 999,
   },
   modal$wrap: {
@@ -32,7 +32,7 @@ export const styles = stylex.create({
     width: "100%",
     boxSizing: "border-box",
     flexDirection: "column",
-    backgroundColor: "#fff",
+    backgroundColor: colors.surface,
     borderRadius: shapes.corner$md,
     padding: `0 ${spacings.padding$6}`,
     overflow: "hidden",

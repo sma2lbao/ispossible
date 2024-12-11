@@ -19,7 +19,7 @@ export const styles = stylex.create({
     width: "auto",
     minWidth: "320px",
     padding: `${spacings.padding$4} ${spacings.padding$3} ${spacings.padding$4} ${spacings.padding$5}`,
-    backgroundColor: "#fff",
+    backgroundColor: colors.surface,
     borderRadius: shapes.corner$sm,
     boxShadow: "0 0 1px rgba(0,0,0,0.3),0 4px 14px rgba(0,0,0,0.1)",
     display: "flex",

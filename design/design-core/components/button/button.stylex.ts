@@ -3,6 +3,45 @@ import { colors } from "../../themes/tokens/color.stylex";
 import { animation } from "../../themes/tokens/animation.stylex";
 import { shapes } from "../../themes/tokens/shape.stylex";
 import { spacings } from "../../themes/tokens/spacing.stylex";
+import type { Color } from "./button.types";
+
+const DEFAULT_COLORS = ["primary", "secondary", "tertiary", "warn", "error"];
+
+const onColors = {
+  primary: "onPrimary" as const,
+  secondary: "onSecondary" as const,
+  tertiary: "onTertiary" as const,
+  warn: "onWarn" as const,
+  error: "onError" as const,
+};
+
+const hoverColors = {
+  primary: "primaryHover" as const,
+  secondary: "secondaryHover" as const,
+  tertiary: "tertiaryHover" as const,
+  warn: "warnHover" as const,
+  error: "errorHover" as const,
+};
+
+const activeColors = {
+  primary: "primaryActive" as const,
+  secondary: "secondaryActive" as const,
+  tertiary: "tertiaryActive" as const,
+  warn: "warnActive" as const,
+  error: "errorActive" as const,
+};
+
+const disabledColors = {
+  primary: "primaryDisabled" as const,
+  secondary: "secondaryDisabled" as const,
+  tertiary: "tertiaryDisabled" as const,
+  warn: "warnDisabled" as const,
+  error: "errorDisabled" as const,
+};
+
+function isColor(color: string): color is Color {
+  return DEFAULT_COLORS.includes(color);
+}
 
 export const styles = stylex.create({
   button: {
@@ -27,31 +66,53 @@ export const styles = stylex.create({
   button$block: {
     width: "100%",
   },
-  button$light: (color?: string) => ({
-    color: color || colors.primary,
-    backgroundColor: "#2e32380d",
-    ":hover": {
-      backgroundColor: "#2e323817",
+  button$color: (color: Color | string) => ({}),
+  button$light: (color: Color | string) => ({
+    color: isColor(color) ? colors[color] : color,
+    backgroundColor: colors.fill,
+    ":not(:disabled):hover": {
+      backgroundColor: colors.fillHover,
+    },
+    ":not(:disabled):active": {
+      backgroundColor: colors.fillActive,
     },
   }),
-  button$solid: (color?: string) => ({
-    color: colors.onPrimary,
-    backgroundColor: color || colors.primary,
-    ":hover": {
-      backgroundColor: colors.primaryHover,
+  button$solid: (color: Color | string) => ({
+    color: isColor(color) ? colors[onColors[color]] : colors.onPrimary,
+    backgroundColor: isColor(color) ? colors[color] : color,
+    ":not(:disabled):hover": {
+      backgroundColor: isColor(color)
+        ? colors[hoverColors[color]]
+        : colors.primaryHover,
+    },
+    ":not(:disabled):active": {
+      backgroundColor: isColor(color)
+        ? colors[activeColors[color]]
+        : colors.primaryActive,
+    },
+    ":disabled": {
+      backgroundColor: isColor(color)
+        ? colors[disabledColors[color]]
+        : colors.primaryDisabled,
     },
   }),
-  button$ghost: (color?: string) => ({
-    color: color || colors.primary,
-    ":hover": {
-      backgroundColor: "rgba(46,50,56,.09)",
+  button$ghost: (color: Color | string) => ({
+    color: isColor(color) ? colors[color] : color,
+    ":not(:disabled):active": {
+      backgroundColor: colors.fillActive,
+    },
+    ":not(:disabled):hover": {
+      backgroundColor: colors.fillHover,
     },
   }),
-  button$outline: (color?: string) => ({
-    color: color || colors.primary,
-    border: `1px solid ${color || colors.primary}`,
-    ":hover": {
-      backgroundColor: "rgba(46,50,56,.09)",
+  button$outline: (color: Color | string) => ({
+    color: isColor(color) ? colors[color] : color,
+    border: `1px solid ${isColor(color) ? colors[color] : color}`,
+    ":not(:disabled):hover": {
+      backgroundColor: colors.fillHover,
+    },
+    ":not(:disabled):active": {
+      backgroundColor: colors.fillActive,
     },
   }),
   loading: {
@@ -61,11 +122,7 @@ export const styles = stylex.create({
     animationIterationCount: "infinite",
   },
   disabled: {
-    color: colors.primaryDisabled,
     cursor: "not-allowed",
-    ":hover": {
-      backgroundColor: null,
-    },
   },
   button$content: {
     display: "flex",

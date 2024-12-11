@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { spacings } from "../../themes/tokens/spacing.stylex";
+import { colors } from "../../themes/tokens/color.stylex";
 
 export const styles = stylex.create({
   drawer$portal: {
@@ -22,7 +23,7 @@ export const styles = stylex.create({
     inset: 0,
     width: "100%",
     height: "100%",
-    backgroundColor: "rgba(22, 22, 26, 0.6)",
+    backgroundColor: colors.overlay,
     opacity: 1,
   },
   drawer$inner: {
@@ -32,7 +33,7 @@ export const styles = stylex.create({
     top: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "#fff",
+    backgroundColor: colors.surface,
     overflow: "auto",
     border: 0,
   },

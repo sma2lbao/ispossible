@@ -2,6 +2,8 @@ import { StyleXStyles } from "@stylexjs/stylex";
 
 type ButtonTheme = "solid" | "ghost" | "light" | "outline";
 
+export type Color = "primary" | "secondary" | "tertiary" | "warn" | "error";
+
 type HostHTMLButtonProps = Omit<
   React.ButtonHTMLAttributes<HTMLElement>,
   "style"
@@ -13,7 +15,11 @@ export interface ButtonProps extends HostHTMLButtonProps {
    */
   block?: boolean;
 
-  color?: string;
+  /**
+   * 按钮主色
+   * @default primary
+   */
+  color?: Color | string;
 
   /**
    * 按钮主题，可选值：solid（有背景色）、 ghost（无背景色）、 light（浅背景色）、outline(边框模式)

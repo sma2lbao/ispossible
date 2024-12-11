@@ -21,9 +21,31 @@ export default meta;
 export const 基础用法 = () => (
   <Space>
     <Button>Button</Button>
-    <Button theme="solid">Button</Button>
+    <Button disabled theme="solid">
+      Button
+    </Button>
     <Button theme="ghost">Button</Button>
     <Button theme="outline">Button</Button>
+  </Space>
+);
+
+export const 不同颜色 = () => (
+  <Space>
+    <Button color="primary" theme="outline">
+      Button
+    </Button>
+    <Button color="secondary" theme="outline">
+      Button
+    </Button>
+    <Button color="tertiary" theme="outline">
+      Button
+    </Button>
+    <Button color="warn" theme="outline">
+      Button
+    </Button>
+    <Button color="error" theme="outline">
+      Button
+    </Button>
   </Space>
 );
 
