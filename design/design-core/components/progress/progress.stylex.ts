@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { shapes } from "../../themes/tokens/shape.stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const styles = stylex.create({
   progress: {
@@ -8,8 +9,8 @@ export const styles = stylex.create({
   },
   progress$x: {
     height: "4px",
-    marginTop: "4px",
-    marginBottom: "4px",
+    marginTop: spacings["margin$0.5"],
+    marginBottom: spacings["margin$0.5"],
   },
   progress$track: (trackStroke?: string) => ({
     backgroundColor: trackStroke ?? "rgba(46,50,56,.05)",

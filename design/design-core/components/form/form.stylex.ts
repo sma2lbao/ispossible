@@ -15,7 +15,7 @@ export const styles = stylex.create({
     boxSizing: "border-box",
     fontWeight: 600,
     color: "rgba(28,31,35,1)",
-    marginBottom: "4px",
+    marginBottom: spacings["margin$0.5"],
     marginTop: 0,
     paddingRight: spacings.padding$4,
     verticalAlign: "middle",
@@ -25,7 +25,7 @@ export const styles = stylex.create({
   form$field$label$required: {
     ["::after"]: {
       content: "*",
-      marginLeft: "4px",
+      marginLeft: spacings["margin$0.5"],
       color: "rgba(249,57,32,1)",
       fontWeight: 600,
     },
@@ -38,7 +38,7 @@ export const styles = stylex.create({
     lineHeight: "20px",
     display: "flex",
     alignItems: "center",
-    marginTop: "4px",
+    marginTop: spacings["margin$0.5"],
   },
   form$field$message$error: {
     color: "rgba(249,57,32,1)",
@@ -46,11 +46,11 @@ export const styles = stylex.create({
     lineHeight: "20px",
     display: "flex",
     alignItems: "center",
-    marginTop: "4px",
+    marginTop: spacings["margin$0.5"],
   },
   form$field$status$icon: {
     fontSize: "16px",
-    marginRight: "4px",
+    marginRight: spacings["margin$0.5"],
     alignSelf: "flex-start",
     position: "relative",
     top: "2px",

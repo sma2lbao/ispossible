@@ -89,7 +89,7 @@ export const styles = stylex.create({
     overflow: "hidden",
     whiteSpace: "nowrap",
     textOverflow: "ellipsis",
-    marginRight: "8px",
+    marginRight: spacings.margin$1,
   },
   expandIcon: {
     marginLeft: "auto",

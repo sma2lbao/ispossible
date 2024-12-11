@@ -28,7 +28,7 @@ export const styles = stylex.create({
     width: "24px",
     fontSize: "16px",
     lineHeight: "22px",
-    marginRight: "12px",
+    marginRight: spacings["margin$1.5"],
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "flex-start",
@@ -50,7 +50,7 @@ export const styles = stylex.create({
   },
   notification$content$inner$container: {
     flex: "1 1 auto",
-    marginRight: "8px",
+    marginRight: spacings.margin$1,
     minWidth: 0,
   },
   notification$info: {
@@ -70,7 +70,7 @@ export const styles = stylex.create({
     lineHeight: "22px",
     fontWeight: 600,
     color: "rgba(28,31,35,1)",
-    marginBottom: "4px",
+    marginBottom: spacings["margin$0.5"],
     overflowWrap: "break-word",
   },
   notification$content$inner$text: {

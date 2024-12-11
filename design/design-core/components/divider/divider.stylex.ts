@@ -1,4 +1,5 @@
 import stylex from "@stylexjs/stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const styles = stylex.create({
   base: {
@@ -15,14 +16,14 @@ export const styles = stylex.create({
       flex: 1,
       display: "flex",
       borderBottom: "1px solid #ddd",
-      marginRight: 8,
+      marginRight: spacings.margin$1,
     },
     "::after": {
       content: "",
       flex: 1,
       display: "flex",
       borderBottom: "1px solid #ddd",
-      marginLeft: 8,
+      marginLeft: spacings.margin$1,
     },
   },
   y: {
@@ -38,14 +39,14 @@ export const styles = stylex.create({
       flex: 1,
       display: "flex",
       borderRight: "1px solid #ddd",
-      marginBottom: 8,
+      marginBottom: spacings.margin$1,
     },
     "::after": {
       content: "",
       flex: 1,
       display: "flex",
       borderRight: "1px solid #ddd",
-      marginTop: 8,
+      marginTop: spacings.margin$1,
     },
   },
   start: {

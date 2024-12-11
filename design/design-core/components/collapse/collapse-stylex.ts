@@ -12,7 +12,7 @@ export const styles = stylex.create({
     alignItems: "center",
     justifyContent: "space-between",
     padding: spacings.padding$2,
-    margin: "4px 8px",
+    margin: `${spacings["margin$0.5"]} ${spacings.margin$1}`,
     color: "rgba(28,31,35,1)",
     fontWeight: 600,
     fontSize: "14px",

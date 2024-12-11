@@ -21,7 +21,9 @@ export const spacings = stylex.defineVars({
   padding$9: `calc(${PADDING_SCALE} * 9)`,
 
   marginScale: MARGIN_SCALE,
+  ["margin$0.5"]: `calc(${MARGIN_SCALE} * 0.5)`,
   margin$1: `calc(${MARGIN_SCALE} * 1)`,
+  ["margin$1.5"]: `calc(${MARGIN_SCALE} * 1.5)`,
   margin$2: `calc(${MARGIN_SCALE} * 2)`,
   margin$3: `calc(${MARGIN_SCALE} * 3)`,
   margin$4: `calc(${MARGIN_SCALE} * 4)`,

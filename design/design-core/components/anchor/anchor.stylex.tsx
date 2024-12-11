@@ -46,7 +46,7 @@ export const styles = stylex.create({
     whiteSpace: "nowrap",
   },
   linkGap: {
-    marginBottom: "4px",
+    marginBottom: spacings["margin$0.5"],
   },
   active: {
     color: colors.primary,

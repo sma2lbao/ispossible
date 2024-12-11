@@ -1,5 +1,6 @@
 import stylex from "@stylexjs/stylex";
 import { colors } from "../../themes/tokens/color.stylex";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const styles = stylex.create({
   breadcrumb: {
@@ -38,6 +39,6 @@ export const styles = stylex.create({
   },
   breadcrumb$item$title: {},
   breadcrumb$item$separator: {
-    margin: "0 4px",
+    margin: `0 ${spacings["margin$0.5"]}`,
   },
 });

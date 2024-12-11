@@ -43,13 +43,13 @@ export const styles = stylex.create({
     fontWeight: 600,
     fontSize: "14px",
     color: "rgba(28,31,35,1)",
-    margin: "24px 0",
+    margin: `${spacings.margin$3} 0`,
     display: "flex",
     alignItems: "flex-start",
   },
   modal$header$icon$wrap: {
     display: "inline-flex",
-    marginRight: "12px",
+    marginRight: spacings["margin$1.5"],
     width: "24px",
   },
   modal$header$icon: (color?: string) => ({
@@ -96,7 +96,7 @@ export const styles = stylex.create({
     padding: 0,
   },
   modal$footer: {
-    margin: "24px 0",
+    margin: `${spacings.margin$3} 0`,
     padding: 0,
     textAlign: "right",
   },

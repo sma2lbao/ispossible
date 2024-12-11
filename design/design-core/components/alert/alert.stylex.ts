@@ -59,7 +59,7 @@ export const styles = stylex.create({
   alert$icon: {
     display: "flex",
     alignItems: "center",
-    marginRight: "12px",
+    marginRight: spacings["margin$1.5"],
     fontSize: "20px",
     marginTop: "-2px",
   },

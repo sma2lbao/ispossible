@@ -24,14 +24,14 @@ export const styles = stylex.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    margin: "0 8px",
+    margin: `0 ${spacings.margin$1}`,
     color: "rgba(28,31,35,.62)",
   },
   select$suffix: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    margin: "0 8px",
+    margin: `0 ${spacings.margin$1}`,
     color: "rgba(28,31,35,.62)",
   },
   select$clear: {
@@ -66,7 +66,7 @@ export const styles = stylex.create({
     overflow: "hidden",
     cursor: "pointer",
     color: "rgba(28,31,35,1)",
-    marginLeft: "12px",
+    marginLeft: spacings["margin$1.5"],
   },
   select$content$warp: {
     whiteSpace: "nowrap",

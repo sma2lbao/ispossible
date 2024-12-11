@@ -29,7 +29,7 @@ export const styles = stylex.create({
   },
   menu$item$tick: {},
   item$tick$icon: {
-    marginRight: "8px",
+    marginRight: spacings.margin$1,
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",

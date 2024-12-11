@@ -70,7 +70,7 @@ export const styles = stylex.create({
   },
   input$stitch$container: {
     color: "rgba(28,31,35,.62)",
-    margin: "0 8px",
+    margin: `0 ${spacings.margin$1}`,
     display: "flex",
     justifyContent: "center",
     alignContent: "center",

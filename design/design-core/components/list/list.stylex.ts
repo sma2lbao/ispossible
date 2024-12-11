@@ -31,7 +31,7 @@ export const styles = stylex.create({
     color: "#999",
   },
   loading: {
-    marginRight: "4px",
+    marginRight: spacings["margin$0.5"],
     color: "fillColor",
     animationName: animation.spin,
     animationDuration: "1s",

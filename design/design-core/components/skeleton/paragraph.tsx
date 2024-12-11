@@ -1,6 +1,7 @@
 import React from "react";
 import stylex from "@stylexjs/stylex";
 import { type SkeletonParagraphProps } from "./skeleton.types";
+import { spacings } from "../../themes/tokens/spacing.stylex";
 
 const styles = stylex.create({
   container: {},
@@ -10,7 +11,7 @@ const styles = stylex.create({
     borderRadius: 4,
     width: width || "100%",
     margin: 0,
-    marginBottom: 12,
+    marginBottom: spacings["margin$1.5"],
   }),
 });
 
