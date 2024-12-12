@@ -3,8 +3,6 @@ import { StyleXStyles } from "@stylexjs/stylex";
 export type SelectValueType = number | string | undefined;
 
 export interface DisplayValueType {
-  key?: React.Key;
-
   value?: SelectValueType;
 
   label?: React.ReactNode;
@@ -14,6 +12,14 @@ export interface DisplayValueType {
 
 export interface SelectProps {
   placeholder?: string;
+
+  /**
+   * 是否可搜索
+   * @default false
+   */
+  filter?: boolean;
+
+  onSearch?: (keyword: string) => void;
 
   /**
    * 指定默认选中的条目
@@ -38,6 +44,8 @@ export interface SelectProps {
   suffix?: React.ReactNode;
 
   style?: React.CSSProperties;
+
+  stylex?: StyleXStyles;
 
   className?: string;
 
@@ -76,8 +84,6 @@ export interface SelectOptionProps {
   className?: string;
 
   children?: React.ReactNode;
-
-  key?: React.Key;
 
   [key: string]: any;
 }

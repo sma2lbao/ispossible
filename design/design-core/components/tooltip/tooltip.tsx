@@ -30,6 +30,7 @@ export const Tooltip = React.forwardRef<TooltipHandles, TooltipProps>(
       theme = "dark",
       popupStylex,
       popupStyle,
+      onClosed,
     } = props;
 
     const triggerRef = useRef<HTMLElement>(null);
@@ -37,7 +38,8 @@ export const Tooltip = React.forwardRef<TooltipHandles, TooltipProps>(
     const openTimer = useRef<NodeJS.Timeout | null>(null);
     const closeTimer = useRef<NodeJS.Timeout | null>(null);
     const [position, setPosition] = useState<{ top: number; left: number }>();
-    const [visibleInner, setVisibleInner] = useState<boolean>(visible);
+    const [rawVisible, setRawVisible] = useState<boolean>(visible);
+    const prevRawVisibleRef = useRef(rawVisible);
 
     const child = React.isValidElement(children) ? (
       children
@@ -54,7 +56,7 @@ export const Tooltip = React.forwardRef<TooltipHandles, TooltipProps>(
         clearTimeout(closeTimer.current);
       }
       openTimer.current = setTimeout(() => {
-        setVisibleInner(true);
+        setRawVisible(true);
       }, enterDelay);
     };
 
@@ -64,7 +66,7 @@ export const Tooltip = React.forwardRef<TooltipHandles, TooltipProps>(
     const handleClosePopover = () => {
       if (isControl) return;
       closeTimer.current = setTimeout(() => {
-        setVisibleInner(false);
+        setRawVisible(false);
       }, leaveDelay);
     };
 
@@ -77,7 +79,7 @@ export const Tooltip = React.forwardRef<TooltipHandles, TooltipProps>(
         // 需要清除关闭回调
         clearTimeout(closeTimer.current);
       }
-      setVisibleInner(true);
+      setRawVisible(true);
     };
 
     // 鼠标移出弹窗
@@ -119,7 +121,7 @@ export const Tooltip = React.forwardRef<TooltipHandles, TooltipProps>(
      * 当大小变化时更新位置
      */
     const handleResize = () => {
-      if (visibleInner) {
+      if (rawVisible) {
         updatePosition();
       }
     };
@@ -135,17 +137,28 @@ export const Tooltip = React.forwardRef<TooltipHandles, TooltipProps>(
       return () => {
         resizeObserver.disconnect();
       };
-    }, [visibleInner]);
+    }, [rawVisible]);
 
     useLayoutEffect(() => {
-      if (visibleInner) {
+      if (rawVisible) {
         updatePosition();
       }
-    }, [visibleInner]);
+    }, [rawVisible]);
+
+    useEffect(() => {
+      const prevRawVisible = prevRawVisibleRef.current;
+
+      if (prevRawVisible && !rawVisible) {
+        onClosed?.();
+      }
+
+      // 更新 ref 的值为当前的 visible 值
+      prevRawVisibleRef.current = visible;
+    }, [rawVisible]);
 
     useEffect(() => {
       if (trigger === "custom") {
-        setVisibleInner(visible);
+        setRawVisible(visible);
       }
     }, [visible]);
 
@@ -158,7 +171,7 @@ export const Tooltip = React.forwardRef<TooltipHandles, TooltipProps>(
     });
 
     const renderContent = () => {
-      if (!visibleInner) {
+      if (!rawVisible) {
         return null;
       }
       return createPortal(

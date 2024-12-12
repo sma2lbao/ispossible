@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Select } from "./";
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -27,6 +27,46 @@ export const 基本用法 = () => {
       <Select.Option value="core">Design Core</Select.Option>
       <Select.Option value="pro">Design Pro</Select.Option>
       <Select.Option value="plus">Design Plus</Select.Option>
+    </Select>
+  );
+};
+
+export const 搜索功能 = () => {
+  const [list, setList] = useState<any[]>([]);
+
+  const handleSearch = (keyword: string) => {
+    console.log("keyword: ", keyword);
+    setList([
+      {
+        key: "1",
+        label: "Design UI - " + keyword,
+        value: "ui",
+      },
+      {
+        key: "2",
+        label: "Design Core - " + keyword,
+        value: "core",
+      },
+      {
+        key: "3",
+        label: "Design Pro - " + keyword,
+        value: "pro",
+      },
+    ]);
+  };
+
+  return (
+    <Select
+      style={{ width: "320px" }}
+      placeholder="请选择"
+      filter
+      onSearch={handleSearch}
+    >
+      {list.map((item, index) => (
+        <Select.Option key={item.key} value={item.value}>
+          {item.label}
+        </Select.Option>
+      ))}
     </Select>
   );
 };
