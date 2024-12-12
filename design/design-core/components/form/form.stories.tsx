@@ -3,6 +3,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Form } from "./";
 import { Input } from "../input";
 import { Button } from "../button";
+import { Textarea } from "../textarea";
+import { Select } from "../select";
+import { AutoComplete } from "../auto-complete";
 
 /**
  * 具有数据收集、校验和提交功能的表单，包含复选框、单选框、输入框、下拉选择框等元素。
@@ -26,6 +29,9 @@ export const 基本用法 = () => {
   type FormData = {
     username: string;
     email: string;
+    bio: string;
+    hoppy: string;
+    address: string;
   };
 
   const handleSubmit = (data: any) => {
@@ -38,7 +44,7 @@ export const 基本用法 = () => {
         onSubmit={handleSubmit}
         defaultValues={{ username: "测试" }}
       >
-        <Form.Field
+        <Form.Field<FormData>
           required
           name="username"
           label="Username"
@@ -46,7 +52,7 @@ export const 基本用法 = () => {
         >
           <Input placeholder="Enter your username" />
         </Form.Field>
-        <Form.Field
+        <Form.Field<FormData>
           name="email"
           label="Email"
           rules={{
@@ -57,7 +63,19 @@ export const 基本用法 = () => {
             required: { value: true, message: "请输入" },
           }}
         >
-          <Input placeholder="Enter your email" />
+          <Input placeholder="请输入" />
+        </Form.Field>
+        <Form.Field<FormData> name="bio" label="个人简介">
+          <Textarea placeholder="请输入" />
+        </Form.Field>
+        <Form.Field<FormData> name="hoppy" label="爱好">
+          <Select placeholder="请选择">
+            <Select.Option value="swim">游泳</Select.Option>
+            <Select.Option value="run">跑步</Select.Option>
+          </Select>
+        </Form.Field>
+        <Form.Field<FormData> name="address" label="住址">
+          <AutoComplete />
         </Form.Field>
 
         <Button type="submit">提交</Button>

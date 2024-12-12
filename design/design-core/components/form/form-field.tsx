@@ -13,6 +13,7 @@ import "@design/icon/exclamation-circle-filled";
 import { Input } from "../input";
 import { Upload, UploadFile } from "../upload";
 import { Textarea } from "../textarea";
+import { AutoComplete } from "../auto-complete";
 
 export function FormField<T extends FieldValues>(props: FormFieldProps<T>) {
   const { required, label, name, rules, children } = props;
@@ -43,7 +44,11 @@ export function FormField<T extends FieldValues>(props: FormFieldProps<T>) {
         render={(option) => {
           const { name, value, disabled, ref, onChange, onBlur } = option.field;
           const element = children as React.ReactElement;
-          if (element.type === Input || element.type === Textarea) {
+          if (
+            element.type === Input ||
+            element.type === Textarea ||
+            element.type === AutoComplete
+          ) {
             return React.cloneElement(element, {
               name,
               value,

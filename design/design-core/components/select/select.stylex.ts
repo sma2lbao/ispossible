@@ -15,6 +15,7 @@ export const styles = stylex.create({
     outline: "none",
     cursor: "pointer",
     backgroundColor: "rgba(46,50,56,.05)",
+    width: "100%",
   },
   select$foucs: {
     border: "1px solid rgba(0,100,250, 1)",
@@ -88,6 +89,11 @@ export const styles = stylex.create({
     minWidth: `${minWidth}px`,
     padding: `${spacings.padding$1} 0`,
   }),
+
+  select$option$list$search$wrap: {
+    padding: `8px 12px`,
+  },
+
   select$option$list: {
     overflowX: "hidden",
     overflowY: "auto",
