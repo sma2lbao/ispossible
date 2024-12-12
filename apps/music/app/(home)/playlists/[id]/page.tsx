@@ -1,8 +1,10 @@
 "use client";
 import useSWR from "swr";
 import stylex from "@stylexjs/stylex";
-import { TabPane, Tabs } from "@design/core";
+import { Button, TabPane, Tabs } from "@design/core";
 import SongList from "@/components/song-list";
+import { useRouter } from "next/navigation";
+import useSWRMutation from "swr/mutation";
 
 const styles = stylex.create({
   page: {
@@ -17,16 +19,44 @@ const fetcher = (url: string) => {
   return fetch(url).then((respose) => respose.json());
 };
 
+const deleter = (url: string) => {
+  return fetch(url, {
+    method: "DELETE",
+  }).then((response) => response.json());
+};
+
 export default function PlaylistDetail({ params }: { params: { id: string } }) {
   const playlistId = params.id;
+  const router = useRouter();
   const { data, mutate } = useSWR(
     playlistId ? `/api/playlists/${playlistId}` : null,
     fetcher
   );
+  const { trigger } = useSWRMutation(
+    playlistId ? `/api/playlists/${playlistId}` : null,
+    deleter,
+    {
+      onSuccess() {
+        router.back();
+      },
+    }
+  );
+
+  const handleUpdate = () => {
+    router.push(`/playlists/${playlistId}/update`);
+  };
+
+  const handleRemove = () => {
+    trigger();
+  };
 
   return (
     <div {...stylex.props(styles.page)}>
-      <div>歌单区域</div>
+      <div>
+        歌单区域
+        <Button onClick={handleUpdate}>编辑</Button>
+        <Button onClick={handleRemove}>删除</Button>
+      </div>
       <Tabs defaultActiveKey="song">
         <TabPane tab="歌曲" itemKey="song">
           <SongList

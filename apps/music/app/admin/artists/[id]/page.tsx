@@ -1,24 +1,23 @@
 "use client";
-import useSWRMutation from "swr/mutation";
-import stylex from "@stylexjs/stylex";
+
 import {
   Button,
   Form,
   Input,
   Textarea,
-  Toast,
   Upload,
-  UploadFile,
+  type UploadFile,
 } from "@design/core";
+import stylex from "@stylexjs/stylex";
+import { useMemo } from "react";
+import useSWR from "swr";
+import useSWRMutation from "swr/mutation";
 
 type FormData = {
   name: string;
-
   bio?: string;
-
   imageFiles?: UploadFile[];
 };
-
 type ArtistDTO = {
   name: string;
   bio?: string;
@@ -35,35 +34,55 @@ const styles = stylex.create({
   },
 });
 
-const fetcher = (url: string, { arg }: { arg: ArtistDTO }) => {
+const fetcher = (url: string) => {
+  return fetch(url).then((response) => response.json());
+};
+const updater = (url: string, { arg }: { arg: ArtistDTO }) => {
   return fetch(url, {
-    method: "POST",
+    method: "PUT",
     body: JSON.stringify(arg),
   }).then((response) => response.json());
 };
 
-export default function CreateArtist() {
-  const { trigger } = useSWRMutation("/api/artists", fetcher, {
-    onSuccess() {
-      Toast.success("创建成功");
-    },
-  });
+export default function UpdateArtist({ params }: { params: { id: string } }) {
+  const artistId = params.id;
+  const { data } = useSWR(
+    artistId ? `/api/artists/${artistId}` : null,
+    fetcher
+  );
+  const { trigger } = useSWRMutation(`/api/artists/${artistId}`, updater, {});
+
+  const defaultValues: FormData = useMemo(() => {
+    return {
+      name: data?.data.name,
+      bio: data?.data.bio,
+      imageFiles: data?.data.imageUrl
+        ? [
+            {
+              uid: `${Date.now()}`,
+              url: data.data.imageUrl,
+              status: "success",
+            },
+          ]
+        : [],
+    };
+  }, [data]);
 
   const handleSubmit = (data: FormData) => {
     const { name, bio, imageFiles } = data;
     const newArtist: ArtistDTO = {
       name,
       bio,
-      imageUrl: imageFiles?.[0].response
+      imageUrl: imageFiles?.[0]?.response
         ? JSON.parse(imageFiles[0].response)?.data?.url
-        : undefined,
+        : imageFiles?.[0]?.url,
     };
     trigger(newArtist);
   };
 
   return (
     <div {...stylex.props(styles.content)}>
-      <Form<FormData> onSubmit={handleSubmit}>
+      <Form<FormData> onSubmit={handleSubmit} defaultValues={defaultValues}>
         <Form.Field<FormData>
           label="歌手名"
           name="name"

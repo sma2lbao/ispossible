@@ -1,4 +1,5 @@
 "use client";
+
 import {
   Button,
   Form,
@@ -6,11 +7,12 @@ import {
   Textarea,
   Toast,
   Upload,
-  UploadFile,
+  type UploadFile,
 } from "@design/core";
 import stylex from "@stylexjs/stylex";
+import { useMemo } from "react";
+import useSWR from "swr";
 import useSWRMutation from "swr/mutation";
-import "@design/icon/plus";
 
 type PlaylistDTO = {
   name: string;
@@ -38,38 +40,60 @@ const styles = stylex.create({
   },
 });
 
-const fetcher = (url: string, { arg }: { arg: PlaylistDTO }) => {
-  return fetch(url, { method: "POST", body: JSON.stringify(arg) }).then((res) =>
-    res.json()
-  );
+const fetcher = (url: string) => {
+  return fetch(url).then((response) => response.json());
 };
 
-export default function CreatePlaylist() {
-  const { trigger } = useSWRMutation("/api/playlists", fetcher, {
-    onError: (error) => {
-      Toast.error(error?.message ?? "服务器繁忙~");
-    },
+const updater = (url: string, { arg }: { arg: PlaylistDTO }) => {
+  return fetch(url, {
+    method: "PUT",
+    body: JSON.stringify(arg),
+  }).then((response) => response.json());
+};
+
+export default function UpdatePlaylist({ params }: { params: { id: string } }) {
+  const playlistId = params.id;
+  const { data } = useSWR(
+    playlistId ? `/api/playlists/${playlistId}` : null,
+    fetcher
+  );
+  const { trigger } = useSWRMutation(`/api/playlists/${playlistId}`, updater, {
     onSuccess: () => {
-      Toast.success("创建成功");
+      Toast.success("更新成功");
     },
   });
 
-  const handleSumbit = (data: FormData) => {
+  const defaultValues: FormData = useMemo(() => {
+    return {
+      name: data?.data.name ?? "",
+      description: data?.data.description ?? "",
+      coverFiles: data?.data.coverUrl
+        ? [
+            {
+              uid: `${Date.now()}`,
+              url: data.data.coverUrl,
+              status: "success",
+            },
+          ]
+        : [],
+    };
+  }, [data]);
+
+  const handleSubmit = async (data: FormData) => {
     const { name, description, coverFiles } = data;
-    const newPlaylist: PlaylistDTO = {
+    const nextPlaylist: PlaylistDTO = {
       name,
       description,
-      coverUrl: coverFiles?.[0].response
+      coverUrl: coverFiles?.[0]?.response
         ? JSON.parse(coverFiles[0].response)?.data?.url
-        : undefined,
+        : coverFiles?.[0]?.url,
     };
-
-    trigger(newPlaylist);
+    trigger(nextPlaylist);
   };
 
   return (
     <div {...stylex.props(styles.content)}>
-      <Form<FormData> onSubmit={handleSumbit}>
+      <Form defaultValues={defaultValues} onSubmit={handleSubmit}>
         <Form.Field
           label="歌单名"
           name="name"

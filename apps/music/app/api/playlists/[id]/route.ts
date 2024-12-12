@@ -48,3 +48,37 @@ export async function GET(
 
   return NextResponse.json({ data: nextPlaylist });
 }
+
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const id = (await params).id;
+  const payload = await request.json();
+  const nextPlaylist = await prisma.playlist.update({
+    where: {
+      id,
+    },
+    data: {
+      name: payload.name,
+      description: payload.description,
+      coverUrl: payload.coverUrl,
+    },
+  });
+
+  return NextResponse.json({ data: nextPlaylist });
+}
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const id = (await params).id;
+  await prisma.playlist.delete({
+    where: {
+      id,
+    },
+  });
+
+  return NextResponse.json({ message: "Remove Success" }, { status: 200 });
+}
