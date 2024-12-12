@@ -69,6 +69,11 @@ export const navConfig: NavConfigItemType[] = [
         text: "Textarea 多行输入",
       },
       { itemKey: "select", path: "select-选择器--docs", text: "Select 选择器" },
+      {
+        itemKey: "autocomplete",
+        path: "autocomplete-自动补全--docs",
+        text: "AutoComplete 自动补全",
+      },
       { itemKey: "radio", path: "radio-单选框--docs", text: "Radio 单选框" },
       { itemKey: "switch", path: "switch-开关--docs", text: "Switch 开关" },
     ],
