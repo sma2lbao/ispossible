@@ -1,4 +1,5 @@
 import prisma from "@/database";
+import { CreateArtistSchema } from "@/schemas/artists";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
@@ -21,13 +22,9 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: Request) {
   const payload = await request.json();
-
+  const data = CreateArtistSchema.parse(payload);
   const newArtist = await prisma.artist.create({
-    data: {
-      name: payload.name,
-      bio: payload.bio,
-      imageUrl: payload.imageUrl,
-    },
+    data,
   });
 
   return NextResponse.json({ data: newArtist });

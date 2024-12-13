@@ -11,14 +11,7 @@ import {
 import stylex from "@stylexjs/stylex";
 import useSWRMutation from "swr/mutation";
 import "@design/icon/plus";
-
-type PlaylistDTO = {
-  name: string;
-
-  description?: string;
-
-  coverUrl?: string;
-};
+import type { CreatePlaylistDTO } from "@/schemas/playlists";
 
 type FormData = {
   name: string;
@@ -38,7 +31,7 @@ const styles = stylex.create({
   },
 });
 
-const fetcher = (url: string, { arg }: { arg: PlaylistDTO }) => {
+const fetcher = (url: string, { arg }: { arg: CreatePlaylistDTO }) => {
   return fetch(url, { method: "POST", body: JSON.stringify(arg) }).then((res) =>
     res.json()
   );
@@ -56,7 +49,7 @@ export default function CreatePlaylist() {
 
   const handleSumbit = (data: FormData) => {
     const { name, description, coverFiles } = data;
-    const newPlaylist: PlaylistDTO = {
+    const newPlaylist: CreatePlaylistDTO = {
       name,
       description,
       coverUrl: coverFiles?.[0].response

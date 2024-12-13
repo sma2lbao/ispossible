@@ -1,5 +1,6 @@
 "use client";
 
+import type { UpdatePlaylistDTO } from "@/schemas/playlists";
 import {
   Button,
   Form,
@@ -13,14 +14,6 @@ import stylex from "@stylexjs/stylex";
 import { useMemo } from "react";
 import useSWR from "swr";
 import useSWRMutation from "swr/mutation";
-
-type PlaylistDTO = {
-  name: string;
-
-  description?: string;
-
-  coverUrl?: string;
-};
 
 type FormData = {
   name: string;
@@ -44,7 +37,7 @@ const fetcher = (url: string) => {
   return fetch(url).then((response) => response.json());
 };
 
-const updater = (url: string, { arg }: { arg: PlaylistDTO }) => {
+const updater = (url: string, { arg }: { arg: UpdatePlaylistDTO }) => {
   return fetch(url, {
     method: "PUT",
     body: JSON.stringify(arg),
@@ -81,7 +74,7 @@ export default function UpdatePlaylist({ params }: { params: { id: string } }) {
 
   const handleSubmit = async (data: FormData) => {
     const { name, description, coverFiles } = data;
-    const nextPlaylist: PlaylistDTO = {
+    const nextPlaylist: UpdatePlaylistDTO = {
       name,
       description,
       coverUrl: coverFiles?.[0]?.response

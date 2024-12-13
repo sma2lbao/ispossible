@@ -10,6 +10,7 @@ import {
   Upload,
   UploadFile,
 } from "@design/core";
+import type { CreateArtistDTO } from "@/schemas/artists";
 
 type FormData = {
   name: string;
@@ -17,12 +18,6 @@ type FormData = {
   bio?: string;
 
   imageFiles?: UploadFile[];
-};
-
-type ArtistDTO = {
-  name: string;
-  bio?: string;
-  imageUrl?: string;
 };
 
 const styles = stylex.create({
@@ -35,7 +30,7 @@ const styles = stylex.create({
   },
 });
 
-const fetcher = (url: string, { arg }: { arg: ArtistDTO }) => {
+const fetcher = (url: string, { arg }: { arg: CreateArtistDTO }) => {
   return fetch(url, {
     method: "POST",
     body: JSON.stringify(arg),
@@ -51,7 +46,7 @@ export default function CreateArtist() {
 
   const handleSubmit = (data: FormData) => {
     const { name, bio, imageFiles } = data;
-    const newArtist: ArtistDTO = {
+    const newArtist: CreateArtistDTO = {
       name,
       bio,
       imageUrl: imageFiles?.[0].response

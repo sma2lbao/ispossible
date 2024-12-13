@@ -1,4 +1,5 @@
 "use client";
+import type { UpdateAlbumDTO } from "@/schemas/albums";
 import {
   Button,
   Form,
@@ -20,12 +21,6 @@ type FormData = {
   description?: string;
   coverFiles?: UploadFile[];
 };
-type AlbumDTO = {
-  title: string;
-  artistId: string;
-  description?: string;
-  coverUrl?: string;
-};
 
 const styles = stylex.create({
   content: {
@@ -41,7 +36,7 @@ const fetcher = (url: string) => {
   return fetch(url).then((response) => response.json());
 };
 
-const updater = (url: string, { arg }: { arg: AlbumDTO }) => {
+const updater = (url: string, { arg }: { arg: UpdateAlbumDTO }) => {
   return fetch(url, {
     method: "PUT",
     body: JSON.stringify(arg),
@@ -80,7 +75,7 @@ export default function UpdateAlbum({ params }: { params: { id: string } }) {
 
   const handleSubmit = (data: FormData) => {
     const { title, description, coverFiles, artistId } = data;
-    const newAlbum: AlbumDTO = {
+    const newAlbum: UpdateAlbumDTO = {
       title,
       artistId,
       description,

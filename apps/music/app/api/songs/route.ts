@@ -1,4 +1,5 @@
 import prisma from "@/database";
+import { CreateSongSchema } from "@/schemas/songs";
 import { auth } from "@/shared/auth";
 import { NextResponse } from "next/server";
 
@@ -27,18 +28,9 @@ export async function GET() {
 
 export async function POST(request: Request) {
   const payload = await request.json();
-
+  const data = CreateSongSchema.parse(payload);
   const newSong = await prisma.song.create({
-    data: {
-      title: payload.title,
-      description: payload.description ?? "",
-      sourceUrl: payload.sourceUrl,
-      coverUrl: payload.coverUrl,
-      duration: payload.duration ?? 0,
-      lyricUrl: payload.lyricUrl,
-      artistId: payload.artistId,
-      albumId: payload.albumId,
-    },
+    data,
   });
 
   return NextResponse.json({ data: newSong });

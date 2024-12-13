@@ -1,4 +1,5 @@
 import prisma from "@/database";
+import { UpdatePlaylistSchema } from "@/schemas/playlists";
 import { auth } from "@/shared/auth";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -55,15 +56,12 @@ export async function PUT(
 ) {
   const id = (await params).id;
   const payload = await request.json();
+  const data = UpdatePlaylistSchema.parse(payload);
   const nextPlaylist = await prisma.playlist.update({
     where: {
       id,
     },
-    data: {
-      name: payload.name,
-      description: payload.description,
-      coverUrl: payload.coverUrl,
-    },
+    data,
   });
 
   return NextResponse.json({ data: nextPlaylist });

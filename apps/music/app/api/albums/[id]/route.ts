@@ -1,4 +1,5 @@
 import prisma from "@/database";
+import { UpdateAlbumSchema } from "@/schemas/albums";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(
@@ -7,16 +8,12 @@ export async function PUT(
 ) {
   const id = (await params).id;
   const payload = await request.json();
-
+  const data = UpdateAlbumSchema.parse(payload);
   const newAlbum = await prisma.album.update({
     where: {
       id,
     },
-    data: {
-      title: payload.title,
-      description: payload.description,
-      coverUrl: payload.coverUrl,
-    },
+    data,
   });
 
   return NextResponse.json({ data: newAlbum }, { status: 201 });

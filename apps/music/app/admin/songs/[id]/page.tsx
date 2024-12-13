@@ -1,5 +1,6 @@
 "use client";
 
+import type { UpdateSongDTO } from "@/schemas/songs";
 import { getAudioDuration } from "@/shared/audio";
 import {
   Button,
@@ -23,15 +24,6 @@ type FormData = {
   lyricFiles?: UploadFile[];
 };
 
-type SongDTO = {
-  title: string;
-  description?: string;
-  coverUrl?: string;
-  sourceUrl: string;
-  lyricUrl?: string;
-  duration?: number;
-};
-
 const styles = stylex.create({
   content: {
     margin: "20px auto",
@@ -46,7 +38,7 @@ const fetcher = (url: string) => {
   return fetch(url).then((respose) => respose.json());
 };
 
-const updater = (url: string, { arg }: { arg: SongDTO }) => {
+const updater = (url: string, { arg }: { arg: UpdateSongDTO }) => {
   return fetch(url, {
     method: "PUT",
     body: JSON.stringify(arg),
@@ -82,7 +74,7 @@ export default function UpdateSong({ params }: { params: { id: string } }) {
     const duration = sourceFiles[0].instance
       ? await getAudioDuration(sourceFiles[0].instance!)
       : undefined;
-    const nextSong: SongDTO = {
+    const nextSong: UpdateSongDTO = {
       title,
       description,
       duration,

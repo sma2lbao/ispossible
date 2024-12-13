@@ -15,19 +15,13 @@ import "@design/icon/plus";
 import useSWR from "swr";
 import { useState } from "react";
 import { Artist } from "@prisma/client";
+import type { CreateAlbumDTO } from "@/schemas/albums";
 
 type FormData = {
   title: string;
   artistId: string;
   description?: string;
   coverFiles?: UploadFile[];
-};
-
-type AlbumDTO = {
-  title: string;
-  artistId: string;
-  description?: string;
-  coverUrl?: string;
 };
 
 const styles = stylex.create({
@@ -40,7 +34,7 @@ const styles = stylex.create({
   },
 });
 
-const creater = (url: string, { arg }: { arg: AlbumDTO }) => {
+const creater = (url: string, { arg }: { arg: CreateAlbumDTO }) => {
   return fetch(url, {
     method: "POST",
     body: JSON.stringify(arg),
@@ -62,7 +56,7 @@ export default function CreateAlbum() {
 
   const handleSubmit = (data: FormData) => {
     const { title, artistId, description, coverFiles } = data;
-    const newAlbum: AlbumDTO = {
+    const newAlbum: CreateAlbumDTO = {
       title,
       artistId,
       description,

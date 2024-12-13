@@ -12,6 +12,7 @@ import {
 import stylex from "@stylexjs/stylex";
 import { getAudioDuration } from "@/shared/audio";
 import "@design/icon/plus";
+import type { CreateSongDTO } from "@/schemas/songs";
 
 type FormData = {
   title: string;
@@ -19,15 +20,6 @@ type FormData = {
   coverFiles?: UploadFile[];
   sourceFiles: UploadFile[];
   lyricFiles?: UploadFile[];
-};
-
-type SongDTO = {
-  title: string;
-  description?: string;
-  coverUrl?: string;
-  sourceUrl: string;
-  lyricUrl?: string;
-  duration: number;
 };
 
 const styles = stylex.create({
@@ -40,7 +32,7 @@ const styles = stylex.create({
   },
 });
 
-const fetcher = (url: string, { arg }: { arg: SongDTO }) => {
+const fetcher = (url: string, { arg }: { arg: CreateSongDTO }) => {
   return fetch(url, {
     method: "POST",
     body: JSON.stringify(arg),
@@ -60,7 +52,7 @@ export default function CreateSong() {
     const { title, description, sourceFiles, coverFiles, lyricFiles } = data;
     const duration = await getAudioDuration(sourceFiles[0].instance!);
 
-    const newSong: SongDTO = {
+    const newSong: CreateSongDTO = {
       title,
       description,
       sourceUrl: sourceFiles[0].response

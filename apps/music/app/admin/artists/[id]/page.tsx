@@ -1,5 +1,6 @@
 "use client";
 
+import type { UpdateArtistDTO } from "@/schemas/artists";
 import {
   Button,
   Form,
@@ -18,11 +19,6 @@ type FormData = {
   bio?: string;
   imageFiles?: UploadFile[];
 };
-type ArtistDTO = {
-  name: string;
-  bio?: string;
-  imageUrl?: string;
-};
 
 const styles = stylex.create({
   content: {
@@ -37,7 +33,7 @@ const styles = stylex.create({
 const fetcher = (url: string) => {
   return fetch(url).then((response) => response.json());
 };
-const updater = (url: string, { arg }: { arg: ArtistDTO }) => {
+const updater = (url: string, { arg }: { arg: UpdateArtistDTO }) => {
   return fetch(url, {
     method: "PUT",
     body: JSON.stringify(arg),
@@ -70,7 +66,7 @@ export default function UpdateArtist({ params }: { params: { id: string } }) {
 
   const handleSubmit = (data: FormData) => {
     const { name, bio, imageFiles } = data;
-    const newArtist: ArtistDTO = {
+    const newArtist: UpdateArtistDTO = {
       name,
       bio,
       imageUrl: imageFiles?.[0]?.response

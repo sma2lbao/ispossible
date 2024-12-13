@@ -1,4 +1,5 @@
 import prisma from "@/database";
+import { UpdateArtistSchema } from "@/schemas/artists";
 import { NextResponse } from "next/server";
 
 export async function GET(
@@ -21,15 +22,12 @@ export async function PUT(
 ) {
   const id = (await params).id;
   const payload = await request.json();
+  const data = UpdateArtistSchema.parse(payload);
   const newArtist = await prisma.artist.update({
     where: {
       id,
     },
-    data: {
-      name: payload.name,
-      bio: payload.bio,
-      imageUrl: payload.imageUrl,
-    },
+    data,
   });
 
   return NextResponse.json({ data: newArtist });
