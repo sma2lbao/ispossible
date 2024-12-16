@@ -1,9 +1,10 @@
 import prisma from "@/database";
 import { CreateSongSchema } from "@/schemas/songs";
 import { auth } from "@/shared/auth";
-import { NextResponse } from "next/server";
+import { inject } from "@/shared/inject";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
+export const GET = inject(async () => {
   const session = await auth();
   const userId = session?.user?.id;
   const songs = await prisma.song.findMany({
@@ -24,9 +25,9 @@ export async function GET() {
       isFavorited: userId ? song.favoritedBy.length > 0 : false,
     })),
   });
-}
+});
 
-export async function POST(request: Request) {
+export const POST = inject(async (request: NextRequest) => {
   const payload = await request.json();
   const data = CreateSongSchema.parse(payload);
   const newSong = await prisma.song.create({
@@ -34,4 +35,4 @@ export async function POST(request: Request) {
   });
 
   return NextResponse.json({ data: newSong });
-}
+});

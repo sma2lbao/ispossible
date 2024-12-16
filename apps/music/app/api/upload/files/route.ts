@@ -3,8 +3,9 @@ import minio from "@/shared/minio";
 import dayjs from "dayjs";
 import { MINIO_BUCKET } from "@/constants";
 import { auth } from "@/shared/auth";
+import { inject } from "@/shared/inject";
 
-export async function POST(request: NextRequest) {
+export const POST = inject(async (request: NextRequest) => {
   const session = await auth();
   const userId = session?.user?.id ?? "anonymous";
   const formData = await request.formData();
@@ -27,4 +28,4 @@ export async function POST(request: NextRequest) {
   return NextResponse.json({
     data: { objectId, url: "/api/upload/files/" + objectId },
   });
-}
+});

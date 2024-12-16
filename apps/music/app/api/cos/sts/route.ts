@@ -1,10 +1,11 @@
+import { inject } from "@/shared/inject";
 import { getSts } from "@/shared/sts";
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export const GET = inject(async () => {
   const data = await getSts();
 
   return NextResponse.json({
     data,
   });
-}
+});

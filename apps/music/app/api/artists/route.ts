@@ -1,8 +1,9 @@
 import prisma from "@/database";
 import { CreateArtistSchema } from "@/schemas/artists";
+import { inject } from "@/shared/inject";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export const GET = inject(async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
   const keyword = searchParams.get("keyword");
 
@@ -18,9 +19,9 @@ export async function GET(request: NextRequest) {
   });
 
   return NextResponse.json({ data: artists });
-}
+});
 
-export async function POST(request: Request) {
+export const POST = inject(async (request: Request) => {
   const payload = await request.json();
   const data = CreateArtistSchema.parse(payload);
   const newArtist = await prisma.artist.create({
@@ -28,4 +29,4 @@ export async function POST(request: Request) {
   });
 
   return NextResponse.json({ data: newArtist });
-}
+});

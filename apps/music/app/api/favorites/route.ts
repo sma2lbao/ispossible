@@ -1,8 +1,9 @@
 import prisma from "@/database";
 import { auth } from "@/shared/auth";
+import { inject } from "@/shared/inject";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: NextRequest) {
+export const POST = inject(async (request: NextRequest) => {
   const session = await auth();
   const userId = session?.user?.id;
   if (!userId) {
@@ -19,4 +20,4 @@ export async function POST(request: NextRequest) {
   });
 
   return NextResponse.json({ data: favorite });
-}
+});
