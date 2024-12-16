@@ -5,6 +5,8 @@ import { Button, TabPane, Tabs } from "@design/core";
 import SongList from "@/components/song-list";
 import { useRouter } from "next/navigation";
 import useSWRMutation from "swr/mutation";
+import { ApiResponse } from "@/types/common";
+import { Playlist, Song } from "@prisma/client";
 
 const styles = stylex.create({
   page: {
@@ -15,10 +17,6 @@ const styles = stylex.create({
   },
 });
 
-const fetcher = (url: string) => {
-  return fetch(url).then((respose) => respose.json());
-};
-
 const deleter = (url: string) => {
   return fetch(url, {
     method: "DELETE",
@@ -28,9 +26,8 @@ const deleter = (url: string) => {
 export default function PlaylistDetail({ params }: { params: { id: string } }) {
   const playlistId = params.id;
   const router = useRouter();
-  const { data, mutate } = useSWR(
-    playlistId ? `/api/playlists/${playlistId}` : null,
-    fetcher
+  const { data, mutate } = useSWR<ApiResponse<Playlist & { songs: Song[] }>>(
+    playlistId ? `/api/playlists/${playlistId}` : null
   );
   const { trigger } = useSWRMutation(
     playlistId ? `/api/playlists/${playlistId}` : null,
@@ -61,8 +58,8 @@ export default function PlaylistDetail({ params }: { params: { id: string } }) {
         <TabPane tab="歌曲" itemKey="song">
           <SongList
             songs={data?.data?.songs ?? []}
-            onFavor={mutate}
-            onUnfavor={mutate}
+            onFavor={() => mutate()}
+            onUnfavor={() => mutate()}
           />
         </TabPane>
         <TabPane tab="其他" itemKey="playlist" disabled></TabPane>

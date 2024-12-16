@@ -41,9 +41,6 @@ const fetcher = (url: string, { arg }: { arg: CreateSongDTO }) => {
 
 export default function CreateSong() {
   const { trigger } = useSWRMutation("/api/songs", fetcher, {
-    onError: (error) => {
-      Toast.error(error?.message ?? "服务器繁忙~");
-    },
     onSuccess: () => {
       Toast.success("创建成功");
     },

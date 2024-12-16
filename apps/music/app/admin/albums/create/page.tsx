@@ -41,10 +41,6 @@ const creater = (url: string, { arg }: { arg: CreateAlbumDTO }) => {
   }).then((response) => response.json());
 };
 
-const fetcher = (url: string) => {
-  return fetch(url).then((response) => response.json());
-};
-
 export default function CreateAlbum() {
   const { trigger, isMutating } = useSWRMutation("/api/albums", creater, {
     onSuccess() {
@@ -52,7 +48,7 @@ export default function CreateAlbum() {
     },
   });
   const [keyword, setKeyword] = useState<string>("");
-  const { data } = useSWR(`/api/artists?keyword=${keyword}`, fetcher);
+  const { data } = useSWR(`/api/artists?keyword=${keyword}`);
 
   const handleSubmit = (data: FormData) => {
     const { title, artistId, description, coverFiles } = data;

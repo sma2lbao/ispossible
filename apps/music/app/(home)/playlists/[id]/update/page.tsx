@@ -1,6 +1,7 @@
 "use client";
 
 import type { UpdatePlaylistDTO } from "@/schemas/playlists";
+import { ApiResponse } from "@/types/common";
 import {
   Button,
   Form,
@@ -10,6 +11,7 @@ import {
   Upload,
   type UploadFile,
 } from "@design/core";
+import { Playlist } from "@prisma/client";
 import stylex from "@stylexjs/stylex";
 import { useMemo } from "react";
 import useSWR from "swr";
@@ -33,10 +35,6 @@ const styles = stylex.create({
   },
 });
 
-const fetcher = (url: string) => {
-  return fetch(url).then((response) => response.json());
-};
-
 const updater = (url: string, { arg }: { arg: UpdatePlaylistDTO }) => {
   return fetch(url, {
     method: "PUT",
@@ -46,9 +44,8 @@ const updater = (url: string, { arg }: { arg: UpdatePlaylistDTO }) => {
 
 export default function UpdatePlaylist({ params }: { params: { id: string } }) {
   const playlistId = params.id;
-  const { data } = useSWR(
-    playlistId ? `/api/playlists/${playlistId}` : null,
-    fetcher
+  const { data } = useSWR<ApiResponse<Playlist>>(
+    playlistId ? `/api/playlists/${playlistId}` : null
   );
   const { trigger } = useSWRMutation(`/api/playlists/${playlistId}`, updater, {
     onSuccess: () => {
@@ -58,9 +55,9 @@ export default function UpdatePlaylist({ params }: { params: { id: string } }) {
 
   const defaultValues: FormData = useMemo(() => {
     return {
-      name: data?.data.name ?? "",
-      description: data?.data.description ?? "",
-      coverFiles: data?.data.coverUrl
+      name: data?.data?.name ?? "",
+      description: data?.data?.description ?? "",
+      coverFiles: data?.data?.coverUrl
         ? [
             {
               uid: `${Date.now()}`,

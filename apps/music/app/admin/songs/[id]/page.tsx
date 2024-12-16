@@ -34,10 +34,6 @@ const styles = stylex.create({
   },
 });
 
-const fetcher = (url: string) => {
-  return fetch(url).then((respose) => respose.json());
-};
-
 const updater = (url: string, { arg }: { arg: UpdateSongDTO }) => {
   return fetch(url, {
     method: "PUT",
@@ -47,7 +43,7 @@ const updater = (url: string, { arg }: { arg: UpdateSongDTO }) => {
 
 export default function UpdateSong({ params }: { params: { id: string } }) {
   const songId = params.id;
-  const { data } = useSWR(songId ? `/api/songs/${songId}` : null, fetcher);
+  const { data } = useSWR(songId ? `/api/songs/${songId}` : null);
   const { trigger } = useSWRMutation(`/api/songs/${songId}`, updater, {
     onSuccess: () => {
       Toast.success("更新成功");

@@ -1,5 +1,6 @@
 "use client";
 import type { UpdateAlbumDTO } from "@/schemas/albums";
+import { ApiResponse } from "@/types/common";
 import {
   Button,
   Form,
@@ -32,10 +33,6 @@ const styles = stylex.create({
   },
 });
 
-const fetcher = (url: string) => {
-  return fetch(url).then((response) => response.json());
-};
-
 const updater = (url: string, { arg }: { arg: UpdateAlbumDTO }) => {
   return fetch(url, {
     method: "PUT",
@@ -46,11 +43,12 @@ const updater = (url: string, { arg }: { arg: UpdateAlbumDTO }) => {
 export default function UpdateAlbum({ params }: { params: { id: string } }) {
   const albumId = params.id;
   const [keyword, setKeyword] = useState<string>("");
-  const { data } = useSWR(albumId ? `/api/albums/${albumId}` : null, fetcher);
+  const { data } = useSWR<ApiResponse>(
+    albumId ? `/api/albums/${albumId}` : null
+  );
   const { trigger } = useSWRMutation(`/api/albums/${albumId}`, updater);
-  const { data: artistsData } = useSWR(
-    `/api/artists?keyword=${keyword}`,
-    fetcher
+  const { data: artistsData } = useSWR<ApiResponse>(
+    `/api/artists?keyword=${keyword}`
   );
   const defaultValues: FormData = useMemo(() => {
     return {

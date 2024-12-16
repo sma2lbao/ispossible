@@ -30,9 +30,6 @@ const styles = stylex.create({
   },
 });
 
-const fetcher = (url: string) => {
-  return fetch(url).then((response) => response.json());
-};
 const updater = (url: string, { arg }: { arg: UpdateArtistDTO }) => {
   return fetch(url, {
     method: "PUT",
@@ -42,10 +39,7 @@ const updater = (url: string, { arg }: { arg: UpdateArtistDTO }) => {
 
 export default function UpdateArtist({ params }: { params: { id: string } }) {
   const artistId = params.id;
-  const { data } = useSWR(
-    artistId ? `/api/artists/${artistId}` : null,
-    fetcher
-  );
+  const { data } = useSWR(artistId ? `/api/artists/${artistId}` : null);
   const { trigger } = useSWRMutation(`/api/artists/${artistId}`, updater, {});
 
   const defaultValues: FormData = useMemo(() => {

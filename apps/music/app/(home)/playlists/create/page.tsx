@@ -38,10 +38,7 @@ const fetcher = (url: string, { arg }: { arg: CreatePlaylistDTO }) => {
 };
 
 export default function CreatePlaylist() {
-  const { trigger } = useSWRMutation("/api/playlists", fetcher, {
-    onError: (error) => {
-      Toast.error(error?.message ?? "服务器繁忙~");
-    },
+  const { trigger, isMutating } = useSWRMutation("/api/playlists", fetcher, {
     onSuccess: () => {
       Toast.success("创建成功");
     },
@@ -87,7 +84,9 @@ export default function CreatePlaylist() {
           </Upload>
         </Form.Field>
 
-        <Button type="submit">保存</Button>
+        <Button type="submit" loading={isMutating}>
+          保存
+        </Button>
       </Form>
     </div>
   );
