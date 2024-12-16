@@ -1,16 +1,10 @@
 "use client";
 
+import { createFetcher } from "@/shared/fetcher";
 import { Toast } from "@design/core";
 import { SWRConfig } from "swr";
 
-const fetcher = (url: string, init?: RequestInit) => {
-  return fetch(url, init).then((response) => {
-    if (!response.ok) {
-      throw new Error();
-    }
-    return response.json();
-  });
-};
+const fetcher = createFetcher();
 
 export const SWRProvider = ({ children }: { children: React.ReactNode }) => {
   return (

@@ -1,6 +1,7 @@
 "use client";
 
 import type { UpdatePlaylistDTO } from "@/schemas/playlists";
+import { createMutater } from "@/shared/fetcher";
 import { ApiResponse } from "@/types/common";
 import {
   Button,
@@ -35,23 +36,20 @@ const styles = stylex.create({
   },
 });
 
-const updater = (url: string, { arg }: { arg: UpdatePlaylistDTO }) => {
-  return fetch(url, {
-    method: "PUT",
-    body: JSON.stringify(arg),
-  }).then((response) => response.json());
-};
-
 export default function UpdatePlaylist({ params }: { params: { id: string } }) {
   const playlistId = params.id;
   const { data } = useSWR<ApiResponse<Playlist>>(
     playlistId ? `/api/playlists/${playlistId}` : null
   );
-  const { trigger } = useSWRMutation(`/api/playlists/${playlistId}`, updater, {
-    onSuccess: () => {
-      Toast.success("更新成功");
-    },
-  });
+  const { trigger } = useSWRMutation(
+    `/api/playlists/${playlistId}`,
+    createMutater<UpdatePlaylistDTO, ApiResponse>("PUT"),
+    {
+      onSuccess: () => {
+        Toast.success("更新成功");
+      },
+    }
+  );
 
   const defaultValues: FormData = useMemo(() => {
     return {
