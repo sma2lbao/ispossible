@@ -1,5 +1,4 @@
 import prisma from "@/database";
-import { auth } from "@/shared/auth";
 import { inject } from "@/shared/inject";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -10,12 +9,7 @@ export const POST = inject(
   ) => {
     const playlistId = (await params).id;
     const payload = await request.json();
-    const session = await auth();
-    const userId = session?.user?.id;
-
-    if (!userId) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const userId = request.user!.id;
 
     const playlist = await prisma.playlist.findFirst({
       where: { id: playlistId, authorId: userId },
@@ -24,7 +18,7 @@ export const POST = inject(
     if (!playlist) {
       return NextResponse.json(
         { error: "Playlist not found or access denied" },
-        { status: 403 }
+        { status: 404 }
       );
     }
 
@@ -50,5 +44,6 @@ export const POST = inject(
     return NextResponse.json({
       message: "Song added to playlist successfully.",
     });
-  }
+  },
+  { login: true }
 );

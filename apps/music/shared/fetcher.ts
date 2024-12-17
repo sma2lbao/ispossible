@@ -1,4 +1,5 @@
 import { ApiResponse } from "@/types/common";
+import { Toast } from "@design/core";
 
 export type Method = "POST" | "PUT" | "DELETE";
 
@@ -8,9 +9,12 @@ export function createFetcher<Data = any>() {
     return fetch(url, {
       ...init,
       method: "GET",
-    }).then((response) => {
+    }).then(async (response) => {
       if (!response.ok) {
-        throw new Error();
+        const info = await response.json();
+        const error = new Error(info.message);
+        Toast.error(error.message ?? `服务器繁忙~`);
+        throw error;
       }
       return response.json();
     });
@@ -26,9 +30,12 @@ export function createMutater<ExtraArg = unknown, Data = any>(method: Method) {
     fetch(endpoint, {
       method,
       body: JSON.stringify(opts.arg),
-    }).then((response) => {
+    }).then(async (response) => {
       if (!response.ok) {
-        throw new Error();
+        const info = await response.json();
+        const error = new Error(info.message);
+        Toast.error(error.message ?? `服务器繁忙~`);
+        throw error;
       }
       return response.json();
     });

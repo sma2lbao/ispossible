@@ -1,6 +1,7 @@
 import prisma from "@/database";
 import { UpdateArtistSchema } from "@/schemas/artists";
 import { inject } from "@/shared/inject";
+import { RoleName } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 export const GET = inject(
@@ -29,7 +30,8 @@ export const PUT = inject(
     });
 
     return NextResponse.json({ data: newArtist });
-  }
+  },
+  { role: RoleName.ADMIN }
 );
 
 export const DELETE = inject(
@@ -42,5 +44,6 @@ export const DELETE = inject(
     });
 
     return NextResponse.json({ data: true });
-  }
+  },
+  { role: RoleName.ADMIN }
 );

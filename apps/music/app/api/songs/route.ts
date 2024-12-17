@@ -2,6 +2,7 @@ import prisma from "@/database";
 import { CreateSongSchema } from "@/schemas/songs";
 import { auth } from "@/shared/auth";
 import { inject } from "@/shared/inject";
+import { RoleName } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = inject(async () => {
@@ -27,12 +28,17 @@ export const GET = inject(async () => {
   });
 });
 
-export const POST = inject(async (request: NextRequest) => {
-  const payload = await request.json();
-  const data = CreateSongSchema.parse(payload);
-  const newSong = await prisma.song.create({
-    data,
-  });
+export const POST = inject(
+  async (request: NextRequest) => {
+    const payload = await request.json();
+    const data = CreateSongSchema.parse(payload);
+    const newSong = await prisma.song.create({
+      data,
+    });
 
-  return NextResponse.json({ data: newSong });
-});
+    return NextResponse.json({ data: newSong });
+  },
+  {
+    role: RoleName.ADMIN,
+  }
+);

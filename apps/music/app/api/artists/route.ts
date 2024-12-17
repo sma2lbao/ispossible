@@ -1,6 +1,7 @@
 import prisma from "@/database";
 import { CreateArtistSchema } from "@/schemas/artists";
 import { inject } from "@/shared/inject";
+import { RoleName } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = inject(async (request: NextRequest) => {
@@ -21,12 +22,15 @@ export const GET = inject(async (request: NextRequest) => {
   return NextResponse.json({ data: artists });
 });
 
-export const POST = inject(async (request: Request) => {
-  const payload = await request.json();
-  const data = CreateArtistSchema.parse(payload);
-  const newArtist = await prisma.artist.create({
-    data,
-  });
+export const POST = inject(
+  async (request: Request) => {
+    const payload = await request.json();
+    const data = CreateArtistSchema.parse(payload);
+    const newArtist = await prisma.artist.create({
+      data,
+    });
 
-  return NextResponse.json({ data: newArtist });
-});
+    return NextResponse.json({ data: newArtist });
+  },
+  { role: RoleName.ADMIN }
+);

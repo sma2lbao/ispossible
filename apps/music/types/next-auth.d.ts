@@ -1,4 +1,4 @@
-import { type DefaultSession } from "next-auth";
+import type { DefaultSession } from "next-auth";
 
 declare module "next-auth" {
   /**
@@ -15,5 +15,13 @@ declare module "next-auth" {
        * you need to add them back into the newly declared interface.
        */
     } & DefaultSession["user"];
+  }
+}
+
+import type { Session } from "next-auth";
+
+declare module "next/server" {
+  interface NextRequest {
+    user?: Session["user"];
   }
 }

@@ -1,6 +1,5 @@
 import prisma from "@/database";
 import { CreatePlaylistSchema } from "@/schemas/playlists";
-import { auth } from "@/shared/auth";
 import { inject } from "@/shared/inject";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -12,22 +11,22 @@ export const GET = inject(async () => {
   return NextResponse.json({ data: playlists });
 });
 
-export const POST = inject(async (request: NextRequest) => {
-  const session = await auth();
-  if (!session?.user) {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
-  }
-  const payload = await request.json();
-  const data = CreatePlaylistSchema.parse(payload);
+export const POST = inject(
+  async (request: NextRequest) => {
+    const userId = request.user!.id!;
+    const payload = await request.json();
+    const data = CreatePlaylistSchema.parse(payload);
 
-  const newPlaylist = await prisma.playlist.create({
-    data: {
-      ...data,
-      authorId: session.user.id!,
-    },
-  });
+    const newPlaylist = await prisma.playlist.create({
+      data: {
+        ...data,
+        authorId: userId,
+      },
+    });
 
-  return NextResponse.json({
-    data: newPlaylist,
-  });
-});
+    return NextResponse.json({
+      data: newPlaylist,
+    });
+  },
+  { login: true }
+);

@@ -1,6 +1,5 @@
 import prisma from "@/database";
 import { UpdatePlaylistSchema } from "@/schemas/playlists";
-import { auth } from "@/shared/auth";
 import { inject } from "@/shared/inject";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -9,8 +8,8 @@ export const GET = inject(
     request: NextRequest,
     { params }: { params: Promise<{ id: string }> }
   ) => {
-    const session = await auth();
-    const userId = session?.user?.id;
+    const userId = request.user?.id;
+
     const playlistId = (await params).id;
     const playlist = await prisma.playlist.findUnique({
       where: {
@@ -50,7 +49,8 @@ export const GET = inject(
     const nextPlaylist = { ...playlist, songs: nextSongs };
 
     return NextResponse.json({ data: nextPlaylist });
-  }
+  },
+  { injectUser: true }
 );
 
 export const PUT = inject(
@@ -78,12 +78,15 @@ export const DELETE = inject(
     { params }: { params: Promise<{ id: string }> }
   ) => {
     const id = (await params).id;
+    const userId = request.user!.id!;
     await prisma.playlist.delete({
       where: {
         id,
+        authorId: userId,
       },
     });
 
     return NextResponse.json({ message: "Remove Success" }, { status: 200 });
-  }
+  },
+  { login: true }
 );

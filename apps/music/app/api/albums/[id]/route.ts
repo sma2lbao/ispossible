@@ -1,6 +1,7 @@
 import prisma from "@/database";
 import { UpdateAlbumSchema } from "@/schemas/albums";
 import { inject } from "@/shared/inject";
+import { RoleName } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 export const PUT = inject(
@@ -19,7 +20,8 @@ export const PUT = inject(
     });
 
     return NextResponse.json({ data: newAlbum }, { status: 201 });
-  }
+  },
+  { role: RoleName.ADMIN }
 );
 
 export const GET = inject(
