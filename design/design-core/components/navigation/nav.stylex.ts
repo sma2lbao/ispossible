@@ -33,13 +33,6 @@ export const styles = stylex.create({
     alignItems: "center",
     gap: "8px",
   },
-  active: {
-    color: colors.primary,
-    backgroundColor: "rgb(230, 244, 255)",
-  },
-  selected: {
-    color: colors.primary,
-  },
   item: {
     height: "36px",
     cursor: "pointer",
@@ -50,8 +43,18 @@ export const styles = stylex.create({
     alignItems: "center",
     boxSizing: "border-box",
     ":hover": {
-      backgroundColor: colors.primaryContainer,
+      backgroundColor: colors.fillHover,
     },
+    ":active": {
+      backgroundColor: colors.fillActive,
+    },
+  },
+  active: {
+    color: colors.primary,
+    backgroundColor: "rgb(230, 244, 255)",
+  },
+  selected: {
+    color: colors.primary,
   },
   firstLevel: {
     fontWeight: 600,

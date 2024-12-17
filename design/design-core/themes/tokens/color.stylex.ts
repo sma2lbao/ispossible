@@ -14,14 +14,14 @@ export const colors = stylex.defineVars({
   primaryDisabled: "rgb(152,205,253)", // 禁用状态（降低透明度）
 
   // 辅助色 (Secondary)
-  secondary: "rgb(64,180,243)", // 辅助色 强调作用次于主要颜色，但仍然具有强调作用。
+  secondary: "rgb(0,149,238)", // 辅助色 强调作用次于主要颜色，但仍然具有强调作用。
   onSecondary: "rgb(255,255,255)", // 辅助色上的前景色
   secondaryContainer: "", // 容器色
   onSecondaryContainer: "", // 容器内前景色
-  secondaryHover: "rgb(110,200,246)", // 悬停状态
-  secondaryActive: "rgb(157,220,249)", // 按下状态 active
+  secondaryHover: "rgb(0,123,202)", // 悬停状态
+  secondaryActive: "rgb(0,99,167)", // 按下状态 active
   secondaryFocus: "", // 焦点状态
-  secondaryDisabled: "rgb(3,102,169)", // 禁用状态
+  secondaryDisabled: "rgb(149,216,248)", // 禁用状态
 
   // 第三颜色
   tertiary: "rgb(107,112,117)",
@@ -82,6 +82,11 @@ export const colors = stylex.defineVars({
   linkActive: "rgb(0,79,179)",
   linkFocus: "rgb(0,100,250)",
   linkDisabled: "",
+
+  // 禁用
+  disabled: "rgba(28,31,35,.35)", // 禁用文字
+  onDisabled: "rgba(46,50,56,.05)", // 禁用背景
+  onDisabledVariant: "rgba(28,31,35,.35)", // 禁用背景 颜色较深
 
   // 表面和背景 (Surface/Background)
   surface: "rgb(255,255,255)", // 表面色，卡片、模态框、对话框的背景颜色

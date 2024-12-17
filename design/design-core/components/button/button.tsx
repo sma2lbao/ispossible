@@ -49,7 +49,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           theme === "light" && styles.button$light(color),
           theme === "solid" && styles.button$solid(color),
           theme === "ghost" && styles.button$ghost(color),
-          theme === "outline" && styles.button$outline(color),
+          theme === "outline" &&
+            styles.button$outline(color, disabled || loading),
           block && styles.button$block,
           onlyIcon && styles.button$onlyIcon,
           (disabled || loading) && styles.disabled,

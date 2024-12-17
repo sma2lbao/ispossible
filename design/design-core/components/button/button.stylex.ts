@@ -61,7 +61,7 @@ export const styles = stylex.create({
     boxSizing: "border-box",
     backgroundColor: "transparent",
     cursor: "pointer",
-    border: "0px solid transparent",
+    border: "none",
   },
   button$block: {
     width: "100%",
@@ -73,8 +73,12 @@ export const styles = stylex.create({
     ":not(:disabled):hover": {
       backgroundColor: colors.fillHover,
     },
-    ":not(:disabled):active": {
+    ":not(:disabled):hover:active": {
       backgroundColor: colors.fillActive,
+    },
+    ":disabled": {
+      color: colors.disabled,
+      backgroundColor: colors.onDisabled,
     },
   }),
   button$solid: (color: Color | string) => ({
@@ -85,7 +89,7 @@ export const styles = stylex.create({
         ? colors[hoverColors[color]]
         : colors.primaryHover,
     },
-    ":not(:disabled):active": {
+    ":not(:disabled):hover:active": {
       backgroundColor: isColor(color)
         ? colors[activeColors[color]]
         : colors.primaryActive,
@@ -93,26 +97,34 @@ export const styles = stylex.create({
     ":disabled": {
       backgroundColor: isColor(color)
         ? colors[disabledColors[color]]
-        : colors.primaryDisabled,
+        : colors.onDisabledVariant,
     },
   }),
   button$ghost: (color: Color | string) => ({
     color: isColor(color) ? colors[color] : color,
-    ":not(:disabled):active": {
-      backgroundColor: colors.fillActive,
-    },
     ":not(:disabled):hover": {
       backgroundColor: colors.fillHover,
+    },
+    ":not(:disabled):hover:active": {
+      backgroundColor: colors.fillActive,
+    },
+    ":disabled": {
+      color: colors.disabled,
     },
   }),
-  button$outline: (color: Color | string) => ({
+  button$outline: (color: Color | string, disabled?: boolean) => ({
     color: isColor(color) ? colors[color] : color,
-    border: `1px solid ${isColor(color) ? colors[color] : color}`,
+    boxShadow: `inset 0px 0px 0px 1px ${
+      disabled ? colors.disabled : isColor(color) ? colors[color] : color
+    }`,
     ":not(:disabled):hover": {
       backgroundColor: colors.fillHover,
     },
-    ":not(:disabled):active": {
+    ":not(:disabled):hover:active": {
       backgroundColor: colors.fillActive,
+    },
+    ":disabled": {
+      color: colors.disabled,
     },
   }),
   loading: {

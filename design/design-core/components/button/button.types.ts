@@ -19,7 +19,7 @@ export interface ButtonProps extends HostHTMLButtonProps {
    * 按钮主色
    * @default primary
    */
-  color?: Color | string;
+  color?: "primary" | "secondary" | "tertiary" | "warn" | "error" | string;
 
   /**
    * 按钮主题，可选值：solid（有背景色）、 ghost（无背景色）、 light（浅背景色）、outline(边框模式)

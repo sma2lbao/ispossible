@@ -34,8 +34,8 @@ export const NavItem: React.FC<NavItemProps> = (props) => {
       key={itemKey}
       {...stylex.props(
         styles.item,
-        isActive && styles.active,
-        context.firstLevel && styles.firstLevel
+        context.firstLevel && styles.firstLevel,
+        isActive && styles.active
       )}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}

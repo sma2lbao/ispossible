@@ -46,6 +46,7 @@ export const SubNav: React.FC<SubNavProps> = (props) => {
   );
 
   const handleSubNavTitleClick = () => {
+    if (context.mode !== "inline") return;
     setRawCollapsed(!rawCollapsed);
   };
 

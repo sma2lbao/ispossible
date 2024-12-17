@@ -20,12 +20,11 @@ export default meta;
 
 export const 基本用法 = () => (
   <Space>
-    <Button>Button</Button>
-    <Button disabled theme="solid">
-      Button
-    </Button>
-    <Button theme="ghost">Button</Button>
-    <Button theme="outline">Button</Button>
+    <Button color="primary">Button</Button>
+    <Button color="secondary">Button</Button>
+    <Button color="tertiary">Button</Button>
+    <Button color="warn">Button</Button>
+    <Button color="error">Button</Button>
   </Space>
 );
 
@@ -49,27 +48,43 @@ export const 不同颜色 = () => (
   </Space>
 );
 
-export const 浅色背景 = () => (
-  <Space>
-    <Button>Button</Button>
-  </Space>
-);
-
 export const 深色背景 = () => (
   <Space>
-    <Button theme="solid">Button</Button>
+    <Button color="primary" theme="solid">
+      Button
+    </Button>
+    <Button color="secondary" theme="solid">
+      Button
+    </Button>
+    <Button color="tertiary" theme="solid">
+      Button
+    </Button>
+    <Button color="warn" theme="solid">
+      Button
+    </Button>
+    <Button color="error" theme="solid">
+      Button
+    </Button>
   </Space>
 );
 
 export const 无背景 = () => (
   <Space>
-    <Button theme="ghost">Button</Button>
-  </Space>
-);
-
-export const 边框模式 = () => (
-  <Space>
-    <Button theme="outline">Button</Button>
+    <Button color="primary" theme="ghost">
+      Button
+    </Button>
+    <Button color="secondary" theme="ghost">
+      Button
+    </Button>
+    <Button color="tertiary" theme="ghost">
+      Button
+    </Button>
+    <Button color="warn" theme="ghost">
+      Button
+    </Button>
+    <Button color="error" theme="ghost">
+      Button
+    </Button>
   </Space>
 );
 
@@ -104,3 +119,23 @@ export const 图标按钮 = () => (
     </div>
   </Space>
 );
+
+export const 禁用状态 = () => {
+  return (
+    <Space>
+      <Button disabled>禁用</Button>
+      <Button disabled theme="ghost">
+        禁用
+      </Button>
+      <Button disabled theme="solid" color="primary">
+        禁用
+      </Button>
+      <Button disabled theme="solid" color="red">
+        禁用
+      </Button>
+      <Button disabled theme="outline" color="primary">
+        禁用
+      </Button>
+    </Space>
+  );
+};
