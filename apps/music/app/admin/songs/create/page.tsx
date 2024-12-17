@@ -13,6 +13,8 @@ import stylex from "@stylexjs/stylex";
 import { getAudioDuration } from "@/shared/audio";
 import "@design/icon/plus";
 import type { CreateSongDTO } from "@/schemas/songs";
+import { createMutater } from "@/shared/fetcher";
+import "@design/icon/plus";
 
 type FormData = {
   title: string;
@@ -32,19 +34,16 @@ const styles = stylex.create({
   },
 });
 
-const fetcher = (url: string, { arg }: { arg: CreateSongDTO }) => {
-  return fetch(url, {
-    method: "POST",
-    body: JSON.stringify(arg),
-  }).then((response) => response.json());
-};
-
 export default function CreateSong() {
-  const { trigger } = useSWRMutation("/api/songs", fetcher, {
-    onSuccess: () => {
-      Toast.success("创建成功");
-    },
-  });
+  const { trigger } = useSWRMutation(
+    "/api/songs",
+    createMutater<CreateSongDTO>("POST"),
+    {
+      onSuccess: () => {
+        Toast.success("创建成功");
+      },
+    }
+  );
   const handleSubmit = async (data: FormData) => {
     const { title, description, sourceFiles, coverFiles, lyricFiles } = data;
     const duration = await getAudioDuration(sourceFiles[0].instance!);

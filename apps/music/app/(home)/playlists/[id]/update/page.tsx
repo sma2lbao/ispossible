@@ -17,6 +17,7 @@ import stylex from "@stylexjs/stylex";
 import { useMemo } from "react";
 import useSWR from "swr";
 import useSWRMutation from "swr/mutation";
+import "@design/icon/plus";
 
 type FormData = {
   name: string;
@@ -43,7 +44,7 @@ export default function UpdatePlaylist({ params }: { params: { id: string } }) {
   );
   const { trigger } = useSWRMutation(
     `/api/playlists/${playlistId}`,
-    createMutater<UpdatePlaylistDTO, ApiResponse>("PUT"),
+    createMutater<UpdatePlaylistDTO, Playlist>("PUT"),
     {
       onSuccess: () => {
         Toast.success("更新成功");

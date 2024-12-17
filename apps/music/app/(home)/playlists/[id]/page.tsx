@@ -5,8 +5,8 @@ import { Button, TabPane, Tabs } from "@design/core";
 import SongList from "@/components/song-list";
 import { useRouter } from "next/navigation";
 import useSWRMutation from "swr/mutation";
-import { ApiResponse } from "@/types/common";
 import { Playlist, Song } from "@prisma/client";
+import { createFetcher, createMutater } from "@/shared/fetcher";
 
 const styles = stylex.create({
   page: {
@@ -17,21 +17,16 @@ const styles = stylex.create({
   },
 });
 
-const deleter = (url: string) => {
-  return fetch(url, {
-    method: "DELETE",
-  }).then((response) => response.json());
-};
-
 export default function PlaylistDetail({ params }: { params: { id: string } }) {
   const playlistId = params.id;
   const router = useRouter();
-  const { data, mutate } = useSWR<ApiResponse<Playlist & { songs: Song[] }>>(
-    playlistId ? `/api/playlists/${playlistId}` : null
+  const { data, mutate } = useSWR(
+    playlistId ? `/api/playlists/${playlistId}` : null,
+    createFetcher<Playlist & { songs: Song[] }>()
   );
   const { trigger } = useSWRMutation(
     playlistId ? `/api/playlists/${playlistId}` : null,
-    deleter,
+    createMutater("DELETE"),
     {
       onSuccess() {
         router.back();

@@ -1,6 +1,6 @@
 "use client";
 import type { UpdateAlbumDTO } from "@/schemas/albums";
-import { ApiResponse } from "@/types/common";
+import { createFetcher, createMutater } from "@/shared/fetcher";
 import {
   Button,
   Form,
@@ -10,11 +10,12 @@ import {
   Upload,
   UploadFile,
 } from "@design/core";
-import { Artist } from "@prisma/client";
+import { Album, Artist } from "@prisma/client";
 import stylex from "@stylexjs/stylex";
 import { useMemo, useState } from "react";
 import useSWR from "swr";
 import useSWRMutation from "swr/mutation";
+import "@design/icon/plus";
 
 type FormData = {
   title: string;
@@ -33,28 +34,26 @@ const styles = stylex.create({
   },
 });
 
-const updater = (url: string, { arg }: { arg: UpdateAlbumDTO }) => {
-  return fetch(url, {
-    method: "PUT",
-    body: JSON.stringify(arg),
-  }).then((response) => response.json());
-};
-
 export default function UpdateAlbum({ params }: { params: { id: string } }) {
   const albumId = params.id;
   const [keyword, setKeyword] = useState<string>("");
-  const { data } = useSWR<ApiResponse>(
-    albumId ? `/api/albums/${albumId}` : null
+  const { data } = useSWR(
+    albumId ? `/api/albums/${albumId}` : null,
+    createFetcher<Album>()
   );
-  const { trigger } = useSWRMutation(`/api/albums/${albumId}`, updater);
-  const { data: artistsData } = useSWR<ApiResponse>(
-    `/api/artists?keyword=${keyword}`
+  const { trigger } = useSWRMutation(
+    `/api/albums/${albumId}`,
+    createMutater<UpdateAlbumDTO>("PUT")
+  );
+  const { data: artistsData } = useSWR(
+    `/api/artists?keyword=${keyword}`,
+    createFetcher<Artist[]>()
   );
   const defaultValues: FormData = useMemo(() => {
     return {
       title: data?.data.title ?? "",
-      artistId: data?.data.artist?.id ?? "",
-      description: data?.data.description,
+      artistId: data?.data.artistId ?? "",
+      description: data?.data.description ?? "",
       coverFiles: data?.data.coverUrl
         ? [
             {

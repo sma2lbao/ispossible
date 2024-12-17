@@ -11,7 +11,9 @@ import {
 import stylex from "@stylexjs/stylex";
 import useSWRMutation from "swr/mutation";
 import "@design/icon/plus";
+import { createMutater } from "@/shared/fetcher";
 import type { CreatePlaylistDTO } from "@/schemas/playlists";
+import type { Playlist } from "@prisma/client";
 
 type FormData = {
   name: string;
@@ -31,18 +33,16 @@ const styles = stylex.create({
   },
 });
 
-const fetcher = (url: string, { arg }: { arg: CreatePlaylistDTO }) => {
-  return fetch(url, { method: "POST", body: JSON.stringify(arg) }).then((res) =>
-    res.json()
-  );
-};
-
 export default function CreatePlaylist() {
-  const { trigger, isMutating } = useSWRMutation("/api/playlists", fetcher, {
-    onSuccess: () => {
-      Toast.success("创建成功");
-    },
-  });
+  const { trigger, isMutating } = useSWRMutation(
+    "/api/playlists",
+    createMutater<CreatePlaylistDTO, Playlist>("POST"),
+    {
+      onSuccess: () => {
+        Toast.success("创建成功");
+      },
+    }
+  );
 
   const handleSumbit = (data: FormData) => {
     const { name, description, coverFiles } = data;

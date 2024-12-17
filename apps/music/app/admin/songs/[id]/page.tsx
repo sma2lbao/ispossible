@@ -2,6 +2,7 @@
 
 import type { UpdateSongDTO } from "@/schemas/songs";
 import { getAudioDuration } from "@/shared/audio";
+import { createFetcher, createMutater } from "@/shared/fetcher";
 import {
   Button,
   Form,
@@ -11,10 +12,12 @@ import {
   Upload,
   UploadFile,
 } from "@design/core";
+import { Song } from "@prisma/client";
 import stylex from "@stylexjs/stylex";
 import { useMemo } from "react";
 import useSWR from "swr";
 import useSWRMutation from "swr/mutation";
+import "@design/icon/plus";
 
 type FormData = {
   title: string;
@@ -34,21 +37,21 @@ const styles = stylex.create({
   },
 });
 
-const updater = (url: string, { arg }: { arg: UpdateSongDTO }) => {
-  return fetch(url, {
-    method: "PUT",
-    body: JSON.stringify(arg),
-  }).then((response) => response.json());
-};
-
 export default function UpdateSong({ params }: { params: { id: string } }) {
   const songId = params.id;
-  const { data } = useSWR(songId ? `/api/songs/${songId}` : null);
-  const { trigger } = useSWRMutation(`/api/songs/${songId}`, updater, {
-    onSuccess: () => {
-      Toast.success("更新成功");
-    },
-  });
+  const { data } = useSWR(
+    songId ? `/api/songs/${songId}` : null,
+    createFetcher<Song>()
+  );
+  const { trigger } = useSWRMutation(
+    `/api/songs/${songId}`,
+    createMutater<UpdateSongDTO>("PUT"),
+    {
+      onSuccess: () => {
+        Toast.success("更新成功");
+      },
+    }
+  );
 
   const defaultValues: FormData = useMemo(() => {
     return {

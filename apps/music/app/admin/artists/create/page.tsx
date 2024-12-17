@@ -11,12 +11,12 @@ import {
   UploadFile,
 } from "@design/core";
 import type { CreateArtistDTO } from "@/schemas/artists";
+import { createMutater } from "@/shared/fetcher";
+import "@design/icon/plus";
 
 type FormData = {
   name: string;
-
   bio?: string;
-
   imageFiles?: UploadFile[];
 };
 
@@ -30,19 +30,16 @@ const styles = stylex.create({
   },
 });
 
-const fetcher = (url: string, { arg }: { arg: CreateArtistDTO }) => {
-  return fetch(url, {
-    method: "POST",
-    body: JSON.stringify(arg),
-  }).then((response) => response.json());
-};
-
 export default function CreateArtist() {
-  const { trigger } = useSWRMutation("/api/artists", fetcher, {
-    onSuccess() {
-      Toast.success("创建成功");
-    },
-  });
+  const { trigger } = useSWRMutation(
+    "/api/artists",
+    createMutater<CreateArtistDTO>("POST"),
+    {
+      onSuccess() {
+        Toast.success("创建成功");
+      },
+    }
+  );
 
   const handleSubmit = (data: FormData) => {
     const { name, bio, imageFiles } = data;

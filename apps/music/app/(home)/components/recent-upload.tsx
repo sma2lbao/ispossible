@@ -4,11 +4,11 @@ import useSWR from "swr";
 import SongList from "@/components/song-list";
 import { Typography } from "@design/core";
 import React from "react";
-import type { ApiResponse } from "@/types/common";
+import { createFetcher } from "@/shared/fetcher";
 import type { Song } from "@prisma/client";
 
 export default function RecentUpload() {
-  const { data, mutate } = useSWR<ApiResponse<Song[]>>("/api/songs");
+  const { data, mutate } = useSWR("/api/songs", createFetcher<Song[]>());
 
   return (
     <div>

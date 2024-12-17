@@ -1,6 +1,7 @@
 "use client";
 
 import type { UpdateArtistDTO } from "@/schemas/artists";
+import { createFetcher, createMutater } from "@/shared/fetcher";
 import {
   Button,
   Form,
@@ -9,10 +10,12 @@ import {
   Upload,
   type UploadFile,
 } from "@design/core";
+import { Artist } from "@prisma/client";
 import stylex from "@stylexjs/stylex";
 import { useMemo } from "react";
 import useSWR from "swr";
 import useSWRMutation from "swr/mutation";
+import "@design/icon/plus";
 
 type FormData = {
   name: string;
@@ -30,22 +33,22 @@ const styles = stylex.create({
   },
 });
 
-const updater = (url: string, { arg }: { arg: UpdateArtistDTO }) => {
-  return fetch(url, {
-    method: "PUT",
-    body: JSON.stringify(arg),
-  }).then((response) => response.json());
-};
-
 export default function UpdateArtist({ params }: { params: { id: string } }) {
   const artistId = params.id;
-  const { data } = useSWR(artistId ? `/api/artists/${artistId}` : null);
-  const { trigger } = useSWRMutation(`/api/artists/${artistId}`, updater, {});
+  const { data } = useSWR(
+    artistId ? `/api/artists/${artistId}` : null,
+    createFetcher<Artist>()
+  );
+  const { trigger } = useSWRMutation(
+    `/api/artists/${artistId}`,
+    createMutater<UpdateArtistDTO>("PUT"),
+    {}
+  );
 
   const defaultValues: FormData = useMemo(() => {
     return {
-      name: data?.data.name,
-      bio: data?.data.bio,
+      name: data?.data.name ?? "",
+      bio: data?.data.bio ?? "",
       imageFiles: data?.data.imageUrl
         ? [
             {

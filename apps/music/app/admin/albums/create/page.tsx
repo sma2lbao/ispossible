@@ -16,6 +16,7 @@ import useSWR from "swr";
 import { useState } from "react";
 import { Artist } from "@prisma/client";
 import type { CreateAlbumDTO } from "@/schemas/albums";
+import { createFetcher, createMutater } from "@/shared/fetcher";
 
 type FormData = {
   title: string;
@@ -34,21 +35,21 @@ const styles = stylex.create({
   },
 });
 
-const creater = (url: string, { arg }: { arg: CreateAlbumDTO }) => {
-  return fetch(url, {
-    method: "POST",
-    body: JSON.stringify(arg),
-  }).then((response) => response.json());
-};
-
 export default function CreateAlbum() {
-  const { trigger, isMutating } = useSWRMutation("/api/albums", creater, {
-    onSuccess() {
-      Toast.success("创建成功");
-    },
-  });
+  const { trigger, isMutating } = useSWRMutation(
+    "/api/albums",
+    createMutater<CreateAlbumDTO>("POST"),
+    {
+      onSuccess() {
+        Toast.success("创建成功");
+      },
+    }
+  );
   const [keyword, setKeyword] = useState<string>("");
-  const { data } = useSWR(`/api/artists?keyword=${keyword}`);
+  const { data } = useSWR(
+    `/api/artists?keyword=${keyword}`,
+    createFetcher<Artist[]>()
+  );
 
   const handleSubmit = (data: FormData) => {
     const { title, artistId, description, coverFiles } = data;
