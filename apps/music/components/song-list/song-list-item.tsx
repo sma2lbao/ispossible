@@ -20,6 +20,7 @@ import "@design/icon/heart";
 import "@design/icon/plus-circle";
 import "@design/icon/play-circle-filled";
 import { usePlayerStore } from "@/providers/player-store-provider";
+import { createMutater } from "@/shared/fetcher";
 
 dayjs.extend(duration);
 
@@ -53,54 +54,40 @@ const styles = stylex.create({
   },
 });
 
-const fetcher = (
-  key: string,
-  { arg }: { arg: { playlistId: string; songId: string } }
-) => {
-  return fetch(`/api/playlists/${arg.playlistId}/songs`, {
-    method: "POST",
-    body: JSON.stringify({
-      songId: arg.songId,
-    }),
-  });
-};
-
-const favorFetcher = (
-  url: string,
-  { arg }: { arg: { songId: string | number; toggle: boolean } }
-) => {
-  if (arg.toggle) {
-    return fetch(url, {
-      method: "POST",
-      body: JSON.stringify({ songId: arg.songId }),
-    }).then((response) => response.json());
-  }
-  return fetch(url + `/${arg.songId}`, {
-    method: "DELETE",
-  }).then((response) => response.json());
-};
-
 const SongListItem: React.FC<SongListItemProps> = (props) => {
-  const { play } = usePlayerStore((state) => state);
   const { song, onFavor, onUnfavor } = props;
+  const { play } = usePlayerStore((state) => state);
   const { myPlaylists } = usePlaylistsStore((state) => state);
-  const { trigger: favorTrigger } = useSWRMutation(
+  const { trigger: favor } = useSWRMutation(
     "/api/favorites",
-    favorFetcher,
+    createMutater<{ songId: string }>("POST"),
     {
-      onSuccess: () => {
-        Toast.success("操作成功");
-        if (song.isFavorited) {
-          onUnfavor?.();
-        } else {
-          onFavor?.();
-        }
+      onSuccess() {
+        Toast.success(`已添加到"我喜欢"`);
+        onFavor?.();
       },
     }
   );
-  const { trigger } = useSWRMutation(
+
+  const { trigger: unFavor } = useSWRMutation(
+    `/api/favorites`,
+    createMutater<string, unknown, string>("DELETE", {
+      endpoint: (key, songId) => [key, songId],
+    }),
+    {
+      onSuccess: () => {
+        Toast.success(`已从"我喜欢"移除`);
+        onUnfavor?.();
+      },
+    }
+  );
+  const { trigger: addToPlaylist } = useSWRMutation(
     "/api/playlists/:playlistId/songs",
-    fetcher,
+    createMutater<{ playlistId: string; songId: string }>("POST", {
+      endpoint: (key, payload) =>
+        key.replace(":playlistId", payload.playlistId),
+      excludes: ["playlistId"],
+    }),
     {
       onSuccess: () => {
         Toast.success("加入歌单成功");
@@ -116,7 +103,7 @@ const SongListItem: React.FC<SongListItemProps> = (props) => {
     })) ?? [];
 
   const handleClick = (item: Playlist) => {
-    trigger({
+    addToPlaylist({
       songId: song.id,
       playlistId: item.id,
     });
@@ -127,11 +114,11 @@ const SongListItem: React.FC<SongListItemProps> = (props) => {
   };
 
   const handleFavor = () => {
-    favorTrigger({ songId: song.id, toggle: true });
+    favor({ songId: song.id });
   };
 
   const handleUnfavor = () => {
-    favorTrigger({ songId: song.id, toggle: false });
+    unFavor(song.id);
   };
 
   return (

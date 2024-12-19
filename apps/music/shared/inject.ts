@@ -30,9 +30,7 @@ export function inject(handler: RouteHandler, options?: InjectRouteOptions) {
       if (login || role || injectUser) {
         const session = await auth();
         const user = session?.user;
-        if (injectUser) {
-          request.user = user;
-        }
+        request.user = user;
 
         if ((login || role) && !user) {
           return NextResponse.json(

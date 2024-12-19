@@ -17,7 +17,7 @@ export const POST = inject(
 
     if (!playlist) {
       return NextResponse.json(
-        { error: "Playlist not found or access denied" },
+        { message: "Playlist not found or access denied" },
         { status: 404 }
       );
     }
@@ -29,7 +29,7 @@ export const POST = inject(
 
     if (existingEntry) {
       return NextResponse.json(
-        { error: "Song already in playlist" },
+        { message: "Song already in playlist" },
         { status: 400 }
       );
     }

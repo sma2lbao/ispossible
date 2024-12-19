@@ -17,7 +17,7 @@ export const DELETE = inject(
       },
     });
     if (deleteResult.count === 0) {
-      return NextResponse.json({ error: "not found" }, { status: 404 });
+      return NextResponse.json({ message: "not found" }, { status: 404 });
     }
 
     return NextResponse.json({ data: null });
