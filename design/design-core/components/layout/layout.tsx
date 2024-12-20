@@ -5,11 +5,11 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { mergeRefs, x } from "../../shared";
-import { styles } from "./layout.stylex";
-import { LayoutContext } from "./layout.context";
-import { Sider } from "./sider";
 import { Header } from "./header";
+import { LayoutContext } from "./layout.context";
+import { styles } from "./layout.stylex";
+import { Sider } from "./sider";
+import { mergeRefs, x } from "../../shared";
 import type { LayoutProps } from "./layout.types";
 
 export const Layout: React.FC<LayoutProps> = (props) => {

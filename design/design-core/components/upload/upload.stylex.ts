@@ -1,7 +1,7 @@
 import stylex from "@stylexjs/stylex";
+import { colors } from "../../themes/tokens/color.stylex";
 import { shapes } from "../../themes/tokens/shape.stylex";
 import { spacings } from "../../themes/tokens/spacing.stylex";
-import { colors } from "../../themes/tokens/color.stylex";
 
 export const styles = stylex.create({
   upload: {

@@ -1,7 +1,7 @@
-import React from "react";
 import stylex from "@stylexjs/stylex";
-import { Button } from "../button";
+import React from "react";
 import { styles } from "./notification.stylex";
+import { Button } from "../button";
 import type { NotificationProps } from "./notification.types";
 import "@design/icon/close";
 import "@design/icon/info-circle-filled";

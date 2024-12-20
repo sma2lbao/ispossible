@@ -1,4 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
+import { SelectOption } from "./select-option";
+import { SelectContext } from "./select.context";
+import { styles } from "./select.stylex";
+import useOptions from "./use-options";
+import { useClickOutside } from "../../hooks/use-click-outside";
+import { mergeRefs, x } from "../../shared";
+import { Input } from "../input";
+import { Popover } from "../popover";
 import type {
   DisplayValueType,
   SelectContextProps,
@@ -6,14 +14,6 @@ import type {
   SelectProps,
   SelectValueType,
 } from "./select.types";
-import { Popover } from "../popover";
-import { mergeRefs, x } from "../../shared";
-import { styles } from "./select.stylex";
-import { SelectOption } from "./select-option";
-import { useClickOutside } from "../../hooks/use-click-outside";
-import { SelectContext } from "./select.context";
-import useOptions from "./use-options";
-import { Input } from "../input";
 import "@design/icon/close-circle-filled";
 import "@design/icon/down";
 import "@design/icon/search";

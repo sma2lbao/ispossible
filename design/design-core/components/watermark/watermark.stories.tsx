@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
 import { Watermark } from "./";
+import type { Meta, StoryObj } from "@storybook/react";
 
 /**
  * 水印组件

@@ -1,11 +1,11 @@
+import stylex from "@stylexjs/stylex";
 import React, { useState, useEffect, useContext } from "react";
 import { createPortal } from "react-dom";
-import stylex from "@stylexjs/stylex";
+import { ModalContext } from "./modal.context";
 import { styles } from "./modal.stylex";
 import { ModalProps } from "./modal.types";
-import { Space } from "../space";
 import { Button } from "../button";
-import { ModalContext } from "./modal.context";
+import { Space } from "../space";
 import "@design/icon/close";
 import "@design/icon/info-circle-filled";
 import "@design/icon/check-circle-filled";

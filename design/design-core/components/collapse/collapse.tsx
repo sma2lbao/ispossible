@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import stylex from "@stylexjs/stylex";
 import { CollapseContext } from "./collapse.context";
 import type { CollapseProps, CollapseContextProps } from "./collapse.types";
 import "@design/icon/caret-right";

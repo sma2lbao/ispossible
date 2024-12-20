@@ -1,6 +1,6 @@
-import { Pagination } from "./";
 import React, { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import { Pagination } from "./";
+import type { Meta } from "@storybook/react";
 
 /**
  * 采用分页控制单页内的信息数量，也可进行页面跳转。

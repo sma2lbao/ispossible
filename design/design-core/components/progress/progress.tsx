@@ -1,12 +1,11 @@
 import React from "react";
-import type { ProgressProps } from "./progress.types";
-import { x } from "../../shared";
 import { styles } from "./progress.stylex";
+import { x } from "../../shared";
+import type { ProgressProps } from "./progress.types";
 
 export const Progress: React.FC<ProgressProps> = (props) => {
   const {
     direction = "x",
-    type = "line",
     stroke,
     trackStroke,
     percent = 0,

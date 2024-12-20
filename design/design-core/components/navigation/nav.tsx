@@ -1,4 +1,8 @@
+import stylex from "@stylexjs/stylex";
 import React, { useEffect, useState } from "react";
+import { NavItem } from "./nav-item";
+import { NavContext, NavContextType } from "./nav.context";
+import { styles } from "./nav.stylex";
 import {
   ItemKey,
   NavProps,
@@ -6,13 +10,9 @@ import {
   OnSelectData,
   isSubNavProps,
 } from "./nav.types";
-import { NavContext, NavContextType } from "./nav.context";
-import { SubNav } from "./sub-nav";
-import { NavItem } from "./nav-item";
-import stylex from "@stylexjs/stylex";
-import { styles } from "./nav.stylex";
-import usePathRecords from "./use-path-records";
 import { PathRegisterContext } from "./path.context";
+import { SubNav } from "./sub-nav";
+import usePathRecords from "./use-path-records";
 import { x } from "../../shared";
 
 export const Nav: React.FC<NavProps> = (props) => {
@@ -40,7 +40,7 @@ export const Nav: React.FC<NavProps> = (props) => {
     const { itemKey, domEvent, ...rest } = data;
     const exist = rawSelectedKeys.includes(itemKey);
     const nextSelectedKeys = [itemKey];
-    !isControl ? setRawSelectedKeys(nextSelectedKeys) : null;
+    !isControl && setRawSelectedKeys(nextSelectedKeys);
     if (exist) return;
 
     const onSelectData: OnSelectData = {

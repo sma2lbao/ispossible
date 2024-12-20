@@ -1,6 +1,6 @@
 import stylex from "@stylexjs/stylex";
-import { colors } from "../../themes/tokens/color.stylex";
 import { animation } from "../../themes/tokens/animation.stylex";
+import { colors } from "../../themes/tokens/color.stylex";
 import { shapes } from "../../themes/tokens/shape.stylex";
 import { spacings } from "../../themes/tokens/spacing.stylex";
 import type { Color } from "./button.types";

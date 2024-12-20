@@ -1,6 +1,6 @@
 import React from "react";
 import { Tabs, TabPane } from "./";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta } from "@storybook/react";
 
 /**
  * 将内容组织同一视图中，一次可查看一个视图内容。查看其他内容可切换选项卡查看。

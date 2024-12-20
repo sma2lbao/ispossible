@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Select } from "./";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta } from "@storybook/react";
 
 /**
  * 当用户需要从一组同类数据中选择一个或多个时，可以使用下拉选择器，点击后选择对应项。

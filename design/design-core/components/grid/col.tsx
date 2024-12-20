@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import { ColProps } from "./grid.types";
 import stylex from "@stylexjs/stylex";
-import { styles } from "./grid.stylex";
+import React, { useContext } from "react";
 import { GridContext } from "./grid.context";
+import { styles } from "./grid.stylex";
+import { ColProps } from "./grid.types";
 
 export const Col: React.FC<ColProps> = (props) => {
   const context = useContext(GridContext);

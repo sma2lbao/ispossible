@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import type { FormContextProps, FormProps } from "./form.types";
 import {
   useForm,
   FormProvider,
@@ -8,6 +7,7 @@ import {
   type SubmitErrorHandler,
 } from "react-hook-form";
 import { FormContext } from "./form.context";
+import type { FormContextProps, FormProps } from "./form.types";
 
 export function Form<T extends FieldValues>(props: FormProps<T>) {
   const { children, onSubmit, onFail, defaultValues } = props;

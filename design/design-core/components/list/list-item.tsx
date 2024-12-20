@@ -1,6 +1,6 @@
 import React from "react";
-import { x } from "../../shared";
 import { styles } from "./list.stylex";
+import { x } from "../../shared";
 import type { ListItemProps } from "./list.types";
 
 export const ListItem: React.FC<ListItemProps> = (props) => {

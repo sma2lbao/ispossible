@@ -1,6 +1,6 @@
-import { Breadcrumb } from "./";
-import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
+import { Breadcrumb } from "./";
+import type { Meta } from "@storybook/react";
 import "@design/icon/right";
 
 /**

@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
 import stylex from "@stylexjs/stylex";
-import { styles } from "./tabs.stylex";
+import React, { useContext } from "react";
 import { TabsContext } from "./tabs.context";
+import { styles } from "./tabs.stylex";
 import type { TabPaneProps } from "./tabs.types";
 
 export const TabPane: React.FC<TabPaneProps> = (props) => {

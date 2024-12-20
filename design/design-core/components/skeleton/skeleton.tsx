@@ -1,12 +1,12 @@
-import React from "react";
-import SkeletonTitle from "./title";
-import SkeletonAvatar from "./avatar";
-import SkeletonParagraph from "./paragraph";
-import SkeletonImage from "./image";
-import SkeletonButton from "./button";
 import stylex from "@stylexjs/stylex";
+import React from "react";
+import SkeletonAvatar from "./avatar";
+import SkeletonButton from "./button";
+import SkeletonImage from "./image";
+import SkeletonParagraph from "./paragraph";
 
 import { type SkeletonNode, type SkeletonProps } from "./skeleton.types";
+import SkeletonTitle from "./title";
 
 const styles = stylex.create({
   root: {

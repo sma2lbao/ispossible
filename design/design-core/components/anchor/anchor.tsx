@@ -1,9 +1,9 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import stylex from "@stylexjs/stylex";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { AnchorLink } from "./anchor-link";
 import { AnchorContext } from "./anchor.context";
-import type { AnchorProps, OnClickLinkData } from "./anchor.types";
 import { styles } from "./anchor.stylex";
+import type { AnchorProps, OnClickLinkData } from "./anchor.types";
 
 export const Anchor: React.FC<AnchorProps> = (props) => {
   const {

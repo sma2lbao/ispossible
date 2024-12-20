@@ -1,10 +1,10 @@
-import React from "react";
-import { x } from "../../shared";
-import { styles } from "./list.stylex";
 import stylex from "@stylexjs/stylex";
+import React from "react";
+import { styles } from "./list.stylex";
+import { x } from "../../shared";
+import { Typography } from "../typography";
 import type { ListProps } from "./list.types";
 import "@design/icon/loading";
-import { Typography } from "../typography";
 
 export const List: React.FC<ListProps> = (props) => {
   const {

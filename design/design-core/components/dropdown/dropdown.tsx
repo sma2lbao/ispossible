@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useRef } from "react";
-import type { DropdownProps } from "./dropdown.types";
-import { Popover, type PopoverHandles } from "../popover";
 import { DropdownMenu } from "./dropdown-menu";
 import { DropdownContext } from "./dropdown.context";
 import { styles } from "./dropdown.stylex";
+import { Popover, type PopoverHandles } from "../popover";
+import type { DropdownProps } from "./dropdown.types";
 
 export const Dropdown: React.FC<DropdownProps> = (props) => {
   const { children, menu, showTick = false } = props;

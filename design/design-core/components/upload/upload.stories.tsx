@@ -1,8 +1,8 @@
 import React from "react";
-import type { Meta } from "@storybook/react";
-import { Upload } from "./";
 import { Button } from "../button";
+import { Upload } from "./";
 import type { UploadRequestOptions } from "./upload.types";
+import type { Meta } from "@storybook/react";
 import "@design/icon/plus";
 
 /**

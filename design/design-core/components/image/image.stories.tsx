@@ -1,6 +1,6 @@
 import React from "react";
 import { Image } from "./";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta } from "@storybook/react";
 
 /**
  * 展示和预览图片。

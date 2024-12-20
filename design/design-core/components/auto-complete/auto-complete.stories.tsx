@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import type { Meta } from "@storybook/react";
-import { AutoComplete } from "./";
 import { Avatar } from "../avatar";
+import { AutoComplete } from "./";
+import type { Meta } from "@storybook/react";
 
 const meta = {
   title: "AutoComplete 自动补全",

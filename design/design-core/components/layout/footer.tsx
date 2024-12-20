@@ -1,6 +1,6 @@
 import React from "react";
-import { x } from "../../shared";
 import { styles } from "./layout.stylex";
+import { x } from "../../shared";
 import type { FooterProps } from "./layout.types";
 
 export const Footer: React.FC<FooterProps> = (props) => {

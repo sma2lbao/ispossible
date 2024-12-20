@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useLayoutEffect } from "react";
-import { AnchorContext } from "./anchor.context";
 import stylex from "@stylexjs/stylex";
-import { AnchorLinkProps } from "./anchor.types";
+import React, { useContext, useEffect } from "react";
+import { AnchorContext } from "./anchor.context";
 import { styles } from "./anchor.stylex";
+import { AnchorLinkProps } from "./anchor.types";
 
 export const AnchorLink: React.FC<AnchorLinkProps> = (props) => {
   const { href, label, items, children } = props;

@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
 import stylex, { StyleXStyles } from "@stylexjs/stylex";
+import React, { useContext } from "react";
 import { TableContext } from "./context";
 import { spacings } from "../../themes/tokens/spacing.stylex";
 

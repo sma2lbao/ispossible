@@ -1,8 +1,8 @@
-import React from "react";
 import stylex from "@stylexjs/stylex";
-import type { SpaceProps } from "./space.types";
+import React from "react";
 import { styles } from "./space.stylex";
 import { x } from "../../shared";
+import type { SpaceProps } from "./space.types";
 
 export const Space: React.FC<SpaceProps> = (props) => {
   const {

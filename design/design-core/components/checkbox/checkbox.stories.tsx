@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import { Checkbox } from "../../components";
+import type { Meta } from "@storybook/react";
 
 /**
  * 在一组数据中，用户可通过复选框选择一个或多个数据。
@@ -16,7 +16,6 @@ const meta = {
 } satisfies Meta<typeof Checkbox>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
 /**
  * 最基本的点击选中操作。

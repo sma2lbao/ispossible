@@ -1,9 +1,9 @@
 import React from "react";
-import type { Meta } from "@storybook/react";
 import { Notification as NotificationComponent } from "./notification";
-import { Notification } from "./";
-import { Space } from "../space";
 import { Button } from "../button";
+import { Space } from "../space";
+import { Notification } from "./";
+import type { Meta } from "@storybook/react";
 
 /**
  * 全局展示通知提醒，将信息及时有效的传达给用户。

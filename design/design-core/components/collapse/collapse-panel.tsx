@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import type { CollapsePanelProps } from "./collapse.types";
 import stylex from "@stylexjs/stylex";
+import React, { useContext } from "react";
 import { styles } from "./collapse-stylex";
 import { CollapseContext } from "./collapse.context";
+import type { CollapsePanelProps } from "./collapse.types";
 
 export const CollapsePanel: React.FC<CollapsePanelProps> = (props) => {
   const context = useContext(CollapseContext);

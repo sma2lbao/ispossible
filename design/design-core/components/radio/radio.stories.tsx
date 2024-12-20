@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import React, { useState } from "react";
 import { Radio } from "./radio";
-import { Space } from "../space";
 import { RadioGroup } from "./radio-group";
 import { RadioChangeEvent } from "./radio.types";
+import { Space } from "../space";
+import type { Meta } from "@storybook/react";
 
 /**
  * 在一组相关且互斥数据中，用户仅能选择一个选项。
@@ -19,7 +19,6 @@ const meta = {
 } satisfies Meta<typeof Radio>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
 /**
  * 基础单选框。

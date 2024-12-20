@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { TreeNode, TreeNodeProps } from "./tree-node";
 import { TreeContext } from "./context";
+import { TreeNode, TreeNodeProps } from "./tree-node";
 
 export interface TreeProps {
   /**

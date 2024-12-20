@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { Textarea } from "./textarea";
 import React from "react";
+import { Textarea } from "./textarea";
+import type { Meta } from "@storybook/react";
 
 const meta = {
   title: "Textarea 多行输入",

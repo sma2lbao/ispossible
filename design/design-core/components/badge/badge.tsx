@@ -1,5 +1,4 @@
 import React from "react";
-import stylex from "@stylexjs/stylex";
 
 export interface BadgeProps {
   color?: string;
@@ -8,12 +7,6 @@ export interface BadgeProps {
   overflowCount?: number;
 }
 
-const styles = stylex.create({
-  root: {},
-});
-
-export const Badge: React.FC<BadgeProps> = (props) => {
-  const { color = "" } = props;
-
+export const Badge: React.FC<BadgeProps> = () => {
   return <span></span>;
 };

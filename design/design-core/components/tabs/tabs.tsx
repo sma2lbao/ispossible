@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
 import stylex from "@stylexjs/stylex";
-import { styles } from "./tabs.stylex";
+import React, { useEffect, useMemo, useState } from "react";
 import { TabsContext } from "./tabs.context";
+import { styles } from "./tabs.stylex";
 import type { TabPaneProps, TabsContextProps, TabsProps } from "./tabs.types";
-import { TabPane } from "./tab-pane";
 
 export const Tabs: React.FC<TabsProps> = (props) => {
   const {

@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
-import { mergeRefs, x } from "../../shared";
-import { styles } from "./upload.stylex";
 import short from "short-uuid";
 import { UploadFiles } from "./upload-files";
+import { UploadContext } from "./upload.context";
+import { styles } from "./upload.stylex";
+import { xhrRequest } from "./upload.xhr";
+import { mergeRefs, x } from "../../shared";
 import type {
   UploadFile,
   UploadProps,
   UploadRequestOptions,
 } from "./upload.types";
-import { xhrRequest } from "./upload.xhr";
-import { UploadContext } from "./upload.context";
 
 export const Upload = React.forwardRef<HTMLInputElement, UploadProps>(
   (props, forwardRef) => {
@@ -188,7 +188,7 @@ export const Upload = React.forwardRef<HTMLInputElement, UploadProps>(
       const nextRawFiles = rawFiles.slice();
       const index = nextRawFiles.findIndex((item) => item.uid === file.uid);
       nextRawFiles.splice(index, 1);
-      !isControl ? setRawFiles(nextRawFiles) : null;
+      !isControl && setRawFiles(nextRawFiles);
       onRemove?.(file, nextRawFiles);
     };
 
@@ -206,7 +206,7 @@ export const Upload = React.forwardRef<HTMLInputElement, UploadProps>(
         percent: 0,
       };
       nextRawFiles[index] = nextFile;
-      !isControl ? setRawFiles(nextRawFiles) : null;
+      !isControl && setRawFiles(nextRawFiles);
       onRetry?.(file, nextRawFiles);
     };
 

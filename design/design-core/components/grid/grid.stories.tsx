@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import { Row, Col } from "./";
+import type { Meta } from "@storybook/react";
 import "@design/icon/user";
 
 /**

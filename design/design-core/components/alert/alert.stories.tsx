@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import { Alert } from ".";
 import { Space } from "../space";
+import { Alert } from ".";
+import type { Meta } from "@storybook/react";
 
 /**
  * 横幅通常用于标识全页的状态或通知等。它通常是常驻的，需要用户主动将其关闭。
@@ -18,7 +18,6 @@ const meta = {
 } satisfies Meta<typeof Alert>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
 /**
  * 最简单的用法。

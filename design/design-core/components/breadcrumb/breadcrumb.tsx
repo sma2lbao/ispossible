@@ -1,8 +1,8 @@
-import React from "react";
 import stylex from "@stylexjs/stylex";
-import { styles } from "./breadcrumb.stylex";
-import { BreadcrumbContext } from "./breadcrumb.context";
+import React from "react";
 import { BreadcrumbItem } from "./breadcrumb-item";
+import { BreadcrumbContext } from "./breadcrumb.context";
+import { styles } from "./breadcrumb.stylex";
 import type {
   BreadcrumbContextProps,
   BreadcrumbProps,

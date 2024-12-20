@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
 import stylex from "@stylexjs/stylex";
+import React, { useEffect, useState } from "react";
+import { Avatar } from "./avatar";
 import { AvatarContext } from "./avatar.context";
 import { styles } from "./avatar.stylex";
 import type { AvatarContextProps, AvatarGroupProps } from "./avatar.types";
-import { Avatar } from "./avatar";
 
 export const AvatarGroup: React.FC<AvatarGroupProps> = (props) => {
   const { max = 5, size = 45, shape = "circle", children } = props;

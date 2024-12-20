@@ -1,7 +1,7 @@
-import React from "react";
-import short from "short-uuid";
-import { Root, createRoot } from "react-dom/client";
 import stylex from "@stylexjs/stylex";
+import React from "react";
+import { Root, createRoot } from "react-dom/client";
+import short from "short-uuid";
 import { Toast } from "./toast";
 import { styles } from "./toast.stylex";
 import type {
@@ -16,7 +16,6 @@ type CacheItem = {
 };
 
 const toastCache = new Map<string, CacheItem>();
-const duration = 2000;
 
 const buildToast: ToastBuildFunc = (type, message, options) => {
   const { id, onClose, ...rest } = options || {};

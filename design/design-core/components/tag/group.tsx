@@ -1,11 +1,11 @@
-import React from "react";
 
-import type { TagGroupProps } from "./tag.types";
 import stylex from "@stylexjs/stylex";
-import { styles } from "./tag.stylex";
+import React from "react";
 import { Tag } from "./tag";
+import { styles } from "./tag.stylex";
 import { Popover } from "../popover";
 import { Space } from "../space";
+import type { TagGroupProps } from "./tag.types";
 
 export const TagGroup: React.FC<TagGroupProps> = (props) => {
   const { maxTagCount, tagList, onTagClose } = props;

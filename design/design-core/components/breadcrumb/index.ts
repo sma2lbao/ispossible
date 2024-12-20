@@ -3,11 +3,11 @@
 import { Breadcrumb } from "./breadcrumb";
 import { BreadcrumbItem } from "./breadcrumb-item";
 
-type ExportBreadcrumb = typeof Breadcrumb & {
+type ExportBreadcrumbType = typeof Breadcrumb & {
   Item: typeof BreadcrumbItem;
 };
 
-const ExportBreadcrumb = Breadcrumb as ExportBreadcrumb;
+const ExportBreadcrumb = Breadcrumb as ExportBreadcrumbType;
 
 ExportBreadcrumb.Item = BreadcrumbItem;
 

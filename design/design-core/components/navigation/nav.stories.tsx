@@ -1,6 +1,6 @@
-import { Nav } from "./";
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import { Nav } from "./";
+import type { Meta } from "@storybook/react";
 import "@design/icon/home";
 import "@design/icon/user";
 import "@design/icon/wechat";
@@ -21,7 +21,6 @@ const meta = {
 } satisfies Meta<typeof Nav>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
 export const 基本用法 = () => {
   const items = [

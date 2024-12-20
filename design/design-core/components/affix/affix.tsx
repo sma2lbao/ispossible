@@ -1,6 +1,6 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import type { AffixProps } from "./affix.types";
+import React, { useEffect, useRef, useState } from "react";
 import { isWindow } from "../../shared";
+import type { AffixProps } from "./affix.types";
 
 export const Affix: React.FC<AffixProps> = (props) => {
   const { offset = 0, direction = "top", target = window, children } = props;

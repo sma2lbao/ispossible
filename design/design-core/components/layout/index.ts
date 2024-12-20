@@ -1,10 +1,10 @@
 "use client";
 
-import { Layout } from "./layout";
-import { Header } from "./header";
-import { Sider } from "./sider";
 import { Content } from "./content";
 import { Footer } from "./footer";
+import { Header } from "./header";
+import { Layout } from "./layout";
+import { Sider } from "./sider";
 
 type ExportLayoutType = typeof Layout & {
   Header: typeof Header;

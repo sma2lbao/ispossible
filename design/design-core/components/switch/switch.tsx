@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import stylex from "@stylexjs/stylex";
-import { SwitchProps } from "./switch.types";
+import React, { useState } from "react";
 import { styles } from "./switch.stylex";
+import { SwitchProps } from "./switch.types";
 
 export const Switch: React.FC<SwitchProps> = (props) => {
   const { value, onChange } = props;

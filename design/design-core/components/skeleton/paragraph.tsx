@@ -1,5 +1,5 @@
-import React from "react";
 import stylex from "@stylexjs/stylex";
+import React from "react";
 import { type SkeletonParagraphProps } from "./skeleton.types";
 import { spacings } from "../../themes/tokens/spacing.stylex";
 

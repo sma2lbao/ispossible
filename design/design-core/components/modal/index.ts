@@ -4,7 +4,7 @@ import { Modal } from "./modal";
 import { info, warning, error, success, confirm } from "./modal.api";
 import { BuiltInModalFunc } from "./modal.types";
 
-type ExportModal = typeof Modal & {
+type ExportModalType = typeof Modal & {
   info: BuiltInModalFunc;
   warning: BuiltInModalFunc;
   error: BuiltInModalFunc;
@@ -12,7 +12,7 @@ type ExportModal = typeof Modal & {
   confirm: BuiltInModalFunc;
 };
 
-const ExportModal = Modal as ExportModal;
+const ExportModal = Modal as ExportModalType;
 
 ExportModal.info = info;
 ExportModal.warning = warning;

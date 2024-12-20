@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
 import stylex, { type StyleXStyles } from "@stylexjs/stylex";
+import React from "react";
 import { TreeContext } from "./context";
 import "@design/icon/caret-right";
 import "@design/icon/caret-bottom";

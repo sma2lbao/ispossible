@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
 import stylex from "@stylexjs/stylex";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { AvatarContext } from "./avatar.context";
 import { styles } from "./avatar.stylex";
 import type { AvatarProps } from "./avatar.types";
-import { AvatarContext } from "./avatar.context";
 
 export const Avatar: React.FC<AvatarProps> = (props) => {
   const context = useContext(AvatarContext);

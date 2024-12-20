@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import { Switch } from "./switch";
 import { Space } from "../space";
+import type { Meta } from "@storybook/react";
 import "@design/icon/user";
 
 /**
@@ -18,7 +18,6 @@ const meta = {
 } satisfies Meta<typeof Switch>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
 /**
  * 开关选择器。

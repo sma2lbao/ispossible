@@ -1,3 +1,4 @@
+import stylex from "@stylexjs/stylex";
 import React, {
   useRef,
   useState,
@@ -7,12 +8,11 @@ import React, {
   useImperativeHandle,
 } from "react";
 import { createPortal } from "react-dom";
-import stylex from "@stylexjs/stylex";
-import { isFunction, mergeEvents, mergeRefs, noop } from "../../shared";
-import { useClickOutside } from "../../hooks/use-click-outside";
-import type { TooltipHandles, TooltipProps } from "./tooltip.types";
-import { calculatePosition } from "./utils";
 import { styles, light } from "./tooltip.stylex";
+import { calculatePosition } from "./utils";
+import { useClickOutside } from "../../hooks/use-click-outside";
+import { isFunction, mergeEvents, mergeRefs, noop } from "../../shared";
+import type { TooltipHandles, TooltipProps } from "./tooltip.types";
 
 export const Tooltip = React.forwardRef<TooltipHandles, TooltipProps>(
   (props, ref) => {

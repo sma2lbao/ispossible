@@ -1,7 +1,7 @@
+import React from "react";
+import { Anchor } from "./";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Anchor } from "./";
-import React from "react";
 
 /**
  * 用于跳转到页面指定位置。

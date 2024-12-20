@@ -1,7 +1,7 @@
 import React from "react";
-import type { AutoCompleteOptionProps } from "./auto-complete.types";
-import { x } from "../../shared";
 import { styles } from "./auto-complete.stylex";
+import { x } from "../../shared";
+import type { AutoCompleteOptionProps } from "./auto-complete.types";
 
 export const AutoCompleteOption: React.FC<AutoCompleteOptionProps> = (
   props

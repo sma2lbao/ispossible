@@ -1,9 +1,9 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
 import stylex from "@stylexjs/stylex";
+import React, { useEffect, useRef, useState } from "react";
 import { styles } from "./input.stylex";
+import { mergeRefs } from "../../shared";
 import type { InputProps } from "./input.types";
 import "@design/icon/close-circle-filled";
-import { mergeRefs } from "../../shared";
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (props, ref) => {

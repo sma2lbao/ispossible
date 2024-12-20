@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import { Collapse } from "./";
+import type { Meta } from "@storybook/react";
 
 /**
  * 可以折叠/展开的内容区域。
@@ -16,7 +16,6 @@ const meta = {
 } satisfies Meta<typeof Collapse>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
 /**
  * 用于将复杂的内容区域分组和隐藏，可折叠或展开，默认可以展开多个面板，也可以只展开某几个面板。

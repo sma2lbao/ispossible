@@ -1,10 +1,17 @@
-import { defineConfig } from "eslint-define-config";
+const { defineConfig } = require("eslint-define-config");
 
-export = defineConfig({
+module.exports = defineConfig({
   env: {
     node: true,
+    "vue/setup-compiler-macros": true,
   },
-  plugins: ["@typescript-eslint", "import"],
+  parser: "vue-eslint-parser",
+  parserOptions: {
+    parser: "@typescript-eslint/parser",
+    ecmaVersion: "latest",
+    sourceType: "module",
+  },
+  plugins: ["@typescript-eslint", "vue", "import"],
   extends: ["plugin:import/typescript"],
   rules: {
     "import/order": [
@@ -26,6 +33,11 @@ export = defineConfig({
             group: "builtin",
             position: "before",
           },
+          // {
+          //   pattern: "@/**",
+          //   group: "external",
+          //   position: "after",
+          // },
           {
             pattern: "{.,..}/**/*.css",
             group: "type",
@@ -37,7 +49,7 @@ export = defineConfig({
         warnOnUnassignedImports: false,
       },
     ],
-    "vue/multi-word-component-names": 0,
+    "vue/multi-word-component-names": "off",
     "@typescript-eslint/no-explicit-any": "warn",
   },
 });

@@ -1,10 +1,8 @@
-import stylex from "@stylexjs/stylex";
-import type { TypographyProps, ISize, IVariant } from "./typography.types";
-
-import { styles } from "./typography.stylex";
 import React from "react";
-import { commonStyles } from "../../themes/common-styles";
+import { styles } from "./typography.stylex";
 import { x } from "../../shared";
+import { commonStyles } from "../../themes/common-styles";
+import type { TypographyProps, ISize, IVariant } from "./typography.types";
 
 export const asTagMap: Record<`${IVariant}$${ISize}`, React.ElementType> = {
   display$lg: "span",

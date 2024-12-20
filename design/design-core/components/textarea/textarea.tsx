@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
+import { styles } from "./textarea.stylex";
 import { TextareaProps } from "./textarea.types";
 import { mergeRefs, x } from "../../shared";
-import { styles } from "./textarea.stylex";
 
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (props, ref) => {

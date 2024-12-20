@@ -1,7 +1,7 @@
-import React from "react";
 import stylex from "@stylexjs/stylex";
-import { styles } from "./radio.stylex";
+import React from "react";
 import { RadioContext } from "./radio.context";
+import { styles } from "./radio.stylex";
 import type { RadioContextProps, RadioGroupProps } from "./radio.types";
 
 export const RadioGroup: React.FC<RadioGroupProps> = (props) => {

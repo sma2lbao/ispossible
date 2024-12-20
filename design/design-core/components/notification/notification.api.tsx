@@ -1,7 +1,7 @@
-import React from "react";
-import short from "short-uuid";
-import { Root, createRoot } from "react-dom/client";
 import stylex from "@stylexjs/stylex";
+import React from "react";
+import { Root, createRoot } from "react-dom/client";
+import short from "short-uuid";
 import { Notification } from "./notification";
 import { styles } from "./notification.stylex";
 import type {

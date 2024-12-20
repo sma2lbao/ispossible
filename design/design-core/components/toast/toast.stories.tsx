@@ -1,9 +1,9 @@
-import type { Meta } from "@storybook/react";
 import React from "react";
 import { Toast as ToastComponent } from "./toast";
-import { Toast } from "./";
-import { Space } from "../space";
 import { Button } from "../button";
+import { Space } from "../space";
+import { Toast } from "./";
+import type { Meta } from "@storybook/react";
 
 /**
  * 由用户的操作触发的轻量级全局反馈。

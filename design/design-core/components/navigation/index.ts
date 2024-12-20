@@ -1,8 +1,8 @@
 "use client";
 
 import { Nav } from "./nav";
-import { SubNav } from "./sub-nav";
 import { NavItem } from "./nav-item";
+import { SubNav } from "./sub-nav";
 
 export * from "./nav.types";
 

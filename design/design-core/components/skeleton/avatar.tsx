@@ -1,5 +1,5 @@
-import React from "react";
 import stylex from "@stylexjs/stylex";
+import React from "react";
 
 import { type SkeletonAvatarProps } from "./skeleton.types";
 import { shapes } from "../../themes/tokens/shape.stylex";

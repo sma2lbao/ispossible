@@ -1,7 +1,6 @@
-import { Button, Divider, Space, Switch, Tooltip } from "../../components";
 import React, { useState } from "react";
-
-import type { Meta, StoryObj } from "@storybook/react";
+import { Button, Divider, Space, Switch, Tooltip } from "../../components";
+import type { Meta } from "@storybook/react";
 
 /**
  * 鼠标悬停、聚焦或点击在某个组件时，弹出的文字提示。
@@ -17,7 +16,6 @@ const meta = {
 } satisfies Meta<typeof Tooltip>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
 /**
  * 鼠标移入，气泡出现，鼠标移出，气泡消失。

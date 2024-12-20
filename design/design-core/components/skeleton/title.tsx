@@ -1,5 +1,5 @@
-import React from "react";
 import stylex from "@stylexjs/stylex";
+import React from "react";
 import { type SkeletonTitleProps } from "./skeleton.types";
 
 const styles = stylex.create({

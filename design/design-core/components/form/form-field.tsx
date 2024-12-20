@@ -1,5 +1,4 @@
 import React from "react";
-import type { FormFieldProps } from "./form.types";
 import {
   type FieldValues,
   type Path,
@@ -7,13 +6,14 @@ import {
   Controller,
   useFormContext,
 } from "react-hook-form";
-import { x } from "../../shared";
 import { styles } from "./form.stylex";
-import "@design/icon/exclamation-circle-filled";
-import { Input } from "../input";
-import { Upload, UploadFile } from "../upload";
-import { Textarea } from "../textarea";
+import { x } from "../../shared";
 import { AutoComplete } from "../auto-complete";
+import { Input } from "../input";
+import { Textarea } from "../textarea";
+import { Upload, UploadFile } from "../upload";
+import "@design/icon/exclamation-circle-filled";
+import type { FormFieldProps } from "./form.types";
 
 export function FormField<T extends FieldValues>(props: FormFieldProps<T>) {
   const { required, label, name, rules, children } = props;

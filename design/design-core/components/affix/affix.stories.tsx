@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { Affix } from "./affix";
 import { Button } from "../button";
+import type { Meta } from "@storybook/react";
 
 /**
  * 将页面元素钉在可视范围。
@@ -18,7 +18,6 @@ const meta = {
 } satisfies Meta<typeof Affix>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
 /**
  * 最简单的用法。

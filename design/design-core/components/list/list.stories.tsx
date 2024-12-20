@@ -1,6 +1,6 @@
-import { List } from "./";
 import React, { useRef, useState } from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import { List } from "./";
+import type { Meta } from "@storybook/react";
 
 /**
  * 最基础的列表展示，可承载文字、列表、图片、段落，常用于后台数据展示页面。
@@ -16,7 +16,6 @@ const meta = {
 } satisfies Meta<typeof List>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
 /**
  * 最基础的列表展示，可承载文字、列表、图片、段落，常用于后台数据展示页面。

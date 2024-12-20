@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
-import { SubNavProps, isSubNavProps } from "./nav.types";
-import { NavItem } from "./nav-item";
 import stylex from "@stylexjs/stylex";
-import { styles } from "./nav.stylex";
+import React, { useContext, useState } from "react";
+import { NavItem } from "./nav-item";
 import { NavContext, NavContextType } from "./nav.context";
+import { styles } from "./nav.stylex";
+import { SubNavProps, isSubNavProps } from "./nav.types";
 import { PathTrackerContext, useFullPath, useMeasure } from "./path.context";
 import { Popover } from "../popover";
 import "@design/icon/down";
@@ -14,7 +14,6 @@ import "@design/icon/caret-right-filled";
 export const SubNav: React.FC<SubNavProps> = (props) => {
   const context = useContext(NavContext);
   const {
-    disabled,
     icon,
     expandIcon = context.mode === "inline" ||
     (context.mode === "x" && context.level === 0) ? (

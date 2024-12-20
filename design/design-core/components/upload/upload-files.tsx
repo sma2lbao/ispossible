@@ -1,16 +1,16 @@
-import React, { useContext, useState } from "react";
-import type { UploadFile, UploadFilesProps } from "./upload.types";
-import { formatBytes, x } from "../../shared";
+import React, { useContext } from "react";
+import { UploadContext } from "./upload.context";
 import { styles } from "./upload.stylex";
+import { formatBytes, x } from "../../shared";
 import { Button } from "../button";
 import { Progress } from "../progress";
-import { UploadContext } from "./upload.context";
+import { Tooltip } from "../tooltip";
+import type { UploadFile, UploadFilesProps } from "./upload.types";
 import "@design/icon/file-text-filled";
 import "@design/icon/close";
 import "@design/icon/close-circle-filled";
 import "@design/icon/redo";
 import "@design/icon/exclamation-circle-filled";
-import { Tooltip } from "../tooltip";
 
 const extractUrlName = (url?: string) => {
   if (!url) return "";

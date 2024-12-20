@@ -1,6 +1,6 @@
-import { Layout } from "./";
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import { Layout } from "./";
+import type { Meta } from "@storybook/react";
 
 /**
  * 页面的基础布局框架，常与组件嵌套使用，构建页面整体布局。
@@ -16,7 +16,6 @@ const meta = {
 } satisfies Meta<typeof Layout>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
 /**
  * 典型的页面布局。

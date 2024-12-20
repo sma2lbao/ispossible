@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
+import { AutoCompleteOption } from "./auto-complete-option";
+import { styles } from "./auto-complete.stylex";
+import { useClickOutside } from "../../hooks/use-click-outside";
+import { mergeRefs, x } from "../../shared";
+import { Input } from "../input";
+import { Popover } from "../popover";
 import type {
   AutoCompleteItem,
   AutoCompleteProps,
 } from "./auto-complete.types";
-import { Input } from "../input";
-import { Popover } from "../popover";
-import { AutoCompleteOption } from "./auto-complete-option";
 import "@design/icon/search";
-import { useClickOutside } from "../../hooks/use-click-outside";
-import { mergeRefs, x } from "../../shared";
-import { styles } from "./auto-complete.stylex";
 
 export const AutoComplete = React.forwardRef<HTMLDivElement, AutoCompleteProps>(
   (props, ref) => {

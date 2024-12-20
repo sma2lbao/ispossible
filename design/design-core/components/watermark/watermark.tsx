@@ -1,5 +1,5 @@
-import React, { useLayoutEffect, useRef } from "react";
 import stylex from "@stylexjs/stylex";
+import React, { useLayoutEffect, useRef } from "react";
 import { styles } from "./watermark.stylex";
 import type { WatermarkProps } from "./watermark.types";
 

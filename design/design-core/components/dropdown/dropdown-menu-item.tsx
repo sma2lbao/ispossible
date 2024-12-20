@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
 import stylex from "@stylexjs/stylex";
+import React, { useContext } from "react";
+import { DropdownContext } from "./dropdown.context";
+import { styles } from "./dropdown.stylex";
 import { DropdownMenuItemProps } from "./dropdown.types";
 import { Divider } from "../divider";
-import { styles } from "./dropdown.stylex";
-import { DropdownContext } from "./dropdown.context";
 import "@design/icon/check";
 
 export const DropdownMenuItem = React.forwardRef<

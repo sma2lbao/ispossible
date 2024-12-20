@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
+import { TagGroup } from "./group";
 import { Space, Tag } from "../../components";
 import "@design/icon/home";
-import { TagGroup } from "./group";
+import type { Meta, StoryObj } from "@storybook/react";
 
 /**
  * 用于信息的选择、筛选、分类。用户通过标签进行信息反馈和交互操作。

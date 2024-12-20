@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
 import stylex from "@stylexjs/stylex";
+import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { styles } from "./drawer.stylex";
 import { DrawerProps } from "./drawer.types";
 import "@design/icon/close";
-import { createPortal } from "react-dom";
 import { Button } from "../button";
 
 export const Drawer: React.FC<DrawerProps> = (props) => {

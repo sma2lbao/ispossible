@@ -1,8 +1,8 @@
 import stylex from "@stylexjs/stylex";
 import { colors } from "../../themes/tokens/color.stylex";
 import { shapes } from "../../themes/tokens/shape.stylex";
-import { typeScales } from "../../themes/tokens/type-scale.stylex";
 import { spacings } from "../../themes/tokens/spacing.stylex";
+import { typeScales } from "../../themes/tokens/type-scale.stylex";
 
 export const styles = stylex.create({
   root: {

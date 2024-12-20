@@ -7,7 +7,6 @@ export const Popover = React.forwardRef<PopoverHandles, PopoverProps>(
     const {
       children,
       content,
-      arrow = false,
       direction = "bottom",
       popupStylex,
       theme = "light",

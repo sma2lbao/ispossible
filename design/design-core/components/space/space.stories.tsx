@@ -1,6 +1,6 @@
+import { Space } from "./space";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Space } from "./space";
 
 /**
  * 设置组件之间的间距。

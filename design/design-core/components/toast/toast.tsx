@@ -1,6 +1,6 @@
+import stylex from "@stylexjs/stylex";
 import React from "react";
 import { styles } from "./toast.stylex";
-import stylex from "@stylexjs/stylex";
 import { ToastProps } from "./toast.types";
 import { Button } from "../button";
 import "@design/icon/close";

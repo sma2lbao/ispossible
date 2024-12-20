@@ -1,7 +1,7 @@
-import React from "react";
 import stylex from "@stylexjs/stylex";
-import { ButtonProps } from "./button.types";
+import React from "react";
 import { styles } from "./button.stylex";
+import { ButtonProps } from "./button.types";
 import "@design/icon/loading";
 import { x } from "../../shared";
 

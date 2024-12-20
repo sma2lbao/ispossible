@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import React, { useState } from "react";
-import { Input } from "./";
 import { Space } from "../space";
+import { Input } from "./";
+import type { Meta } from "@storybook/react";
 import "@design/icon/user";
 import "@design/icon/search";
 
@@ -19,7 +19,6 @@ const meta = {
 } satisfies Meta<typeof Input>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
 /**
  * 通过鼠标或键盘输入内容，是最基础的表单域的包装。

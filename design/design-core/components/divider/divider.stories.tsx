@@ -1,6 +1,6 @@
 import React from "react";
 import { Divider } from "./divider";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta } from "@storybook/react";
 
 /**
  * 划分内容区域，对模块做分隔。
@@ -16,7 +16,6 @@ const meta = {
 } satisfies Meta<typeof Divider>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
 /**
  * 对不同章节的文本段落进行分割，默认为水平分割线，可在中间加入文字。

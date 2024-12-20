@@ -1,13 +1,13 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { Modal } from "./modal";
+import { ModalContext } from "./modal.context";
 import type {
   BuildModalFunc,
   BuildModalOptions,
   BuiltInModalFunc,
   ModalProps,
 } from "./modal.types";
-import { ModalContext } from "./modal.context";
 
 const buildModal: BuildModalFunc = (type, options) => {
   const { onClosed, ...rest } = options || {};

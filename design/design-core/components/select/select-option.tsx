@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import type { SelectOptionProps } from "./select.types";
-import { x } from "../../shared";
-import { styles } from "./select.stylex";
 import { SelectContext } from "./select.context";
+import { styles } from "./select.stylex";
+import { x } from "../../shared";
+import type { SelectOptionProps } from "./select.types";
 
 export const SelectOption: React.FC<SelectOptionProps> = (props) => {
   const context = useContext(SelectContext);

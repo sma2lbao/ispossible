@@ -1,12 +1,12 @@
-import React, { useContext, useEffect } from "react";
-import { NavItemProps } from "./nav.types";
-import { NavContext } from "./nav.context";
 import stylex from "@stylexjs/stylex";
+import React, { useContext, useEffect } from "react";
+import { NavContext } from "./nav.context";
 import { styles } from "./nav.stylex";
+import { NavItemProps } from "./nav.types";
 import { useFullPath, useMeasure } from "./path.context";
 
 export const NavItem: React.FC<NavItemProps> = (props) => {
-  const { icon, itemKey, text, disabled = false, ...rest } = props;
+  const { icon, itemKey, text, disabled = false } = props;
   const context = useContext(NavContext);
   const isActive = context.selectedKeys?.includes(itemKey);
   const fullPath = useFullPath(itemKey);

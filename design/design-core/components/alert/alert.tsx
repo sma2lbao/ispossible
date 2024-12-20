@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import type { AlertProps } from "./alert.types";
-import { x } from "../../shared";
 import { styles } from "./alert.stylex";
+import { x } from "../../shared";
 import { Button } from "../button";
 import { Typography } from "../typography";
+import type { AlertProps } from "./alert.types";
 import "@design/icon/close";
 import "@design/icon/info-circle-filled";
 import "@design/icon/check-circle-filled";

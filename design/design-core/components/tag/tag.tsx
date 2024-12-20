@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import stylex from "@stylexjs/stylex";
+import React, { useState } from "react";
 import { styles } from "./tag.stylex";
 import type { TagProps } from "./tag.types";
 

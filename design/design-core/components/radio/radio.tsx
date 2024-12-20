@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
 import stylex from "@stylexjs/stylex";
-import { styles } from "./radio.stylex";
+import React, { useContext, useEffect, useState } from "react";
 import { RadioContext } from "./radio.context";
+import { styles } from "./radio.stylex";
 import type { RadioChangeEvent, RadioProps } from "./radio.types";
 
 export const Radio: React.FC<RadioProps> = (props) => {

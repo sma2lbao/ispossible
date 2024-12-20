@@ -1,6 +1,6 @@
 import React from "react";
-import { noop } from "../../shared";
 import { DropdownContextProps } from "./dropdown.types";
+import { noop } from "../../shared";
 
 export const DropdownContext = React.createContext<DropdownContextProps>({
   showTick: false,

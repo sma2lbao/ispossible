@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
-import type { ImageProps } from "./image.types";
-import { x } from "../../shared";
 import { styles } from "./image.stylex";
+import { x } from "../../shared";
 import { Skeleton } from "../skeleton";
+import type { ImageProps } from "./image.types";
 
 import "@design/icon/warning-filled";
 

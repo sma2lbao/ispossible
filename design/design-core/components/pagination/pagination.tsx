@@ -1,8 +1,8 @@
-import React, { useMemo } from "react";
 import stylex from "@stylexjs/stylex";
-import { Space } from "../space";
-import { Button } from "../button";
+import React, { useMemo } from "react";
 import { styles } from "./pagination.stylex";
+import { Button } from "../button";
+import { Space } from "../space";
 import type { PaginationProps } from "./pagination.types";
 import "@design/icon/left";
 import "@design/icon/right";

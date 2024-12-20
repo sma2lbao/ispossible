@@ -1,13 +1,13 @@
-import React from "react";
 import stylex from "@stylexjs/stylex";
+import React from "react";
 import { GridContext } from "./grid.context";
+import { styles } from "./grid.stylex";
 import type {
   GridContextProps,
   RowAlignType,
   RowJustifyType,
   RowProps,
 } from "./grid.types";
-import { styles } from "./grid.stylex";
 
 const alignConfig: Record<RowAlignType, React.CSSProperties["alignItems"]> = {
   top: "flex-start",

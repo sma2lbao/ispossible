@@ -1,10 +1,10 @@
-import React from "react";
 import stylex from "@stylexjs/stylex";
-import { TableHead } from "./table-head";
-import { TableBody } from "./table-body";
-import { TableRow } from "./table-row";
-import { TableCell } from "./table-cell";
+import React from "react";
 import { TableContext } from "./context";
+import { TableBody } from "./table-body";
+import { TableCell } from "./table-cell";
+import { TableHead } from "./table-head";
+import { TableRow } from "./table-row";
 
 export interface TableColumnType {
   title: React.ReactNode;
