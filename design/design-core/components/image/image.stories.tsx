@@ -1,5 +1,5 @@
 import React from "react";
-import { Image } from "./";
+import { Image, ImagePreview } from "./";
 import type { Meta } from "@storybook/react";
 
 /**
@@ -9,7 +9,7 @@ const meta = {
   title: "Image 图片",
   component: Image,
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
   },
   tags: ["autodocs"],
   argTypes: {},
@@ -22,7 +22,10 @@ export default meta;
  */
 export const 基本用法 = () => {
   return (
-    <Image src="https://cbb464e7cd4b3c0fa45c09def07a7afaaa057a2c.mdnplay.dev/zh-CN/docs/Web/SVG/Element/image/mdn_logo_only_color.png" />
+    <>
+      <Image src="https://cbb464e7cd4b3c0fa45c09def07a7afaaa057a2c.mdnplay.dev/zh-CN/docs/Web/SVG/Element/image/mdn_logo_only_color.png" />
+      <ImagePreview />
+    </>
   );
 };
 
