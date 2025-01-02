@@ -45,7 +45,16 @@ export interface ImageProps
 export interface ImagePreviewProps {
   src?: string | string[];
 
+  /**
+   * 当前选中
+   * @default 0
+   */
   current?: number;
 
-  closable?: boolean;
+  visible?: boolean;
+
+  /**
+   * 关闭回调
+   */
+  onClose?: () => void;
 }
