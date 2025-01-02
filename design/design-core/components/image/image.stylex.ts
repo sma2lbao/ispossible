@@ -51,9 +51,13 @@ export const styles = stylex.create({
     alignItems: "center",
     padding: "0 24px",
     pointerEvents: "none",
+    zIndex: "1",
   },
   image$preview$header$title: {
     flex: "1 1",
+  },
+  image$preview$header$close: {
+    pointerEvents: "auto",
   },
   image$preview$content: {
     position: "relative",
@@ -65,7 +69,9 @@ export const styles = stylex.create({
   image$preview$content$image$container: {
     width: "100%",
     height: "100%",
-    textAlign: "center",
+    display: "flex",
+    overflow: "hidden",
+    justifyContent: "center",
   },
   image$preview$footer: {
     display: "flex",
