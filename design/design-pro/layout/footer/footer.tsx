@@ -48,7 +48,7 @@ const Footer: React.FC<FooterProps> = () => {
           stylex={styles.button(tokens)}
           target="_blank"
         >
-          基础组件文档
+          组件文档
         </Typography.Link>
         <Typography.Link
           href="https://blog.sma1lbao.cn/"
@@ -57,10 +57,18 @@ const Footer: React.FC<FooterProps> = () => {
         >
           博客
         </Typography.Link>
+        <Typography.Link
+          href="https://y.sma1lbao.cn/"
+          stylex={styles.button(tokens)}
+          target="_blank"
+        >
+          音乐
+        </Typography.Link>
       </Space>
       <Space>
         <Button
           icon={<is-github />}
+          color="inherit"
           onClick={() => open("https://github.com/sma2lbao")}
         />
       </Space>

@@ -51,7 +51,12 @@ export const Topbar: React.FC<TopbarProps> = (props) => {
         {!!logo && <div {...stylex.props(styles.wrap)}>{logo}</div>}
         <div {...stylex.props(styles.content)}>{children}</div>
         <div {...stylex.props(styles.tools)}>
-          <Button icon={<is-github />} theme="ghost" onClick={handleClick} />
+          <Button
+            icon={<is-github />}
+            color="inherit"
+            theme="ghost"
+            onClick={handleClick}
+          />
         </div>
       </div>
     </div>
