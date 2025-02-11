@@ -2,7 +2,7 @@ import { StyleXStyles } from "@stylexjs/stylex";
 
 export type SkeletonNode =
   | "title"
-  | "paragraph"
+  | "text"
   | "button"
   | "avatar"
   | "image";
@@ -10,14 +10,15 @@ export type SkeletonNode =
 export interface SkeletonProps {
   nodes?: SkeletonNode[];
   children?: React.ReactNode;
-  style?: StyleXStyles;
+  stylex?: StyleXStyles;
+  loading?: boolean;
 }
 
 export interface SkeletonTitleProps {
   width?: string | number;
 }
 
-export interface SkeletonParagraphProps {
+export interface SkeletonTextProps {
   width?: string | string[];
   rows?: number;
 }

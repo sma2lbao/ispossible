@@ -19,6 +19,14 @@ export default meta;
 
 export const 基本用法 = () => (
   <div style={{ padding: 50 }}>
-    <Skeleton />
+    <Skeleton>
+      <div>标题</div>
+      <div>
+        正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文
+      </div>
+      <div>
+        正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文
+      </div>
+    </Skeleton>
   </div>
 );
