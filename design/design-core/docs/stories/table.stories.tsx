@@ -1,5 +1,5 @@
-import { Table } from "../../components";
 import React from "react";
+import { Table } from "../../components";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {

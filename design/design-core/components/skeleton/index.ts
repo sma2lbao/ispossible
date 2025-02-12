@@ -1,8 +1,8 @@
+import Skeleton from "./skeleton";
 import Avatar from "./skeleton-avatar";
 import Button from "./skeleton-button";
 import Image from "./skeleton-image";
 import Paragraph from "./skeleton-text";
-import Skeleton from "./skeleton";
 import Title from "./skeleton-title";
 
 type ExportSkeletonType = typeof Skeleton & {

@@ -1,25 +1,36 @@
-import stylex from "@stylexjs/stylex";
 import React from "react";
 import { styles } from "./skeleton.stylex";
 import { type SkeletonTextProps } from "./skeleton.types";
+import { x } from "../../shared";
 
 const SkeletonText: React.FC<SkeletonTextProps> = (props) => {
-  const { width = "60%", rows = 3 } = props;
+  const {
+    width = "60%",
+    height,
+    rows = 3,
+    stylex,
+    style,
+    rootStyle,
+    rootStylex,
+  } = props;
 
   return (
-    <div>
+    <div {...x(rootStyle, rootStylex)}>
       {Array(rows)
         .fill(null)
         .map((_value, index) => (
           <p
             key={index}
-            {...stylex.props(
+            {...x(
+              style,
+              stylex,
               styles.skeleton$text(
                 Array.isArray(width)
                   ? width[index]
                   : rows - 1 === index
                   ? width
-                  : "100%"
+                  : "100%",
+                height
               )
             )}
           ></p>

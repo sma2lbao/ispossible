@@ -1,4 +1,3 @@
-import stylex from "@stylexjs/stylex";
 import React from "react";
 import { styles } from "./space.stylex";
 import { x } from "../../shared";
@@ -7,6 +6,7 @@ import type { SpaceProps } from "./space.types";
 export const Space: React.FC<SpaceProps> = (props) => {
   const {
     children,
+    style,
     stylex: customStylex,
     separator,
     size = 8,
@@ -21,7 +21,8 @@ export const Space: React.FC<SpaceProps> = (props) => {
 
   return (
     <div
-      {...stylex.props(
+      {...x(
+        style,
         styles.space(size),
         direction === "y" && styles.space$vertical,
         customStylex

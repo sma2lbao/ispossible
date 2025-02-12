@@ -10,26 +10,28 @@ import { x } from "../../shared";
 
 export const Skeleton: React.FC<SkeletonProps> = (props) => {
   const {
-    nodes = ["title", "text", "image"],
+    nodes = ["title", "text"],
     children,
     stylex,
     loading = false,
+    style,
   } = props;
 
   if (!loading) return children;
   return (
-    <div {...x(styles.skeleton, stylex)}>
+    <div {...x(style, styles.skeleton, stylex)}>
       {nodes.map((item, index) => {
+        const nodeType = Array.isArray(item) ? item[0] : item;
+        const nodeProps: any = Array.isArray(item) ? item[1] : {};
         const nodeConfig: Record<SkeletonNode, React.ReactNode> = {
-          title: <SkeletonTitle key={index} />,
-          text: <SkeletonText key={index} />,
-          button: <SkeletonButton key={index} />,
-          avatar: <SkeletonAvatar shape="square" size={60} key={index} />,
-          image: <SkeletonImage width={200} key={index} />,
+          title: <SkeletonTitle key={index} {...nodeProps} />,
+          text: <SkeletonText key={index} {...nodeProps} />,
+          button: <SkeletonButton key={index} {...nodeProps} />,
+          avatar: <SkeletonAvatar shape="square" {...nodeProps} key={index} />,
+          image: <SkeletonImage key={index} {...nodeProps} />,
         };
-        return nodeConfig[item];
+        return nodeConfig[nodeType];
       })}
-      {children}
     </div>
   );
 };

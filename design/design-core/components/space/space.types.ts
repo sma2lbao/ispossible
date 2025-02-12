@@ -16,4 +16,6 @@ export interface SpaceProps {
   direction?: "x" | "y";
 
   stylex?: StyleXStyles;
+
+  style?: React.CSSProperties;
 }
