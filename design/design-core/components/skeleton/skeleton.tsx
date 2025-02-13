@@ -13,7 +13,7 @@ export const Skeleton: React.FC<SkeletonProps> = (props) => {
     nodes = ["title", "text"],
     children,
     stylex,
-    loading = false,
+    loading = true,
     style,
   } = props;
 

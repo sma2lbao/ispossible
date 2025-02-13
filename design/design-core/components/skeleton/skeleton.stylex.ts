@@ -3,11 +3,16 @@ import { shapes } from "../../themes/tokens/shape.stylex";
 import { spacings } from "../../themes/tokens/spacing.stylex";
 
 export const styles = stylex.create({
-  skeleton: {},
+  skeleton: {
+    display: "grid",
+    gridAutoRows: "auto",
+    gridGap: "10px",
+  },
   skeleton$title: (width: string | number, height?: string | number) => ({
     width,
-    height: height ?? 18,
+    height: height ?? 24,
     backgroundColor: "#ddd",
+    borderRadius: shapes.corner$sm,
   }),
   skeleton$text: (width: string, height?: string | number) => ({
     height: height ?? 16,

@@ -8,11 +8,15 @@ import { useCategory } from "./category-context";
 const ArticleTabs = () => {
   const [category, setCategory] = useCategory();
   const handleTabChange = (dirname: string) => {
-    setCategory(dirname);
+    setCategory?.(dirname);
   };
 
   return (
-    <Tabs activeKey={category} onChange={handleTabChange}>
+    <Tabs
+      defaultActiveKey="algorithm"
+      activeKey={category}
+      onChange={handleTabChange}
+    >
       {menus.map((item) => {
         return (
           <TabPane key={item.dirname} tab={item.label} itemKey={item.dirname}>

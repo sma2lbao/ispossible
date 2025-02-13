@@ -6,14 +6,9 @@ import {
   existFile,
   readContent,
 } from "@/shared/parse-article";
-import Document from "../../_layouts/document";
 import ArticleContainer from "../../_components/article-container";
 
-export default function ArticlePage({
-  params,
-}: {
-  params: { slugs: string[] };
-}) {
+function ArticlePage({ params }: { params: { slugs: string[] } }) {
   const { slugs } = params;
   const exist = existFile(slugs);
   if (!exist) {
@@ -27,12 +22,12 @@ export default function ArticlePage({
   const meta: ArticleMatterProps = source.data;
 
   return (
-    <Document>
-      <ArticleContainer
-        meta={meta}
-        headings={headings}
-        content={source.content}
-      />
-    </Document>
+    <ArticleContainer
+      meta={meta}
+      headings={headings}
+      content={source.content}
+    />
   );
 }
+
+export default ArticlePage;

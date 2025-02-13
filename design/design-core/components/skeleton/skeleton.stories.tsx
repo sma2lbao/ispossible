@@ -20,13 +20,13 @@ export default meta;
 export const 基本用法 = () => (
   <div style={{ padding: 50 }}>
     <Skeleton
+      loading
       style={{
         display: "grid",
         gridTemplateColumns: "1fr 200px",
         gridAutoRows: "auto",
         gridGap: "10px",
       }}
-      loading
       nodes={[
         ["title", { style: { gridColumn: 1, gridRow: 1 } }],
         [

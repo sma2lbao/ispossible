@@ -1,6 +1,8 @@
 import { CategoryProvider } from "./_components/category-context";
+import Document from "./_layouts/document";
 import "normalize.css";
 import "./_styles/global.css";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "Blog",
@@ -15,8 +17,16 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <body>
-        <CategoryProvider>{children}</CategoryProvider>
+        <CategoryProvider>
+          <Suspense fallback={<LoadingSpinner />}>
+            <Document>{children}</Document>
+          </Suspense>
+        </CategoryProvider>
       </body>
     </html>
   );
+}
+
+function LoadingSpinner() {
+  return <div>Loading...</div>;
 }
