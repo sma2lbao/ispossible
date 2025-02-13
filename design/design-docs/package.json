@@ -13,10 +13,10 @@
     "@design/icon": "workspace:*",
     "@design/pro": "workspace:*",
     "@stylexjs/stylex": "~0.9.3",
-    "next": "14.2.18",
+    "next": "^15",
     "normalize.css": "~8.0.1",
-    "react": "^18",
-    "react-dom": "^18",
+    "react": "^19",
+    "react-dom": "^19",
     "@stylexswc/nextjs-plugin": "~0.4.2",
     "@stylexswc/rs-compiler": "~0.4.2"
   },
@@ -25,10 +25,10 @@
     "@stylexjs/eslint-plugin": "~0.9.3",
     "@stylexjs/nextjs-plugin": "~0.9.3",
     "@types/node": "^22",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "eslint": "^8",
-    "eslint-config-next": "14.2.18",
+    "eslint-config-next": "^15",
     "typescript": "^5"
   }
 }

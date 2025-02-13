@@ -20,8 +20,8 @@
     "@tools/eslint-config": "workspace:*",
     "eslint": "^8",
     "@types/node": "^22",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "@stylexjs/babel-plugin": "~0.9.3"
   },
   "peerDependencies": {

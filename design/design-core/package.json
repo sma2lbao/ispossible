@@ -38,8 +38,8 @@
     "@tools/eslint-config": "workspace:*",
     "eslint": "^8",
     "@types/node": "^22",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "vite": "^5",
     "@types/mdx": "~2.0.11",
     "vite-plugin-stylex": "~0.13.0"
