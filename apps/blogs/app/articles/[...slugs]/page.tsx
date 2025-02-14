@@ -8,7 +8,11 @@ import {
 } from "@/shared/parse-article";
 import ArticleContainer from "../../_components/article-container";
 
-async function ArticlePage({ params }: { params: { slugs: string[] } }) {
+async function ArticlePage({
+  params,
+}: {
+  params: Promise<{ slugs: string[] }>;
+}) {
   const slugs = (await params).slugs;
   const exist = existFile(slugs);
   if (!exist) {

@@ -3,9 +3,9 @@ import StoryContainer from "@/app/_components/story-container";
 export default async function ArticlePage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = params;
+  const { slug } = await params;
 
   return <StoryContainer slug={slug} />;
 }
