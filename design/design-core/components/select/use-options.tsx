@@ -7,7 +7,7 @@ export default function useOptions(children?: React.ReactNode) {
     const options: SelectOptionProps[] = [];
     React.Children.map(children, (child, index) => {
       if (React.isValidElement(child) && child.type === SelectOption) {
-        options.push(child.props);
+        options.push(child.props as SelectOptionProps);
       }
     });
     return {

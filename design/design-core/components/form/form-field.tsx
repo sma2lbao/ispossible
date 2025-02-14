@@ -43,7 +43,7 @@ export function FormField<T extends FieldValues>(props: FormFieldProps<T>) {
         rules={rules}
         render={(option) => {
           const { name, value, disabled, ref, onChange, onBlur } = option.field;
-          const element = children as React.ReactElement;
+          const element = children as React.ReactElement<any>;
           if (
             element.type === Input ||
             element.type === Textarea ||

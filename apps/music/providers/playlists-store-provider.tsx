@@ -14,7 +14,7 @@ export const PlaylistsStoreProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const storeRef = useRef<PlaylistsStoreApi>();
+  const storeRef = useRef<PlaylistsStoreApi>(null);
 
   if (!storeRef.current) {
     storeRef.current = createPlaylistsStore();

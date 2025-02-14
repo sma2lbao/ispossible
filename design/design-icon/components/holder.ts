@@ -10,7 +10,7 @@ createWebIcon(
 </svg>`
 );
 
-declare global {
+declare module "react" {
   namespace JSX {
     interface IntrinsicElements {
       "is-holder": IsIcon;

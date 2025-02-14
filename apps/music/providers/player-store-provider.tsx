@@ -15,7 +15,7 @@ export const PlayerStoreProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const storeRef = useRef<PlayerStoreApi>();
+  const storeRef = useRef<PlayerStoreApi>(null);
   if (!storeRef.current) {
     storeRef.current = createPlayerStore();
   }

@@ -56,8 +56,11 @@ export const Layout: React.FC<LayoutProps> = (props) => {
       <LayoutContext.Provider value={contextValue}>
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child) && child.type === Header) {
-            return React.cloneElement(child as ReactElement, {
-              ref: mergeRefs(child.props?.ref, headerRef),
+            return React.cloneElement(child as ReactElement<any>, {
+              ref: mergeRefs(
+                (child as ReactElement<any>).props?.ref,
+                headerRef
+              ),
             });
           }
           return child;

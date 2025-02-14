@@ -11,7 +11,7 @@ createWebIcon(
 `
 );
 
-declare global {
+declare module "react" {
   namespace JSX {
     interface IntrinsicElements {
       "is-customer-service-filled": IsIcon;

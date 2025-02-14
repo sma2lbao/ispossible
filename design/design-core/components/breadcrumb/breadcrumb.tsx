@@ -5,6 +5,7 @@ import { BreadcrumbContext } from "./breadcrumb.context";
 import { styles } from "./breadcrumb.stylex";
 import type {
   BreadcrumbContextProps,
+  BreadcrumbItemProps,
   BreadcrumbProps,
 } from "./breadcrumb.types";
 
@@ -21,10 +22,13 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
     if (len === 0) return null;
     return items?.map((child, index) => {
       if (index === len - 1) {
-        return React.cloneElement(child as React.ReactElement, {
-          stylex: styles.breadcrumb$item$active,
-          key: index,
-        });
+        return React.cloneElement(
+          child as React.ReactElement<BreadcrumbItemProps>,
+          {
+            stylex: styles.breadcrumb$item$active,
+            key: index,
+          }
+        );
       }
       return (
         <React.Fragment key={index}>

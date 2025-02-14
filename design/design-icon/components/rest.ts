@@ -15,7 +15,7 @@ createWebIcon(
 `
 );
 
-declare global {
+declare module "react" {
   namespace JSX {
     interface IntrinsicElements {
       "is-rest": IsIcon;
