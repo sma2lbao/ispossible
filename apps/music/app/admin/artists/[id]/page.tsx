@@ -12,7 +12,7 @@ import {
 } from "@design/core";
 import { Artist } from "@prisma/client";
 import stylex from "@stylexjs/stylex";
-import { useMemo } from "react";
+import { use, useMemo } from "react";
 import useSWR from "swr";
 import useSWRMutation from "swr/mutation";
 import "@design/icon/plus";
@@ -33,8 +33,12 @@ const styles = stylex.create({
   },
 });
 
-export default function UpdateArtist({ params }: { params: { id: string } }) {
-  const artistId = params.id;
+export default function UpdateArtist({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id: artistId } = use(params);
   const { data } = useSWR(
     artistId ? `/api/artists/${artistId}` : null,
     createFetcher<Artist>()

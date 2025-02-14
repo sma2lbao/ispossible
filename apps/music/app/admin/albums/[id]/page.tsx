@@ -12,7 +12,7 @@ import {
 } from "@design/core";
 import { Album, Artist } from "@prisma/client";
 import stylex from "@stylexjs/stylex";
-import { useMemo, useState } from "react";
+import { use, useMemo, useState } from "react";
 import useSWR from "swr";
 import useSWRMutation from "swr/mutation";
 import "@design/icon/plus";
@@ -34,8 +34,12 @@ const styles = stylex.create({
   },
 });
 
-export default function UpdateAlbum({ params }: { params: { id: string } }) {
-  const albumId = params.id;
+export default function UpdateAlbum({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id: albumId } = use(params);
   const [keyword, setKeyword] = useState<string>("");
   const { data } = useSWR(
     albumId ? `/api/albums/${albumId}` : null,

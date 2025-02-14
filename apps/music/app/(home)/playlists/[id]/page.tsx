@@ -1,4 +1,5 @@
 "use client";
+
 import useSWR from "swr";
 import stylex from "@stylexjs/stylex";
 import { Button, TabPane, Tabs } from "@design/core";
@@ -7,6 +8,7 @@ import { useRouter } from "next/navigation";
 import useSWRMutation from "swr/mutation";
 import { Playlist, Song } from "@prisma/client";
 import { createFetcher, createMutater } from "@/shared/fetcher";
+import { use } from "react";
 
 const styles = stylex.create({
   page: {
@@ -17,8 +19,12 @@ const styles = stylex.create({
   },
 });
 
-export default function PlaylistDetail({ params }: { params: { id: string } }) {
-  const playlistId = params.id;
+export default function PlaylistDetail({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id: playlistId } = use(params);
   const router = useRouter();
   const { data, mutate } = useSWR(
     playlistId ? `/api/playlists/${playlistId}` : null,

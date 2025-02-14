@@ -14,7 +14,7 @@ import {
 } from "@design/core";
 import { Song } from "@prisma/client";
 import stylex from "@stylexjs/stylex";
-import { useMemo } from "react";
+import { use, useMemo } from "react";
 import useSWR from "swr";
 import useSWRMutation from "swr/mutation";
 import "@design/icon/plus";
@@ -37,8 +37,12 @@ const styles = stylex.create({
   },
 });
 
-export default function UpdateSong({ params }: { params: { id: string } }) {
-  const songId = params.id;
+export default function UpdateSong({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id: songId } = use(params);
   const { data } = useSWR(
     songId ? `/api/songs/${songId}` : null,
     createFetcher<Song>()
