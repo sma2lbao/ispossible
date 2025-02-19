@@ -2,13 +2,14 @@
 
 import useSWR from "swr";
 import stylex from "@stylexjs/stylex";
-import { Button, TabPane, Tabs } from "@design/core";
+import { TabPane, Tabs } from "@design/core";
 import SongList from "@/components/song-list";
 import { useRouter } from "next/navigation";
 import useSWRMutation from "swr/mutation";
 import { Playlist, Song } from "@prisma/client";
 import { createFetcher, createMutater } from "@/shared/fetcher";
 import { use } from "react";
+import PlaylistCard from "@/components/playlist-card";
 
 const styles = stylex.create({
   page: {
@@ -51,9 +52,11 @@ export default function PlaylistDetail({
   return (
     <div {...stylex.props(styles.page)}>
       <div>
-        歌单区域
-        <Button onClick={handleUpdate}>编辑</Button>
-        <Button onClick={handleRemove}>删除</Button>
+        <PlaylistCard
+          playlist={data?.data}
+          onUpdate={handleUpdate}
+          onRemove={handleRemove}
+        />
       </div>
       <Tabs defaultActiveKey="song">
         <TabPane tab="歌曲" itemKey="song">

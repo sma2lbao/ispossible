@@ -1,6 +1,6 @@
 import stylex from "@stylexjs/stylex";
-import { typeFaces } from "./type-face.stylex";
 import { scales } from "./scale.stylex";
+import { typeFaces } from "./type-face.stylex";
 
 export const typeScales = stylex.defineVars({
   // display-large

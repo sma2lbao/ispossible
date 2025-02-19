@@ -104,6 +104,11 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
     audioRef.current?.play();
   };
 
+  const handleEnded = () => {
+    setStatus("ended");
+    audioRef.current?.play();
+  };
+
   const handleFavorite = () => {
     console.log("join");
   };
@@ -186,7 +191,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
         onPlay={() => setStatus("play")}
         onPlaying={() => setStatus("playing")}
         onCanPlay={handleCanPlay}
-        onEnded={() => setStatus("ended")}
+        onEnded={handleEnded}
         onWaiting={() => setStatus("waiting")}
         onDurationChange={handleDurationChange}
         onTimeUpdate={handleTimeUpdate}
