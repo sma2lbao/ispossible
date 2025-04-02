@@ -177,6 +177,7 @@ export const navConfig: NavConfigItemType[] = [
     text: "其他",
     items: [
       { itemKey: "tree", path: "tree-树形控件--docs", text: "Tree 树形控件" },
+      { itemKey: "icons", path: "icon--docs", text: "Icons 图标" },
     ],
   },
 ];

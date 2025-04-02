@@ -13,6 +13,9 @@ function main() {
     encoding: "utf-8",
   }).filter((file) => file.endsWith(".svg"));
 
+  let importComponentContent = `"use client"\n`;
+  const hostComponentNameArray: string[] = [];
+
   svgFiles.forEach((svgFile) => {
     const suffix = dirname(svgFile);
     let componentFileName = basename(svgFile, extname(svgFile));
@@ -26,6 +29,8 @@ function main() {
       componentFileName,
       svgFileContent
     );
+    importComponentContent += `\nimport "./${componentFileName}"`;
+    hostComponentNameArray.push(`is-${componentFileName}`);
     writeFileSync(
       join(COMPONENT_DIRNAME, componentFileName + COMPONENT_EXTNAME),
       componentFileContent,
@@ -34,6 +39,19 @@ function main() {
       }
     );
   });
+  const exportHostComponentNames = hostComponentNameArray.map(
+    (name) => `\n"${name}"`
+  );
+
+  importComponentContent += `\n\nexport default [${exportHostComponentNames}
+]`;
+  writeFileSync(
+    join(COMPONENT_DIRNAME, "index" + COMPONENT_EXTNAME),
+    importComponentContent,
+    {
+      encoding: "utf-8",
+    }
+  );
 }
 
 function returnContent(name: string, svgContent: string) {

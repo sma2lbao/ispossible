@@ -1,0 +1,19 @@
+import { Canvas, Meta, Story, ArgTypes } from "@storybook/blocks";
+import icons from "@design/icon";
+import { Button, Row, Col, Typography, Space } from "../../components";
+
+<Row gutter={[16, 16]}>
+  {icons.map((icon) => {
+    const Component = icon;
+    return (
+      <Col span={6} key={icon}>
+        <Space direction="y">
+          <span style={{ fontSize: 32 }}>
+            <Component />
+          </span>
+          <Typography variant="label">{Component}</Typography>
+        </Space>
+      </Col>
+    );
+  })}
+</Row>
