@@ -2,6 +2,9 @@ import { Playlist } from "@prisma/client";
 import { createStore } from "zustand/vanilla";
 
 export type PlaylistsState = {
+  /**
+   * 属于‘我的’歌单
+   */
   myPlaylists: Playlist[] | null;
 };
 
