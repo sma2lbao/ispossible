@@ -31,7 +31,7 @@ export const createPendingPlaylistStore = (
   return createStore<PendingPlaylistStore>()((set) => ({
     ...defaultState,
     append(song) {
-      return set(() => ({ songs: [...this.songs, song] }));
+      return set((state) => ({ songs: [...state.songs, song] }));
     },
   }));
 };

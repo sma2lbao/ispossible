@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import stylex from "@stylexjs/stylex";
-import { Avatar, Button, Col, Progress, Row } from "@design/core";
+import { Avatar, Button, Col, Progress, Row, Drawer, List } from "@design/core";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 import "@design/icon/step-forward-filled";
@@ -10,14 +10,17 @@ import "@design/icon/step-backward-filled";
 import "@design/icon/play-circle-filled";
 import "@design/icon/pause-circle-filled";
 import "@design/icon/heart";
+import "@design/icon/menu-unfold";
 
 dayjs.extend(duration);
 
 export interface MiniPlayerProps {
   song?: MiniSong;
+  list?: MiniSong[];
 }
 
 export interface MiniSong {
+  id: string;
   title: string;
   sourceUrl: string;
   coverUrl?: string;
@@ -62,6 +65,9 @@ const styles = stylex.create({
     alignItems: "center",
     flexWrap: "nowrap",
   },
+  tools: {
+    display: "flex",
+  },
 });
 
 type AudioStatus =
@@ -74,12 +80,13 @@ type AudioStatus =
   | "ended";
 
 const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
-  const { song } = props;
+  const { song, list } = props;
   const audioRef = useRef<HTMLAudioElement>(null);
   const [status, setStatus] = useState<AudioStatus>("loading");
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [rawSong, setRawSong] = useState<MiniSong | undefined>(undefined);
+  const [visible, setVisivle] = useState(false);
 
   const handlePlay = () => {
     audioRef.current?.play();
@@ -106,16 +113,20 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
 
   const handleEnded = () => {
     setStatus("ended");
+    if (!list || list.length === 0) return;
+    // 结束
+    const currentIndex = list.findIndex((item) => item.id === rawSong?.id);
+    console.log("currentIndex: ", currentIndex);
+    if (currentIndex === -1) return;
+    const isLastSong = list[list.length - 1] === rawSong;
+    console.log("isLastSong: ", isLastSong);
+    setRawSong(isLastSong ? list[0] : list[currentIndex + 1]);
     audioRef.current?.play();
   };
 
   const handleFavorite = () => {
     console.log("join");
   };
-
-  useEffect(() => {
-    console.log("status: ", status);
-  }, [status]);
 
   useEffect(() => {
     if (song !== rawSong) {
@@ -180,7 +191,28 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
             </div>
           </div>
         </Col>
+        <Col span={8}>
+          <div {...stylex.props(styles.tools)}>
+            <Button
+              theme="ghost"
+              icon={<is-menu-unfold />}
+              onClick={() => setVisivle(!visible)}
+            ></Button>
+          </div>
+        </Col>
       </Row>
+
+      <Drawer
+        visible={visible}
+        title={"播放队列"}
+        onClosed={() => setVisivle(false)}
+      >
+        <List>
+          {list?.map((item, index) => {
+            return <List.Item key={index}>{item.title}</List.Item>;
+          })}
+        </List>
+      </Drawer>
 
       <audio
         ref={audioRef}
