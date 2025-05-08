@@ -6,7 +6,7 @@ const USER_AGENT = "weather-app/1.0";
 const server = new McpServer({
     name: "weather",
     version: "1.0.0",
-    capabilitties: {
+    capabilities: {
         resources: {},
         tools: {},
     },
@@ -29,13 +29,13 @@ async function makeNWSRequest(url) {
     }
 }
 function formatAlert(feature) {
-    const props = feature.properites;
+    const props = feature.properties;
     return [
-        `Event: ${props.event || "Unknown"}`,
-        `Area: ${props.areaDesc || "Unknown"}`,
-        `Severity: ${props.severity || "Unknown"}`,
-        `Status: ${props.status || "Unknown"}`,
-        `Headline: ${props.headline || "No headline"}`,
+        `Event: ${props?.event || "Unknown"}`,
+        `Area: ${props?.areaDesc || "Unknown"}`,
+        `Severity: ${props?.severity || "Unknown"}`,
+        `Status: ${props?.status || "Unknown"}`,
+        `Headline: ${props?.headline || "No headline"}`,
         "---",
     ].join("\n");
 }
@@ -93,7 +93,7 @@ server.tool("get-forecast", "Get weather forecast for a location", {
             ],
         };
     }
-    const forecastUrl = pointsData.properites?.forecast;
+    const forecastUrl = pointsData.properties?.forecast;
     if (!forecastUrl) {
         return {
             content: [
