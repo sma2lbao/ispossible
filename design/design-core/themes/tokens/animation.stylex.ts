@@ -6,6 +6,19 @@ const spin = stylex.keyframes({
   },
 });
 
+const flashing = stylex.keyframes({
+  "0%": {
+    opacity: 1,
+  },
+  "50%": {
+    opacity: 0.1,
+  },
+  "100%": {
+    opacity: 1,
+  },
+});
+
 export const animation = stylex.defineVars({
   spin: spin,
+  flashing: flashing,
 });

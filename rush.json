@@ -328,6 +328,13 @@
       ]
     },
     {
+      "packageName": "@apps/chat",
+      "projectFolder": "apps/chat",
+      "tags": [
+        "apps"
+      ]
+    },
+    {
       "packageName": "@tools/eslint-config",
       "projectFolder": "tools/eslint-config",
       "tags": [
