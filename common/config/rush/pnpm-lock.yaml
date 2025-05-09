@@ -104,6 +104,24 @@ importers:
 
   ../../apps/chat:
     dependencies:
+      '@design/core':
+        specifier: workspace:*
+        version: link:../../design/design-core
+      '@design/icon':
+        specifier: workspace:*
+        version: link:../../design/design-icon
+      '@design/pro':
+        specifier: workspace:*
+        version: link:../../design/design-pro
+      '@stylexjs/stylex':
+        specifier: ~0.9.3
+        version: 0.9.3
+      '@stylexswc/nextjs-plugin':
+        specifier: ~0.4.2
+        version: 0.4.2(next@15.1.7)
+      '@stylexswc/rs-compiler':
+        specifier: ~0.4.2
+        version: 0.4.2
       next:
         specifier: ^15
         version: 15.1.7(@babel/core@7.26.0)(react-dom@19.0.0)(react@19.0.0)

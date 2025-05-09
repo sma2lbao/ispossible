@@ -38,3 +38,4 @@ export * from "./textarea";
 export * from "./auto-complete";
 export * from "./drawer";
 export { useTokens, type Tokens } from "../themes/use-tokens";
+export * from "./chat";

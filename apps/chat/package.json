@@ -11,7 +11,13 @@
   "dependencies": {
     "react": "^19",
     "react-dom": "^19",
-    "next": "^15"
+    "next": "^15",
+    "@design/core": "workspace:*",
+    "@design/pro": "workspace:*",
+    "@design/icon": "workspace:*",
+    "@stylexjs/stylex": "~0.9.3",
+    "@stylexswc/nextjs-plugin": "~0.4.2",
+    "@stylexswc/rs-compiler": "~0.4.2"
   },
   "devDependencies": {
     "typescript": "^5",
