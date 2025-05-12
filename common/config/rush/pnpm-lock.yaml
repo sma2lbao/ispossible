@@ -113,6 +113,9 @@ importers:
       '@design/pro':
         specifier: workspace:*
         version: link:../../design/design-pro
+      '@microsoft/fetch-event-source':
+        specifier: ~2.0.1
+        version: 2.0.1
       '@stylexjs/stylex':
         specifier: ~0.9.3
         version: 0.9.3
@@ -2635,6 +2638,10 @@ packages:
       '@types/react': 18.3.11
       react: 18.3.1
     dev: true
+
+  /@microsoft/fetch-event-source@2.0.1:
+    resolution: {integrity: sha512-W6CLUJ2eBMw3Rec70qrsEW0jOm/3twwJv21mrmj2yORiaVmVYGS4sSS5yUwvQc1ZlDLYGPnClVWmUUMagKNsfA==}
+    dev: false
 
   /@next/env@15.1.7:
     resolution: {integrity: sha512-d9jnRrkuOH7Mhi+LHav2XW91HOgTAWHxjMPkXMGBc9B2b7614P7kjt8tAplRvJpbSt4nbO1lugcT/kAaWzjlLQ==}

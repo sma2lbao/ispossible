@@ -6,6 +6,8 @@ export const styles = stylex.create({
     display: "flex",
     flexDirection: "column",
     height: "100%",
+    maxWidth: 800,
+    margin: "0 auto",
   },
   message$area: {
     flex: 1,
@@ -24,6 +26,9 @@ export const styles = stylex.create({
     padding: `0 ${horizontal ? horizontal + "px" : 0}`,
     textAlign: align ?? "left",
   }),
+  message$item$content$thought: {
+    padding: 4,
+  },
   input$area: {
     flexShrink: 0,
     padding: "24px 0",

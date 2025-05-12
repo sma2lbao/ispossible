@@ -5,15 +5,18 @@ import { x } from "../../shared";
 import { Avatar } from "../avatar";
 import { Space } from "../space";
 import { Typography } from "../typography";
+import "@design/icon/user";
+import "@design/icon/robot";
 import type { IMessageProps } from "./chat.types";
 
 export const MessageItem: React.FC<IMessageProps> = (props) => {
   const {
-    name = "User",
-    role = "user",
-    content = `Hello, I'm your AI assistant.`,
+    name,
+    role,
+    content,
     isIdentify = true,
     thinking = false,
+    thought,
   } = props;
   const align = role === "user" ? "right" : "left";
 
@@ -22,14 +25,27 @@ export const MessageItem: React.FC<IMessageProps> = (props) => {
       {isIdentify ? (
         <div {...x(styles.message$item$header(align))}>
           <Space stylex={styles.message$item$role(align)}>
-            <Avatar size={32}></Avatar>
+            <Avatar size={32}>
+              {role === "user" ? <is-user /> : <is-robot />}
+            </Avatar>
             <Typography variant="title">{name}</Typography>
           </Space>
         </div>
       ) : null}
       <div {...x(styles.message$item$content(align, isIdentify ? 42 : 0))}>
-        <Typography variant="body">{content}</Typography>
         {thinking ? <LoadingItem /> : null}
+        {thought ? (
+          <Typography
+            as="div"
+            variant="label"
+            stylex={styles.message$item$content$thought}
+          >
+            {thought}
+          </Typography>
+        ) : null}
+        <Typography as="div" variant="body">
+          {content}
+        </Typography>
       </div>
     </div>
   );

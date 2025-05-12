@@ -6,12 +6,12 @@ import { x } from "../../shared";
 import type { IChatProps } from "./chat.types";
 
 export const Chat: React.FC<IChatProps> = (props) => {
-  const { className, style, stylex } = props;
+  const { className, style, stylex, messages = [], onMessageSend } = props;
 
   return (
     <div {...x(className, style, styles.chat, stylex)}>
-      <MessageArea />
-      <InputArea />
+      <MessageArea messages={messages} />
+      <InputArea onSend={onMessageSend} />
     </div>
   );
 };

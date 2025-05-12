@@ -24,6 +24,21 @@ export interface IMessage {
   content: string;
 
   /**
+   * 是否思考中
+   */
+  thinking?: boolean;
+
+  /**
+   * 思路
+   */
+  thought?: string;
+
+  /**
+   * 原始文本
+   */
+  rawContent?: string;
+
+  /**
    * 创建时间
    */
   createAt?: string;
@@ -35,11 +50,6 @@ export interface IMessageProps extends IMessage {
    * @default 'true'
    */
   isIdentify?: boolean;
-
-  /**
-   * 是否思考中
-   */
-  thinking?: boolean;
 }
 
 export interface IChatProps {
@@ -49,11 +59,13 @@ export interface IChatProps {
 
   stylex?: StyleXStyles;
 
+  messages?: IMessage[];
+
   /**
    * 发送消息时触发
    * @returns
    */
-  onMessageSend?: () => void;
+  onMessageSend?: (message: string) => void;
 }
 
 export interface IInputAreaProps {
@@ -61,5 +73,9 @@ export interface IInputAreaProps {
    * @param message 提问信息
    * @returns
    */
-  onSend?: (message?: string) => void;
+  onSend?: (message: string) => void;
+}
+
+export interface IMessageArea {
+  messages: IMessageProps[];
 }

@@ -14,11 +14,12 @@ export const InputArea: React.FC<IInputAreaProps> = (props) => {
     setInput(newValue);
   };
 
-  const handleKeyUp: React.KeyboardEventHandler<HTMLTextAreaElement> = (e) => {
-    console.log(e);
+  const handleKeyUp: React.KeyboardEventHandler<HTMLTextAreaElement> = () => {
+    // console.log(e);
   };
 
   const handleSend = () => {
+    if (!input) return;
     onSend?.(input);
     setInput("");
   };
