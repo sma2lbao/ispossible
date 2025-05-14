@@ -2,6 +2,7 @@
 
 import { Layout } from "@design/core";
 import stylex from "@stylexjs/stylex";
+import Sider from "./sider";
 
 export interface ContinerProps {
   children?: React.ReactNode;
@@ -16,6 +17,7 @@ const styles = stylex.create({
     backgroundColor: "#fff",
     padding: 0,
     overflowY: "auto",
+    borderRight: "1px solid rgba(28, 31, 35, 0.08)",
   },
 });
 
@@ -24,7 +26,9 @@ export default function Continer(props: ContinerProps) {
     <Layout stylex={styles.root}>
       <Layout.Content>
         <Layout style={{ height: "100%" }}>
-          <Layout.Sider width={280} stylex={styles.sider}></Layout.Sider>
+          <Layout.Sider width={280} stylex={styles.sider}>
+            <Sider />
+          </Layout.Sider>
           <Layout.Content>
             <Layout style={{ height: "100%" }}>
               <Layout.Header>{/* <Topbar /> */}</Layout.Header>

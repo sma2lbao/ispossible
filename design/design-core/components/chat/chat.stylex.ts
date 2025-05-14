@@ -5,13 +5,11 @@ export const styles = stylex.create({
   chat: {
     display: "flex",
     flexDirection: "column",
-    height: "100%",
-    maxWidth: 800,
-    margin: "0 auto",
+    minHeight: "100%",
   },
   message$area: {
     flex: 1,
-    overflow: "auto",
+    // overflow: "auto",
   },
   message$item: {
     padding: "8px 0",

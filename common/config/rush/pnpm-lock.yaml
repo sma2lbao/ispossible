@@ -134,6 +134,9 @@ importers:
       react-dom:
         specifier: ^19
         version: 19.1.0(react@19.1.0)
+      zustand:
+        specifier: ~5.0.1
+        version: 5.0.4(@types/react@19.1.4)(react@19.1.0)
     devDependencies:
       '@types/node':
         specifier: ^22

@@ -1,4 +1,11 @@
-export interface IDeepSeek {}
+export interface IDeepSeek {
+  /**
+   * 调用api
+   */
+  api: string;
+}
+
+export interface IDSChatOptions extends Partial<IDeepSeek> {}
 
 export interface IChatMessage {
   role?: "user";
@@ -9,12 +16,17 @@ export interface IChatMessage {
 }
 
 export class DeepSeek {
-  constructor(props?: IDeepSeek) {}
+  private api: string;
 
-  async chat(messsage: IChatMessage) {
+  constructor(props?: IDeepSeek) {
+    this.api = props?.api ?? "";
+  }
+
+  async chat(messsage: IChatMessage, options?: IDSChatOptions) {
     const { onmessage, content } = messsage;
+    const api = options?.api ?? this.api ?? "";
 
-    const response = await fetch("", {
+    const response = await fetch(api, {
       method: "POST",
       body: JSON.stringify({
         model: "deepseek-r1:8b",
