@@ -62,6 +62,11 @@ export interface IChatProps {
   messages?: IMessage[];
 
   /**
+   * 输出中
+   */
+  loading?: boolean;
+
+  /**
    * 发送消息时触发
    * @returns
    */
@@ -69,6 +74,11 @@ export interface IChatProps {
 }
 
 export interface IInputAreaProps {
+  /**
+   * 是否禁用
+   */
+  disabled?: boolean;
+
   /**
    * @param message 提问信息
    * @returns

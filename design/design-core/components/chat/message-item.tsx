@@ -3,6 +3,7 @@ import { styles } from "./chat.stylex";
 import { LoadingItem } from "./loading-item";
 import { x } from "../../shared";
 import { Avatar } from "../avatar";
+import { MarkdownRender } from "../markdown-render";
 import { Space } from "../space";
 import { Typography } from "../typography";
 import "@design/icon/user";
@@ -43,9 +44,7 @@ export const MessageItem: React.FC<IMessageProps> = (props) => {
             {thought}
           </Typography>
         ) : null}
-        <Typography as="div" variant="body">
-          {content}
-        </Typography>
+        <MarkdownRender raw={content} />
       </div>
     </div>
   );

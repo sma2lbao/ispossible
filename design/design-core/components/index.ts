@@ -39,3 +39,5 @@ export * from "./auto-complete";
 export * from "./drawer";
 export { useTokens, type Tokens } from "../themes/use-tokens";
 export * from "./chat";
+export * from "./code-highlight";
+export * from "./markdown-render";

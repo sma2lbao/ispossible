@@ -7,7 +7,7 @@ import "@design/icon/send";
 import type { IInputAreaProps } from "./chat.types";
 
 export const InputArea: React.FC<IInputAreaProps> = (props) => {
-  const { onSend } = props;
+  const { disabled = false, onSend } = props;
   const [input, setInput] = useState<string>();
 
   const handleChange = (newValue: string) => {
@@ -29,9 +29,10 @@ export const InputArea: React.FC<IInputAreaProps> = (props) => {
       <div {...x(styles.input$area$text)}>
         <Textarea onKeyUp={handleKeyUp} value={input} onChange={handleChange} />
         <Button
-          icon={<is-send />}
           color="primary"
           theme="solid"
+          icon={<is-send />}
+          disabled={disabled}
           stylex={styles.input$area$text$send}
           onClick={handleSend}
         ></Button>

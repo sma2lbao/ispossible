@@ -176,6 +176,17 @@ export const navConfig: NavConfigItemType[] = [
     itemKey: "other",
     text: "其他",
     items: [
+      { itemKey: "chat", path: "chat-对话--docs", text: "Chat 对话" },
+      {
+        itemKey: "markdown",
+        path: "markdown-渲染器--docs",
+        text: "Markdown 渲染器",
+      },
+      {
+        itemKey: "codehighlight",
+        path: "codehighlight-代码高亮--docs",
+        text: "Codehighlight 代码高亮",
+      },
       { itemKey: "tree", path: "tree-树形控件--docs", text: "Tree 树形控件" },
       { itemKey: "icons", path: "icon--docs", text: "Icons 图标" },
     ],
