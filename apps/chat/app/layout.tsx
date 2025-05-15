@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Continer from "./components/container";
+import Continer from "../components/container";
 import { SettingsStoreProvider } from "@/providers/settings-store-provider";
 import "./globals.css";
 

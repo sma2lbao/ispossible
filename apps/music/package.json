@@ -21,7 +21,7 @@
     "@design/icon": "workspace:*",
     "next-auth": "~5.0.0-beta.25",
     "@auth/prisma-adapter": "~2.7.4",
-    "zod": "~3.23.8",
+    "zod": "~3.24.1",
     "@stylexjs/stylex": "~0.9.3",
     "@stylexswc/nextjs-plugin": "~0.4.2",
     "@stylexswc/rs-compiler": "~0.4.2",

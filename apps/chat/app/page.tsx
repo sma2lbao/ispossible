@@ -2,10 +2,10 @@
 
 import { Chat, type IMessage } from "@design/core";
 import stylex from "@stylexjs/stylex";
-import { deepseek } from "./services";
+import { deepseek } from "../services";
 import { useState } from "react";
 import { useSettingsStore } from "@/providers/settings-store-provider";
-import { formatAnswerMessage } from "./shared/chat-message";
+import { formatAnswerMessage } from "../shared/chat-message";
 
 const styles = stylex.create({
   chat$page: {

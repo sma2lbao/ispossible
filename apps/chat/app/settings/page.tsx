@@ -4,7 +4,7 @@ import React from "react";
 import { Input, List, Typography } from "@design/core";
 import stylex from "@stylexjs/stylex";
 import { useSettingsStore } from "@/providers/settings-store-provider";
-import Header from "../components/header";
+import Header from "../../components/header";
 
 const styles = stylex.create({
   page: {
