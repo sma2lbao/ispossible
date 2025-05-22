@@ -185,7 +185,12 @@ export const navConfig: NavConfigItemType[] = [
       {
         itemKey: "codehighlight",
         path: "codehighlight-代码高亮--docs",
-        text: "Codehighlight 代码高亮",
+        text: "CodeHighlight 代码高亮",
+      },
+      {
+        itemKey: "hotkey",
+        path: "hotkey-快捷键--docs",
+        text: "HotKey 快捷键",
       },
       { itemKey: "tree", path: "tree-树形控件--docs", text: "Tree 树形控件" },
       { itemKey: "icons", path: "icon--docs", text: "Icons 图标" },

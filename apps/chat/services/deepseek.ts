@@ -29,7 +29,7 @@ export class DeepSeek {
     const response = await fetch(api, {
       method: "POST",
       body: JSON.stringify({
-        model: "deepseek-r1:8b",
+        model: "deepseek-r1:1.5b",
         prompt: content,
         stream: true,
       }),

@@ -41,3 +41,4 @@ export { useTokens, type Tokens } from "../themes/use-tokens";
 export * from "./chat";
 export * from "./code-highlight";
 export * from "./markdown-render";
+export * from "./hot-key";
