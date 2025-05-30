@@ -21,7 +21,14 @@
     "@microsoft/fetch-event-source": "~2.0.1",
     "zustand": "~5.0.1",
     "@langchain/ollama": "~0.2.0",
-    "@langchain/core": "~0.3.55"
+    "@langchain/core": "~0.3.57",
+    "@langchain/openai": "~0.5.11",
+    "@langchain/community": "~0.3.44",
+    "@supabase/supabase-js": "~2.49.8",
+    "langchain": "~0.3.27",
+    "playwright": "~1.52.0",
+    "zod": "~3.25.28",
+    "winston": "~3.17.0"
   },
   "devDependencies": {
     "typescript": "^5",
