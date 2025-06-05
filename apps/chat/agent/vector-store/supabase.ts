@@ -5,7 +5,7 @@ import { OllamaEmbeddings } from "@langchain/ollama";
 const embeddings = new OllamaEmbeddings({
   model: "nomic-embed-text",
 });
-export const vectorStore = new SupabaseVectorStore(embeddings, {
+export const supabaseVectorStore = new SupabaseVectorStore(embeddings, {
   client: client,
   tableName: "documents",
   queryName: "match_documents",
@@ -13,7 +13,7 @@ export const vectorStore = new SupabaseVectorStore(embeddings, {
 
 const filter = { source: "https://example.com" };
 
-const similaritySearchResults = await vectorStore.similaritySearch(
+const similaritySearchResults = await supabaseVectorStore.similaritySearch(
   "biology",
   2,
   filter

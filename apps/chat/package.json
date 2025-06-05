@@ -19,6 +19,7 @@
     "@stylexswc/nextjs-plugin": "~0.4.2",
     "@stylexswc/rs-compiler": "~0.4.2",
     "@microsoft/fetch-event-source": "~2.0.1",
+    "next-auth": "~5.0.0-beta.25",
     "zustand": "~5.0.1",
     "@langchain/ollama": "~0.2.0",
     "@langchain/core": "~0.3.57",
@@ -28,7 +29,11 @@
     "langchain": "~0.3.27",
     "playwright": "~1.52.0",
     "zod": "~3.25.28",
-    "winston": "~3.17.0"
+    "minio": "~8.0.2",
+    "winston": "~3.17.0",
+    "dayjs": "~1.11.13",
+    "uuid": "~11.1.0",
+    "chromadb": "~2.4.6"
   },
   "devDependencies": {
     "typescript": "^5",

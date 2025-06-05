@@ -140,12 +140,21 @@ importers:
       '@supabase/supabase-js':
         specifier: ~2.49.8
         version: 2.49.8
+      dayjs:
+        specifier: ~1.11.13
+        version: 1.11.13
       langchain:
         specifier: ~0.3.27
         version: 0.3.27(@langchain/core@0.3.57)(@langchain/ollama@0.2.0)(axios@1.9.0)(openai@4.103.0)
+      minio:
+        specifier: ~8.0.2
+        version: 8.0.5
       next:
         specifier: ^15
         version: 15.3.2(@babel/core@7.26.10)(@playwright/test@1.52.0)(react-dom@19.1.0)(react@19.1.0)
+      next-auth:
+        specifier: ~5.0.0-beta.25
+        version: 5.0.0-beta.28(next@15.3.2)(react@19.1.0)
       playwright:
         specifier: ~1.52.0
         version: 1.52.0
@@ -155,6 +164,9 @@ importers:
       react-dom:
         specifier: ^19
         version: 19.1.0(react@19.1.0)
+      uuid:
+        specifier: ~11.1.0
+        version: 11.1.0
       winston:
         specifier: ~3.17.0
         version: 3.17.0
@@ -10037,6 +10049,11 @@ packages:
 
   /uuid@10.0.0:
     resolution: {integrity: sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==}
+    hasBin: true
+    dev: false
+
+  /uuid@11.1.0:
+    resolution: {integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==}
     hasBin: true
     dev: false
 
