@@ -116,12 +116,10 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
     if (!list || list.length === 0) return;
     // 结束
     const currentIndex = list.findIndex((item) => item.id === rawSong?.id);
-    console.log("currentIndex: ", currentIndex);
     if (currentIndex === -1) return;
-    const isLastSong = list[list.length - 1] === rawSong;
-    console.log("isLastSong: ", isLastSong);
+    list[currentIndex].sourceUrl;
+    const isLastSong = list[list.length - 1].id === rawSong?.id;
     setRawSong(isLastSong ? list[0] : list[currentIndex + 1]);
-    audioRef.current?.play();
   };
 
   const handleFavorite = () => {

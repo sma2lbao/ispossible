@@ -14,9 +14,12 @@ export const GET = inject(
   ) => {
     const slugs = (await params).slugs;
     const id = slugs.join("/");
-
     const url = await minio.presignedGetObject(MINIO_BUCKET, id, 3600);
-
-    return NextResponse.redirect(url);
+    const resource = await fetch(url);
+    return new NextResponse(resource.body, {
+      headers: {
+        "Cache-Control": "public, max-age=3600, immutable",
+      },
+    });
   }
 );
