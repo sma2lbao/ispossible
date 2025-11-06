@@ -88,14 +88,35 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
   const [rawSong, setRawSong] = useState<MiniSong | undefined>(undefined);
   const [visible, setVisivle] = useState(false);
 
+  /** 播放控制 **/
   const handlePlay = () => {
-    audioRef.current?.play();
+    if (!audioRef.current) return;
+    audioRef.current.play().catch((err) => {
+      console.warn("播放失败：", err);
+    });
   };
 
   const handlePause = () => {
     audioRef.current?.pause();
   };
 
+  /** 下一首 **/
+  const handleNext = () => {
+    if (!list || list.length === 0 || !rawSong) return;
+    const currentIndex = list.findIndex((item) => item.id === rawSong.id);
+    const nextIndex = currentIndex === list.length - 1 ? 0 : currentIndex + 1;
+    setRawSong(list[nextIndex]);
+  };
+
+  /** 上一首 **/
+  const handlePrev = () => {
+    if (!list || list.length === 0 || !rawSong) return;
+    const currentIndex = list.findIndex((item) => item.id === rawSong.id);
+    const prevIndex = currentIndex === 0 ? list.length - 1 : currentIndex - 1;
+    setRawSong(list[prevIndex]);
+  };
+
+  /** 音频事件处理 **/
   const handleDurationChange: React.ReactEventHandler<
     HTMLAudioElement
   > = () => {
@@ -108,41 +129,48 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
 
   const handleCanPlay = () => {
     setStatus("ready");
-    audioRef.current?.play();
+    handlePlay(); // 自动播放
   };
 
   const handleEnded = () => {
     setStatus("ended");
-    if (!list || list.length === 0) return;
-    // 结束
-    const currentIndex = list.findIndex((item) => item.id === rawSong?.id);
-    if (currentIndex === -1) return;
-    list[currentIndex].sourceUrl;
-    const isLastSong = list[list.length - 1].id === rawSong?.id;
-    setRawSong(isLastSong ? list[0] : list[currentIndex + 1]);
+    handleNext(); // 自动切换下一首
   };
 
-  const handleFavorite = () => {
-    console.log("join");
-  };
-
+  /** 自动播放逻辑：每次切换 rawSong 后自动播放 **/
   useEffect(() => {
-    if (song !== rawSong) {
-      setCurrentTime(0);
+    if (rawSong?.sourceUrl && audioRef.current) {
+      audioRef.current.load();
+
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.warn("自动播放被拦截：", err);
+        });
+      }
+    }
+  }, [rawSong]);
+
+  /** 初始加载时同步 song **/
+  useEffect(() => {
+    if (song && song !== rawSong) {
       setRawSong(song);
     }
-  }, [song, rawSong]);
+  }, [song]);
+
+  const handleFavorite = () => {
+    console.log("加入收藏");
+  };
 
   return (
     <>
       <Row stylex={styles.player} type="flex" align="middle">
         <Col span={8}>
           <div {...stylex.props(styles.song)}>
-            <Avatar src={song?.coverUrl} shape="square" size={56} />
+            <Avatar src={rawSong?.coverUrl} shape="square" size={56} />
             <div>
               <div>
                 <span>{rawSong?.title ?? "--"}</span>
-                {/* <span>-</span> */}
               </div>
               <div {...stylex.props(styles.songTools)}>
                 <Button
@@ -157,7 +185,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
         <Col span={8}>
           <div {...stylex.props(styles.main)}>
             <div {...stylex.props(styles.controls)}>
-              <Button icon={<is-step-backward-filled />} theme="ghost" />
+              <Button onClick={handlePrev} icon={<is-step-backward-filled />} theme="ghost" />
               {status === "playing" ? (
                 <Button
                   onClick={handlePause}
@@ -174,8 +202,8 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
                   theme="ghost"
                 />
               ) : null}
-
-              <Button icon={<is-step-forward-filled />} theme="ghost" />
+                
+              <Button onClick={handleNext} icon={<is-step-forward-filled />} theme="ghost" />
             </div>
             <div {...stylex.props(styles.progressContainer)}>
               <span>
@@ -195,7 +223,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
               theme="ghost"
               icon={<is-menu-unfold />}
               onClick={() => setVisivle(!visible)}
-            ></Button>
+            />
           </div>
         </Col>
       </Row>
@@ -212,20 +240,24 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
         </List>
       </Drawer>
 
-      <audio
-        ref={audioRef}
-        src={rawSong?.sourceUrl}
-        controls={false}
-        preload="auto"
-        onPause={() => setStatus("pause")}
-        onPlay={() => setStatus("play")}
-        onPlaying={() => setStatus("playing")}
-        onCanPlay={handleCanPlay}
-        onEnded={handleEnded}
-        onWaiting={() => setStatus("waiting")}
-        onDurationChange={handleDurationChange}
-        onTimeUpdate={handleTimeUpdate}
-      ></audio>
+        <audio
+          ref={audioRef}
+          src={
+            rawSong?.sourceUrl
+              ? rawSong.sourceUrl.replaceAll("#", "%23")
+              : undefined
+          }
+          controls={false}
+          preload="auto"
+          onPause={() => setStatus("pause")}
+          onPlay={() => setStatus("play")}
+          onPlaying={() => setStatus("playing")}
+          onCanPlay={handleCanPlay}
+          onEnded={handleEnded}
+          onWaiting={() => setStatus("waiting")}
+          onDurationChange={handleDurationChange}
+          onTimeUpdate={handleTimeUpdate}
+        />
     </>
   );
 };
