@@ -13,7 +13,7 @@
     "@design/icon": "workspace:*",
     "@design/pro": "workspace:*",
     "@stylexjs/stylex": "~0.9.3",
-    "next": "^15",
+    "next": "15.3.6",
     "normalize.css": "~8.0.1",
     "react": "^19",
     "react-dom": "^19",
