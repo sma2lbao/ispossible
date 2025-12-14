@@ -27,6 +27,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
+      <head>
+        <script
+          defer
+          src="https://umami.sma1lbao.cn/script.js"
+          data-website-id="ec46c34b-ca63-493c-9c87-e86e05d84bb9"
+        ></script>
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <SessionProvider>
           <SWRProvider>{children}</SWRProvider>
