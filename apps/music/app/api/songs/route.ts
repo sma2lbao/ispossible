@@ -9,7 +9,7 @@ export const GET = inject(async () => {
   const session = await auth();
   const userId = session?.user?.id;
   const songs = await prisma.song.findMany({
-    take: 100,
+    take: 200,
     include: {
       favoritedBy: Boolean(userId)
         ? {
