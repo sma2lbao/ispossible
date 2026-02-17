@@ -156,7 +156,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
     if (song && song !== rawSong) {
       setRawSong(song);
     }
-  }, [song]);
+  }, [song, rawSong]);
 
   const handleFavorite = () => {
     console.log("加入收藏");
@@ -185,7 +185,11 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
         <Col span={8}>
           <div {...stylex.props(styles.main)}>
             <div {...stylex.props(styles.controls)}>
-              <Button onClick={handlePrev} icon={<is-step-backward-filled />} theme="ghost" />
+              <Button
+                onClick={handlePrev}
+                icon={<is-step-backward-filled />}
+                theme="ghost"
+              />
               {status === "playing" ? (
                 <Button
                   onClick={handlePause}
@@ -202,8 +206,12 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
                   theme="ghost"
                 />
               ) : null}
-                
-              <Button onClick={handleNext} icon={<is-step-forward-filled />} theme="ghost" />
+
+              <Button
+                onClick={handleNext}
+                icon={<is-step-forward-filled />}
+                theme="ghost"
+              />
             </div>
             <div {...stylex.props(styles.progressContainer)}>
               <span>
@@ -240,24 +248,24 @@ const MiniPlayer: React.FC<MiniPlayerProps> = (props) => {
         </List>
       </Drawer>
 
-        <audio
-          ref={audioRef}
-          src={
-            rawSong?.sourceUrl
-              ? rawSong.sourceUrl.replaceAll("#", "%23")
-              : undefined
-          }
-          controls={false}
-          preload="auto"
-          onPause={() => setStatus("pause")}
-          onPlay={() => setStatus("play")}
-          onPlaying={() => setStatus("playing")}
-          onCanPlay={handleCanPlay}
-          onEnded={handleEnded}
-          onWaiting={() => setStatus("waiting")}
-          onDurationChange={handleDurationChange}
-          onTimeUpdate={handleTimeUpdate}
-        />
+      <audio
+        ref={audioRef}
+        src={
+          rawSong?.sourceUrl
+            ? rawSong.sourceUrl.replaceAll("#", "%23")
+            : undefined
+        }
+        controls={false}
+        preload="auto"
+        onPause={() => setStatus("pause")}
+        onPlay={() => setStatus("play")}
+        onPlaying={() => setStatus("playing")}
+        onCanPlay={handleCanPlay}
+        onEnded={handleEnded}
+        onWaiting={() => setStatus("waiting")}
+        onDurationChange={handleDurationChange}
+        onTimeUpdate={handleTimeUpdate}
+      />
     </>
   );
 };
