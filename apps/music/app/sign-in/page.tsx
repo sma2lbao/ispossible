@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button, Divider, Input, Layout, Typography } from "@design/core";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import stylex from "@stylexjs/stylex";
 import "@design/icon/github";
 
@@ -36,14 +36,24 @@ export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loadingClient, setLoadingClient] = useState("");
+  const session = useSession();
+  const user = session.data?.user;
 
   const handleGithub = async () => {
     setLoadingClient("github");
     signIn("github", {
       redirectTo: "/",
-    }).catch(() => {
-      setLoadingClient("");
-    });
+    })
+      .then(() => {
+        umami.identify(user!.id!, {
+          name: user?.name,
+          role: user?.roles,
+          email: user?.email,
+        });
+      })
+      .catch(() => {
+        setLoadingClient("");
+      });
   };
 
   const handleCredentials = async () => {
@@ -52,9 +62,17 @@ export default function SignIn() {
       email: email,
       password: password,
       redirectTo: "/",
-    }).finally(() => {
-      setLoadingClient("");
-    });
+    })
+      .then(() => {
+        umami.identify(user!.id!, {
+          name: user?.name,
+          role: user?.roles,
+          email: user?.email,
+        });
+      })
+      .finally(() => {
+        setLoadingClient("");
+      });
   };
 
   return (
