@@ -13,5 +13,6 @@ export interface PaginationProps {
    * @default 1
    */
   page?: number;
+  
   onPageChange?: (nextPage: number) => void;
 }
